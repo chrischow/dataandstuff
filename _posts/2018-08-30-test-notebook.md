@@ -51,5 +51,5 @@ plt.show()
 ```
 
 
-![](graphics/2018-08-30-test-notebook-plot1.png)
-
+![](graphics/2018-08-30-test-notebook-plot1.png)  
+  
