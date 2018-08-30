@@ -1,4 +1,8 @@
-# A Fresh Start!
+---
+layout: post
+title: A Fresh Start!
+subtitle: I've made the switch. WordPress to GitHub. R to Python.
+---
   
 It's been a while since I've posted on my [data&stuff (WordPress)](http://dataandstuff.wordpress.com) blog. The reason is that I've come to the realisation that while R is extremely useful, Python is the future. I spent the past few weeks picking up Python: I did several online courses and I'm currently working on a simple project, the [Kaggle Titanic Machine Learning](https://www.kaggle.com/c/titanic) problem.  
   
