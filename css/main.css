@@ -7,8 +7,8 @@ layout: null
 /* --- General --- */
 
 body {
-  /* font-family: 'Quattrocento Sans', 'Open Sans', sans-serif; */
-  font-family: 'Poppins', 'Open Sans', sans-serif;
+  font-family: 'Quattrocento Sans', 'Open Sans', sans-serif;
+  /* font-family: 'Poppins', 'Open Sans', sans-serif;*/
   font-size: 18px;
   /* color: #404040; */
   color: #10102C;
@@ -24,7 +24,8 @@ p {
   margin: 30px 0;
 }
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /* font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+  font-family: Poppins;
   font-weight: 800;
 }
 a {
