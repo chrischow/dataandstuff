@@ -10,4 +10,4 @@ As I worked on this project, I made two discoveries. First, Python is amazing fo
   
 Second, GitHub is superb for version control. I'm currently using it for the Kaggle Titanic project, and I've decided that GitHub will be the new home for my blog! Previously, I used RStudio's interface to RMarkdown to write all my blog posts. I could write the main text and generate in-line graphics. I found this incredibly convenient. However, combining GitHub and Jupyter notebooks allow me to do the same in Python! Hence, having made the switch from R to Python, I intend to use GitHub to host my blog.  
   
-Moving ahead, you can expect more mini-projects, and more posts on data science techniques. I look forward to the exciting new times with Python and GitHub!
+Moving ahead, you can expect more mini-projects, and more posts on data science techniques. I look forward to the exciting new adventures with Python and GitHub!
