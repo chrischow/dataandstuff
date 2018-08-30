@@ -1,4 +1,8 @@
-
+---
+layout: post
+title: Test Notebook
+subtitle: Just testing some code.
+---
 
 # Test Notebook
 This is a notebook to test the export of Jupyter notebooks into HTML format.
@@ -47,5 +51,5 @@ plt.show()
 ```
 
 
-![png](2018-08-30-test-notebook-plot1)
+![png](/graphics/2018-08-30-test-notebook-plot1)
 
