@@ -50,7 +50,7 @@ plt.title('Test Plot')
 plt.show()
 ```
 
-![](graphics/2018-08-30-test-notebook-plot1.png)  
+![](/graphics/2018-08-30-test-notebook-plot1.png)  
   
 ## Converting Jupyter Notebooks to Markdown
 To convert my notebook into a markdown-ready format, I did the following:  
