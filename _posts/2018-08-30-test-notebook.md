@@ -50,6 +50,14 @@ plt.title('Test Plot')
 plt.show()
 ```
 
-
 ![](graphics/2018-08-30-test-notebook-plot1.png)  
   
+## Converting Jupyter Notebooks to Markdown
+To convert my notebook into a markdown-ready format, I did the following:  
+  
+1. Save Jupyter notebook as Markdown (.md).
+2. Rename the Markdown file to match the naming convention for the blog.
+3. Add the YAML headers for title, subtitle, tags, etc.
+4. Move the images used to a dedicated folder and update the file location.
+  
+
