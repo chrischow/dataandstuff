@@ -24,6 +24,7 @@ description: About data. And stuff.
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
+  Resources: "resources"
   Links:
     - Github: "https://github.com/chrischow"
     - Old Blog: "http://dataandstuff.wordpress.com"
