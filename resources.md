@@ -1,5 +1,5 @@
-# Resources for Data Science
-Everything I know about data science was picked up from online courses and practice. On this page, you'll find a list of Massive Open Online Courses (MOOCs) that I've completed and found extremely useful.  
+# Courses
+Everything I know about data science was picked up from online courses and practice. Below is a list of Massive Open Online Courses (MOOCs) that I've completed and found extremely useful.  
   
 ## Python
   
@@ -28,3 +28,13 @@ Everything I know about data science was picked up from online courses and pract
 15. Intro to Statistics in R: Correlation and Linear Regression ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-correlation-and-linear-regression))
 16. Intro to Statistics in R: Multiple Regression ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-multiple-regression))
 17. Kaggle R Tutorial on Machine Learning ([DataCamp](https://www.datacamp.com/courses/kaggle-r-tutorial-on-machine-learning))
+  
+# Books
+Here are some suggested titles:
+  
+1. Data Science for Business: What You Need to Know About Data Mining and Data-Analytic Thinking
+2. Data Smart: Using Data Science to Transform Information into Insight
+3. Data Science from Scratch: First Principles with Python
+4. Data Mining Techniques: For Marketing, Sales, and Customer Relationship Management
+  
+  
