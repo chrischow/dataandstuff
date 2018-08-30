@@ -1,5 +1,5 @@
 # Courses
-Everything I know about data science was picked up from online courses and practice. Below is a list of Massive Open Online Courses (MOOCs) that I've completed and found extremely useful.  
+Most of what I know about data science was picked up from online courses and practice. Below is a list of Massive Open Online Courses (MOOCs) that I've completed and found extremely useful.  
   
 ## Python
   
