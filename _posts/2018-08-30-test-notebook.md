@@ -60,4 +60,4 @@ To convert my notebook into a markdown-ready format, I did the following:
 3. Add the YAML headers for title, subtitle, tags, etc.
 4. Move the images used to a dedicated folder and update the file location.
   
-
+---
