@@ -34,7 +34,8 @@ a:focus {
   color: {{ site.hover-col }};
 }
 blockquote {
-  color: #808080;
+  /* color: #808080; */
+  color: #272D50;
   font-style: italic;
 }
 blockquote p:first-child {
@@ -333,7 +334,8 @@ footer .theme-by {
 
 .post-preview a {
   text-decoration: none;
-  color: #404040;
+  /* color: #404040; */
+  color: #10102C;
 }
 
 .post-preview a:focus,
@@ -353,7 +355,8 @@ footer .theme-by {
 }
 .post-preview .post-meta,
 .post-heading .post-meta {
-  color: #808080;
+  /* color: #808080; */
+  color: #272D50;
   font-size: 18px;
   font-style: italic;
   margin: 0 0 10px;
@@ -606,7 +609,8 @@ footer .theme-by {
   padding: 10px 5px;
   background-color: #FFF;
   border-radius: 0;
-  color: #404040;
+  /* color: #404040; */
+  color: #10102C;
 }
 @media only screen and (min-width: 768px) {
   .pager li a {
@@ -779,7 +783,8 @@ td.gutter {
 }
 
 #full-tags-list .tag-entry .entry-date {
-  color: #808080;
+  /* color: #808080; */
+  color: #272D50;
   font-style: italic;
   font-size: 16px;
 }
