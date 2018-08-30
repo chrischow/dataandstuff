@@ -4,7 +4,6 @@ title: Test Notebook
 subtitle: Just testing some code.
 ---
 
-# Test Notebook
 This is a notebook to test the export of Jupyter notebooks into HTML format.
 
 ## Import Modules
