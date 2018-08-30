@@ -48,7 +48,7 @@ link-col: "#008AFF"
 hover-col: "##336699"
 footer-col: "#F5F5F5"
 footer-text-col: "#272D50"
-footer-link-col: "#008AFF"
+footer-link-col: "#10102C"
 
 # Default:
 # navbar-col: "#F5F5F5"
