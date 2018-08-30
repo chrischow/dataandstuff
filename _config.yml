@@ -44,11 +44,11 @@ navbar-col: "#F5F5F5"
 navbar-text-col: "#272D50"
 navbar-children-col: "#F5F5F5"
 page-col: "#FFFFFF"
-link-col: "#67647D"
+link-col: "#008AFF"
 hover-col: "##336699"
 footer-col: "#F5F5F5"
 footer-text-col: "#272D50"
-footer-link-col: "#10102C"
+footer-link-col: "#008AFF"
 
 # Default:
 # navbar-col: "#F5F5F5"
