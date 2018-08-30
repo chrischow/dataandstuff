@@ -9,7 +9,8 @@ layout: null
 body {
   font-family: 'Quattrocento Sans', 'Open Sans', sans-serif;
   font-size: 18px;
-  color: #404040;
+  /* color: #404040; */
+  color: #10102C;
   position: relative;
   background-color: {{ site.page-col }};
   {% if site.page-img %}
