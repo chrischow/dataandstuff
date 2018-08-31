@@ -51,8 +51,8 @@ layout: null
 /* --- General --- */
 
 body {
-  /*font-family: 'Raleway', 'Quattrocento Sans', 'Open Sans', sans-serif;*/
-  font-family: 'Raleway', 'Times', sans-serif;
+  font-family: 'Raleway', 'Quattrocento Sans', 'Open Sans', sans-serif;
+  /*font-family: 'Raleway', 'Times', sans-serif;*/
   font-size: 14px;
   /* color: #404040; */
   color: #10102C;
@@ -564,7 +564,7 @@ footer .theme-by {
   padding: 5px 10px;
   font-size: 11px;
   color: #EEE;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   right: 0;
   bottom: 0;
   display: none;
@@ -648,7 +648,7 @@ footer .theme-by {
 /* --- Pager --- */
 
 .pager li a {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 800;
@@ -818,7 +818,7 @@ td.gutter {
 }
 
 #full-tags-list {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #full-tags-list .tag-entry {
