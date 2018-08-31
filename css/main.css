@@ -51,8 +51,8 @@ layout: null
 /* --- General --- */
 
 body {
-  font-family: 'Raleway', 'Quattrocento Sans', 'Open Sans', sans-serif;
-  /* font-family: 'Poppins', 'Open Sans', sans-serif;*/
+  /*font-family: 'Raleway', 'Quattrocento Sans', 'Open Sans', sans-serif;*/
+  font-family: 'Raleway', 'Times', sans-serif;
   font-size: 14px;
   /* color: #404040; */
   color: #10102C;
