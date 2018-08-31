@@ -24,6 +24,9 @@ description: About data. And stuff.
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
+  Projects:
+    - Kaggle:
+        - Titanic: Machine Learning from Disaster
   Resources: "resources"
   Links:
     - Github: "https://github.com/chrischow"
