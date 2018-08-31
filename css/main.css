@@ -46,12 +46,11 @@ layout: null
 }
 
 @import url("pygment_highlights.css");
-@import url('https://fonts.googleapis.com/css?family=Poppins|Raleway')
 
 /* --- General --- */
 
 body {
-  font-family: 'Raleway', 'Quattrocento Sans', 'Open Sans', sans-serif;
+  font-family: 'Raleway', 'Open Sans', sans-serif;
   /*font-family: 'Raleway', 'Times', sans-serif;*/
   font-size: 14px;
   /* color: #404040; */
