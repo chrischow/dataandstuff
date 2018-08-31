@@ -52,7 +52,7 @@ layout: null
 body {
   font-family: 'Raleway', 'Open Sans', sans-serif;
   /*font-family: 'Raleway', 'Times', sans-serif;*/
-  font-size: 14px;
+  font-size: 16px;
   /* color: #404040; */
   color: #10102C;
   position: relative;
@@ -403,7 +403,7 @@ footer .theme-by {
 .post-heading .post-meta {
   /* color: #808080; */
   color: #272D50;
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
   margin: 0 0 10px;
 }
@@ -723,7 +723,7 @@ table tr td :last-child {
 /* --- Code blocks --- */
 
 pre {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5em;
 }
 pre code {
