@@ -11,10 +11,38 @@ layout: null
 }
 
 @font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins/Poppins-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins/Poppins-BoldItalic.ttf") format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
     font-family: Raleway;
     src: url("../fonts/Raleway/Raleway-Regular.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url("../fonts/Raleway/Raleway-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url("../fonts/Raleway/Raleway-BoldItalic.ttf") format('truetype');
+    font-weight: bold;
+    font-style: italic;
 }
 
 @import url("pygment_highlights.css");
