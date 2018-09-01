@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script>
   function code_toggle() {
     if (code_shown){
@@ -18,6 +19,13 @@
 <div align="right">
     <form action="javascript:code_toggle()"><input type="submit" id="toggleButton" value="Show Code"></form>
 </div>
+=======
+---
+type: post
+title: Preventing Contamination
+---
+  
+>>>>>>> 9a9383c1ab0605827f134821f14cbeba84b3fec0
 # Contamination?
 Lately, I've been working a lot on the Kaggle Titanic competition. To pick up good data science practices, I've been taking the time to work through many issues in my machine learning pipeline. One issue that I discovered in the pipeline was  **contamination**. Contamination occurs when you include information about your test set in your training set, and results in an overly-optimistic estimate of your model's score (accuracy, AUC, etc.). It generally arises from processing training and test data **together** before model validation. In this post, I provide two examples of contamination in the pipeline I used for the Kaggle Titanic competition.
   
