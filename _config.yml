@@ -26,7 +26,6 @@ navbar-links:
   About Me: "aboutme"
   Projects:
     - Kaggle: "kaggle"
-  Notebooks: "notebooks"
   Resources: "resources"
   Links:
     - Github: "https://github.com/chrischow"
