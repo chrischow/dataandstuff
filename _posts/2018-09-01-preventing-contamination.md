@@ -277,5 +277,5 @@ To get unbiased estimates of model accuracy, we must ensure that no information 
   
 ---  
   
-Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/c493b7bf8f9ef72b1ab8ff0fd1bf0cf85e048562/notebooks/2018-09-01-preventing-contamination.ipynb) for the full Jupyter notebook.  
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/c493b7bf8f9ef72b1ab8ff0fd1bf0cf85e048562/notebooks/2018-09-01-preventing-contamination.ipynb){:target="_blank"} for the full Jupyter notebook.  
   
