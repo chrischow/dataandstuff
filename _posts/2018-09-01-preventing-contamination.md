@@ -49,11 +49,9 @@ plt.xlabel('Feature')
 plt.ylabel('%')
 plt.show()
 ```
-
-
-![png](../graphics/2018-09-01-preventing-contamination-plot1.png)
-
-
+  
+![](../graphics/2018-09-01-preventing-contamination-plot1.png)
+  
 ### Approach to Imputation
 Having discovered that the distributions of age differed by passengers' titles, I decided to impute missing values using random numbers (with a fixed random seed) drawn from a normal distribution with the following parameters:  
   
@@ -74,15 +72,12 @@ plt.xlabel('Age')
 plt.ylabel('Density')
 plt.show()
 ```
-
-
+  
 ![](../graphics/2018-09-01-preventing-contamination-plot2.png)
-
-
+  
 ### The Problem
 The mistake I made was to perform the imputation on the entire dataset **before** running cross validation for feature selection and hyperparameter tuning. Suppose we have a dataset `X_full` that has been split into a training set `X_train` and a test set `X_test`, both containing the Age feature and other features generated from it. When I imputed missing values on `X_full`, I unknowingly included Age values from `X_test` to inform imputation in `X_train`, because the median and standard deviation of Age in the full dataset were derived from both `X_train` and `X_test`. To see how different they could be, I perform an arbitrary split of the data - first 700 observations for `X_train` and the remainder for `X_test` - and compare the distribution of age of passengers with title "Mrs." and "Other".
-
-
+  
 ```python
 # Attach split identifier
 df['Split'] = 'train'
@@ -102,15 +97,11 @@ plt.title('Title == "Other"')
 plt.xlabel('Age')
 plt.show()
 ```
-
-
+  
 ![](../graphics/2018-09-01-preventing-contamination-plot3.png)
-
-
-
+  
 ![](../graphics/2018-09-01-preventing-contamination-plot4.png)
-
-
+  
 Using a combined distribution (purple) would compromise the estimates of median and standard deviation from the training set. This leads to inaccuracy because in reality, we would not know the **true** distribution of age of passengers in unseen data. All we have to work with is the train dataset. Hence, imputation on the test set must use the estimates of median and standard deviation from the training set.
 
 ## Example 2: Encoding of Features
