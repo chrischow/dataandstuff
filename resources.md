@@ -34,7 +34,7 @@ Most of what I know about data science was picked up from online courses and pra
 17. Kaggle R Tutorial on Machine Learning ([DataCamp](https://www.datacamp.com/courses/kaggle-r-tutorial-on-machine-learning))
   
 # Books
-Here are some suggested titles:
+Some recommended titles:
   
 1. Data Science for Business: What You Need to Know About Data Mining and Data-Analytic Thinking
 2. Data Smart: Using Data Science to Transform Information into Insight
