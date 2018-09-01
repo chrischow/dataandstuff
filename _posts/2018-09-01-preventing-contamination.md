@@ -12,8 +12,6 @@ Thus far, my broad approach was:
   
 The first phase required transformation of data that could be done safely on both training and test sets together without contamination. However, the next two phases (missing value imputation and mean encoding) required me to impute values or mean-encode the training set before performing the same transformations **using the training set mappings** on the test set. Finally, I discovered issues with my approach to cross validation in the fourth phase, but I'll address these in a separate post.  
   
-
-
 ```python
 # Import modules
 import pandas as pd
@@ -27,9 +25,9 @@ import warnings
 matplotlib.style.use('ggplot')
 warnings.filterwarnings('ignore')
 ```
-
+  
 # Examples on Contamination
-
+  
 ## Example 1: Missing Value Imputation of Passenger Age
 Approximately 20% of the observations in the feature Age were missing. As such, some kind of imputation was required to make the most of the data.
 
@@ -47,7 +45,7 @@ plt.show()
 ```
 
 
-![png](output_4_0.png)
+![](../graphics/2018-09-01-preventing-contamination-plot1.png)
 
 
 ### Approach to Imputation
@@ -56,8 +54,6 @@ Having discovered that the distributions of age differed by passengers' titles, 
 1. **Mean:** The median age of people with the same title.
 2. **Standard Deviation:** The standard deviation of age of people with the same title.
   
-
-
 ```python
 # Extract title
 df['title'] = df.Name.str.replace('.*, ', '').str.replace(' .*', '')
@@ -70,9 +66,8 @@ plt.xlabel('Age')
 plt.ylabel('Density')
 plt.show()
 ```
-
-
-![png](output_6_0.png)
+  
+![](../graphics/2018-09-01-preventing-contamination-plot2.png)
 
 
 ### The Problem
@@ -98,21 +93,16 @@ plt.title('Title == "Other"')
 plt.xlabel('Age')
 plt.show()
 ```
-
-
-![png](output_8_0.png)
-
-
-
-![png](output_8_1.png)
-
-
+  
+![](../graphics/2018-09-01-preventing-contamination-plot3.png)
+  
+![](../graphics/2018-09-01-preventing-contamination-plot4.png)
+  
 Using a combined distribution (purple) would compromise the estimates of median and standard deviation from the training set. This leads to inaccuracy because in reality, we would not know the **true** distribution of age of passengers in unseen data. All we have to work with is the train dataset. Hence, imputation on the test set must use the estimates of median and standard deviation from the training set.
 
 ## Example 2: Encoding of Features
 As part of feature engineering, I mean-encoded several categorical features. Mean encoding is a technique where you replace a category e.g. A, B, and C, with the proportion of "positive" target values it is associated with. In the example below, we have a dataset with 6 training observations, three of which are of category A, and three of which are of category B. 66.67% of category A observations are positive (`target == 1`) and 33.33% are negative (`target == 0`). Thus, we replace all As with 66.67%. We then do the same for all observations of category B. In the test set, the percentages are reversed for category A and B.  
-
-
+  
 ```python
 # Create fake data
 fake_data = pd.DataFrame(
@@ -135,9 +125,6 @@ fake_data['test_mapped'] = fake_data[fake_data.split == 'test'].cat.map(fake_dat
 # View
 fake_data
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -277,9 +264,7 @@ fake_data
   </tbody>
 </table>
 </div>
-
-
-
+  
 Had we used the full dataset to perform mean encoding, we would have obtained `cat_full`. That is, we would have (correctly) discovered that the category was not particularly useful for predicting the target. If instead we mapped the training set percentages to the test set, we would have obtained even worse predictions, because the true percentages in the test set were inversed. The model would likely have generated the opposite predictions. The principle here is that data from the test set must not be included in any transformations made on the training set.
 
 # Conclusion
