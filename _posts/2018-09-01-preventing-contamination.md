@@ -50,7 +50,7 @@ plt.ylabel('%')
 plt.show()
 ```
   
-![](/graphics/2018-09-01-preventing-contamination-plot1.png)
+![](../graphics/2018-09-01-preventing-contamination-plot1.png)
   
 ### Approach to Imputation
 Having discovered that the distributions of age differed by passengers' titles, I decided to impute missing values using random numbers (with a fixed random seed) drawn from a normal distribution with the following parameters:  
@@ -73,7 +73,7 @@ plt.ylabel('Density')
 plt.show()
 ```
   
-![](graphics/2018-09-01-preventing-contamination-plot2.png)
+![](../graphics/2018-09-01-preventing-contamination-plot2.png)
   
 ### The Problem
 The mistake I made was to perform the imputation on the entire dataset **before** running cross validation for feature selection and hyperparameter tuning. Suppose we have a dataset `X_full` that has been split into a training set `X_train` and a test set `X_test`, both containing the Age feature and other features generated from it. When I imputed missing values on `X_full`, I unknowingly included Age values from `X_test` to inform imputation in `X_train`, because the median and standard deviation of Age in the full dataset were derived from both `X_train` and `X_test`. To see how different they could be, I perform an arbitrary split of the data - first 700 observations for `X_train` and the remainder for `X_test` - and compare the distribution of age of passengers with title "Mrs." and "Other".
