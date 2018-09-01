@@ -273,4 +273,9 @@ fake_data
 Had we used the full dataset to perform mean encoding, we would have obtained `cat_full`. That is, we would have (correctly) discovered that the category was not particularly useful for predicting the target. If instead we mapped the training set percentages to the test set, we would have obtained even worse predictions, because the true percentages in the test set were inversed. The model would likely have generated the opposite predictions. The principle here is that data from the test set must not be included in any transformations made on the training set.
 
 # Conclusion
-To get unbiased estimates of model accuracy, we must ensure that no information on any feature in the test set is captured in the training set. This does not apply only when scoring the model on a validation set or a training set. It applies also to scoring of the model **during cross validation** (which I'll address in a separate post). To avoid contamination, we need to identify data transformations or feature generation processes that *might give away test set information*, and handle them separately. These processes should be applied on the **training set only**, and the respective feature mappings should be saved so they can be applied to the test set.
+To get unbiased estimates of model accuracy, we must ensure that no information on any feature in the test set is captured in the training set. This does not apply only when scoring the model on a validation set or a training set. It applies also to scoring of the model **during cross validation** (which I'll address in a separate post). To avoid contamination, we need to identify data transformations or feature generation processes that *might give away test set information*, and handle them separately. These processes should be applied on the **training set only**, and the respective feature mappings should be saved so they can be applied to the test set.  
+  
+---  
+  
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/c493b7bf8f9ef72b1ab8ff0fd1bf0cf85e048562/notebooks/2018-09-01-preventing-contamination.ipynb) for the full Jupyter notebook.  
+  
