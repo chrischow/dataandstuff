@@ -161,9 +161,9 @@ title-separator: "-"
 timezone: "America/Vancouver"
 markdown: kramdown
 highlighter: rouge
-# permalink: /:year-:month-:day-:title/
-permalink: /:categories/:year/:month/:day/:title:output_ext
-paginate: 5
+permalink: /:year-:month-:day-:title/
+# permalink: /:categories/:year/:month/:day/:title:output_ext
+paginate: 10
 
 kramdown:
   input: GFM
