@@ -16,19 +16,10 @@ The first phase required transformation of data that could be done safely on bot
 
 ```python
 # Import modules
-import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
-import seaborn as sns
-from scipy import stats
-from sklearn.feature_selection import RFECV, RFE
-from sklearn.manifold import Isomap
-from sklearn.metrics import accuracy_score, auc, make_scorer, mean_squared_error
-from sklearn.model_selection import cross_val_score, train_test_split, GridSearchCV, RepeatedKFold, KFold, RepeatedStratifiedKFold, StratifiedKFold
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler, Normalizer, RobustScaler
-from sklearn.linear_model import LogisticRegression, RidgeClassifier
 import warnings
 
 # Settings
@@ -79,6 +70,10 @@ plt.xlabel('Age')
 plt.ylabel('Density')
 plt.show()
 ```
+
+
+![png](output_6_0.png)
+
 
 ### The Problem
 The mistake I made was to perform the imputation on the entire dataset **before** running cross validation for feature selection and hyperparameter tuning. Suppose we have a dataset `X_full` that has been split into a training set `X_train` and a test set `X_test`, both containing the Age feature and other features generated from it. When I imputed missing values on `X_full`, I unknowingly included Age values from `X_test` to inform imputation in `X_train`, because the median and standard deviation of Age in the full dataset were derived from both `X_train` and `X_test`. To see how different they could be, I perform an arbitrary split of the data - first 700 observations for `X_train` and the remainder for `X_test` - and compare the distribution of age of passengers with title "Mrs." and "Other".
