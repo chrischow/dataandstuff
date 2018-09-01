@@ -1,31 +1,8 @@
-<<<<<<< HEAD
-<script>
-  function code_toggle() {
-    if (code_shown){
-      $('div.input').hide('500');
-      $('#toggleButton').val('Show Code')
-    } else {
-      $('div.input').show('500');
-      $('#toggleButton').val('Hide Code')
-    }
-    code_shown = !code_shown
-  }
-
-  $( document ).ready(function(){
-    code_shown=false;
-    $('div.input').hide()
-  });
-</script>
-<div align="right">
-    <form action="javascript:code_toggle()"><input type="submit" id="toggleButton" value="Show Code"></form>
-</div>
-=======
 ---
 type: post
 title: Preventing Contamination
 ---
   
->>>>>>> 9a9383c1ab0605827f134821f14cbeba84b3fec0
 # Contamination?
 Lately, I've been working a lot on the Kaggle Titanic competition. To pick up good data science practices, I've been taking the time to work through many issues in my machine learning pipeline. One issue that I discovered in the pipeline was  **contamination**. Contamination occurs when you include information about your test set in your training set, and results in an overly-optimistic estimate of your model's score (accuracy, AUC, etc.). It generally arises from processing training and test data **together** before model validation. In this post, I provide two examples of contamination in the pipeline I used for the Kaggle Titanic competition.
   
@@ -74,7 +51,7 @@ plt.show()
 ```
 
 
-![png](output_5_0.png)
+![png](../graphics/2018-09-01-preventing-contamination-plot1.png)
 
 
 ### Approach to Imputation
@@ -99,7 +76,7 @@ plt.show()
 ```
 
 
-![png](output_7_0.png)
+![](../graphics/2018-09-01-preventing-contamination-plot2.png)
 
 
 ### The Problem
@@ -127,11 +104,11 @@ plt.show()
 ```
 
 
-![png](output_9_0.png)
+![](../graphics/2018-09-01-preventing-contamination-plot3.png)
 
 
 
-![png](output_9_1.png)
+![](../graphics/2018-09-01-preventing-contamination-plot4.png)
 
 
 Using a combined distribution (purple) would compromise the estimates of median and standard deviation from the training set. This leads to inaccuracy because in reality, we would not know the **true** distribution of age of passengers in unseen data. All we have to work with is the train dataset. Hence, imputation on the test set must use the estimates of median and standard deviation from the training set.
@@ -162,9 +139,6 @@ fake_data['test_mapped'] = fake_data[fake_data.split == 'test'].cat.map(fake_dat
 # View
 fake_data
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -304,9 +278,7 @@ fake_data
   </tbody>
 </table>
 </div>
-
-
-
+  
 Had we used the full dataset to perform mean encoding, we would have obtained `cat_full`. That is, we would have (correctly) discovered that the category was not particularly useful for predicting the target. If instead we mapped the training set percentages to the test set, we would have obtained even worse predictions, because the true percentages in the test set were inversed. The model would likely have generated the opposite predictions. The principle here is that data from the test set must not be included in any transformations made on the training set.
 
 # Conclusion
