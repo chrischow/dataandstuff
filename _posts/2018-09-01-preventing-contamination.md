@@ -50,7 +50,7 @@ plt.ylabel('%')
 plt.show()
 ```
   
-![](../graphics/2018-09-01-preventing-contamination-plot1.png)
+![](/graphics/2018-09-01-preventing-contamination-plot1.png)
   
 ### Approach to Imputation
 Having discovered that the distributions of age differed by passengers' titles, I decided to impute missing values using random numbers (with a fixed random seed) drawn from a normal distribution with the following parameters:  
