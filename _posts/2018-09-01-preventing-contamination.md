@@ -131,7 +131,7 @@ fake_data['test_mapped'] = fake_data[fake_data.split == 'test'].cat.map(fake_dat
 fake_data
 ```
 
-<div>
+<div style="overflow-x:auto;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
