@@ -55,7 +55,7 @@ Plotting the median resale price from 2015 onwards, we find that the median pric
   
 ![](../graphics/2018-09-02-re-exploring-hdb-resale-flat-data-plot3.png)
 
-# Town
+## Town
   
 ![](../graphics/2018-09-02-re-exploring-hdb-resale-flat-data-plot4.png)
   
