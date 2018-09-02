@@ -1,6 +1,7 @@
 ---
 type: post
 title: (Re-)Exploring HDB Resale Flat Data in 17 Graphs
+tags: [real estate pricing, eda]
 ---
   
 # A New Approach
@@ -110,7 +111,7 @@ Although we expect a higher price for later lease commencement dates, the relati
 ![](../graphics/2018-09-02-re-exploring-hdb-resale-flat-data-plot16.png)
   
 ### Relation to Target
-We find a positive relationship between resale price and the remaining years in lease from 50 to 90 years. However, from 90 years onwards (referring to Build-to-Order (BTO) flats sold in the last 5 years), the relationship weakens substantially, and the variation increases substantially as well. This suggests that we could create a special category for transactions of flats with 95 years remaining in their leases to predict resale prices.
+We find a positive relationship between resale price and the remaining years in lease from 50 to 90 years. However, from 90 years onwards (referring to Build-to-Order (BTO) flats sold in the last 5 years), the relationship weakens substantially, and the variation increases substantially as well. This suggests that we could create a special category for transactions of flats with 90 or more years remaining in their leases to predict resale flat prices.
   
 ![](../graphics/2018-09-02-re-exploring-hdb-resale-flat-data-plot17.png)
   
