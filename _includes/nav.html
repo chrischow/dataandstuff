@@ -53,6 +53,14 @@
 		</a>
 	  </div>
 	</div>
+	{% elsif post.image and (layout.show-avatar or page.show-avatar) %}
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="{{ site.url }}">
+	      <img class="avatar-img" src="{{ post.image | replace: '//', '/' }}" />
+		</a>
+	  </div>
+	</div>
 	{% endif %}
 
   </div>
