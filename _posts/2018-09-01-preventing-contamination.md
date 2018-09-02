@@ -1,6 +1,7 @@
 ---
 type: post
 title: Preventing Training Data Contamination
+tags: [techniques]
 ---
   
 # Contamination?
