@@ -2,6 +2,7 @@
 type: post
 title: Preventing Training Data Contamination
 tags: [techniques]
+bigimg: https://www.psd.gov.sg/heartofpublicservice/our-people/2-service/houses-to-homes/media/19980006213_-_0110-mr_0oizmon.jpg
 ---
   
 # Contamination?
