@@ -3,7 +3,7 @@ type: post
 title: (Re-)Exploring HDB Resale Flat Data in 17 Graphs
 tags: [real estate pricing, eda]
 bigimg: /img/hdb_img.jpg
-image: https://www.psd.gov.sg/heartofpublicservice/our-people/2-service/houses-to-homes/media/19980006213_-_0110-mr_0oizmon.jpg
+image: /img/hdb_img_sq.jpg
 share-img: /img/hdb_img_sq.jpg
 ---
   
