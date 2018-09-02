@@ -2,9 +2,9 @@
 type: post
 title: (Re-)Exploring HDB Resale Flat Data in 17 Graphs
 tags: [real estate pricing, eda]
-bigimg: /img/hdb_img.jpg
-image: /img/hdb_img.jpg
-share-img: /img/hdb_img.jpg
+bigimg: ../img/hdb_img.jpg
+image: ../img/hdb_img.jpg
+share-img: ../img/hdb_img.jpg
 ---
   
 # A New Approach
