@@ -116,4 +116,4 @@ We find a positive relationship between resale price and the remaining years in 
   
 ---
   
-Click [here]() for the full Jupyter notebook.
+Click [here](){:target="_blank"} for the full Jupyter notebook.
