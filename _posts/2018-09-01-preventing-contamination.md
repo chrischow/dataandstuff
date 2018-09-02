@@ -1,6 +1,6 @@
 ---
 type: post
-title: Preventing Contamination
+title: Preventing Training Data Contamination
 ---
   
 # Contamination?
