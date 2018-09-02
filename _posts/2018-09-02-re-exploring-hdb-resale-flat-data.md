@@ -119,5 +119,7 @@ We find a positive relationship between resale price and the remaining years in 
 ![](../graphics/2018-09-02-re-exploring-hdb-resale-flat-data-plot17.png)
   
 ---
+Credits for image: [Public Service Division](https://www.psd.gov.sg/)  
+Credits for data: [Data.gov.sg](https://data.gov.sg/)
   
 Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/725111d6d9eca9a525fcfff2f7a36d39a6500db8/notebooks/2018-09-02-re-exploring-hdb-resale-flat-data.ipynb){:target="_blank"} for the full Jupyter notebook.
