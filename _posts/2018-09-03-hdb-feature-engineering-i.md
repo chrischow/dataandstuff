@@ -1,8 +1,9 @@
-
 ---
 type: post  
 title: HDB Resale Flat Dataset - Feature Engineering I: Numeric Features
-
+bigimg: /img/hdb_img.jpg
+image: 
+share-img: /img/hdb_img_sq.jpg
 ---
   
 # Introduction
@@ -27,46 +28,7 @@ import warnings
 # Settings
 %matplotlib inline
 warnings.filterwarnings('ignore')
-```
 
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
-
-```python
 # Read data
 hdb = pd.read_csv('resale-flat-prices-based-on-registration-date-from-jan-2015-onwards.csv')
 ```
@@ -92,7 +54,7 @@ plt.show()
 ```
 
 
-![png](output_5_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot1.png)
 
 
 We find that the lease commence date and the remaining lease are highly correlated. Hence, we can simply pick one of them. Let's keep the remaining lease because it provides better intuition than the year that the lease commenced.
@@ -107,23 +69,8 @@ df = df.drop('lease_commence_date', axis = 1)
 
 ## 1. Transform the Target
 We noted in our exploratory data analysis (EDA) phase that the distribution of the target (I'll refer to resale as "the target") was right skewed.
-
-
-```python
-# Plot
-plt.figure(figsize = (10,8))
-df.resale_price.plot.hist(color = '#f85b74', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Resale Price', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Price')
-plt.ylabel('No. of Transactions')
-plt.show()
-```
-
-
-![png](output_10_0.png)
+  
+![](../2018-09-03-hdb-feature-engineering-i-plot2.png)
 
 
 Since regression models generally fit better when the target is normally distributed, we apply a log transformation. As shown below, the distribution appears more "normal" now.
@@ -132,21 +79,10 @@ Since regression models generally fit better when the target is normally distrib
 ```python
 # Create log price variable
 df['log_tgt'] = np.log(df.resale_price)
-
-# Plot
-plt.figure(figsize = (10,8))
-df.log_tgt.plot.hist(color = '#6fceb0', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Log Resale Price', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Logged Price')
-plt.ylabel('No. of Transactions')
-plt.show()
 ```
 
 
-![png](output_12_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot3.png)
 
 
 ## 2. Binning
@@ -160,21 +96,7 @@ Binning is the process of splitting up a numeric feature at specified thresholds
 This concept is simple. We simply divide the 1-dimensional feature space into *n* equal parts. In English, we have markers that are equidistant. Let's use floor area as an example. 
 
 
-```python
-# Plot
-plt.figure(figsize = (10,8))
-df.floor_area_sqm.plot.hist(color = '#ff9966', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Floor Area', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Floor Area')
-plt.ylabel('No. of Transactions')
-plt.show()
-```
-
-
-![png](output_14_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot4.png)
 
 
 Again, we note how right-skewed the data is. Performing the log transformation, we obtain a relatively "normal" distribution:
@@ -183,21 +105,10 @@ Again, we note how right-skewed the data is. Performing the log transformation, 
 ```python
 # Create logged floor area
 df['log_floor_area'] = np.log(df.floor_area_sqm)
-
-# Plot
-plt.figure(figsize = (10,8))
-df.log_floor_area.plot.hist(color = '#b1ceeb', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Logged Floor Area', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Logged Floor Area')
-plt.ylabel('No. of Transactions')
-plt.show()
 ```
 
 
-![png](output_16_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot5.png)
 
 
 Now, suppose we want to divide the area into 4 equal parts. We know that the minimum logged floor area was 3.43 sqm, and the maximum was 5.63 sqm. Thus, each market must be about 0.55 sqm apart. Computing and superimposing these bins on the original graph, we have:
@@ -208,45 +119,7 @@ Now, suppose we want to divide the area into 4 equal parts. We know that the min
 df['log_floor_area_fwb'] = pd.cut(x=df.log_floor_area, bins=4)
 ```
 
-
-```python
-# NOT RUN
-df.log_floor_area_fwb.value_counts()
-```
-
-
-
-
-    (4.534, 5.0846]    37050
-    (3.984, 4.534]     31626
-    (3.432, 3.984]       788
-    (5.0846, 5.635]      303
-    Name: log_floor_area_fwb, dtype: int64
-
-
-
-
-```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-ax.axvspan(3.433987, 3.98418775, alpha=0.3, color='#f85b74')
-ax.axvspan(3.98418775, 4.5343885, alpha=0.3, color='#ff9966')
-ax.axvspan(4.5343885, 5.08458925, alpha=0.3, color='#6fceb0')
-ax.axvspan(5.08458925, 5.63479, alpha=0.3, color='#b1ceeb')
-df.log_floor_area.plot.hist(color = '#133056', bins = 40)
-ax2 = plt.gca()
-ax2.grid(b = False, axis='x')
-plt.title('Distribution of Logged Floor Area (Fixed-Width Bins)', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Floor Area')
-plt.ylabel('No. of Transactions')
-plt.show()
-```
-
-
-![png](output_20_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot6.png)
 
 
 That looks nice, bunt note that a large majority of observations will fall under bins 2 and 3 (orange and green). Increasing the number of fixed-width bins will not help much, because we will still have bins with large concentrations near the center and bins with low concentrations at the fringes. Hence, we turn to quantile binning.
@@ -260,44 +133,7 @@ Quantile binning splits the data into *n* equal portions. In other words, we cre
 df['log_floor_area_qb'] = pd.qcut(x=df.log_floor_area, q=4)
 ```
 
-
-```python
-# NOT RUN
-df.log_floor_area_qb.value_counts()
-```
-
-
-
-
-    (4.564, 4.718]    17575
-    [3.434, 4.331]    17489
-    (4.331, 4.564]    17458
-    (4.718, 5.635]    17245
-    Name: log_floor_area_qb, dtype: int64
-
-
-
-
-```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.axvspan(3.434, 4.331, alpha=0.3, color='#f85b74')
-ax.axvspan(4.331, 4.564, alpha=0.3, color='#ff9966')
-ax.axvspan(4.564, 4.718, alpha=0.3, color='#6fceb0')
-ax.axvspan(4.718, 5.635, alpha=0.3, color='#b1ceeb')
-df.log_floor_area.plot.hist(color = '#133056', bins = 40)
-ax2 = plt.gca()
-ax2.grid(b = False, axis='x')
-plt.title('Distribution of Logged Floor Area (Quantile Bins)', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Floor Area')
-plt.ylabel('No. of Transactions')
-plt.show()
-```
-
-
-![png](output_25_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot7.png)
 
 
 The distances between the markers are no longer uniform now. But, we ensure that each bin has the same number of observations.
@@ -328,26 +164,7 @@ eval_fw_bins['std'] = df.groupby('log_floor_area_fwb').resale_price.std()
 eval_fw_bins = eval_fw_bins.sort_index()
 ```
 
-
-```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-p1 = plt.bar(np.arange(0,4,1), eval_fw_bins['mean'], color = '#133056', width = 0.4,
-             yerr = eval_fw_bins['std'], ecolor = '#ff9966', capsize = 5)
-p2 = plt.bar(np.arange(0,4,1), eval_fw_bins['rmse'], bottom = eval_fw_bins['mean'], color = '#6fceb0', width = 0.4)
-plt.xticks(np.arange(0,4,1))
-ax.set_xticklabels(['Fixed-width Bin 1', 'Fixed-width Bin 2', 'Fixed-width Bin 3', 'Fixed-width Bin 4'])
-plt.title('Mean Resale Price and Root Mean Squared Error\n(Fixed-Width Bins)', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Price/Error')
-plt.legend((p1[0], p2[0]), ('Mean Resale Price', 'Mean Absolute Error'))
-plt.ylim((0, 1000000))
-plt.show()
-```
-
-
-![png](output_30_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot8.png)
 
 
 #### Quantile Bins
@@ -373,26 +190,7 @@ eval_q_bins['std'] = df.groupby('log_floor_area_qb').resale_price.std()
 eval_q_bins = eval_q_bins.sort_index()
 ```
 
-
-```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-p1 = plt.bar(np.arange(0,4,1), eval_q_bins['mean'], color = '#133056', width = 0.4,
-             yerr = eval_q_bins['std'], ecolor = '#ff9966', capsize = 5)
-p2 = plt.bar(np.arange(0,4,1), eval_q_bins['rmse'], bottom = eval_q_bins['mean'], color = '#6fceb0', width = 0.4)
-plt.xticks(np.arange(0,4,1))
-ax.set_xticklabels(['Quantile Bin 1', 'Quantile Bin 2', 'Quantile Bin 3', 'Quantile Bin 4'])
-plt.title('Mean Resale Price and Root Mean Squared Error\n(Quantile Bins)', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Price/Error')
-plt.legend((p1[0], p2[0]), ('Mean Resale Price', 'Mean Absolute Error'))
-plt.ylim((0, 1000000))
-plt.show()
-```
-
-
-![png](output_33_0.png)
+![png](../2018-09-03-hdb-feature-engineering-i-plot9.png)
 
 
 In the two graphs above, the blue bars represent the average prices of flats in the respective bins. The green bars represent the root mean squared errors (RMSE) - the standard deviation of prediction errors. The orange bar represents one standard deviation above and below the mean.  
@@ -448,9 +246,7 @@ Image(graph.create_png(), width = 750)
 ```
 
 
-
-
-![png](output_38_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot10.png)
 
 
 
@@ -475,25 +271,7 @@ dtree_rmse = np.sqrt([3064234485, 5847038654, 15725724858, 9086322813, 160816673
 Reproducing a similar chart for the decision tree bins, we see that, like the other binning configurations, the RMSE in each bin is still high. However, we have an interesting finding: Bin 3 appears to contain flats with a higher average price despite having a smaller floor area than Bin 4! This could give us some interesting results in the modeling phase.
 
 
-```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-p1 = plt.bar(np.arange(0,7,1), dtree_means, color = '#133056', width = 0.4,
-             yerr = dtree_rmse, ecolor = '#ff9966', capsize = 5)
-p2 = plt.bar(np.arange(0,7,1), dtree_rmse, bottom = dtree_means, color = '#6fceb0', width = 0.4)
-plt.xticks(np.arange(0,7,1))
-ax.set_xticklabels(['DTree Bin 1', 'DTree Bin 2', 'DTree Bin 3', 'DTree Bin 4', 'DTree Bin 5', 'DTree Bin 6', 'DTree Bin 7'])
-plt.title('Mean Resale Price and Root Mean Squared Error\n(Decision Tree Bins)', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Price/Error')
-plt.legend((p1[0], p2[0]), ('Mean Resale Price', 'Mean Absolute Error'))
-plt.ylim((0, 1000000))
-plt.show()
-```
-
-
-![png](output_42_0.png)
+![](../2018-09-03-hdb-feature-engineering-i-plot11.png)
 
 
 ### Selecting a Binning Method
