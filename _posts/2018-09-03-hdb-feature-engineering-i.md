@@ -1,6 +1,6 @@
 ---
 type: post  
-title: HDB Resale Flat Dataset - Feature Engineering I: Numeric Features
+title: "HDB Resale Flat Dataset - Feature Engineering I: Numeric Features"
 bigimg: /img/hdb_img.jpg
 image: https://brandinsider.straitstimes.com/queenspeak/wp-content/uploads/sites/45/2016/10/ST_old_QUEENSTOWN-min.jpg
 share-img: /img/hdb_img_sq.jpg
