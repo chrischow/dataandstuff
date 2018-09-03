@@ -111,7 +111,7 @@ df['log_floor_area'] = np.log(df.floor_area_sqm)
 ![](../graphics/2018-09-03-hdb-feature-engineering-i/plot5.png)
 
 
-Now, suppose we want to divide the area into 4 equal parts. We know that the minimum logged floor area was 3.43 sqm, and the maximum was 5.63 sqm. Thus, each market must be about 0.55 sqm apart. Computing and superimposing these bins on the original graph, we have:
+Now, suppose we want to divide the area into 4 equal parts. We know that the minimum logged floor area was 3.43 sqm, and the maximum was 5.63 sqm. Thus, each marker must be about 0.55 sqm apart. Computing and superimposing these bins on the original graph, we have:
 
 
 ```python
