@@ -93,7 +93,7 @@ Binning is the process of splitting up a numeric feature at specified thresholds
 3. Binning with decision trees  
   
 ### A. Fixed-width Binning
-This concept is simple. We simply cut the data into *n* equal parts, creating markers that are equidistant. Let's use floor area as an example. 
+This concept is simple. We simply set up equidistant markers along the stretch of possible numeric values of a given feature. Let's use floor area as an example. 
 
 
 ![](../graphics/2018-09-03-hdb-feature-engineering-i/plot4.png)
@@ -122,7 +122,7 @@ df['log_floor_area_fwb'] = pd.cut(x=df.log_floor_area, bins=4)
 ![](../graphics/2018-09-03-hdb-feature-engineering-i/plot6.png)
 
 
-That looks nice, bunt note that a large majority of observations will fall under bins 2 and 3 (orange and green). Increasing the number of fixed-width bins will not help much, because we will still have bins with large concentrations near the center and bins with low concentrations at the fringes. Hence, we turn to quantile binning.
+That looks nice, but note that a large majority of observations will fall under bins 2 and 3 (orange and green). Increasing the number of fixed-width bins will not help much, because we will still have bins with large concentrations near the center and bins with low concentrations at the fringes. Hence, we turn to quantile binning.
 
 ### B. Quantile Binning
 Quantile binning splits the data into *n* equal portions. In other words, we create bins with approximately the same number of observations in them. Let's split the data into four quantiles:
@@ -280,7 +280,7 @@ Here's the quick, short, and correct answer: there is no quick, short, and easy 
 # What's Next?
 In this post, I demonstrated two possible ways to transform numeric features in order to recode the data into a more useful form for machine learning. First, it is important to make the target as "normal" as possible. Second, it is useful to separate our numeric features into bins. I demonstrated fixed-width binning, quantile binning, and decision tree binning using the floor area feature. While the first two binning methods didn't generate any particularly interesting findings, the decision tree did. Yet, this doesn't make decision trees the method of choice. We will never know exactly which technique is the best until we validate our models.  
   
-Are we done engineering features? **Far from it**. Binning numeric features essentially converts them into **categorical features**, and there are many more ways to transform them. Some techniques even involve converting categorical features back into numeric features! I'll save engineering of categorical features for another post.
+Are we done engineering features? **Far from it**. Binning numeric features essentially converts them into **categorical features**, and there are many more ways to transform them. In fact, all techniques involve converting categorical features back into numeric features! I'll save engineering of categorical features for another post.
   
 ---
 Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/74ba073fc7c486957e6f9c80be7ba0928442cafb/notebooks/2018-09-03-hdb-feature-engineering-i.ipynb){:target="_blank"} for the full Jupyter notebook.
