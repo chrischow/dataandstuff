@@ -281,3 +281,10 @@ Here's the quick, short, and correct answer: there is no quick, short, and easy 
 In this post, I demonstrated two possible ways to transform numeric features in order to recode the data into a more useful form for machine learning. First, it is important to make the target as "normal" as possible. Second, it is useful to separate our numeric features into bins. I demonstrated fixed-width binning, quantile binning, and decision tree binning using the floor area feature. While the first two binning methods didn't generate any particularly interesting findings, the decision tree did. Yet, this doesn't make decision trees the method of choice. We will never know exactly which technique is the best until we validate our models.  
   
 Are we done engineering features? **Far from it**. Binning numeric features essentially converts them into **categorical features**, and there are many more ways to transform them. Some techniques even involve converting categorical features back into numeric features! I'll save engineering of categorical features for another post.
+  
+---
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/74ba073fc7c486957e6f9c80be7ba0928442cafb/notebooks/2018-09-03-hdb-feature-engineering-i.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Public Service Division](https://www.psd.gov.sg/); [Straits Times](https://www.straitstimes.com/)  
+Credits for data: [Data.gov.sg](https://data.gov.sg/)
+
