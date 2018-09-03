@@ -54,7 +54,7 @@ plt.show()
 ```
 
 
-![](../2018-09-03-hdb-feature-engineering-i-plot1.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot1.png)
 
 
 We find that the lease commence date and the remaining lease are highly correlated. Hence, we can simply pick one of them. Let's keep the remaining lease because it provides better intuition than the year that the lease commenced.
@@ -70,7 +70,7 @@ df = df.drop('lease_commence_date', axis = 1)
 ## 1. Transform the Target
 We noted in our exploratory data analysis (EDA) phase that the distribution of the target (I'll refer to resale as "the target") was right skewed.
   
-![](../2018-09-03-hdb-feature-engineering-i-plot2.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot2.png)
 
 
 Since regression models generally fit better when the target is normally distributed, we apply a log transformation. As shown below, the distribution appears more "normal" now.
@@ -82,7 +82,7 @@ df['log_tgt'] = np.log(df.resale_price)
 ```
 
 
-![](../2018-09-03-hdb-feature-engineering-i-plot3.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot3.png)
 
 
 ## 2. Binning
@@ -96,7 +96,7 @@ Binning is the process of splitting up a numeric feature at specified thresholds
 This concept is simple. We simply divide the 1-dimensional feature space into *n* equal parts. In English, we have markers that are equidistant. Let's use floor area as an example. 
 
 
-![](../2018-09-03-hdb-feature-engineering-i-plot4.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot4.png)
 
 
 Again, we note how right-skewed the data is. Performing the log transformation, we obtain a relatively "normal" distribution:
@@ -108,7 +108,7 @@ df['log_floor_area'] = np.log(df.floor_area_sqm)
 ```
 
 
-![](../2018-09-03-hdb-feature-engineering-i-plot5.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot5.png)
 
 
 Now, suppose we want to divide the area into 4 equal parts. We know that the minimum logged floor area was 3.43 sqm, and the maximum was 5.63 sqm. Thus, each market must be about 0.55 sqm apart. Computing and superimposing these bins on the original graph, we have:
@@ -119,7 +119,7 @@ Now, suppose we want to divide the area into 4 equal parts. We know that the min
 df['log_floor_area_fwb'] = pd.cut(x=df.log_floor_area, bins=4)
 ```
 
-![](../2018-09-03-hdb-feature-engineering-i-plot6.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot6.png)
 
 
 That looks nice, bunt note that a large majority of observations will fall under bins 2 and 3 (orange and green). Increasing the number of fixed-width bins will not help much, because we will still have bins with large concentrations near the center and bins with low concentrations at the fringes. Hence, we turn to quantile binning.
@@ -133,7 +133,7 @@ Quantile binning splits the data into *n* equal portions. In other words, we cre
 df['log_floor_area_qb'] = pd.qcut(x=df.log_floor_area, q=4)
 ```
 
-![](../2018-09-03-hdb-feature-engineering-i-plot7.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot7.png)
 
 
 The distances between the markers are no longer uniform now. But, we ensure that each bin has the same number of observations.
@@ -164,7 +164,7 @@ eval_fw_bins['std'] = df.groupby('log_floor_area_fwb').resale_price.std()
 eval_fw_bins = eval_fw_bins.sort_index()
 ```
 
-![](../2018-09-03-hdb-feature-engineering-i-plot8.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot8.png)
 
 
 #### Quantile Bins
@@ -190,7 +190,7 @@ eval_q_bins['std'] = df.groupby('log_floor_area_qb').resale_price.std()
 eval_q_bins = eval_q_bins.sort_index()
 ```
 
-![png](../2018-09-03-hdb-feature-engineering-i-plot9.png)
+![png](../graphics/2018-09-03-hdb-feature-engineering-i/plot9.png)
 
 
 In the two graphs above, the blue bars represent the average prices of flats in the respective bins. The green bars represent the root mean squared errors (RMSE) - the standard deviation of prediction errors. The orange bar represents one standard deviation above and below the mean.  
@@ -246,7 +246,7 @@ Image(graph.create_png(), width = 750)
 ```
 
 
-![](../2018-09-03-hdb-feature-engineering-i-plot10.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot10.png)
 
 
 
@@ -271,7 +271,7 @@ dtree_rmse = np.sqrt([3064234485, 5847038654, 15725724858, 9086322813, 160816673
 Reproducing a similar chart for the decision tree bins, we see that, like the other binning configurations, the RMSE in each bin is still high. However, we have an interesting finding: Bin 3 appears to contain flats with a higher average price despite having a smaller floor area than Bin 4! This could give us some interesting results in the modeling phase.
 
 
-![](../2018-09-03-hdb-feature-engineering-i-plot11.png)
+![](../graphics/2018-09-03-hdb-feature-engineering-i/plot11.png)
 
 
 ### Selecting a Binning Method
