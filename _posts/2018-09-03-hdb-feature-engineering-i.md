@@ -93,7 +93,7 @@ Binning is the process of splitting up a numeric feature at specified thresholds
 3. Binning with decision trees  
   
 ### A. Fixed-width Binning
-This concept is simple. We simply divide the 1-dimensional feature space into *n* equal parts. In English, we have markers that are equidistant. Let's use floor area as an example. 
+This concept is simple. We simply cut the data into *n* equal parts, creating markers that are equidistant. Let's use floor area as an example. 
 
 
 ![](../graphics/2018-09-03-hdb-feature-engineering-i/plot4.png)
