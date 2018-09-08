@@ -308,7 +308,7 @@ for k in all_k:
 ```
 
 
-![](../2018-09-15-hdb-feature-engineering-ii/plot1.png)
+![](../graphics/2018-09-15-hdb-feature-engineering-ii/plot1.png)
 
 
 Hence, we fit a K-Means model with *k* = 7 and assign each resale flat to a cluster.
@@ -330,7 +330,7 @@ dat_jw_full['label'] = km_final.labels_ + 1
 ```
 
 
-![](../2018-09-15-hdb-feature-engineering-ii/plot2.png)
+![](../graphics/2018-09-15-hdb-feature-engineering-ii/plot2.png)
 
 
 Even though the clustering looks good statistically, it always makes sense to do a visual check, which can be done using the `gmaps` module. `gmaps` uses the Google Maps Javascript API (Google provides a free API key) to generate a HTML Google Map. We plot the **unique** coordinates of flats, color-coded by label, to give us a map with 7 distinct zones. The map shows that 7 clusters is a good fit (or at least isn't terrible).
