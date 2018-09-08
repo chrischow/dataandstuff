@@ -381,7 +381,7 @@ t1.add_layer(c6)
 t1.add_layer(c7)
 ```  
   
-[](../2018-09-15-hdb-feature-engineering-ii/jw_map.png)
+[](../graphics/2018-09-15-hdb-feature-engineering-ii/jw_map.png)
   
 ## Calculate Optimal Clusters for All Towns
 Performing the same process of selecting an optimal *k* using the elbow and graphical methods, we obtained the following results:  
@@ -455,7 +455,7 @@ hdb['clust'] = hdb.town + '_' + hdb.label.astype('str')
 
 Here's the full map of all clusters in Singapore:
   
-[](../2018-09-15-hdb-feature-engineering-ii/sg_map.png)
+[](../graphics/2018-09-15-hdb-feature-engineering-ii/sg_map.png)
   
 # Conclusion
 In this post, I demonstrated how an address created from block numbers and streets in the HDB resale flat dataset could be used to generate new features. Geocoding was used to convert addresses into geographic coordinates, and coordinates were used to generate clusters within each town. This produced a total of 134 clusters across Singapore. Hopefully, these will be useful when we develop our machine learning model to predict resale flat prices.
