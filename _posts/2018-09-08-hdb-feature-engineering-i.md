@@ -2,7 +2,7 @@
 type: post  
 title: "HDB Resale Flat Dataset - Feature Engineering I: Numeric Features"
 bigimg: /img/hdb_img.jpg
-image: https://cdn.techinasia.com/wp-content/uploads/2016/05/taxi-availability-heatmap.png
+image: https://brandinsider.straitstimes.com/queenspeak/wp-content/uploads/sites/45/2016/10/ST_old_QUEENSTOWN-min.jpg
 share-img: /img/hdb_img_sq.jpg
 tags: [real estate pricing, feature engineering]
 ---
