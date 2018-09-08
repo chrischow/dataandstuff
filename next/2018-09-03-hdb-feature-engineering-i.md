@@ -211,9 +211,6 @@ I have left all other parameters as the defaults. See the `sklearn` [documentati
 
 
 ```python
-import os     
-os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-
 # Configure decision tree regressor
 dt_model = DecisionTreeRegressor(
     criterion = 'mse',
