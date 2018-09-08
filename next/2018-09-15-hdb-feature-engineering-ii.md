@@ -2,7 +2,10 @@
 ---
 type: post  
 title: HDB Resale Flat Dataset - Feature Engineering II: Geocoding
-
+bigimg: /img/hdb_img.jpg
+image: https://cdn.techinasia.com/wp-content/uploads/2016/05/taxi-availability-heatmap.png
+share-img: /img/hdb_img_sq.jpg
+tags: [real estate pricing, feature engineering]
 ---
   
 # Introduction
@@ -459,3 +462,9 @@ Here's the full map of all clusters in Singapore:
   
 # Conclusion
 In this post, I demonstrated how an address created from block numbers and streets in the HDB resale flat dataset could be used to generate new features. Geocoding was used to convert addresses into geographic coordinates, and coordinates were used to generate clusters within each town. This produced a total of 134 clusters across Singapore. Hopefully, these will be useful when we develop our machine learning model to predict resale flat prices.
+  
+---
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/0087ebf74bbc3dc265aeebbbbb64c46f35d99e62/notebooks/2018-09-03-hdb-feature-engineering-i.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Public Service Division](https://www.psd.gov.sg/); [Tech in Asia](https://www.techinasia.com/)  
+Credits for data: [Data.gov.sg](https://data.gov.sg/)
