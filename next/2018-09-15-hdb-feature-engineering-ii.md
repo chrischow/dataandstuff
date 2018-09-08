@@ -30,54 +30,6 @@ import warnings
 # Settings
 %matplotlib inline
 warnings.filterwarnings('ignore')
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
 ```
 
 # Geocoding
@@ -110,8 +62,8 @@ Next, we need to configure two parameters: our individual app ID and app code. T
 
 ```python
 # Set parameters
-APP_ID = '9RFwWTe8OFDxfn5f7Z0y'
-APP_CODE = 'EMLBQbc5W6bVbWdhmBSNkQ'
+APP_ID = '[YOUR HERE APP ID]'
+APP_CODE = '[YOUR HERE APP CODE]'
 ```
 
 We will loop through the unique list of addresses, use `urllib` to query the API, `json` to process the JSON response (into a Python dictionary), and a custom function to extract the data we need from the processed response. The function `get_loc` retrieves two sets of latitude and longitude: the display position and the navigation position. Based on some testing, I discovered that the **average** of these two sets of coordinates was more accurate than either of them individually. Hence, I chose to compute the average latitude and average longitude.
@@ -153,42 +105,42 @@ With the search addresses created, app ID and code configured, and the function 
 
 
 ```python
-# # Initialise results
-# all_latlon = []
+# Initialise results
+all_latlon = []
 
-# # Loop through to get lat lon
-# for i in range(len(all_adds)):
+# Loop through to get lat lon
+for i in range(len(all_adds)):
     
-#     # Extract address
-#     temp_add = all_adds[i]
+    # Extract address
+    temp_add = all_adds[i]
     
-#     # Configure URL
-#     temp_url = 'https://geocoder.api.here.com/6.2/geocode.json' + \
-#       '?app_id=' + APP_ID + \
-#       '&app_code=' + APP_CODE + \
-#       '&searchtext=' + temp_add
+    # Configure URL
+    temp_url = 'https://geocoder.api.here.com/6.2/geocode.json' + \
+      '?app_id=' + APP_ID + \
+      '&app_code=' + APP_CODE + \
+      '&searchtext=' + temp_add
+  
+    # Pull data
+    temp_response = ur.urlopen(ur.Request(temp_url)).read()
+    temp_result = json.loads(temp_response)
     
-#     # Pull data
-#     temp_response = ur.urlopen(ur.Request(temp_url)).read()
-#     temp_result = json.loads(temp_response)
+    # Process data
+    temp_latlon = get_loc(temp_result)
     
-#     # Process data
-#     temp_latlon = get_loc(temp_result)
+    # Add address
+    temp_latlon['address'] = temp_add
     
-#     # Add address
-#     temp_latlon['address'] = temp_add
+    # Append
+    all_latlon.append(temp_latlon)
     
-#     # Append
-#     all_latlon.append(temp_latlon)
-    
-#     # Update
-#     print(str(i) + '. ', 'Getting data for: ' + str(temp_add))
+    # Update
+    print(str(i) + '. ', 'Getting data for: ' + str(temp_add))
 
-# # Convert to data frame
-# full_latlon = pd.DataFrame(all_latlon)
+# Convert to data frame
+full_latlon = pd.DataFrame(all_latlon)
 
-# # Save
-# full_latlon.to_csv('latlon_data.csv', index = False)
+# Save
+full_latlon.to_csv('latlon_data.csv', index = False)
 ```
 
 Here's a preview of the data:
@@ -356,27 +308,7 @@ for k in all_k:
 ```
 
 
-```python
-# Plot
-plt.figure(figsize = (10,8))
-plt.plot(all_k, k_results, c = "#133056")
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.xticks(np.arange(2, 23, 1))
-
-# Plot vertical lines
-for i in range(len(all_k)):
-    ax.axvline(x = all_k[i], ymin = 0, ymax = k_results[i]/300, linestyle = 'dotted', color = '#6fceb0')
-
-plt.title('Total Sum of Squares vs. k', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('k')
-plt.ylabel('Total Sum of Squares')
-plt.show()
-```
-
-
-![png](output_20_0.png)
+![](../2018-09-15-hdb-feature-engineering-ii/plot1.png)
 
 
 Hence, we fit a K-Means model with *k* = 7 and assign each resale flat to a cluster.
@@ -398,47 +330,7 @@ dat_jw_full['label'] = km_final.labels_ + 1
 ```
 
 
-```python
-# Extract data
-medlab = dat_jw_full.groupby('label').resale_price.median()
-medlab.sort(ascending = True)
-bp_lab = []
-all_labs = medlab.index
-for i in all_labs:
-    bp_lab.append(dat_jw_full.resale_price[dat_jw_full.label == i])
-
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.set_xticklabels(medlab.index)
-ax.title.set_color('#3a3a3a')
-bp = ax.boxplot(bp_lab, showfliers=False, patch_artist=True, widths = 0.4)
-
-for box in bp['boxes']:
-    # change outline color
-    box.set(color='#b1ceeb', )
-    box.set_facecolor('#b1ceeb')
-
-for whisker in bp['whiskers']:
-    whisker.set(color='#b1ceeb')
-
-for cap in bp['caps']:
-    cap.set(color='#b1ceeb')
-
-for median in bp['medians']:
-    median.set(color='#133056')
-
-ax.set_xticklabels('Cluster ' + medlab.index.astype('str'))
-ax.set_xticks(np.arange(1, len(medlab)+1, 1), minor = False)
-plt.title('Resale Flat Prices by Cluster (Jurong West)', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Resale Price')
-plt.xlabel('Cluster')
-plt.ylim((0, 800000))
-plt.show()
-```
-
-
-![png](output_25_0.png)
+![](../2018-09-15-hdb-feature-engineering-ii/plot2.png)
 
 
 Even though the clustering looks good statistically, it always makes sense to do a visual check, which can be done using the `gmaps` module. `gmaps` uses the Google Maps Javascript API (Google provides a free API key) to generate a HTML Google Map. We plot the **unique** coordinates of flats, color-coded by label, to give us a map with 7 distinct zones. The map shows that 7 clusters is a good fit (or at least isn't terrible).
@@ -446,7 +338,7 @@ Even though the clustering looks good statistically, it always makes sense to do
 
 ```python
 # GMAPS
-GOOGLE_API = 'AIzaSyC_qN8r9b3VvwX660xNUYp2ZtKNXcGOOLI'
+GOOGLE_API = '[YOUR GOOGLE API KEY HERE]'
 gmaps.configure(api_key = GOOGLE_API)
 
 # Configure labels and column names
@@ -487,152 +379,10 @@ t1.add_layer(c4)
 t1.add_layer(c5)
 t1.add_layer(c6)
 t1.add_layer(c7)
-
-# Visualise
-# t1
-```
-
-## Function to Plot Elbow Graph
-
-
-```python
-def clust_town(town):
-    # Extract town data
-    temp_dat = hdb[['lat', 'lon']][hdb.town == town]
-    temp_dat = temp_dat.reset_index(drop = True)
-
-    # Normalise
-    temp_mm = MinMaxScaler()
-    temp_mm.fit(temp_dat)
-    temp_dat_scaled = pd.DataFrame(temp_mm.transform(temp_dat), columns = ['lat', 'lon'])
-
-    # Set up values of k
-    temp_k = np.arange(2, 23, 1)
-
-    # Initialise results
-    temp_results = []
-
-    # Loop through values of k
-    for k in temp_k:
-
-        # Set up kmeans
-        temp_km = KMeans(n_clusters = k, random_state = 123)
-
-        # Fit data
-        temp_km.fit(temp_dat_scaled)
-
-        # Score data
-        temp_results.append(temp_km.inertia_)
-
-    # Plot
-    plt.plot(temp_k, temp_results)
-    plt.title(town)
-    plt.show()
-    
-```
-
-
-```python
-# NOT RUN
-# Perform clustering on each town using k = 2 to 22 to choose an optimal k
-# for t in hdb.town.value_counts().index:
-    
-#     clust_town(t)
-```
-
-## Function to Plot Maps
-
-
-```python
-def clust_map(town):
-    
-    # Extract town data
-    temp_dat = hdb[['lat', 'lon']][hdb.town == town]
-    temp_dat = temp_dat.reset_index(drop = True)
-    
-    # Normalise
-    temp_mm = MinMaxScaler()
-    temp_mm.fit(temp_dat)
-    temp_dat_scaled = pd.DataFrame(temp_mm.transform(temp_dat), columns = ['lat', 'lon'])
-    
-    # Get optimal clusters
-    opt_clust = disp_clust.loc[town][0]
-    
-    # Fitting 7 clusters:
-    temp_km = KMeans(n_clusters = opt_clust, random_state = 123)
-    temp_km.fit(temp_dat_scaled)
-    
-    # Configure labels and column names
-    plot_labels = temp_dat[['lat', 'lon']].copy()
-    plot_labels['label'] = temp_km.labels_ + 1
-    plot_labels = plot_labels.rename(columns = {'lat': 'latitude', 'lon': 'longitude'})
-
-    # Remove duplicates
-    plot_labels = plot_labels.drop_duplicates()
-    plotdata = plot_labels[['latitude', 'longitude']]
-    
-    # Configure colours
-    temp_colors = sns.color_palette().as_hex()
-    
-    # Create base graph
-    out_graph = gmaps.figure()
-    
-    # Add layers sequentially
-    for i in range(opt_clust):
-        
-        # Add layer
-        out_graph.add_layer(
-            gmaps.symbol_layer(
-                plotdata[plot_labels.label == i + 1],
-                fill_color = temp_colors[i], stroke_color = temp_colors[i],
-                scale = 2
-            )
-        )
-    
-    # Output
-    return out_graph
-
-# Function to plot all points
-def clust_map_all(town):
-    
-    # Extract town data
-    temp_dat = hdb[['lat', 'lon']][hdb.town == town]
-    temp_dat = temp_dat.reset_index(drop = True)
-    
-    # Remove duplicates
-    temp_dat = temp_dat.drop_duplicates()
-    
-    # Create base graph
-    out_graph = gmaps.figure()
-    
-    # Add layer
-    out_graph.add_layer(gmaps.symbol_layer(temp_dat, scale = 2))
-    
-    # Output
-    return out_graph
-```
-
-
-```python
-# NOT RUN
-# Run clust_map for all towns to check that the k values make sense
-# clust_map('[TOWN HERE]')
-```
-
-
-```python
-# Decide on clusters
-clust_results = [7, 5, 6, 7, 7, 4, 5, 6, 5, 5, 3, 6, 5, 7, 7, 6, 6, 5, 5, 8, 5, 5, 4, 2, 1, 2]
-
-# Create dataframe
-disp_clust = pd.DataFrame(
-    [hdb.town.value_counts().index, clust_results], index = ['Town', 'Clusters']
-).T.set_index('Town')
-
-# Create markdown table
-# print(tabulate.tabulate(disp_clust, tablefmt="pipe", headers = 'keys'))
-```
-
+```  
+  
+[](../2018-09-15-hdb-feature-engineering-ii/jw_map.png)
+  
 ## Calculate Optimal Clusters for All Towns
 Performing the same process of selecting an optimal *k* using the elbow and graphical methods, we obtained the following results:  
   
@@ -704,99 +454,8 @@ hdb['clust'] = hdb.town + '_' + hdb.label.astype('str')
 ```
 
 Here's the full map of all clusters in Singapore:
-
-
-```python
-# Extract town data
-full_dat = hdb[['lat', 'lon', 'clust', 'town']]
-full_dat = full_dat.reset_index(drop = True)
-
-# Remove duplicates
-full_dat = full_dat.drop_duplicates()
-
-# Rename columns
-full_dat = full_dat.rename(columns = {'lat': 'latitude', 'lon': 'longitude'})
-
-# Sort
-full_dat = full_dat.sort_values(['longitude', 'latitude'])
-
-# Extract towns
-all_towns = list(full_dat.town.unique())
-
-# Extract cluster names
-all_clust = list(full_dat.clust.unique())
-
-# Configure colours
-all_colors = sns.color_palette().as_hex()
-
-# Configure town colors
-town_colors = all_colors * 3
-```
-
-
-```python
-# Create base graph
-out_graph = gmaps.figure()
-
-# Loop through clusters
-for t in range(len(all_towns)):
-    
-    # Get clusters
-    temp_clust = full_dat.clust[full_dat.town == all_towns[t]].unique()
-    
-    # Town coordinates
-    temp_towndata = full_dat[['latitude', 'longitude']][full_dat.town == all_towns[t]].copy()
-    
-    # Get town coords
-    temp_towncoords = np.array([[n, m] for n, m in zip(temp_towndata.longitude, temp_towndata.latitude)])
-    
-    # Calculate convex hull
-    temp_townhull = ConvexHull(temp_towncoords)
-    
-    # Drawing
-    temp_towndrawing = gmaps.drawing_layer(features=[
-         gmaps.Polygon(
-             [(n, m) for n, m in zip(temp_towncoords[temp_townhull.vertices, 1], temp_towncoords[temp_townhull.vertices, 0])],
-             fill_color = town_colors[t], fill_opacity = 0.3, stroke_color = 'black'
-         )
-    ], show_controls = False)
-
-    # Add drawing
-    out_graph.add_layer(temp_towndrawing)
-    
-    # Get town center
-    
-    # Add point
-    out_graph.add_layer(
-        gmaps.symbol_layer(
-            [(temp_towndata.latitude.median(), temp_towndata.longitude.median())],
-            fill_color = town_colors[t], stroke_color = town_colors[t],
-            scale = 1
-        )
-    )
-    
-    for c in range(len(temp_clust)):
-
-        # Extract coordinates
-        temp_plotdata = full_dat[['latitude', 'longitude']][full_dat.clust == temp_clust[c]].copy()
-
-        # Get coords
-        temp_coords = np.array([[x, y] for x, y in zip(temp_plotdata.longitude, temp_plotdata.latitude)])
-
-        # Calculate convex hull
-        temp_hull = ConvexHull(temp_coords)
-
-        # Drawing
-        temp_drawing = gmaps.drawing_layer(features=[
-             gmaps.Polygon(
-                 [(x, y) for x, y in zip(temp_coords[temp_hull.vertices, 1], temp_coords[temp_hull.vertices, 0])],
-                 fill_color = all_colors[c], fill_opacity = 0.3, stroke_color = all_colors[c]
-             )
-        ], show_controls = False)
-
-        # Add drawing
-        out_graph.add_layer(temp_drawing)
-```
-
+  
+[](../2018-09-15-hdb-feature-engineering-ii/sg_map.png)
+  
 # Conclusion
 In this post, I demonstrated how an address created from block numbers and streets in the HDB resale flat dataset could be used to generate new features. Geocoding was used to convert addresses into geographic coordinates, and coordinates were used to generate clusters within each town. This produced a total of 134 clusters across Singapore. Hopefully, these will be useful when we develop our machine learning model to predict resale flat prices.
