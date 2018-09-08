@@ -1,4 +1,3 @@
-
 ---
 type: post  
 title: HDB Resale Flat Dataset - Feature Engineering II: Geocoding
@@ -6,7 +5,7 @@ bigimg: /img/hdb_img.jpg
 image: https://cdn.techinasia.com/wp-content/uploads/2016/05/taxi-availability-heatmap.png
 share-img: /img/hdb_img_sq.jpg
 tags: [real estate pricing, feature engineering]
----
+---  
   
 # Introduction
 In my [second post on HDB resale flat prices](https://dataandstuff.wordpress.com/2017/09/09/resale-flats-and-clusters/), I attempted to price resale flats in Jurong West by creating clusters of flats. The big idea behind this methodology was the realisation that it is impossible to explicitly account for all qualitative reasons why home buyers would want to buy a flat in a specific area. It could be because of good schools, proximity to amenities like transport centers and malls, or the liveliness of the areas. Furthermore, each factor would have different importance to different people. Modeling this would be a nightmare. Hence, I chose just two features to develop a spatial representation of these preferences: (1) latitude and (2) longitude. In fact, I showed that clusters of nearby flats shared a statistically meaningful relationship with resale prices in those clusters.  
