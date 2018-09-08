@@ -267,7 +267,7 @@ In this post, I demonstrated two possible ways to transform numeric features in 
 Are we done engineering features? **Far from it**. Binning numeric features essentially converts them into **categorical features**, and there are many more ways to transform them. In fact, all techniques involve converting categorical features back into numeric features! I'll save engineering of categorical features for another post.
   
 ---
-Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/74ba073fc7c486957e6f9c80be7ba0928442cafb/notebooks/2018-09-03-hdb-feature-engineering-i.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/0087ebf74bbc3dc265aeebbbbb64c46f35d99e62/notebooks/2018-09-03-hdb-feature-engineering-i.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Public Service Division](https://www.psd.gov.sg/); [Straits Times](https://www.straitstimes.com/)  
 Credits for data: [Data.gov.sg](https://data.gov.sg/)
