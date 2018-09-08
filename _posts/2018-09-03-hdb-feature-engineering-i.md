@@ -136,6 +136,7 @@ It's important to remember why we're binning in the first place: to help our mod
 
 #### Fixed-Width Bins
   
+  
 ```python
 # Compute number of observations in each bin
 eval_fw_bins = pd.DataFrame()
@@ -156,12 +157,13 @@ eval_fw_bins['std'] = df.groupby('log_floor_area_fwb').resale_price.std()
 eval_fw_bins = eval_fw_bins.sort_index()
 ```
   
+  
 ![](../graphics/2018-09-03-hdb-feature-engineering-i/plot8.png)
 
 
 #### Quantile Bins
-
-
+  
+  
 ```python
 # Compute number of observations in each bin
 eval_q_bins = pd.DataFrame()
@@ -181,6 +183,7 @@ eval_q_bins['std'] = df.groupby('log_floor_area_qb').resale_price.std()
 # Sort
 eval_q_bins = eval_q_bins.sort_index()
 ```
+  
   
 ![](../graphics/2018-09-03-hdb-feature-engineering-i/plot9.png)
   
