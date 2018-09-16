@@ -159,7 +159,7 @@ map_latlon.head()
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -245,7 +245,7 @@ dat_jw_scaled.head()
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
