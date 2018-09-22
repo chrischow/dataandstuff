@@ -35,4 +35,17 @@ This step is simple. Fit the respective regression models to training data, and 
 # Implementing the Pipeline
 One reason I fell in love with Python was the simplicity with which I could develop machine learning pipelines. `sklearn` has a `Pipeline` class that allows you to chain data processing steps and machine learning models together. These `Pipeline` objects ensure that no leakage occurs by fitting data processing and machine learning models with only training data, and applying the required transformations or predictions on test data. The beauty of `Pipeline` is that it allows users to do these things with **just two steps**: the `fit` and `predict` methods.  
   
-Hence, to test out the various combinations
+Hence, to test out the various combinations, I ran my custom pipeline through **nested cross validation**.
+  
+## Nested Cross Validation
+What we want to know about the pipeline is: how well does this perform on unseen data? To achieve this, we partition the data into "known" and "unseen" data by means of cross validation. Suppose we slice the data into 5 equal slices: Slices 1 to 5. We effectively have 5 sets of "known" and "unseen" data:  
+  
+| Set |   Training Data  | Test Data |
+|:---:|:----------------:|:---------:|
+|  1  | Slice 2, 3, 4, 5 |  Slice 1  |
+|  2  | Slice 1, 3, 4, 5 |  Slice 2  |
+|  3  | Slice 1, 2, 4, 5 |  Slice 3  |
+|  4  | Slice 1, 2, 3, 5 |  Slice 4  |
+|  5  | Slice 1, 2, 3, 4 |  Slice 5  |
+  
+
