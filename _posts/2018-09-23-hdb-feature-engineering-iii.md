@@ -3,7 +3,7 @@ type: post
 title: "HDB Resale Flat Dataset - Feature Engineering III: Categorical Features"  
 bigimg: /img/hdb_img.jpg
 image: https://images.thestar.com/content/dam/thestar/news/world/2012/06/26/singapores_manmade_supertrees_flourish_amongst_citys_concrete_jungle/singapore_supertree.jpeg
-share-img: /img/singapore_supertree.jpg
+share-img: /img/hdb_img_sq.jpg
 tags: [real estate pricing, feature engineering]
 ---
   
