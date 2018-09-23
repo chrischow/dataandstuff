@@ -50,16 +50,16 @@ Until now, I had not been specific about what machine learning model I was devel
 #### The First Layer
 Models in the first layer take in processed data and attempt to predict resale prices. The idea for the first layer is to have as many diverse regression models as possible. Hopefully, they each excel in accurately predicting different *groups* of samples, thereby delivering an accurate model when put together. I chose the following regression algorithms:  
   
-|           Algorithm          |    Type    |             Remarks             |
-|:-----------------------------|:----------:|:--------------------------------|
-| OLS                          |   Linear   | Non-parameteric; quick and easy |
-| Ridge                        |   Linear   | L2 regularisation               |
-| Lasso                        |   Linear   | L1 regularisation               |
-| ElasticNet                   |   Linear   | L1 and L2 regularisation        |
-| Support Vector               |   Linear   | Kernels                         |
-| Random Forest                | Tree-based | Bagging                         |
-| Gradient Boosting (XGBoost)  | Tree-based | Boosting                        |
-| Gradient Boosting (LightGBM) | Tree-based | Boosting                        |
+|           Algorithm          |    Type    |             Remarks             | Mean MAPE |
+|:----------------------------:|:----------:|:-------------------------------:|:---------:|
+| OLS                          |   Linear   | Non-parameteric; quick and easy |   6.57%   |
+| Ridge                        |   Linear   | L2 regularisation               |  Dropped  |
+| Lasso                        |   Linear   | L1 regularisation               |  Dropped  |
+| ElasticNet                   |   Linear   | L1 and L2 regularisation        |  Dropped  |
+| Support Vector               |   Linear   | Kernels                         |   9.18%   |
+| Random Forest                | Tree-based | Bagging                         |           |
+| Gradient Boosting (XGBoost)  | Tree-based | Boosting                        |   4.58%   |
+| Gradient Boosting (LightGBM) | Tree-based | Boosting                        |           |
   
 Thus far, I dropped Ridge regression because the results were extremely similar to linear regression, and Lasso and ElasticNet because they were terrible. Using nested cross validation, I computed estimates of their out-of-sample prediction (last column).   
   
