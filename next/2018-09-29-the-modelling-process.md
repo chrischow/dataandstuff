@@ -12,7 +12,7 @@ In my previous posts, I wrote about engineering [numeric features](https://chris
 ### Encoding Schemes
 Essentially, the encoding schemes - *the way features are coded* - affect the final accuracy of the machine learning models we feed the data into. For example, the way we choose to bin numeric features and the type of encoding method we use on categorical features will impact different machine learning models in unique ways. Thus, for each machine learning model, we must test out various combinations of encoding schemes (for the different features).  
   
-The table below shows the various ways we can encode each feature. This means that we need to run a total of **24 models** to test out all encoding schemes per model. Since we're fitting 7 machine learning models (more on this later), we need a total of **168 models** to find the optimal encoding scheme for each model.
+The table below shows the various ways we can encode each feature. This means that we need to run a total of **24 models** to test out all encoding schemes per model because we can optimise the schemes one feature at a time.  
   
 |     Feature     | Numeric? |   Ordinal?  | One-hot? | Binary? | Stats? | Total Ways |
 |:---------------:|:--------:|:-----------:|:--------:|:-------:|:------:|:----------:|
@@ -26,7 +26,7 @@ The table below shows the various ways we can encode each feature. This means th
 |      Month      |          | Yes (Fixed) |          |         |        |            |
 |     Cluster     |          |             |    Yes   |   Yes   |        |      2     |
   
-Because this was computationally expensive, I chose to do it once, thereby making the assumption that encoding schemes are unaffected by randomly-drawn samples in cross validation (more on this in the next post).
+Since we're fitting 7 machine learning models (more on this later), we need a total of **168 models** to find the optimal encoding scheme for each model. Choosing the best schemes for each model was extremely computationally expensive. Hence, I chose to do it once, thereby making the assumption that encoding schemes are unaffected by randomly-drawn samples in cross validation (more on this in the next post).  
   
 ### Leakage
 Previously, I wrote about how [contaminating training data](https://chrischow.github.io/dataandstuff/2018-09-01-preventing-contamination/) would result in overly-optimistic estimates of predictive accuracy. This means that, even though we know the optimal encoding scheme of a specific feature (say stats encoding for flat types), we cannot simply apply stats encoding to the entire dataset. This is because processing training data with test data (in cross validation) will inevitably *leak* information about the target feature (resale price) into the training set. It is like getting a few solution steps of each question in an 'A' level math exam before you actually take the exam: you don't know the full answer or the full question, but you have an advantage because of the bit of information you're getting. Hence, we must do the following in order: (assuming we have three features A, B, and C)  
@@ -61,7 +61,7 @@ Models in the first layer take in processed data and attempt to predict resale p
 | Gradient Boosting (XGBoost)  | Tree-based | Boosting                        |
 | Gradient Boosting (LightGBM) | Tree-based | Boosting                        |
   
-Thus far, I dropped Ridge regression because the results were extremely similar to linear regression, and Lasso and ElasticNet because they were terrible.  
+Thus far, I dropped Ridge regression because the results were extremely similar to linear regression, and Lasso and ElasticNet because they were terrible. Using nested cross validation, I computed estimates of their out-of-sample prediction (last column).   
   
 #### The Second Layer
 The second layer is a lot simpler: it requires just one (simple) model to aggregate the predictions of the first-layer models. It is also possible to feed the original data into the second layer model along with the first-layer predictions, but testing is required to assess if this helps to improve the overall predictive accuracy.  
