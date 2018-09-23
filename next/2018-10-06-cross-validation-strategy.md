@@ -4,7 +4,7 @@ In my previous post, I wrote about a pipeline to tie feature engineering, hyperp
 # What is Cross Validation?
 Cross validation is a technique that enables you to make full use of your dataset by repeating samples as training data and test data. It requires us to specify *X* observations as training observations to fit models too, and the remaining *N - X* observations as test observations to evaluate models on. The versions of cross validation that I explain in this post are ***K*-fold cross validation** and **nested cross validation**.  
   
-# *K*-Fold Cross Validation
+## *K*-Fold Cross Validation
 As the name suggests, *K*-fold cross validation is about splitting the data into *K* folds, and rotating each fold as the test set. Let's use `K = 5` as an example. If we have a dataset with 1,000 observations, we could split it as such:  
   
 | Fold |   Row IDs   |
@@ -27,13 +27,13 @@ The idea is to create 5 equal partitions. In reality, we would select the "row I
   
 For example, in Iteration 1, we would fit the data to the combined dataset formed by Folds 2 to 5, make predictions on Fold 1, and evaluate the predictions. By evaluate them, I mean comparing predictions to the true values of the target feature. Hence, we get a set of 5 accuracy scores, which we can average to get an estimate of model accuracy. However, 5 accuracy scores is certainly not representative of the true distribution of model accuracy. Hence, it is important to obtain more estimates. To do this, we turn to **repeated** *K*-fold cross validation.  
   
-## Improving the Estimate of Model Accuracy
+### Improving the Estimate of Model Accuracy
 Recall that in practice, we establish the folds at random. That is, we would not be getting such nice partitions in order of the row IDs. Instead, we would get random rows in each fold. Repeated *K*-fold cross validation essentially repeats *K*-fold cross validation, each time with a different partition of folds. If we did 3 repeats of 5-fold cross validation, we would get 15 accuracy scores (or 3 sets of 5 accuracy scores). That brings us closer to getting a more reliable estimate of the accuracy. The more repeats, the better, but the more computationally expensive the process would be.  
   
-# Nested Cross Validation (CV)
+## Nested Cross Validation (CV)
 While repeated *K*-fold cross validation does a nice job of giving us model accuracy, it is insufficient. Suppose once again that we split our 1,000-sample dataset randomly into 5 folds. We use these 5 folds to obtain the best encoding schemes and hyperparameter combinations for each model. Then, we use **the same 5 folds to estimate model accuracy**. How accurate is this estimate?  
   
-## Analogy I: Overfitting to Exams
+### Analogy I: Overfitting to Exams
 Let's use an analogy in education: an 'A' level exam for an arbitrary subject [although any exam with preliminary exams (prelims) would be equally analogous]. Suppose we have to take three exams: a mock prelim, a prelim, and the actual 'A' level exam. We study really hard, and end up doing badly for the mock prelim (at least I did when I was in JC). This would enable us to identify and focus on our weak areas to prepare well. In the prelim, the paper turned out to be extremely similar to the mock prelim! The questions were simply minor variations of the questions in the mock prelim. Hence, we do extremely well. Now, here's the key question: how do you think we would do on the actual 'A' level exam?
   
 We don't know! But, what we do know is that we would not do as well as we did on the prelim. Why? Because we effectively optimised our studies and practice for the prelim as opposed to a more broad-based approach to prepare for multiple topics in the subject.  
@@ -47,10 +47,10 @@ The same goes for cross validation. Suppose we have 5 folds. In our first iterat
   
 At this point, a student would focus on covering more ground; a modeller would re-adjust features or attempt different algorithms to improve the out-of-sample accuracy from cross validation. This strategy gives us a more robust estimate of model accuracy, just as it would give a student a better indication of his/her preparedness for the actual 'A' level exam. This strategy is called nested cross validation.  
   
-# Double Nested Cross Validation
+## Double Nested Cross Validation
 We are entering Inception territory here. In the previous section, I explained how you can embed a cross validation loop (*inner loop*) within another (*outer loop*). Out of necessity (because I am developing a stacked regression model), I need to embed *yet another* cross validation loop within the existing structure. Why?
   
-## Stacked Models
+### Stacked Models
 Stacked models have two levels of prediction: (1) the first-layer base models and (2) the second-layer meta model(s), which I shortlisted the simplistic OLS regression for (no parameters to optimise). Thus, we effectively need **nested cross validation** to optimise the first-layer base models and obtain a robust estimate of their generalisation ability, and **normal cross validation** to evaluate the second-layer meta model. Let's consider the case where we use only nested cross validation to evaluate the entire stacked model.  
   
 Typically, modellers use the following strategy:  
