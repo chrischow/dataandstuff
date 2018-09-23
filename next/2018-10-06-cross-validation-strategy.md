@@ -40,7 +40,7 @@ We don't know! But, what we do know is that we would not do as well as we did on
   
 Using the same folds for testing encoding schemes, hyperparameter tuning, **and estimating model accuracy** is akin to having identical questions for a mock prelim and a prelim. The model ends up preparing to do well only for certain types of training samples, thereby inflating our estimate of the model's performance on unseen data.  
   
-## Analogy II: Studying Smart
+### Analogy II: Studying Smart
 Extending the analogy above, let's say that the mock prelim and prelim covered different areas within the same topics, while the 'A' level exam comprised a variation of questions from the mock prelim and prelim. Having done badly in the mock prelim (again), we would once again focus on our weak areas. In the prelim, we wouldn't do as well as in Analogy I, but we would uncover *more weak areas* to work on. Before the actual 'A' level exam, we would have covered substantial ground without preparing too in-depth for specific topics.  
   
 The same goes for cross validation. Suppose we have 5 folds. In our first iteration, we use Folds 2, 3, 4, 5 (let's call this Set 1) as the training set. Now, we split Set 1 into a further 5 folds (A to E). In this *inner loop*, we perform 5 iterations as explained earlier (e.g. Iteration 1: Train on B, C, D, E and predict on A) to select the best encoding schemes and hyperparameters for a given model. This is equivalent to practicing on the mock prelim. Then, using the optimal settings, in the *outer loop*, we perform a prediction on Fold 1, which represents sitting for the prelim to uncover more weak areas.  
