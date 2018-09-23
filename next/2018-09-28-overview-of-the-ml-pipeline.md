@@ -1,3 +1,12 @@
+---
+type: post  
+title: "HDB Resale Flat Dataset - Overview of the Machine Learning Pipeline"  
+bigimg: /img/hdb_img.jpg
+image: https://images.thestar.com/content/dam/thestar/news/world/2012/06/26/singapores_manmade_supertrees_flourish_amongst_citys_concrete_jungle/singapore_supertree.jpeg
+share-img: /img/hdb_img_sq.jpg
+tags: [real estate pricing, feature engineering]
+---  
+  
 # Introduction
 Thus far, I've written about exploratory data analysis (EDA) and feature engineering in the HDB resale flat dataset. What I should have done earlier was to outline the overall approach for modelling. In this post, I introduce the broad approach to the resale flat price model and provide some preliminary results on the progress made.  
   
