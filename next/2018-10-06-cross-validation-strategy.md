@@ -6,7 +6,10 @@ One reason I fell in love with Python was the simplicity with which I could deve
   
 Hence, to optimise encoding schemes and hyperparameters, I put them into a custom pipeline and ran **nested cross validation (CV)**.
   
-## Nested Cross Validation (CV)
+## Nested Cross Validation (CV)  
+  
+[](../graphics/2018-10-06-cross-validation-strategy/CV.png)
+  
 What we want to know about the pipeline is: how well does this perform on unseen data? To achieve this, we partition the data into "known" and "unseen" data by means of cross validation. Suppose we slice the data into 5 equal slices or folds: Folds 1 to 5. We effectively have 5 sets of "known" and "unseen" data:  
   
 | Set |  Training Data  | Test Data |
