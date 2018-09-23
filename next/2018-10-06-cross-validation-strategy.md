@@ -76,5 +76,5 @@ Therefore, it is essential that we have double (or possibly triple) nested cross
 
 
   
-[](../graphics/2018-10-06-cross-validation-strategy/CV.png)
+![](../graphics/2018-10-06-cross-validation-strategy/CV.png)
   
