@@ -57,7 +57,7 @@ Models in the first layer take in processed data and attempt to predict resale p
 | Lasso                        |   Linear   | L1 regularisation               |  Dropped  |
 | ElasticNet                   |   Linear   | L1 and L2 regularisation        |  Dropped  |
 | Support Vector               |   Linear   | Kernels                         |   9.18%   |
-| Random Forest                | Tree-based | Bagging                         |           |
+| Random Forest                | Tree-based | Bagging                         |   4.90%   |
 | Gradient Boosting (XGBoost)  | Tree-based | Boosting                        |   4.58%   |
 | Gradient Boosting (LightGBM) | Tree-based | Boosting                        |   5.06%   |
   
