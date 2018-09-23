@@ -67,8 +67,18 @@ Thus far, I dropped Ridge regression because the results were extremely similar 
 The second layer is a lot simpler: it requires just one (simple) model to aggregate the predictions of the first-layer models. It is also possible to feed the original data into the second layer model along with the first-layer predictions, but testing is required to assess if this helps to improve the overall predictive accuracy.  
   
 ## Prediction
-This step is simple. Fit the respective regression models to training data, and perform predictions on test data. Because have the "correct answers" for test data, we can evaluate how good the predictions (and models) are. Then, fit the meta model to the predictions to generate the final predictions. 
+This step is simple. Fit the respective regression models to training data, and perform predictions on test data. Because we have the "correct answers" for test data, we can evaluate how good the predictions (and models) are. Then, fit the meta model to the predictions to generate the final predictions. I'll elaborate more on this in the next post on cross validation.  
   
-
+## Putting the Pipeline Together
+We start with semi-processed data. The pipeline converts this data into predictions using the following sequence of processes:  
+  
+1. Generate features according to a *specified encoding schemes*
+2. Preprocess data using some *specified methods*
+3. Tune *specified hyperparameters* for a *specified model*
+4. Generate predictions
+  
+Note how there are four major parameters we can play with. There are numerous encoding schemes and preprocessing methods, several models (which we also treat as parameters in the pipeline), each with varying numbers of hyperparameters. This means that we need to run the pipeline many, many times to find the optimal parameters that help the machine learning models generalise well.  
+  
+The process of optimising these major parameters to generate a single accuracy value on test data is just *one instance* of the pipeline. In the next post, I outline a strategy for cross validation, which will require us to run many instances of pipelines, but will give us reliable estimates of accuracy.  
   
 
