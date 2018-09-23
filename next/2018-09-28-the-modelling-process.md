@@ -59,7 +59,7 @@ Models in the first layer take in processed data and attempt to predict resale p
 | Support Vector               |   Linear   | Kernels                         |   9.18%   |
 | Random Forest                | Tree-based | Bagging                         |           |
 | Gradient Boosting (XGBoost)  | Tree-based | Boosting                        |   4.58%   |
-| Gradient Boosting (LightGBM) | Tree-based | Boosting                        |           |
+| Gradient Boosting (LightGBM) | Tree-based | Boosting                        |   5.06%   |
   
 Thus far, I dropped Ridge regression because the results were extremely similar to linear regression, and Lasso and ElasticNet because they were terrible. Using nested cross validation, I computed estimates of their out-of-sample prediction (last column).   
   
