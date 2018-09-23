@@ -64,7 +64,7 @@ Models in the first layer take in processed data and attempt to predict resale p
 Thus far, I dropped Ridge regression because the results were extremely similar to linear regression, and Lasso and ElasticNet because they were terrible. Using nested cross validation, I computed estimates of their out-of-sample prediction (last column).   
   
 #### The Second Layer
-The second layer is a lot simpler: it requires just one (simple) model to aggregate the predictions of the first-layer models. It is also possible to feed the original data into the second layer model along with the first-layer predictions, but testing is required to assess if this helps to improve the overall predictive accuracy.  
+The second layer is a lot simpler: it requires just one (simple) model to aggregate the predictions of the first-layer models. It is also possible to feed the original data into the second layer model along with the first-layer predictions, but testing is required to assess if this helps to improve the overall predictive accuracy. I'm currently working on the second layer model and I have no results to present yet.  
   
 ## Prediction
 This step is simple. Fit the respective regression models to training data, and perform predictions on test data. Because we have the "correct answers" for test data, we can evaluate how good the predictions (and models) are. Then, fit the meta model to the predictions to generate the final predictions. I'll elaborate more on this in the next post on cross validation.  
@@ -72,8 +72,8 @@ This step is simple. Fit the respective regression models to training data, and 
 ## Putting the Pipeline Together
 We start with semi-processed data. The pipeline converts this data into predictions using the following sequence of processes:  
   
-1. Generate features according to a *specified encoding schemes*
-2. Preprocess data using some *specified methods*
+1. Generate features according to *specified encoding schemes*
+2. Preprocess data using some *specified preprocessing methods*
 3. Tune *specified hyperparameters* for a *specified model*
 4. Generate predictions
   
