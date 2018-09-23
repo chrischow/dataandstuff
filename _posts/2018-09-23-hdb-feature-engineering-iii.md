@@ -2,8 +2,10 @@
 ---
 type: post  
 title: "HDB Resale Flat Dataset - Feature Engineering III: Categorical Features"  
+bigimg: /img/hdb_img.jpg
+image: https://images.thestar.com/content/dam/thestar/news/world/2012/06/26/singapores_manmade_supertrees_flourish_amongst_citys_concrete_jungle/singapore_supertree.jpeg
+share-img: /img/hdb_img_sq.jpg
 tags: [real estate pricing, feature engineering]
-
 ---
   
 # Introduction
@@ -44,9 +46,6 @@ First, we re-fit the decision tree to obtain the criteria for the respective bin
 
 ```python
 # Decision tree binning
-import os
-os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-
 # Prepare data
 y_train = hdb.resale_price
 X_train = hdb[['floor_area_sqm']]
@@ -79,7 +78,7 @@ Image(graph.create_png(), width = 750)
 
 
 
-![png](output_3_0.png)
+![](../graphics/2018-09-23-hdb-feature-engineering-iii/plot1.png)
 
 
 
@@ -209,7 +208,7 @@ df.groupby('fa_ord').head(1).sort_values(by = 'fa_ord')
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -315,7 +314,7 @@ df.groupby('floor_area').head(1).sort_values(by = 'floor_area')
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -455,7 +454,7 @@ df.groupby('town').head(1).head()
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -576,7 +575,7 @@ floor_area_means
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -637,7 +636,7 @@ floor_area_means - grand_mean
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -704,7 +703,7 @@ df.groupby('floor_area').head(1).sort_values(by = 'floor_area')
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -842,7 +841,7 @@ df.groupby('floor_area').head(1).sort_values('floor_area')
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -951,7 +950,7 @@ df.groupby('town').head(1).sort_values('cluster').head()
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1035,7 +1034,7 @@ hdb.pivot_table(
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1127,10 +1126,6 @@ hdb['type_X_floor'] = hdb.flat_type + '_' + hdb.floor_area
 X_train = pd.get_dummies(hdb[['type_X_floor']])
 y_train = hdb.resale_price
 
-# Decision tree binning
-import os
-os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-
 # Configure decision tree regressor
 dt_interact = DecisionTreeRegressor(
     criterion = 'mse',
@@ -1159,7 +1154,7 @@ Image(int_graph.create_png(), width = 750)
 
 
 
-![png](output_36_0.png)
+![](../graphics/2018-09-23-hdb-feature-engineering-iii/plot2.png)
 
 
 
@@ -1207,7 +1202,7 @@ int_sum
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1357,7 +1352,7 @@ int_rmse
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1434,101 +1429,8 @@ int_rmse
 
 
 
-
-```python
-# Compute weighted average
-np.sum(int_rmse.rmse * int_rmse.weight) / total_rmse
-```
-
-
-
-
-    0.7322241485397311
-
-
-
 Performing the same computations for floor area and flat type give us similar RMSEs of **72.39%** and **73.68%** respectively.
-
-
-```python
-# Calculate RMSE for floor area
-# Summarise
-fa_sum = hdb.pivot_table(
-    values = 'resale_price',
-    index = 'floor_area',
-    aggfunc = [len, np.min, np.mean, np.median, np.max, np.std]
-).rename(columns = {'len': 'count', 'amin': 'min', 'amax': 'max'})
-
-# Extract means
-fa_means = fa_sum['mean']
-
-# Map to existing data
-hdb['fa_means'] = hdb.floor_area.map(fa_means)
-
-# Calculate squared errors
-hdb['fa_se'] = (hdb.resale_price - hdb.fa_means) ** 2
-
-# Summarise
-fa_rmse = hdb.pivot_table(
-    values = 'fa_se',
-    index = 'floor_area',
-    aggfunc = [len, rmse]
-).rename(columns = {'len': 'counts'})
-
-# Calculate weights
-fa_rmse['weight'] = fa_rmse.counts/hdb.shape[0]
-
-# Compute weighted average
-np.sum(fa_rmse.rmse * fa_rmse.weight) / total_rmse
-```
-
-
-
-
-    0.7238646528694407
-
-
-
-
-```python
-# Calculate RMSE for flat type
-# Summarise
-ft_sum = hdb.pivot_table(
-    values = 'resale_price',
-    index = 'flat_type',
-    aggfunc = [len, np.min, np.mean, np.median, np.max, np.std]
-).rename(columns = {'len': 'count', 'amin': 'min', 'amax': 'max'})
-
-# Extract means
-ft_means = ft_sum['mean']
-
-# Map to existing data
-hdb['ft_means'] = hdb.flat_type.map(ft_means)
-
-# Calculate squared errors
-hdb['ft_se'] = (hdb.resale_price - hdb.ft_means) ** 2
-
-# Summarise
-ft_rmse = hdb.pivot_table(
-    values = 'ft_se',
-    index = 'flat_type',
-    aggfunc = [len, rmse]
-).rename(columns = {'len': 'counts'})
-
-# Calculate weights
-ft_rmse['weight'] = ft_rmse.counts/hdb.shape[0]
-
-# Compute weighted average
-np.sum(ft_rmse.rmse * ft_rmse.weight) / total_rmse
-```
-
-
-
-
-    0.7368107185512195
-
-
-
+  
 Overall, creating an interaction feature between flat type and floor area did not reduce the RMSE of the dataset, although it helped us to reduce 12 binary features from flat type and floor area into 9 from the interaction feature (more like (1) 12 into 20 through one-hot encoding and (2) 20 into 9 using a decision tree). The cost of using this interaction feature would be a loss of information because we end up compressing 20 features into 9. We also end up being unable to assess the importance of flat type and floor area independently. These costs in intuition and flexibility must be weighed against the *potential* increase in prediction accuracy.
 
 # Conclusion
@@ -1538,3 +1440,9 @@ With that, we have come to the end of this subseries on *(the first, and hopeful
   
 > *"Coming up with features is difﬁcult, time-consuming, requires expert knowledge. 'Applied machine learning' is basically feature engineering."*  
 > -Andrew Ng
+  
+---
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/8314ba5131e741ff92ddd54d6d8cdb27f731e9a6/notebooks/2018-09-16-hdb-feature-engineering-ii.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Public Service Division](https://www.psd.gov.sg/); [The Star](https://www.thestar.com/)  
+Credits for data: [Data.gov.sg](https://data.gov.sg/)
