@@ -45,17 +45,23 @@ In this step, we optimise the hyperparameters for several (regression) models se
 Suppose we memorised solution steps for a book of specific math problems without developing any understanding of the logic involved. If we received a new book of math problems that were simply minor variations of the book we memorised, we might fail miserably because we only know how to regurgitate the solutions to the few problems that we studied. Thus, we can think of overfitting as *causing the model to learn how to solve specific problems only*, and hyperparameter optimisation as *helping the model to develop sound principles for solving the general problem*. This sounds a lot like the enhancement of Singapore's education curriculum, and we should expect as much because the concept of learning is the same for both human learners and machine learners.  
   
 ### Models?
-Until now, I had not been specific about what machine learning model I was developing. To be specific, I am developing a **stacked regression model**: a model that has several base regression models (first layer), and a single regression meta model (second layer) that aggregates the predictions of the first-layer models. I shortlisted the following algorithms for the first layer:  
+Until now, I had not been specific about what machine learning model I was developing. To be specific, I am developing a **stacked regression model**: a model that has several base regression models (first layer), and a single regression meta model (second layer) that aggregates the predictions of the first-layer models.  
   
-1. OLS Regression
-2. Ridge
-3. Lasso
-4. ElasticNet
-5. Support Vector Regression
-6. Random Forest Regression (`sklearn`)
-7. Gradient Boosting Regression (`xgboost`)   
+#### The First Layer
+Models in the first layer take in processed data and attempt to predict resale prices. The idea for the first layer is to have as many diverse regression models as possible. Hopefully, they each excel in accurately predicting different samples, thereby allowing us to distinguish between Hence, I chose the following regression algorithms:
   
-All of these (less OLS regression) required some hyperparameter optimisation.
+|           Algorithm          |    Type    |             Remarks             |
+|:-----------------------------|:----------:|:--------------------------------|
+| OLS                          |   Linear   | Non-parameteric; quick and easy |
+| Ridge                        |   Linear   | L2 regularisation               |
+| Lasso                        |   Linear   | L1 regularisation               |
+| ElasticNet                   |   Linear   | L1 and L2 regularisation        |
+| Support Vector               |   Linear   | Kernels                         |
+| Random Forest                | Tree-based | Bagging                         |
+| Gradient Boosting (XGBoost)  | Tree-based | Boosting                        |
+| Gradient Boosting (LightGBM) | Tree-based | Boosting                        |
+  
+
   
 ## Prediction
 
