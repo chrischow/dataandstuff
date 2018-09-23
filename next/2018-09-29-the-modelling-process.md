@@ -4,14 +4,48 @@ Thus far, I've written about exploratory data analysis (EDA) and feature enginee
 # The Pipeline
 The objective of this project is to develop something that can accurately predict (or value) resale flats. This thing takes in data provided by HDB through [Data.gov.sg](https://data.gov.sg/), generates new features, cleans them, runs them through a complex machine learning model, and spits out predicted prices to **enable home buyers to assess the value of prospective homes**. This thing is a **pipeline**.
   
-We can think of it as a macro model comprised of the following key processes:  
+We can think of it as a macro model comprised of three key processes: (1) feature engineering, (2) hyperparameter tuning, and (3) prediction.  
   
-1. **Feature engineering.** In this step, we create new features from the limited set of features provided to us. I wrote about engineering [numeric features](https://chrischow.github.io/dataandstuff/2018-09-08-hdb-feature-engineering-i/), [categorical features](http://www.google.com), and [geocoding](https://chrischow.github.io/dataandstuff/2018-09-16-hdb-feature-engineering-ii/) earlier, and commented on how *the way* features are encoded - binning method for numeric features and encoding methods for categorical features - are parameters in the pipeline. In the pipeline, many combinations of encoding techniques are tested to find the optimal encoding method for each machine learning model.
-2. **Hyperparameter tuning.** In this step, we optimise several regression models separately. Each model (less OLS regression) has its own set of hyperparameters that governs how the model learns old data and how well it performs on unseen data. The objective of hyperparameter tuning is to reduce *overfitting*, which I will explain the coming sections.
-3. **Prediction.** In the testing phase, we use this step to generate predictions on pseudo-unseen data to evaluate the pipeline. Once the pipeline goes live, this phase is for generating actual predictions/valuations.  
+## Feature Engineering
+In my previous posts, I wrote about engineering [numeric features](https://chrischow.github.io/dataandstuff/2018-09-08-hdb-feature-engineering-i/), [categorical features](http://www.google.com), and [geocoding](https://chrischow.github.io/dataandstuff/2018-09-16-hdb-feature-engineering-ii/). Feature engineering actually isn't as simple as creating new columns in a table. We have to take into account the **encoding scheme** used and **leakage**.  
   
-## The Machine Learning Model
-Before we dive into the pipeline, it is important to establish what exactly we're optimising. The machine learning model is the final entity in the pipeline that converts data points into predictions. Although I say "model", I really mean a model of models. That is, I am developing a **stacked regression model**: a model that has several base regression models (first layer), and a single regression model (second layer) that aggregates the predictions of the first-layer models. I selected several regression models for the first layer:  
+### Encoding Schemes
+Essentially, the encoding schemes - *the way features are coded* - affect the final accuracy of the machine learning models we feed the data into. For example, the way we choose to bin numeric features and the type of encoding method we use on categorical features will impact different machine learning models in unique ways. Thus, for each machine learning model, we must test out various combinations of encoding schemes (for the different features).  
+  
+The table below shows the various ways we can encode each feature. This means that we need to run a total of **24 models** to test out all encoding schemes per model. Since we're fitting 7 machine learning models (more on this later), we need a total of **168 models** to find the optimal encoding scheme for each model.
+  
+|     Feature     | Numeric? |   Ordinal?  | One-hot? | Binary? | Stats? | Total Ways |
+|:---------------:|:--------:|:-----------:|:--------:|:-------:|:------:|:----------:|
+| Remaining Lease |    Yes   |     Yes     |    Yes   |   Yes   |   Yes  |      5     |
+|    Floor Area   |    Yes   |     Yes     |    Yes   |   Yes   |   Yes  |      5     |
+|       Town      |          |             |    Yes   |   Yes   |   Yes  |      3     |
+|    Flat Type    |          |             |    Yes   |         |   Yes  |      2     |
+|   Storey Range  |          |     Yes     |    Yes   |   Yes   |   Yes  |      4     |
+|    Flat Model   |          |             |    Yes   |   Yes   |   Yes  |      3     |
+|       Year      |          | Yes (Fixed) |          |         |        |            |
+|      Month      |          | Yes (Fixed) |          |         |        |            |
+|     Cluster     |          |             |    Yes   |   Yes   |        |      2     |
+  
+Because this was computationally expensive, I chose to do it once, thereby making the assumption that encoding schemes are unaffected by randomly-drawn samples in cross validation (more on this in the next post).
+  
+### Leakage
+Previously, I wrote about how [contaminating training data](https://chrischow.github.io/dataandstuff/2018-09-01-preventing-contamination/) would result in overly-optimistic estimates of predictive accuracy. This means that, even though we know the optimal encoding scheme of a specific feature (say stats encoding for flat types), we cannot simply apply stats encoding to the entire dataset. This is because processing training data with test data (in cross validation) will inevitably *leak* information about the target feature (resale price) into the training set. It is like getting a few solution steps of each question in an 'A' level math exam before you actually take the exam: you don't know the full answer or the full question, but you have an advantage because of the bit of information you're getting. Hence, we must do the following in order: (assuming we have three features A, B, and C)  
+  
+1. Fit the training data to the feature encoding model for feature A
+2. Transform the **training data** using the fitted encoding model
+3. Transform the **test data** using the fitted encoding model
+4. Do the same for the respective feature encoding models for features B and C sequentially
+  
+This requires us to have a pipeline that processes training data and test data in parallel, not together.
+  
+## Hyperparameter Tuning
+In this step, we optimise the hyperparameters for several (regression) models separately. Each model (less OLS regression) has its own set of hyperparameters that governs how the model learns old data and how well it performs on unseen data. The objective of hyperparameter tuning is to reduce overfitting, which is where a model learns the training data too well and performs badly on unseen data.  
+  
+### Overfitting
+Suppose we memorised solution steps for a book of specific math problems without developing any understanding of the logic involved. If we received a new book of math problems that were simply minor variations of the book we memorised, we might fail miserably because we only know how to regurgitate the solutions to the few problems that we studied. Thus, we can think of overfitting as *causing the model to learn how to solve specific problems only*, and hyperparameter optimisation as *helping the model to develop sound principles for solving the general problem*. This sounds a lot like the enhancement of Singapore's education curriculum, and we should expect as much because the concept of learning is the same for both human learners and machine learners.  
+  
+### Models?
+Until now, I had not been specific about what machine learning model I was developing. To be specific, I am developing a **stacked regression model**: a model that has several base regression models (first layer), and a single regression meta model (second layer) that aggregates the predictions of the first-layer models. I shortlisted the following algorithms for the first layer:  
   
 1. OLS Regression
 2. Ridge
@@ -19,7 +53,17 @@ Before we dive into the pipeline, it is important to establish what exactly we'r
 4. ElasticNet
 5. Support Vector Regression
 6. Random Forest Regression (`sklearn`)
-7. Gradient Boosting Regression (`xgboost`)
+7. Gradient Boosting Regression (`xgboost`)   
+  
+All of these (less OLS regression) required some hyperparameter optimisation.
+  
+## Prediction
+
+3. **Prediction.** In the testing phase, we use this step to generate predictions on pseudo-unseen data to evaluate the pipeline. Once the pipeline goes live, this phase is for generating actual predictions/valuations.  
+  
+## The Machine Learning Model
+Before we dive into the pipeline, it is important to establish what exactly we're optimising. The machine learning model is the final entity in the pipeline that converts data points into predictions. Although I say "model", I really mean a model of models. That is, I am developing a  I selected several regression models for the first layer:  
+ 
   
 These models will also be candidates for the single second layer model. Each of these models (less OLS regression) has configurable hyperparameters which will be optimised in the hyperparameter tuning step. As such, each first-layer model (and the second-layer model) must be optimised separately.  
   
