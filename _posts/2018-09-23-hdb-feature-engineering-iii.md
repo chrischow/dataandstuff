@@ -44,7 +44,6 @@ First, we re-fit the decision tree to obtain the criteria for the respective bin
 
 
 ```python
-# Decision tree binning
 # Prepare data
 y_train = hdb.resale_price
 X_train = hdb[['floor_area_sqm']]
@@ -1441,7 +1440,7 @@ With that, we have come to the end of this subseries on *(the first, and hopeful
 > -Andrew Ng
   
 ---
-Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/8314ba5131e741ff92ddd54d6d8cdb27f731e9a6/notebooks/2018-09-16-hdb-feature-engineering-ii.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/49356c42fca1dac91bbbf381c09ef8f28b27cc34/notebooks/2018-09-23-hdb-feature-engineering-iii.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Public Service Division](https://www.psd.gov.sg/); [The Star](https://www.thestar.com/)  
 Credits for data: [Data.gov.sg](https://data.gov.sg/)
