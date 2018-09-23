@@ -60,7 +60,7 @@ Until now, I had not been specific about what machine learning model I was devel
 Models in the first layer take in processed data and attempt to predict resale prices. The idea for the first layer is to have as many diverse regression models as possible. Hopefully, they each excel in accurately predicting different *groups* of samples, thereby delivering an accurate model when put together. I chose the following regression algorithms:  
   
 |           Algorithm          |    Type    |             Remarks             | Mean MAPE |
-|:----------------------------:|:----------:|:-------------------------------:|:---------:|
+|:-----------------------------|:----------:|:-------------------------------:|:---------:|
 | OLS                          |   Linear   | Non-parameteric; quick and easy |   6.57%   |
 | Ridge                        |   Linear   | L2 regularisation               |  Dropped  |
 | Lasso                        |   Linear   | L1 regularisation               |  Dropped  |
