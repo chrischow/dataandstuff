@@ -1,4 +1,3 @@
-
 ---
 type: post  
 title: "HDB Resale Flat Dataset - Feature Engineering III: Categorical Features"  
