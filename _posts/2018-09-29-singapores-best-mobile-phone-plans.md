@@ -456,26 +456,6 @@ eff_data = df[['talktime_cost', 'data_cost']].copy()
 
 # Compute convex hull
 hull = ConvexHull(eff_data)
-
-# Plot efficiency scores
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b=True)
-plt.scatter(df.talktime_cost, df.data_cost, color = '#133056', alpha = 0.7, s = 20)
-plt.title('Data Cost vs. Talktime Cost', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('GB of Data / $')
-plt.xlabel('Minutes / $')
-
-for simplex in hull.simplices:
-    if sum(simplex == [30, 11]) == 2 or sum(simplex == [16, 11]) == 2:
-        plt.plot(eff_data.iloc[simplex, 0], eff_data.iloc[simplex, 1], linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[30, 0], 0), (eff_data.iloc[30, 1], eff_data.iloc[30, 1]), linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[16, 0], eff_data.iloc[16,0]), (eff_data.iloc[16, 1], 0), linestyle = 'dashed', color = '#6fceb0')
-plt.text(110, 10.2, mobile.name[30])
-plt.text(230, 0.3, mobile.name[11])
-plt.text(230, 0.1, mobile.name[16])
-plt.show()
 ```
 
 
