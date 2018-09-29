@@ -19,7 +19,7 @@ The 6-months cycle in table form:
   
 |  Month  |  Income |              Expenditure             |   Profit   | Remarks                                                 |
 |:-------:|:-------:|:------------------------------------:|:----------:|---------------------------------------------------------|
-|    1    | \$1,800 | \\$167.90 + \\$500 + \\$418 = \\$1087.90 | \\$1,132.10 | Re-contract on Combo 12, get a free iPhone, and sell it |
+|    1    | \$1,800 | \$167.90 + \$500 + \$418 = \$1087.90 | \$1,132.10 | Re-contract on Combo 12, get a free iPhone, and sell it |
 |    2    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
 |    3    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
 |    4    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
@@ -36,7 +36,7 @@ By repeating this *forever*, one can pay an average monthly bill of \$21.23 for 
 4. Apple comes up with a new model every year
 5. The CIS discount remains at 30% or better
   
-Based on these assumptions, the deal was too risky for me, and I chose not to pursue it. After realising that the Singtel deal turned sour when Singtel increased the price for the iPhone XS on Combo 12 from \\$0 to \\$418, I was relieved that I hadn't jumped in. A colleague instead suggested that perhaps, I could do some analysis on the best mobile phone plan currently on offer. Hence, in this post, I do exactly that: I explore the determinants of mobile phone plan prices and outline an objective way to choose an ideal phone plan.
+Based on these assumptions, the deal was too risky for me, and I chose not to pursue it. After realising that the Singtel deal turned sour when Singtel increased the price for the iPhone XS on Combo 12 from \$0 to \$418, I was relieved that I hadn't jumped in. A colleague instead suggested that perhaps, I could do some analysis on the best mobile phone plan currently on offer. Hence, in this post, I do exactly that: I explore the determinants of mobile phone plan prices and outline an objective way to choose an ideal phone plan.
 
 
 ```python
@@ -51,7 +51,6 @@ import pydotplus
 from scipy.spatial import ConvexHull
 import seaborn.apionly as sns
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import MinMaxScaler
 from sklearn import tree
 from sklearn.tree import DecisionTreeRegressor
 from statsmodels.graphics.gofplots import qqplot
