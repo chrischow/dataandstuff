@@ -1645,5 +1645,10 @@ top_plans.head(20)
   </tbody>
 </table>
 </div>
-
-
+  
+  
+---
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/49356c42fca1dac91bbbf381c09ef8f28b27cc34/notebooks/2018-09-23-hdb-feature-engineering-iii.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [YouTube / Justin Tse](https://www.youtube.com/channel/UCaP1PNnr055fOt89JPry51w)
+Credits for data: [Singtel](https://www.singtel.com/); [M1](https://www.m1.com.sg/home); [Starhub](http://www.starhub.com/personal.html); [Circles.Life](https://pages.circles.life/)
