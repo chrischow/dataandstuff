@@ -1,9 +1,14 @@
-
-# Singapore's Best Mobile Phone Plans
-This week, I'm taking a break from the HDB resale flat pricing model and turning my attention to a hotter topic: mobile phone plans.  
+---
+type: post  
+title: "Singapore's Best Mobile Phone Plans"  
+bigimg: /img/phones.jpg
+image: https://i.ytimg.com/vi/FEr9D2glDXA/maxresdefault.jpg
+share-img: /img/phones_sq.jpg
+tags: [dea, mobile plans]
+---
   
-## Context
-This week, some of my colleagues noted an arbitrage opportunity in Singtel's offer for the iPhone XS / XS Max on its Combo 12 plan. The idea was to:  
+# Introduction
+This week, I'm taking a break from the HDB resale flat pricing model and turning my attention to a hotter topic: mobile phone plans. Some of my colleagues noted an arbitrage opportunity in Singtel's offer for the iPhone XS / XS Max on its Combo 12 plan. The idea was to:  
   
 1. Re-contract (or sign a new contract) on Singtel Combo 12 to get a free iPhone XS / XS Max (Singtel now charges \$418++)  
 2. Sell the phone for approximately \$1,800  
@@ -58,30 +63,6 @@ import warnings
 warnings.filterwarnings('ignore')
 ```
 
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-```
-
 # The Data
 I collected mobile phone plan data from the websites of Singtel, Starhub, M1, and Circles.Life. Specifically, I looked at postpaid mobile plans that were not restricted to any age group. I saved the monthly price, free talktime (in minutes), free SMS/MMS, data (in GB), provider, length of contract (in months), and whether or not the plan was a SIM-only plan. There were a total of 48 plans.  
   
@@ -107,7 +88,7 @@ mobile.groupby('provider').head(2)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -221,81 +202,23 @@ mobile.groupby('provider').head(2)
 First, we explore the distributions of the various features. We note that most of the features were not normally distributed. Hence, we applied the log transformation to all numeric features, less the contract length, which we convert into a categorical feature.
 
 
-```python
-# Plot prices
-plt.figure(figsize = (10,8))
-mobile.price.plot.hist(color = '#6fceb0', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Mobile Plan Prices', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Price')
-plt.ylabel('No. of Plans')
-plt.show()
-
-# Plot talktime
-plt.figure(figsize = (10,8))
-mobile.talktime.plot.hist(color = '#133056', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Talktime', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Minutes')
-plt.ylabel('No. of Plans')
-plt.show()
-
-# Plot sms
-plt.figure(figsize = (10,8))
-mobile.sms.plot.hist(color = '#b1ceeb', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of SMS/MMS', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('No. of SMS/MMS')
-plt.ylabel('No. of Plans')
-plt.show()
-
-# Plot data
-plt.figure(figsize = (10,8))
-mobile.data.plot.hist(color = '#f85b74', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Data', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('GB')
-plt.ylabel('No. of Plans')
-plt.show()
-
-# Plot contract
-plt.figure(figsize = (10,8))
-mobile.contract.plot.hist(color = '#ff9966', bins = 40)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Distribution of Contract', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Months')
-plt.ylabel('No. of Plans')
-plt.show()
-```
-
-
-![png](output_6_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot1.png)
 
 
 
-![png](output_6_1.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot2.png)
 
 
 
-![png](output_6_2.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot3.png)
 
 
 
-![png](output_6_3.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot4.png)
 
 
 
-![png](output_6_4.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot5.png)
 
 
 # Linear Regression: Quantifying Linear Relationships
@@ -377,18 +300,7 @@ print(lm_results.summary())
 A Q-Q plot of the residuals suggests that our data transformations have worked: the assumption of normality of the residuals for our model is satisfied.
 
 
-```python
-# Residual plot
-qqplot(lm_results.resid, line = 's')
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-plt.title('Q-Q Plot of Residuals', fontdict = {'fontweight': 'bold', 'fontsize': 16})
-plt.show()
-```
-
-
-![png](output_10_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot6.png)
 
 
 # Decision Trees: Quantifying Non-Linear Relationships
@@ -433,7 +345,7 @@ Image(graph.create_png(), width = 1000)
 
 
 
-![png](output_12_1.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot7.png)
 
 
 
@@ -452,7 +364,7 @@ tree_impt
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -529,21 +441,10 @@ df = mobile[['price', 'talktime', 'data']]
 # Calculate efficiency scores
 df['talktime_cost'] = df.talktime / df.price
 df['data_cost'] = df.data / df.price
-
-# Plot efficiency scores
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b=True)
-plt.scatter(df.talktime_cost, df.data_cost, color = '#133056', alpha = 0.7, s = 20)
-plt.title('Data Cost vs. Talktime Cost', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('GB of Data / $')
-plt.xlabel('Minutes / $')
-plt.show()
 ```
 
 
-![png](output_16_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot8.png)
 
 
 Next, we want to know which plans give us the best value for our money. These plans have either: (1) the most data per dollar, (2) the most talktime per dollar, or some combination of both. To do that, we only need the outermost points of the graph above. Thus, we compute the convex hull and draw a line around the outermost points. This is the efficient frontier.
@@ -578,7 +479,7 @@ plt.show()
 ```
 
 
-![png](output_18_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot9.png)
 
 
 Graphically, we can see which plans are the most efficient. The three "most efficient" plans are:  
@@ -628,7 +529,7 @@ dea_data.sorted.head(10)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -780,7 +681,7 @@ dea_data.sorted.head(10)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -899,35 +800,10 @@ eff_data = df_graph[['talktime_cost', 'data_cost']].copy()
 
 # Compute convex hull
 hull = ConvexHull(eff_data)
-
-# Plot efficiency scores
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b=True)
-plt.scatter(df_graph.talktime_cost, df_graph.data_cost, color = '#133056', alpha = 0.7, s = 20)
-plt.title('Data Cost vs. Talktime Cost', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('GB of Data / $')
-plt.xlabel('Minutes / $')
-
-for simplex in hull.simplices:
-    if sum(simplex == [29, 11]) == 2 or sum(simplex == [16, 11]) == 2:
-        plt.plot(eff_data.iloc[simplex, 0], eff_data.iloc[simplex, 1], linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[29, 0], 0), (eff_data.iloc[29, 1], eff_data.iloc[29, 1]), linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[16, 0], eff_data.iloc[16,0]), (eff_data.iloc[16, 1], 0), linestyle = 'dashed', color = '#6fceb0')
-plt.text(4, 0.6, mobile.name[29])
-plt.text(230, 0.3, mobile.name[11])
-plt.text(230, 0.1, mobile.name[16])
-plt.text(183, 0.37, mobile.name[12])
-plt.text(4, 0.53, mobile.name[45])
-plt.text(185, 0.16, mobile.name[17])
-plt.text(103, 0.26, mobile.name[34])
-plt.text(86, 0.28, mobile.name[13])
-plt.show()
 ```
 
 
-![png](output_25_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot10.png)
 
 
 The first thing we notice is the concentration of points on the far left of the graph. That's because the Telcos are competing primarily using data bundles. Along that dimension, M1 takes the top spot with its mySim 50 plan, which offers a whopping 30 GB. The second thing we notice is that Starhub is out there with 4 plans (M and L, 12-month and no-contract) owning the market segment focused on talktime - it has no close competitor.  
@@ -973,7 +849,7 @@ dea_data.sorted.head(5)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1047,29 +923,10 @@ eff_data = df_graph[['talktime_cost', 'data_cost']].copy()
 
 # Compute convex hull
 hull = ConvexHull(eff_data)
-
-# Plot efficiency scores
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b=True)
-plt.scatter(df_graph.talktime_cost, df_graph.data_cost, color = '#133056', alpha = 0.7, s = 20)
-plt.title('Data Cost vs. Talktime Cost', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('GB of Data / $')
-plt.xlabel('Minutes / $')
-
-for simplex in hull.simplices:
-    if sum(simplex == [15, 2]) == 2:
-        plt.plot(eff_data.iloc[simplex, 0], eff_data.iloc[simplex, 1], linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[15, 0], 0), (eff_data.iloc[15, 1], eff_data.iloc[15, 1]), linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[2, 0], eff_data.iloc[2,0]), (eff_data.iloc[2, 1], 0), linestyle = 'dashed', color = '#6fceb0')
-plt.text(145, 0.2, mobile.name[5])
-plt.text(85, 8.6, mobile.name[38])
-plt.show()
 ```
 
 
-![png](output_30_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot11.png)
 
 
 ## Bundle Plans, Less M1's Unlimited Data Plan
@@ -1113,7 +970,7 @@ dea_data.sorted.head(7)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1203,34 +1060,10 @@ eff_data = df_graph[['talktime_cost', 'data_cost']].copy()
 
 # Compute convex hull
 hull = ConvexHull(eff_data)
-
-# Plot efficiency scores
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b=True)
-plt.scatter(df_graph.talktime_cost, df_graph.data_cost, color = '#133056', alpha = 0.7, s = 20)
-plt.title('Data Cost vs. Talktime Cost', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('GB of Data / $')
-plt.xlabel('Minutes / $')
-
-for simplex in hull.simplices:
-    if sum(simplex == [2, 14]) == 2:
-        plt.plot(eff_data.iloc[simplex, 0], eff_data.iloc[simplex, 1], linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[14, 0], 0), (eff_data.iloc[14, 1], eff_data.iloc[14, 1]), linestyle = 'dashed', color = '#6fceb0')
-plt.plot((eff_data.iloc[2, 0], eff_data.iloc[2,0]), (eff_data.iloc[2, 1], 0), linestyle = 'dashed', color = '#6fceb0')
-plt.text(145, 0.05, mobile.name[5])
-plt.text(1.3, 0.34, mobile.name[37])
-plt.text(3.90, 0.235, mobile.name[8])
-plt.text(115, 0.045, mobile.name[24])
-plt.text(105, 0.07, mobile.name[6])
-plt.text(91, 0.08, mobile.name[25])
-plt.text(3.50, 0.205, mobile.name[36])
-plt.show()
 ```
 
 
-![png](output_33_0.png)
+![](../graphics/2018-09-29-singapores-best-mobile-phone-plans/plot12.png)
 
 
 We see that M1 offers 2 of the most value-for-money data plans, while Singtel offers the best talktime plan. Although Starhub provides the most value in the SIM-only market for talktime, Singtel takes top spot for bundle plans.
@@ -1262,7 +1095,7 @@ data_plans
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1428,7 +1261,7 @@ tt_plans
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1594,7 +1427,7 @@ top_plans.head(20)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
