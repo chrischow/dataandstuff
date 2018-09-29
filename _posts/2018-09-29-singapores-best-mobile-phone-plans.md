@@ -354,7 +354,8 @@ Examining the feature importances, we see that the only three things that matter
 ```python
 # Extract coefficients
 tree_impt = pd.DataFrame(tree_mobile.feature_importances_)
-tree_impt['var'] = X_data.columns
+tree_impt['Feature'] = X_data.columns
+tree_impt = tree_impt.rename(columns = {0: 'Importance'})
 
 # View feature importances
 tree_impt
@@ -368,8 +369,8 @@ tree_impt
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>0</th>
-      <th>var</th>
+      <th>Importance</th>
+      <th>Feature</th>
     </tr>
   </thead>
   <tbody>
@@ -639,7 +640,7 @@ dea_data.sorted.head(10)
 
 
 ## All Plans, Less M1's Unlimited Data Plans
-M1's data plans looked good because I set a high cap on data of 1,000 GB. However, lowering the cap will not change the results: M1's plan offer good value. And because they offer good value, they are also pretty expensive. For most of us who would not pay that much for unlimited data, I perform the analysis on all plans less M1's two unlimited data plans.
+M1's data plans looked good because I set a high cap on data of 1,000 GB. However, lowering the cap will not change the results: M1's plans offer good value. And because they offer good value, they are also pretty expensive. For most of us who would not pay that much for unlimited data, I perform the analysis on all plans less M1's two unlimited data plans.
 
 
 ```python
@@ -1649,5 +1650,5 @@ top_plans.head(20)
 ---
 Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/49356c42fca1dac91bbbf381c09ef8f28b27cc34/notebooks/2018-09-23-hdb-feature-engineering-iii.ipynb){:target="_blank"} for the full Jupyter notebook.
   
-Credits for images: [YouTube / Justin Tse](https://www.youtube.com/channel/UCaP1PNnr055fOt89JPry51w)
+Credits for images: [YouTube / Justin Tse](https://www.youtube.com/channel/UCaP1PNnr055fOt89JPry51w)  
 Credits for data: [Singtel](https://www.singtel.com/); [M1](https://www.m1.com.sg/home); [Starhub](http://www.starhub.com/personal.html); [Circles.Life](https://pages.circles.life/)
