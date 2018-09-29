@@ -2,7 +2,7 @@
 type: post  
 title: "Singapore's Best Mobile Phone Plans"  
 bigimg: /img/phones.jpg
-image: /img/phones_sq.jpg
+image: https://github.com/chrischow/dataandstuff/raw/gh-pages/img/phones_sq.jpg
 share-img: /img/phones_sq.jpg
 tags: [dea, mobile plans]
 ---
