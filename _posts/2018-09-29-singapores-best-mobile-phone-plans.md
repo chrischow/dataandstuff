@@ -37,7 +37,9 @@ By repeating this *forever*, one can pay an average monthly bill of \$21.23 for 
 5. The CIS discount remains at 30% or better
   
 Based on these assumptions, the deal was too risky for me, and I chose not to pursue it. After realising that the Singtel deal turned sour when Singtel increased the price for the iPhone XS on Combo 12 from \$0 to \$418, I was relieved that I hadn't jumped in. A colleague instead suggested that perhaps, I could do some analysis on the best mobile phone plan currently on offer. Hence, in this post, I do exactly that: I explore the determinants of mobile phone plan prices and outline an objective way to choose an ideal phone plan.
-
+  
+**Edit:** It just occurred to me how long this post was. Skip to the conclusion or hit *Ctrl+F* and search for **TLDR** (too long, didn't read) to see the main findings.  
+  
 
 ```python
 # Import required modules
@@ -1048,7 +1050,7 @@ hull = ConvexHull(eff_data)
 
 We see that M1 offers 2 of the most value-for-money data plans, while Singtel offers the best talktime plan. Although Starhub provides the most value in the SIM-only market for talktime, Singtel takes top spot for bundle plans.
 
-# Conclusion
+# Conclusion [TLDR]
 In this post, I used linear regression to quantify the relationship between mobile plan parameters and their price, a decision tree to identify the most important parameters, and data envelopment analysis (DEA) to compute the most efficient plans for data and talktime, and the optimal tradeoff between these two priorities.  
   
 As you can see from the variety of plans, the offering is extremely polarised. Plans deliver value either in terms of talktime or data. Thus, you only need to know your priority and your budget to make a good decision.  
