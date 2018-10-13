@@ -43,7 +43,7 @@ The 360 account offers the following with effect from 1 Nov 2018:
 |-------------------------------------------|--------------------|----------------------|
 | Base Interest                             | 0.05%              | 0.05%                |
 | Credit Salary via GIRO                    | 1.20%              | 1.50%                |
-| Spend \\$500 on OCBC Credit Cards           | 0.30%              | 0.60%                |
+| Spend \$500 on OCBC Credit Cards           | 0.30%              | 0.60%                |
 | Insure or Invest with OCBC                | 0.60%              | 1.20%                |
 | Increase Monthly Account Balance by \$500 | 0.30%              | 0.60%                |
 | Increase Monthly Account Balance          | 1.00% on Increment | 1.00% on Increment   |
@@ -61,12 +61,12 @@ UOB offers the following:
 ## MayBank SaveUp Account
 The SaveUp account pays a base interest of 0.3125%
   
-| Action                 | Up to \\$60,000 |   |
-|------------------------|---------------|---|
-| Base Interest          | 0.3125%       |   |
-| 1 Product or Service   | 0.30%         |   |
-| 2 Products or Services | 0.80%         |   |
-| 3 Products or Services | 2.75%         |   |  
+| Action                 | Up to \$60,000 |
+|------------------------|---------------|
+| Base Interest          | 0.3125%       |
+| 1 Product or Service   | 0.30%         |
+| 2 Products or Services | 0.80%         |
+| 3 Products or Services | 2.75%         | 
   
 The products and services include:  
   
