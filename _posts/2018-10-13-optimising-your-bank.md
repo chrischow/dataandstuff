@@ -307,7 +307,7 @@ uob.drop(['s1', 's2', 's3', 's4', 's5', 's6',
 ![](../graphics/2018-10-13-optimising-your-bank/plot2.png)
 
 
-We see that there are minor jumps every \$15k as per their incentive structure, and a huge jump to a peak of **2.44%** for the \$75k bracket.
+We see that there are minor jumps every \$15k because of the account's incentive structure, and a huge jump to a peak of **2.44%** for the \$75k bracket.
 
 ## MayBank SaveUp Account
 MayBank's base interest rate varies with your savings balance, but its bonus interest rates do not. Hence, the overall interest rate is consistently high for savings up to \$60,000.
