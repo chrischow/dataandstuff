@@ -439,6 +439,6 @@ This means that the One account can be complementary to the SaveUp and 360 accou
 In conclusion, we established a hierarchy of bank accounts. MayBank is No. 1 with the highest interest, while UOB and OCBC come in at second, depending on the level of savings. A unique characteristic of UOB's One account is that it does not require us to credit our salary. This makes the One account an excellent option for any excess savings. All we need to do is sign up for a UOB credit card and charge \$500 to it, and pay 3 bills via GIRO if we have any other bills to spare. The interest from the One account will not be as high as that from the SaveUp account, but it is the next-best place to deposit your money.
   
 ---
-Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/f9285951cd74f1088b7e20e08ac551a33f8bcfcf/notebooks/2018-10-13-optimising-your-bank.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/65e677cd746cadaa1c349d6ab96e7280d695db7d/notebooks/2018-10-13-optimising-your-bank.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Financial Times](https://www.ft.com/)
