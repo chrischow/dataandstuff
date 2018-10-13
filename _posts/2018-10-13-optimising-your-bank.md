@@ -1,5 +1,13 @@
-
-# Optimising Your Finances: OCBC vs. UOB vs. MayBank
+---
+type: post  
+title: "Optimising Your Bank: OCBC vs. UOB vs. MayBank"  
+bigimg: /img/banks.jpg
+image: https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-ap-northeast-1.amazonaws.com%2Fpsh-ex-ftnikkei-3937bb4%2Fimages%2F1%2F4%2F6%2F8%2F10498641-7-eng-GB%2F20171109_mag_biz-Singapore-Banks.jpg?source=nar-cms
+share-img: /img/banks.jpg
+tags: [bank accounts]
+---
+  
+# Introduction
 For 10 years now, I have parked my money in an OCBC 360 account, assuming that it consistently offered the most competitive rates. I am sure many of you would have done the same. Given that OCBC will be changing its policy from this November, a re-optimisation of our bank accounts is timely. 
   
 Today, banks are competing to be your "personal" banker. They want you to use them for all your essential transactions:  
@@ -24,43 +32,7 @@ import warnings
 %matplotlib inline
 warnings.filterwarnings('ignore')
 ```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
+  
 # Meet the Contenders
 First, I summarise the deals offered by OCBC, UOB, and Maybank.
 
@@ -180,21 +152,11 @@ ocbc.drop(['thresh0', 'thresh1', 'thresh2', 'diff', 'diff2'], axis = 1, inplace 
 
 
 ```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.plot(ocbc.savings, ocbc.eir*100, color = '#6fceb0')
-plt.plot(ocbc.savings, ocbc.eir*100, 'D', color = '#133056', markersize = 3)
-plt.fill_between(x = ocbc.savings.values, y1 = ocbc.eir.values*100, y2 = 1.50, color = '#6fceb0', alpha = 0.2)
-plt.title('Effective Interest Rate - OCBC 360 Account', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Interest Rate (%)')
-plt.xlabel('Savings')
-plt.show()
+# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
 ```
 
 
-![png](output_12_0.png)
+![](../graphics/2018-10-13-optimising-your-bank/plot1.png)
 
 
 From the graph above, we see that the 360 account pays a stable **1.85%** until you have \$35,000 in savings. Once you cross that threshold, the interest rate shoots up to a peak of **2.30%** at savings of \$70,000 before dropping back down.  
@@ -261,21 +223,11 @@ uob.drop(['s1', 's2', 's3', 's4', 's5', 's6',
 
 
 ```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.plot(uob.savings, uob.eir*100, color = '#6fceb0')
-plt.plot(uob.savings, uob.eir*100, 'D', color = '#133056', markersize = 3)
-plt.fill_between(x = uob.savings.values, y1 = uob.eir.values*100, y2 = 1.50, color = '#6fceb0', alpha = 0.2)
-plt.title('Effective Interest Rate - UOB One Account', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Interest Rate (%)')
-plt.xlabel('Savings')
-plt.show()
+# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
 ```
 
 
-![png](output_16_0.png)
+![](../graphics/2018-10-13-optimising-your-bank/plot2.png)
 
 
 We see that there are minor jumps every \$15k as per their incentive structure, and a huge jump to a peak of **2.44%** for the \$75k bracket.
@@ -331,21 +283,11 @@ maybank.drop(['zero', 'base1', 'base2', 'b1', 'b2', 'b3', 'thresh',
 
 
 ```python
-# Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.plot(maybank.savings, maybank.eir*100, color = '#6fceb0')
-plt.plot(maybank.savings, maybank.eir*100, 'D', color = '#133056', markersize = 3)
-plt.fill_between(x = maybank.savings.values, y1 = maybank.eir.values*100, y2 = 2.00, color = '#6fceb0', alpha = 0.2)
-plt.title('Effective Interest Rate - MayBank SaveUp Account', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Interest Rate (%)')
-plt.xlabel('Savings')
-plt.show()
+# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
 ```
 
 
-![png](output_20_0.png)
+![](../graphics/2018-10-13-optimising-your-bank/plot3.png)
 
 
 With the MayBank SaveUp account, we can hit a maximum of **3.02%** with savings of \$60,000.
@@ -362,25 +304,11 @@ df['uob_eir'] = uob.eir
 df['maybank_eir'] = maybank.eir
 
 # Plot
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.fill_between(x = df.savings.values, y1 = df.ocbc_eir.values*100, y2 = 1.8, color = '#133056', alpha = 0.2)
-plt.fill_between(x = df.savings.values, y1 = df.uob_eir.values*100, y2 = 1.80, color = '#f85b74', alpha = 0.2)
-plt.fill_between(x = df.savings.values, y1 = df.maybank_eir.values*100, y2 = 1.80, color = '#ff9966', alpha = 0.2)
-plt.plot(df.savings, df.ocbc_eir*100, color = '#133056')
-plt.plot(df.savings, df.uob_eir*100, color = '#f85b74')
-plt.plot(df.savings, df.maybank_eir*100, color = '#ff9966')
-plt.vlines(x = 41000, ymin = 1.80, ymax = 1.98, linestyle = 'dotted', linewidth = 2, color = '#133056')
-plt.vlines(x = 68000, ymin = 1.80, ymax = 2.28, linestyle = 'dotted', linewidth = 2, color = '#133056')
-plt.title('Effective Interest Rate - OCBC vs. UOB vs. MayBank', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Interest Rate (%)')
-plt.xlabel('Savings')
-plt.show()
+# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
 ```
 
 
-![png](output_23_0.png)
+![](../graphics/2018-10-13-optimising-your-bank/plot4.png)
 
 
 Comparing all three yield curves, it is clear that Maybank gives us the best interest rate across all levels of savings, assuming that we can capture all the bonus interest from MayBank. This provides us with three key insights:  
@@ -414,3 +342,8 @@ This means that the One account can be complementary to the SaveUp and 360 accou
 
 # Conclusion
 In conclusion, we established a hierarchy of bank accounts. MayBank is No. 1 with the highest interest, while UOB and OCBC come in at second, depending on the level of savings. A unique characteristic of UOB's One account is that it does not require us to credit our salary. This makes the One account an excellent option for any excess savings. All we need to do is sign up for a UOB credit card and charge \$500 to it, and pay 3 bills via GIRO if we have any other bills to spare. The interest from the One account will not be as high as that from the SaveUp account, but it is the next-best place to deposit your money.
+  
+---
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/37f9a9598b6a9ec115be1924127fc7a824ca1e8e/notebooks/2018-09-29-singapores-best-mobile-phone-plans.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Financial Times](https://www.ft.com/)
