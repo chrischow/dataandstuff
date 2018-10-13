@@ -3,7 +3,7 @@ type: post
 title: "Optimising Your Bank: OCBC vs. UOB vs. MayBank"  
 bigimg: /img/banks.jpg
 image: https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-ap-northeast-1.amazonaws.com%2Fpsh-ex-ftnikkei-3937bb4%2Fimages%2F1%2F4%2F6%2F8%2F10498641-7-eng-GB%2F20171109_mag_biz-Singapore-Banks.jpg?source=nar-cms
-share-img: /img/banks.jpg
+share-img: /img/banks_sq.jpg
 tags: [bank accounts]
 ---
   
@@ -344,6 +344,6 @@ This means that the One account can be complementary to the SaveUp and 360 accou
 In conclusion, we established a hierarchy of bank accounts. MayBank is No. 1 with the highest interest, while UOB and OCBC come in at second, depending on the level of savings. A unique characteristic of UOB's One account is that it does not require us to credit our salary. This makes the One account an excellent option for any excess savings. All we need to do is sign up for a UOB credit card and charge \$500 to it, and pay 3 bills via GIRO if we have any other bills to spare. The interest from the One account will not be as high as that from the SaveUp account, but it is the next-best place to deposit your money.
   
 ---
-Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/37f9a9598b6a9ec115be1924127fc7a824ca1e8e/notebooks/2018-09-29-singapores-best-mobile-phone-plans.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/357d8b55e8be6d39516a8fed681c4c8a4cc5bd6e/notebooks/2018-10-13-optimising-your-bank.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Financial Times](https://www.ft.com/)
