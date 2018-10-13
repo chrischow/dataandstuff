@@ -17,7 +17,6 @@ This week, I'm taking a break from the HDB resale flat pricing model and turning
   
 The 6-months cycle in table form:
   
-<div style="overflow-x:auto; width: 100%;">
 |  Month  |  Income |              Expenditure             |   Profit   | Remarks                                                 |
 |:-------:|:-------:|:------------------------------------:|:----------:|---------------------------------------------------------|
 |    1    | \$1,800 | \$167.90 + \$500 + \$418 = \$1087.90 | \$1,132.10 | Re-contract on Combo 12, get a free iPhone, and sell it |
@@ -28,7 +27,6 @@ The 6-months cycle in table form:
 |    6    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
 |  Total  | \$1,800 |              \$1,927.40              |  -\$127.40 |                                                         |
 | Average |   \$300 |               \$321.23               |  -\$21.23  |                                                         |  
-</div>
   
 By repeating this *forever*, one can pay an average monthly bill of \$21.23 for Combo 12 perks. Of course, this means that you would be stuck with Singtel for as long as you want to enjoy the benefits, and that you'll eventually need to pay a full 24 months' worth of Combo 12 bills (or terminate your contract) to downgrade your plan. Nevertheless, you stand to gain from lower bills for more services assuming the following conditions hold:  
   
