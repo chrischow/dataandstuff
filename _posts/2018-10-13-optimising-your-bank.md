@@ -363,7 +363,7 @@ maybank.drop(['zero', 'base1', 'base2', 'b1', 'b2', 'b3', 'thresh',
 
 With the MayBank SaveUp account, we can hit a maximum of **3.02%** with savings of \$60,000.
 
-## Comparison of Yield Curves [TLDR]
+## Comparison of Yield Curves
 
 
 ```python
