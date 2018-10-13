@@ -17,16 +17,78 @@ This week, I'm taking a break from the HDB resale flat pricing model and turning
   
 The 6-months cycle in table form:
   
-|  Month  |  Income |              Expenditure             |   Profit   | Remarks                                                 |
-|:-------:|:-------:|:------------------------------------:|:----------:|---------------------------------------------------------|
-|    1    | \$1,800 | \$167.90 + \$500 + \$418 = \$1087.90 | \$1,132.10 | Re-contract on Combo 12, get a free iPhone, and sell it |
-|    2    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
-|    3    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
-|    4    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
-|    5    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
-|    6    |    -    |               \$167.90               |  -\$167.90 | Pay Combo 12 bill                                       |
-|  Total  | \$1,800 |              \$1,927.40              |  -\$127.40 |                                                         |
-| Average |   \$300 |               \$321.23               |  -\$21.23  |                                                         |  
+
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Month</th>
+      <th style="text-align: center">Income</th>
+      <th style="text-align: center">Expenditure</th>
+      <th style="text-align: center">Profit</th>
+      <th>Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">$1,800</td>
+      <td style="text-align: center">$167.90 + $500 + $418 = $1087.90</td>
+      <td style="text-align: center">$1,132.10</td>
+      <td>Re-contract on Combo 12, get a free iPhone, and sell it</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">$167.90</td>
+      <td style="text-align: center">-$167.90</td>
+      <td>Pay Combo 12 bill</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">$167.90</td>
+      <td style="text-align: center">-$167.90</td>
+      <td>Pay Combo 12 bill</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">$167.90</td>
+      <td style="text-align: center">-$167.90</td>
+      <td>Pay Combo 12 bill</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">$167.90</td>
+      <td style="text-align: center">-$167.90</td>
+      <td>Pay Combo 12 bill</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">$167.90</td>
+      <td style="text-align: center">-$167.90</td>
+      <td>Pay Combo 12 bill</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Total</td>
+      <td style="text-align: center">$1,800</td>
+      <td style="text-align: center">$1,927.40</td>
+      <td style="text-align: center">-$127.40</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Average</td>
+      <td style="text-align: center">$300</td>
+      <td style="text-align: center">$321.23</td>
+      <td style="text-align: center">-$21.23</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
   
 By repeating this *forever*, one can pay an average monthly bill of \$21.23 for Combo 12 perks. Of course, this means that you would be stuck with Singtel for as long as you want to enjoy the benefits, and that you'll eventually need to pay a full 24 months' worth of Combo 12 bills (or terminate your contract) to downgrade your plan. Nevertheless, you stand to gain from lower bills for more services assuming the following conditions hold:  
   
