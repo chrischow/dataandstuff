@@ -99,7 +99,7 @@ UOB offers the following:
 *Source: [UOB](https://www.uob.com.sg/personal/save/chequeing/one-account.page)*
 
 ## MayBank SaveUp Account
-The SaveUp account pays a base interest of 0.3125%
+The SaveUp account pays a step-up base interest of 0.3125% and the following bonuses:  
   
 <div style="overflow-x:auto; width: 100%;">
 <table>
