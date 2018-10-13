@@ -3,7 +3,7 @@ type: post
 title: "Optimising Your Bank: OCBC vs. UOB vs. MayBank"  
 bigimg: /img/banks.jpg
 image: https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-ap-northeast-1.amazonaws.com%2Fpsh-ex-ftnikkei-3937bb4%2Fimages%2F1%2F4%2F6%2F8%2F10498641-7-eng-GB%2F20171109_mag_biz-Singapore-Banks.jpg?source=nar-cms
-share-img: /img/banks_sq.jpg
+share-img: https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fs3-ap-northeast-1.amazonaws.com%2Fpsh-ex-ftnikkei-3937bb4%2Fimages%2F1%2F4%2F6%2F8%2F10498641-7-eng-GB%2F20171109_mag_biz-Singapore-Banks.jpg?source=nar-cms
 tags: [finance, bank accounts]
 ---
   
