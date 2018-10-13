@@ -379,7 +379,7 @@ df['maybank_eir'] = maybank.eir
 ![](../graphics/2018-10-13-optimising-your-bank/plot4.png)
 
 
-Comparing all three yield curves, it is clear that Maybank gives us the best interest rate across all levels of savings, assuming that we can capture all the bonus interest from MayBank. This provides us with three key insights:  
+Comparing all three yield curves, it is clear that Maybank gives us the best interest rate across all levels of savings, assuming that we can capture all the bonus interest. This provides us with three key insights:  
   
 ### Aim for MayBank First
 If you have (1) a salary greater than \$2,000, (2) monthly expenses exceeding \$500 that can be paid via credit card, and (3) monthly bills totalling \$300 that can be paid via GIRO, dump your first \$60,000 in savings in **MayBank**.  
