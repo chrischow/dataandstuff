@@ -39,15 +39,55 @@ First, I summarise the deals offered by OCBC, UOB, and Maybank.
 ## OCBC 360 Account
 The 360 account offers the following with effect from 1 Nov 2018:  
   
-| Action                                    | First \$35,000     | \$35,001 to \$70,000 |
-|-------------------------------------------|--------------------|----------------------|
-| Base Interest                             | 0.05%              | 0.05%                |
-| Credit Salary via GIRO                    | 1.20%              | 1.50%                |
-| Spend \$500 on OCBC Credit Cards           | 0.30%              | 0.60%                |
-| Insure or Invest with OCBC                | 0.60%              | 1.20%                |
-| Increase Monthly Account Balance by \$500 | 0.30%              | 0.60%                |
-| Increase Monthly Account Balance          | 1.00% on Increment | 1.00% on Increment   |
-| Maintain Balance of \$200,000 & Above      | 1.00%              | 1.00%                |  
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>First $35,000</th>
+      <th>$35,001 to $70,000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Base Interest</td>
+      <td>0.05%</td>
+      <td>0.05%</td>
+    </tr>
+    <tr>
+      <td>Credit Salary via GIRO</td>
+      <td>1.20%</td>
+      <td>1.50%</td>
+    </tr>
+    <tr>
+      <td>Spend $500 on OCBC Credit Cards</td>
+      <td>0.30%</td>
+      <td>0.60%</td>
+    </tr>
+    <tr>
+      <td>Insure or Invest with OCBC</td>
+      <td>0.60%</td>
+      <td>1.20%</td>
+    </tr>
+    <tr>
+      <td>Increase Monthly Account Balance by $500</td>
+      <td>0.30%</td>
+      <td>0.60%</td>
+    </tr>
+    <tr>
+      <td>Increase Monthly Account Balance</td>
+      <td>1.00% on Increment</td>
+      <td>1.00% on Increment</td>
+    </tr>
+    <tr>
+      <td>Maintain Balance of $200,000 &amp; Above</td>
+      <td>1.00%</td>
+      <td>1.00%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
   
 *Source: [MoneySmart](https://blog.moneysmart.sg/savings-accounts/ocbc-360-account-review/)*
 
@@ -61,12 +101,34 @@ UOB offers the following:
 ## MayBank SaveUp Account
 The SaveUp account pays a base interest of 0.3125%
   
-| Action                 | Up to \$60,000 |
-|------------------------|---------------|
-| Base Interest          | 0.3125%       |
-| 1 Product or Service   | 0.30%         |
-| 2 Products or Services | 0.80%         |
-| 3 Products or Services | 2.75%         | 
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Up to $60,000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Base Interest</td>
+      <td>0.3125%</td>
+    </tr>
+    <tr>
+      <td>1 Product or Service</td>
+      <td>0.30%</td>
+    </tr>
+    <tr>
+      <td>2 Products or Services</td>
+      <td>0.80%</td>
+    </tr>
+    <tr>
+      <td>3 Products or Services</td>
+      <td>2.75%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
   
 The products and services include:  
   
@@ -85,11 +147,38 @@ The products and services include:
 ## The Competing Demands
 In summary, the competing demands are:  
   
-| Transaction  | OCBC | UOB      | MayBank |
-|--------------|------|----------|---------|
-| Salary       | Yes  | Optional | Yes     |
-| GIRO         | No   | Optional | Yes     |
-| Credit Cards | Yes  | Yes      | Yes     |  
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th>Transaction</th>
+      <th>OCBC</th>
+      <th>UOB</th>
+      <th>MayBank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Salary</td>
+      <td>Yes</td>
+      <td>Optional</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>GIRO</td>
+      <td>No</td>
+      <td>Optional</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Credit Cards</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+</div>
   
 We will find this useful once we calculate the interest rates offered by the three banks.
 
@@ -332,11 +421,38 @@ If you are not drawing salary, *UOB* is your only option. If you have 3 bills to
 # Excess Savings
 For families who (1) have sufficient expenditure to meet MayBank's three criteria and (2) have savings above \$60,000, it is fairly clear where your excess savings should go: **UOB**. Recall that UOB does not require that we credit our salary every month:  
   
-| Transaction  | OCBC | UOB      | MayBank |
-|--------------|------|----------|---------|
-| Salary       | Yes  | Optional | Yes     |
-| GIRO         | No   | Optional | Yes     |
-| Credit Cards | Yes  | Yes      | Yes     |  
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th>Transaction</th>
+      <th>OCBC</th>
+      <th>UOB</th>
+      <th>MayBank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Salary</td>
+      <td>Yes</td>
+      <td>Optional</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>GIRO</td>
+      <td>No</td>
+      <td>Optional</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Credit Cards</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+</div>
   
 This means that the One account can be complementary to the SaveUp and 360 accounts, as long as we have (1) 3 bills to pay and (2) \$500 in credit card expenses.
 
