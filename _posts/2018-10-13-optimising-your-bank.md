@@ -237,13 +237,7 @@ ocbc['eir'] = ocbc.total_interest / ocbc.savings
 
 # Delete unnecessary columns
 ocbc.drop(['thresh0', 'thresh1', 'thresh2', 'diff', 'diff2'], axis = 1, inplace = True)
-```
-
-
-```python
-# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
-```
-
+```  
 
 ![](../graphics/2018-10-13-optimising-your-bank/plot1.png)
 
@@ -308,13 +302,7 @@ uob['eir'] = uob.total_interest / uob.savings
 # Delete unnecessary columns
 uob.drop(['s1', 's2', 's3', 's4', 's5', 's6', 
           'f1', 'f2', 'f3', 'f4', 'f5', 'f6'], axis = 1, inplace = True)
-```
-
-
-```python
-# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
-```
-
+```  
 
 ![](../graphics/2018-10-13-optimising-your-bank/plot2.png)
 
@@ -368,13 +356,7 @@ maybank['eir'] = maybank.total_interest / maybank.savings
 # Delete unnecessary columns
 maybank.drop(['zero', 'base1', 'base2', 'b1', 'b2', 'b3', 'thresh',
              'f1'], axis = 1, inplace = True)
-```
-
-
-```python
-# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
-```
-
+```  
 
 ![](../graphics/2018-10-13-optimising-your-bank/plot3.png)
 
@@ -391,9 +373,6 @@ df['savings'] = ocbc.savings
 df['ocbc_eir'] = ocbc.eir
 df['uob_eir'] = uob.eir
 df['maybank_eir'] = maybank.eir
-
-# Plot
-# CODE FOR CUSTOM GRAPHICS NOT INCLUDED
 ```
 
 
