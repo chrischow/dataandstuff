@@ -149,10 +149,32 @@ Now, plotting the same graph and calculate the same statistics for the buy-and-h
 ### Summary on DCA vs. Buy-and-Hold Simulation
 The results are summarised in the table below:  
   
-|  Strategy             | Mean Annual Returns | 95% CI        | SD of Outcomes |
-|-----------------------|---------------------|---------------|-----------|
-| Dollar-Cost Averaging | 1.69%               | 1.63% - 1.75% | 3.14%     |
-| Buy-and-Hold          | 2.82%               | 2.72% - 2.93% | 5.38%     |   
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th>Strategy</th>
+      <th>Mean Annual Returns</th>
+      <th>95% CI</th>
+      <th>SD of Outcomes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dollar-Cost Averaging</td>
+      <td>1.69%</td>
+      <td>1.63% - 1.75%</td>
+      <td>3.14%</td>
+    </tr>
+    <tr>
+      <td>Buy-and-Hold</td>
+      <td>2.82%</td>
+      <td>2.72% - 2.93%</td>
+      <td>5.38%</td>
+    </tr>
+  </tbody>
+</table> 
+</div>
   
 Clearly, buy-and-hold is the wiser choice. Note that the standard deviation (SD) in the table represents volatility across the separate simulations. It suggests that DCA will produce more similar results under random conditions. **It does not imply lower volatility**, because the underlying asset in both strategies was the same (the STI).
 
@@ -215,15 +237,52 @@ for k in range(SIMULATIONS):
     Lower   : 2.8%
     
 
-## Summary on Low-Cost DCA vs. Buy-and-Hold Simulation
+### Summary on Low-Cost DCA vs. Buy-and-Hold Simulation
 The results are summarised in the table below:  
   
-|  Strategy             | Transaction Costs | Mean Annual Returns | 95% CI        | SD of Outcomes |
-|-----------------------|-------------------|---------------------|---------------|-----------|
-| Dollar-Cost Averaging | High              | 1.69%               | 1.63% - 1.75% | 3.14%     |
-| Dollar-Cost Averaging | Low               | 1.78%               | 1.71% - 1.84% | 3.14%     |
-| Buy-and-Hold          | High              | 2.82%               | 2.72% - 2.93% | 5.38%     |
-| Buy-and-Hold          | Low               | 2.91%               | 2.80% - 3.01% | 5.38%     |   
+<div style="overflow-x:auto; width: 100%;">
+<table>
+  <thead>
+    <tr>
+      <th>Strategy</th>
+      <th>Transaction Costs</th>
+      <th>Mean Annual Returns</th>
+      <th>95% CI</th>
+      <th>SD of Outcomes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dollar-Cost Averaging</td>
+      <td>High</td>
+      <td>1.69%</td>
+      <td>1.63% - 1.75%</td>
+      <td>3.14%</td>
+    </tr>
+    <tr>
+      <td>Dollar-Cost Averaging</td>
+      <td>Low</td>
+      <td>1.78%</td>
+      <td>1.71% - 1.84%</td>
+      <td>3.14%</td>
+    </tr>
+    <tr>
+      <td>Buy-and-Hold</td>
+      <td>High</td>
+      <td>2.82%</td>
+      <td>2.72% - 2.93%</td>
+      <td>5.38%</td>
+    </tr>
+    <tr>
+      <td>Buy-and-Hold</td>
+      <td>Low</td>
+      <td>2.91%</td>
+      <td>2.80% - 3.01%</td>
+      <td>5.38%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
   
 The difference in the mean annualised return for the low-cost and "high-cost" trading strategies for both DCA and buy-and-hold was 0.09%.  which translates to a difference of **0.10% per annum after compounding**. It might not sound like a lot, but, 0.10% is approximately **twice** the base interest on most Singapore bank accounts. This tells us that investing a bigger sum to cut transaction costs has a relatively big impact on our returns.  
 
