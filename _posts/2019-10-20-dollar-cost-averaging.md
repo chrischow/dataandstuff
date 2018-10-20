@@ -289,7 +289,7 @@ The difference in the mean annualised return for the low-cost and "high-cost" tr
 # Conclusion [TLDR]
   
 ### Go for Buy-and-Hold
-It is clear: the buy-and-hold strategy delivers higher returns.  
+It is clear: the buy-and-hold strategy delivers higher returns. Hence, don't bother with the POSB Invest-Saver. Just open a stock trading account and buy the Nikko AM STI ETF yourself.  
   
 ### Invest a Lump Sum
 Executing one big trade is much more worthwhile than executing many smaller ones. This is because you avoid racking up a large sum in transaction costs that chip away at your profits.
