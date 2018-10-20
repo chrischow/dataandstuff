@@ -4,6 +4,7 @@ title: "Dollar-Cost Averaging vs. Buy-and-Hold"
 bigimg: /img/dca.jpg
 image: https://4.bp.blogspot.com/-EGR1ylcFvGo/W22xdYTWdAI/AAAAAAAAFNc/LJw0TNxDThkT9Ja3Kr-Xd_C8YrEAiRt1wCLcBGAs/s1600/trading%2Bchart.jpg
 share-img: /img/dca_sq.jpg
+share-img2: /img/dca_sq.jpg
 tags: [finance, investing]
 ---  
   
