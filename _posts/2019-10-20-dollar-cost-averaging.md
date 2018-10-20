@@ -1,5 +1,13 @@
-
-# Dollar-Cost Averaging vs. Buy-and-Hold
+---
+type: post  
+title: "Dollar-Cost Averaging vs. Buy-and-Hold"  
+bigimg: /img/banks.jpg
+image: https://4.bp.blogspot.com/-EGR1ylcFvGo/W22xdYTWdAI/AAAAAAAAFNc/LJw0TNxDThkT9Ja3Kr-Xd_C8YrEAiRt1wCLcBGAs/s1600/trading%2Bchart.jpg
+share-img: /img/banks_sq.jpg
+tags: [finance, investing]
+---  
+  
+# Introduction
 Over the past two weeks, I wrote about some practical financial-related issues: choosing a mobile phone plan and optimising your bank account. These topics got me interested in financial management. I revisited some investing strategies that I considered over the years and chose one to analyse in greater depth: dollar-cost averaging (DCA). In this post, I investigate the returns from using DCA to invest in the Straits Times Index (STI), and compare it against a simple buy-and-hold strategy.
 
 
@@ -16,42 +24,6 @@ import warnings
 
 %matplotlib inline
 warnings.filterwarnings('ignore')
-```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
 ```
 
 # Dollar-Cost Averaging?
@@ -80,18 +52,10 @@ sti['returns'] = sti.Close.pct_change(1)
 
 # Remove missing entries
 sti.dropna(axis = 0, inplace = True)
-
-# Plot distribution
-plt.figure(figsize = (10, 8))
-sti.returns.plot.hist(bins = 50, color = '#b1ceeb')
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.title('Histogram of STI Monthly Returns', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.show()
 ```
 
 
-![png](output_5_0.png)
+![](../graphics/plot1.png)
 
 
 In the graphs below, the orange line represents the density of the true monthly returns, while the dark blue line represents the density of the fitted distribution. We see that the fitted distribution is far from perfect. It implies more gains and losses of approximately 7.5% to 10% than history suggests, fewer gains and losses of 20% and beyond, and way fewer uneventful months. To obtain a distribution that allows us to better model the "normal" economy, I scale the standard deviation by 75% until the central part of the fitted density resembled the historical density.
@@ -101,48 +65,16 @@ In the graphs below, the orange line represents the density of the true monthly 
 # Fit a normal distribution to monthly returns
 mu, std = ss.norm.fit(sti.returns)
 
-# Plot the density
-plt.figure(figsize = (10,5))
-sti.returns.plot.density(color = '#ff9966')
-
-# Plot the PDF
-xmin, xmax = plt.xlim()
-x = np.linspace(xmin, xmax, 100)
-p = ss.norm.pdf(x, mu, std)
-plt.plot(x, p, 'k', linewidth=2, color = '#133056')
-title = 'Mean: %05.4f | Std Dev: %05.4f' % (mu, std)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.suptitle('Fitted Distribution', fontdict = {'fontweight': 'bold', 'fontsize': 20, 'color': '#3a3a3a'})
-plt.title(title)
-plt.show()
-
 # Adjust standard deviation
 std_new = std * 0.75
-
-# Plot the density
-plt.figure(figsize = (10,5))
-sti.returns.plot.density(color = '#ff9966')
-
-# Plot the PDF
-xmin, xmax = plt.xlim()
-x = np.linspace(xmin, xmax, 100)
-p = ss.norm.pdf(x, mu, std_new)
-plt.plot(x, p, 'k', linewidth=2, color = '#133056')
-title = 'Mean: %05.4f | Std Dev: %05.4f' % (mu, std_new)
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.suptitle('Fitted Distribution (Adjusted)', fontdict = {'fontweight': 'bold', 'fontsize': 20, 'color': '#3a3a3a'})
-plt.title(title)
-plt.show()
 ```
 
 
-![png](output_7_0.png)
+![](../graphics/plot2.png)
 
 
 
-![png](output_7_1.png)
+![](../graphics/plot3.png)
 
 
 ## Simulation: DCA vs. Buy-and-hold
@@ -191,57 +123,7 @@ for k in range(SIMULATIONS):
 ```
 
 
-```python
-# Calculate statistics
-dca['means'] = dca[sim_names].mean(axis = 1)
-dca['medians'] = dca[sim_names].median(axis = 1)
-dca['sd'] = dca[sim_names].std(axis = 1)
-dca['lower_ci'] = dca.medians - 1.96 * dca.sd / np.sqrt(SIMULATIONS)
-dca['upper_ci'] = dca.medians + 1.96 * dca.sd / np.sqrt(SIMULATIONS)
-
-# Shortlist simulations with less than $25,000 ending sum - for plotting purposes only
-random.seed(123)
-plot_sims = random.sample(list(dca[sim_names].columns), 100)
-
-# Plot data
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-for sim in plot_sims:
-    plt.plot(dca[sim], linewidth = 0.15, color = '#ff9966')
-    
-plt.plot(dca.medians, linewidth = 1, color = '#133056')
-plt.plot(dca.lower_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.plot(dca.upper_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.title('10,000 Simulations of Dollar-Cost Averaging', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Return ($)')
-plt.xlabel('Months')
-plt.show()
-
-# Function to calculate annualised return
-def calc_annret(x, principal):
-    
-    return ((x / principal) ** (1/10) - 1)*100
-
-# Calculate annualised returns
-ann_rets = calc_annret(dca[sim_names].iloc[-1], 120*DCA_SPEND)
-
-# Calculate statistics
-ret_mean = np.mean(ann_rets)
-ret_std = np.std(ann_rets)
-ret_lower_ci = ret_mean - ret_std * 1.96 / np.sqrt(10000)
-ret_upper_ci = ret_mean + ret_std * 1.96 / np.sqrt(10000)
-
-# Print
-print('[-- RESULTS OF DCA --]')
-print('Upper   : ' + str(round(ret_upper_ci, 2)) + '%')
-print('Mean    : ' + str(round(ret_mean, 2)) + '%')
-print('Lower   : ' + str(round(ret_lower_ci, 2)) + '%')
-```
-
-
-![png](output_10_0.png)
+![](../graphics/plot4.png)
 
 
     [-- RESULTS OF DCA --]
@@ -255,52 +137,7 @@ In the graph above, the orange lines represent 100 of the 10,000 random runs of 
 Now, plotting the same graph and calculate the same statistics for the buy-and-hold strategy:
 
 
-```python
-# Calculate statistics
-bah['means'] = bah[sim_names].mean(axis = 1)
-bah['medians'] = bah[sim_names].median(axis = 1)
-bah['sd'] = bah[sim_names].std(axis = 1)
-bah['lower_ci'] = bah.medians - 1.96 * bah.sd / np.sqrt(SIMULATIONS)
-bah['upper_ci'] = bah.medians + 1.96 * bah.sd / np.sqrt(SIMULATIONS)
-
-# Shortlist simulations with less than $25,000 ending sum - for plotting purposes only
-random.seed(123)
-plot_sims = random.sample(list(bah[sim_names].columns), 100)
-
-# Plot data
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-for sim in plot_sims:
-    plt.plot(bah[sim], linewidth = 0.15, color = '#ff9966')
-    
-plt.plot(bah.medians, linewidth = 1, color = '#133056')
-plt.plot(bah.lower_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.plot(bah.upper_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.title('10,000 Simulations of Buy-and-Hold', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Return ($)')
-plt.xlabel('Months')
-plt.show()
-
-# Calculate annualised returns
-ann_rets = calc_annret(bah[sim_names].iloc[-1], BAH_SPEND)
-
-# Calculate statistics
-ret_mean = np.mean(ann_rets)
-ret_std = np.std(ann_rets)
-ret_lower_ci = ret_mean - ret_std * 1.96 / np.sqrt(10000)
-ret_upper_ci = ret_mean + ret_std * 1.96 / np.sqrt(10000)
-
-# Print
-print('[-- RESULTS OF BUY-AND-HOLD --]')
-print('Upper   : ' + str(round(ret_upper_ci, 2)) + '%')
-print('Mean    : ' + str(round(ret_mean, 2)) + '%')
-print('Lower   : ' + str(round(ret_lower_ci, 2)) + '%')
-```
-
-
-![png](output_12_0.png)
+![](../graphics/plot5.png)
 
 
     [-- RESULTS OF BUY-AND-HOLD --]
@@ -359,100 +196,7 @@ for k in range(SIMULATIONS):
     bah['sim' + str(k)] = bah_values
 ```
 
-
-```python
-# Calculate statistics
-dca['means'] = dca[sim_names].mean(axis = 1)
-dca['medians'] = dca[sim_names].median(axis = 1)
-dca['sd'] = dca[sim_names].std(axis = 1)
-dca['lower_ci'] = dca.medians - 1.96 * dca.sd / np.sqrt(SIMULATIONS)
-dca['upper_ci'] = dca.medians + 1.96 * dca.sd / np.sqrt(SIMULATIONS)
-
-# Shortlist simulations with less than $25,000 ending sum - for plotting purposes only
-random.seed(123)
-plot_sims = random.sample(list(dca[sim_names].columns), 100)
-
-# Plot data
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-for sim in plot_sims:
-    plt.plot(dca[sim], linewidth = 0.15, color = '#ff9966')
-    
-plt.plot(dca.medians, linewidth = 1, color = '#133056')
-plt.plot(dca.lower_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.plot(dca.upper_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.title('10,000 Simulations of Dollar-Cost Averaging', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Return ($)')
-plt.xlabel('Months')
-plt.show()
-
-# Function to calculate annualised return
-def calc_annret(x, principal):
-    
-    return ((x / principal) ** (1/10) - 1)*100
-
-# Calculate annualised returns
-ann_rets = calc_annret(dca[sim_names].iloc[-1], 120*DCA_SPEND)
-
-# Calculate statistics
-ret_mean = np.mean(ann_rets)
-ret_std = np.std(ann_rets)
-ret_lower_ci = ret_mean - ret_std * 1.96 / np.sqrt(10000)
-ret_upper_ci = ret_mean + ret_std * 1.96 / np.sqrt(10000)
-
-# Print
-print('[-- RESULTS OF DCA --]')
-print('Upper   : ' + str(round(ret_upper_ci, 2)) + '%')
-print('Mean    : ' + str(round(ret_mean, 2)) + '%')
-print('Lower   : ' + str(round(ret_lower_ci, 2)) + '%')
-
-# Calculate statistics
-bah['means'] = bah[sim_names].mean(axis = 1)
-bah['medians'] = bah[sim_names].median(axis = 1)
-bah['sd'] = bah[sim_names].std(axis = 1)
-bah['lower_ci'] = bah.medians - 1.96 * bah.sd / np.sqrt(SIMULATIONS)
-bah['upper_ci'] = bah.medians + 1.96 * bah.sd / np.sqrt(SIMULATIONS)
-
-# Shortlist simulations with less than $25,000 ending sum - for plotting purposes only
-random.seed(123)
-plot_sims = random.sample(list(bah[sim_names].columns), 100)
-
-# Plot data
-plt.figure(figsize = (10,8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-ax.grid(b = False, axis='x')
-for sim in plot_sims:
-    plt.plot(bah[sim], linewidth = 0.15, color = '#ff9966')
-    
-plt.plot(bah.medians, linewidth = 1, color = '#133056')
-plt.plot(bah.lower_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.plot(bah.upper_ci, linewidth = 1, color = '#f85b74', linestyle = 'dotted')
-plt.title('10,000 Simulations of Buy-and-Hold', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Return ($)')
-plt.xlabel('Months')
-plt.show()
-
-# Calculate annualised returns
-ann_rets = calc_annret(bah[sim_names].iloc[-1], BAH_SPEND)
-
-# Calculate statistics
-ret_mean = np.mean(ann_rets)
-ret_std = np.std(ann_rets)
-ret_lower_ci = ret_mean - ret_std * 1.96 / np.sqrt(10000)
-ret_upper_ci = ret_mean + ret_std * 1.96 / np.sqrt(10000)
-
-# Print
-print('[-- RESULTS OF BUY-AND-HOLD --]')
-print('Upper   : ' + str(round(ret_upper_ci, 2)) + '%')
-print('Mean    : ' + str(round(ret_mean, 2)) + '%')
-print('Lower   : ' + str(round(ret_lower_ci, 2)) + '%')
-```
-
-
-![png](output_16_0.png)
+![](../graphics/plot6.png)
 
 
     [-- RESULTS OF DCA --]
@@ -462,7 +206,7 @@ print('Lower   : ' + str(round(ret_lower_ci, 2)) + '%')
     
 
 
-![png](output_16_2.png)
+![](../graphics/plot7.png)
 
 
     [-- RESULTS OF BUY-AND-HOLD --]
@@ -493,3 +237,9 @@ Executing one big trade is much more worthwhile than executing many smaller ones
   
 ### Optimise Your Savings
 Note how the mean annualised returns of 2.91% per annum (without dividend reinvestment) for the lump sum buy-and-hold strategy are similar to the returns guaranteed on a MayBank SaveUp account. Although the SaveUp account removes the possibility of earning a fortune if you're lucky, it also insulates you against losing a fortune if you're not so lucky. As a highly risk-averse investor, I would pick the more certain option: MayBank, and the associated shoe-leather costs of maintaining the transactions.
+  
+---
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/2f34c3a7e50816f35954e7de971e6ac1cd1c2e89/notebooks/2018-10-20-dollar-cost-averaging.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Invest Openly](http://www.investopenly.com)
+
