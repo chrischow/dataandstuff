@@ -55,7 +55,7 @@ sti.dropna(axis = 0, inplace = True)
 ```
 
 
-![](../graphics/plot1.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot1.png)
 
 
 In the graphs below, the orange line represents the density of the true monthly returns, while the dark blue line represents the density of the fitted distribution. We see that the fitted distribution is far from perfect. It implies more gains and losses of approximately 7.5% to 10% than history suggests, fewer gains and losses of 20% and beyond, and way fewer uneventful months. To obtain a distribution that allows us to better model the "normal" economy, I scale the standard deviation by 75% until the central part of the fitted density resembled the historical density.
@@ -70,11 +70,11 @@ std_new = std * 0.75
 ```
 
 
-![](../graphics/plot2.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot2.png)
 
 
 
-![](../graphics/plot3.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot3.png)
 
 
 ## Simulation: DCA vs. Buy-and-hold
@@ -123,7 +123,7 @@ for k in range(SIMULATIONS):
 ```
 
 
-![](../graphics/plot4.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot4.png)
 
 
     [-- RESULTS OF DCA --]
@@ -137,7 +137,7 @@ In the graph above, the orange lines represent 100 of the 10,000 random runs of 
 Now, plotting the same graph and calculate the same statistics for the buy-and-hold strategy:
 
 
-![](../graphics/plot5.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot5.png)
 
 
     [-- RESULTS OF BUY-AND-HOLD --]
@@ -218,7 +218,7 @@ for k in range(SIMULATIONS):
     bah['sim' + str(k)] = bah_values
 ```
 
-![](../graphics/plot6.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot6.png)
 
 
     [-- RESULTS OF DCA --]
@@ -228,7 +228,7 @@ for k in range(SIMULATIONS):
     
 
 
-![](../graphics/plot7.png)
+![](../graphics/2018-10-20-dollar-cost-averaging/plot7.png)
 
 
     [-- RESULTS OF BUY-AND-HOLD --]
