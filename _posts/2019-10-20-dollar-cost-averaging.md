@@ -289,7 +289,7 @@ The difference in the mean annualised return for the low-cost and "high-cost" tr
 # Conclusion [TLDR]
   
 ### Go for Buy-and-Hold
-It is clear: the buy-and-hold strategy delivers higher returns. Hence, don't bother with the POSB Invest-Saver. Just open a stock trading account and buy the Nikko AM STI ETF yourself.  
+It is clear: the buy-and-hold strategy delivers higher returns. Hence, don't bother investing in the POSB Invest-Saver. Just open a stock trading account and buy the Nikko AM STI ETF yourself.  
   
 ### Invest a Lump Sum
 Executing one big trade is much more worthwhile than executing many smaller ones. This is because you avoid racking up a large sum in transaction costs that chip away at your profits.
@@ -298,7 +298,7 @@ Executing one big trade is much more worthwhile than executing many smaller ones
 Note how the mean annualised returns of 2.91% per annum (without dividend reinvestment) for the lump sum buy-and-hold strategy are similar to the returns guaranteed on a MayBank SaveUp account. Although the SaveUp account removes the possibility of earning a fortune if you're lucky, it also insulates you against losing a fortune if you're not so lucky. As a highly risk-averse investor, I would pick the more certain option: MayBank, and the associated shoe-leather costs of maintaining the transactions.
   
 ---
-Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/2f34c3a7e50816f35954e7de971e6ac1cd1c2e89/notebooks/2018-10-20-dollar-cost-averaging.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/f36d37c4712efa29dceefe7909b03d72f2422e96/notebooks/2018-10-20-dollar-cost-averaging.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Invest Openly](http://www.investopenly.com)
 
