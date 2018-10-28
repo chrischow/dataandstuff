@@ -349,7 +349,7 @@ The graph below summarises the results from our simulations earlier. Essentially
 ![](../graphics/2018-10-28-how-not-to-invest-macd/plot13.png)
   
 ---
-Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/f36d37c4712efa29dceefe7909b03d72f2422e96/notebooks/2018-10-20-dollar-cost-averaging.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/957f6419163b35ab9d2c8005570231bd39117fc0/notebooks/2018-10-28-how-not-to-invest-macd.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [FinanceAndMarkets.com](https://financeandmarkets.com/)
   
