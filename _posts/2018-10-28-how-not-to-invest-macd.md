@@ -2,7 +2,7 @@
 type: post  
 title: "How (Not) to Invest I: Moving Average Convergence/Divergence"  
 bigimg: /img/hnti_logo_sq.jpg
-image: https://www.eqsis.com/wp-content/uploads/2016/07/technical-analysis.jpg
+image: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
 share-img: /img/hnti_logo_sq.jpg
 share-img2: /img/hnti_logo_sq.jpg
 tags: [finance, investing]
