@@ -1,5 +1,14 @@
-
-# How (Not) to Invest II - The RSI and Stochastic Oscillator
+---
+type: post  
+title: "How (Not) to Invest II: The RSI and Stochastic Oscillator"  
+bigimg: /img/hnti_logo_sq.jpg
+image: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
+share-img: /img/hnti_logo_sq.jpg
+share-img2: /img/hnti_logo_sq.jpg
+tags: [finance, investing, how not to invest]
+---  
+  
+# Introduction
 Momentum trading is an interesting approach to short-term trading. It involves a *"strategy to capitalize on the continuance of an existing market trend...(by)...going long stocks, futures, or market ETFs showing upward-trending prices and short the respective assets with downward-trending prices"* ([Investopedia](https://www.investopedia.com/terms/m/momentum_investing.asp)). Two classic indicators of momentum are the Relative Strength Index (RSI) and the Stochastic Oscillator (STO). In this post, I evaluate the effectiveness of simple RSI and STO trading strategies.  
   
 # Meet the Indicators
@@ -57,43 +66,7 @@ yf.pdr_override()
 # Import stocklist
 sp500 = pd.read_csv('sp500.csv')
 ```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
+  
 ### Helper Functions
 
 
@@ -321,40 +294,40 @@ def sim_config(stock, all_n = [5, 10, 15, 20], lower = [10, 20, 30], upper = [70
 
 
 ```python
-# # Initialise data frame for storage
-# rsi_stoch_df = pd.DataFrame()
-# # rsi_stoch_df = pd.read_csv('rsi_stoch_results.csv')
+# Initialise data frame for storage
+rsi_stoch_df = pd.DataFrame()
+# rsi_stoch_df = pd.read_csv('rsi_stoch_results.csv')
 
-# # Collect data on all S&P 500 companies
-# for i in np.arange(495, len(sp500.Symbol)):
+# Collect data on all S&P 500 companies
+for i in np.arange(495, len(sp500.Symbol)):
     
-#     # Get symbol
-#     stk = sp500.Symbol.iloc[i]
+    # Get symbol
+    stk = sp500.Symbol.iloc[i]
     
-#     # Update
-#     print('Processing [' + str(i) + '] ' + stk + '...', end = '', flush = True)
+    # Update
+    print('Processing [' + str(i) + '] ' + stk + '...', end = '', flush = True)
     
-#     # Simulate trades and append results
-#     temp_res = sim_config(stk)
-    
-#     # Convert to df
-#     temp_res_df = pd.DataFrame(temp_res, columns = ['stock', 'indicator', 'n', 'lower', 'upper', 'returns', 'exc_returns',
-#                                 'mean_returns', 'sd_returns', 'trades', 'prof_trades', 'days', 'ann_returns', 'ann_bah',
-#                                 'bah'])
-    
-#     # Append to data frame
-#     rsi_stoch_df = pd.concat([rsi_stoch_df, temp_res_df], axis = 0)
-    
-#     # Save data
-#     rsi_stoch_df.to_csv('rsi_stoch_results.csv', index = False)
-    
-#     # Calculate excess returns
-#     temp_print_df = temp_res_df[['stock', 'indicator', 'ann_returns', 'ann_bah']].copy()
-#     temp_print_df['ann_exc'] = temp_print_df.ann_returns - temp_print_df.ann_bah
-    
-#     # Print
-#     print('RSI | STO Excess Returns: ' + '{0:.2f}%'.format(temp_print_df.ann_exc[temp_print_df.indicator == 'rsi'].mean()) + \
-#          ' | ' + '{0:.2f}%'.format(temp_print_df.ann_exc[temp_print_df.indicator == 'sto'].mean()))
+    # Simulate trades and append results
+    temp_res = sim_config(stk)
+  
+    # Convert to df
+    temp_res_df = pd.DataFrame(temp_res, columns = ['stock', 'indicator', 'n', 'lower', 'upper', 'returns', 'exc_returns',
+                                'mean_returns', 'sd_returns', 'trades', 'prof_trades', 'days', 'ann_returns', 'ann_bah',
+                                'bah'])
+  
+    # Append to data frame
+    rsi_stoch_df = pd.concat([rsi_stoch_df, temp_res_df], axis = 0)
+  
+    # Save data
+    rsi_stoch_df.to_csv('rsi_stoch_results.csv', index = False)
+  
+    # Calculate excess returns
+    temp_print_df = temp_res_df[['stock', 'indicator', 'ann_returns', 'ann_bah']].copy()
+    temp_print_df['ann_exc'] = temp_print_df.ann_returns - temp_print_df.ann_bah
+  
+    # Print
+    print('RSI | STO Excess Returns: ' + '{0:.2f}%'.format(temp_print_df.ann_exc[temp_print_df.indicator == 'rsi'].mean()) + \
+         ' | ' + '{0:.2f}%'.format(temp_print_df.ann_exc[temp_print_df.indicator == 'sto'].mean()))
 ```
 
 # Analysis of Results  
@@ -377,23 +350,12 @@ The STO exhibited slightly better performance than the RSI. Approximately 11.4% 
 
 
 ```python
-# Plot RSI vs. STO - returns
-plt.figure(figsize = (10,8))
-rsi_stoch_df.ann_exc[(rsi_stoch_df.indicator == 'sto') & (abs(rsi_stoch_df.ann_exc) < 50)].plot.density(alpha = 0.8, label = 'STO', color = '#6fceb0')
-rsi_stoch_df.ann_exc[(rsi_stoch_df.indicator == 'rsi') & (abs(rsi_stoch_df.ann_exc) < 50)].plot.density(alpha = 0.8, label = 'RSI', color = '#133056')
-plt.legend()
-plt.title('RSI vs. Stochastic Oscillator: Returns', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Excess Returns (%)')
-plt.show()
-
 # Summarise and rank by annualised excess returns
 rsi_stoch_df[['indicator', 'ann_exc', 'days', 'trades', 'profitable_pct']].groupby(['indicator']).mean().sort_values(by = 'ann_exc', ascending = False)
 ```
 
 
-![png](output_10_0.png)
-
-
+![](../graphics/2018-11-03-how-not-to-invest-rsi-stoch/plot1.png)
 
 
 
@@ -443,23 +405,12 @@ In general, there were minor advantages from using a shorter lookback period. Ho
 
 
 ```python
-# Plot RSI vs. STO
-plt.figure(figsize = (10,8))
-rsi_stoch_df.ann_exc[(rsi_stoch_df.n == 5) & (abs(rsi_stoch_df.ann_exc) < 50)].plot.density(alpha = 0.8, label = '5', color = '#6fceb0')
-rsi_stoch_df.ann_exc[(rsi_stoch_df.n == 10) & (abs(rsi_stoch_df.ann_exc) < 50)].plot.density(alpha = 0.8, label = '10', color = '#133056')
-rsi_stoch_df.ann_exc[(rsi_stoch_df.n == 15) & (abs(rsi_stoch_df.ann_exc) < 50)].plot.density(alpha = 0.8, label = '15', color = '#b1ceeb')
-rsi_stoch_df.ann_exc[(rsi_stoch_df.n == 20) & (abs(rsi_stoch_df.ann_exc) < 50)].plot.density(alpha = 0.8, label = '20', color = '#ff9966')
-plt.legend()
-plt.title('Lookback Periods', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Excess Returns (%)')
-plt.show()
-
 # Summarise and rank by annualised excess returns
 round(rsi_stoch_df[['n', 'indicator', 'ann_exc', 'days', 'trades', 'profitable_pct']].groupby(['n']).mean().sort_values(by = 'ann_exc', ascending = False), 2)
 ```
 
 
-![png](output_12_0.png)
+![](../graphics/2018-11-03-how-not-to-invest-rsi-stoch/plot2.png)
 
 
 
@@ -897,4 +848,10 @@ round(rsi_stoch_df[['stock', 'indicator', 'ann_exc', 'ann_returns', 'ann_bah', '
 
 # Conclusion [TLDR]
 
-In conclusion, we found no evidence that the RSI and STO trading strategies could beat the buy-and-hold benchmark. The STO generated more buy/sell signals and performed slightly better than the RSI. However, both performed poorly on absolute terms: only 6.2% of RSI trading strategies and 9.1% of STO trading strategies for **stocks with a positive buy-and-hold return** generated positive excess returns.
+In conclusion, we found no evidence that the RSI and STO trading strategies could beat the buy-and-hold benchmark. The STO generated more buy/sell signals and performed slightly better than the RSI. However, both performed poorly on absolute terms: only 6.2% of RSI trading strategies and 9.1% of STO trading strategies for **stocks with a positive buy-and-hold return** generated positive excess returns. Traders will need to incorporate other technical indicators in their trading strategies to increase their chances of beating the buy-and-hold benchmark.  
+  
+---
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/5d7679dd061e143b7697aa5189ba60e5ebb3c03d/notebooks/2018-11-03-how-not-to-invest-rsi-stoch.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [FinanceAndMarkets.com](https://financeandmarkets.com/)
+  
