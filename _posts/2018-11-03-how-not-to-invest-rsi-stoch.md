@@ -3,7 +3,7 @@ type: post
 title: "How (Not) to Invest II: The RSI and Stochastic Oscillator"  
 bigimg: /img/hnti_logo_sq.jpg
 image: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
-share-img: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
+share-img: /img/hnti_logo_sq.jpg
 share-img2: /img/hnti_logo_sq.jpg
 tags: [finance, investing, how not to invest]
 ---  
