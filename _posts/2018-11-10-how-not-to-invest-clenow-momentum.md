@@ -79,7 +79,9 @@ We run a trading simulation using a simplified version of Clenow's approach to t
 1. Maintaining an equally-weighted portfolio that is reset every week
 2. Choosing the top 10 stocks by ACM instead of the top *N* stocks by standard deviation up to a fixed amount in principal
   
-Note that for the CM-based strategy, we only run one simulation because the approach applies to a universe of stocks (in this case the S&P 500). If we wanted confirmation on different universes of stocks, we could easily run the same simulation on the S&P Mid-Cap 400 or the Russell 1000.
+Note that for the CM-based strategy, we only run one simulation because the approach applies to a universe of stocks (in this case the S&P 500). If we wanted confirmation on different universes of stocks, we could easily run the same simulation on the S&P Mid-Cap 400 or the Russell 1000.  
+  
+Overall, **the CM-based strategy beat the market**. There were periods where the strategy performed worse than the S&P 500, but the overall drawdowns were significantly lower.
   
 ![](../graphics/2018-11-10-how-not-to-invest-clenow-momentum/plot6.png)
 
