@@ -84,8 +84,7 @@ Note that for the CM-based strategy, we only run one simulation because the appr
 Overall, **the CM-based strategy beat the market**. There were periods where the strategy performed worse than the S&P 500, but the overall drawdowns were significantly lower.
   
 ![](../graphics/2018-11-10-how-not-to-invest-clenow-momentum/plot6.png)
-
-
+  
 The performance of the CM-based strategy and the S&P 500 buy-and-hold benchmark are: (assuming a risk-free rate of 3.00%)
   
 <div style="overflow-x:auto; width: 100%;">
@@ -151,6 +150,6 @@ This study was limited in several ways. First, we employed a simplified version 
 In this post, we showed that a strategy using Clenow Momentum **beat the S&P 500 buy-and-hold benchmark**, even though statistical tests showed no significant relation between 5-day forward returns and Clenow Momentum and it's individual components. I propose two explanations for this phenomenon: (1) momentum works and (2) relationships between indicators and stock returns change over time.  
   
 ---
-Click [here](http://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/6f077f5af6ac91ee859ad0885f3d06f29a56d593/notebooks/2018-11-10-how-not-to-invest-clenow-momentum.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/3bb5473ee589962f95d4931d96356c5676dada90/notebooks/2018-11-10-how-not-to-invest-clenow-momentum.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [FinanceAndMarkets.com](https://financeandmarkets.com/)
