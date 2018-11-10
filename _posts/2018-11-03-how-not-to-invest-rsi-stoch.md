@@ -5,7 +5,7 @@ bigimg: /img/hnti_logo_sq.jpg
 image: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
 share-img: /img/hnti_logo_sq.jpg
 share-img2: /img/hnti_logo_sq.jpg
-tags: [finance, investing, how not to invest]
+tags: [finance, investing, how not to invest, algorithmic trading]
 ---  
   
 # Introduction
@@ -359,7 +359,7 @@ rsi_stoch_df[['indicator', 'ann_exc', 'days', 'trades', 'profitable_pct']].group
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -416,7 +416,7 @@ round(rsi_stoch_df[['n', 'indicator', 'ann_exc', 'days', 'trades', 'profitable_p
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -484,7 +484,7 @@ round(rsi_stoch_df[['thresh', 'indicator', 'ann_exc', 'days', 'trades', 'profita
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -607,7 +607,7 @@ round(rsi_stoch_df[['full_setting', 'indicator', 'ann_exc', 'days', 'trades', 'p
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -730,7 +730,7 @@ round(rsi_stoch_df[['stock', 'indicator', 'ann_exc', 'ann_returns', 'ann_bah', '
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
