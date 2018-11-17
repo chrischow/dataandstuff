@@ -44,10 +44,10 @@ The evidence on building keystone habits and achieving small wins was convincing
   
 Below are several screenshots of the app (built in [AppSheet](https://www.appsheet.com/)):
 
-![Summary of activities](../graphics/2018-11-17-project-evolve-beating-procrastination/screen1.png)
+![Summary of activities](../graphics/2018-11-17-project-evolve-beating-procrastination/screen1.png =400x)
   
   
-![Logging activities](../graphics/2018-11-17-project-evolve-beating-procrastination/screen2.png)
+![Logging activities](../graphics/2018-11-17-project-evolve-beating-procrastination/screen2.png =400x)
   
 I understand that we might be hesitant to partake in any programme that helps us to achieve self-awareness, possibly because we're afraid of what we might find. That's perfectly normal. Until today, I don't dare to tabulate the total amount I spent on Grab. But, at some point in our personal development, we need to give permission to an objective third-party to tell us how we've actually been doing. And this third-party need not be a person - it can be an app like *Evolve*. And there's no better way to demonstrate this than to lead by example.  
   
