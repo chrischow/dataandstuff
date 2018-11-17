@@ -95,17 +95,6 @@ I developed 11 broad categories to classify my time:
   
 The donut chart below shows how I've spent my time over the past 30 days. Apart from sleeping, I invested most of my time in work and personal development. I actually spent more time idling (mostly gaming, really) than on household matters, and this is something I hope to change. Let's dive deeper.
 
-
-```python
-# Calculate hours
-evolve['hours'] = evolve.Duration / 60
-
-# Configure labels
-labs = evolve.groupby('Category').hours.sum().index + ' - ' + \
-    (evolve.groupby('Category').hours.sum() / evolve.hours.sum() * 100).round(2).astype(str) + '%'
-```  
-
-
 ![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot1.png)
 
 
