@@ -5,7 +5,7 @@ bigimg: /img/evolve.jpg
 image: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
 share-img: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
 share-img2: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
-tags: [finance, investing, how not to invest, algorithmic trading]
+tags: [project evolve, procrastination, habits, quantified self]
 ---  
   
 # Introduction
