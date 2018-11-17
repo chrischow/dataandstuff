@@ -1,5 +1,14 @@
-
-# Project *Evolve* - How I'm Beating Procrastination
+---
+type: post  
+title: "Project Evolve - How I'm Beating Procrastination"  
+bigimg: /img/evolve_sq.jpg
+image: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
+share-img: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
+share-img2: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
+tags: [finance, investing, how not to invest, algorithmic trading]
+---  
+  
+# Introduction
 Many of you will have realised that I post every weekend. If you think that doing so shows how disciplined I am, you're terribly mistaken. Not too long ago, I faced problems with low motivation, poor self-control, and bad time management. I was unsatisfied with how I lived my life. I noticed my bills getting larger, my waist getting bigger, and my energy dropping lower. One day, I had enough of my own nonsense. I was borrowing money, time, and health from my future self at an unsustainable rate, and I decided this had to stop. That's when I started Project Evolve, a self-driven initiative to build willpower and improve my personal effectiveness. This post is for anyone who wants to break out of a cycle of procrastination and sloth, and evolve into a better and stronger version of himself/herself.  
   
 # The Story Behind *Evolve*
@@ -35,10 +44,11 @@ The evidence on building keystone habits and achieving small wins was convincing
   
 Below are several screenshots of the app (built in [AppSheet](https://www.appsheet.com/)):
 
-<img src = "Screenshot 1 - Activity Summary.png" width = "400" alt = "Summary of activities">
+![Summary of activities](../graphics/2018-11-17-project-evolve-beating-procrastination/screen1.png)
   
-<img src = "Screenshot 2 - Log Activity.png" width = "400" alt = "Logging activities">
-
+  
+![Logging activities](../graphics/2018-11-17-project-evolve-beating-procrastination/screen2.png)
+  
 I understand that we might be hesitant to partake in any programme that helps us to achieve self-awareness, possibly because we're afraid of what we might find. That's perfectly normal. Until today, I don't dare to tabulate the total amount I spent on Grab. But, at some point in our personal development, we need to give permission to an objective third-party to tell us how we've actually been doing. And this third-party need not be a person - it can be an app like *Evolve*. And there's no better way to demonstrate this than to lead by example.  
   
 The rest of this post will be dedicated to exploring activity data that I logged over the past month.
@@ -69,43 +79,7 @@ evolve['Time End'] = pd.to_datetime(evolve['Time End'], format='%d/%m/%Y %H:%M:%
 # Get date
 evolve['Day'] = evolve['Time Start'].dt.date
 ```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
+  
 # Overview of Time Spent
 I developed 11 broad categories to classify my time:  
   
@@ -129,19 +103,10 @@ evolve['hours'] = evolve.Duration / 60
 # Configure labels
 labs = evolve.groupby('Category').hours.sum().index + ' - ' + \
     (evolve.groupby('Category').hours.sum() / evolve.hours.sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(evolve.groupby('Category').hours.sum(), labels = labs, colors = sns.color_palette("Set2", 11))
-plt.title('Breakdown of Overall Time Spent', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-```
+```  
 
 
-![png](output_5_0.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot1.png)
 
 
 # Expectations vs. Reality
@@ -170,31 +135,9 @@ tgt = pd.DataFrame([
 # Actual data
 actual = (evolve_daily.groupby('Category').Duration.mean().sort_values(ascending = False)/60).loc[['Rest', 'Work', 'Personal Development', 'Idle']]
 ```
+  
 
-
-```python
-# Create bars
-bar_actual = actual.values
-bar_tgt = tgt.Duration.values
-ht_actual = np.arange(len(bar_actual))
-ht_tgt = [x + 0.4 for x in ht_actual]
-
-# Plot
-plt.figure(figsize = (10, 8))
-plt.bar(ht_actual, bar_actual, color='#133056', width=0.4, edgecolor='white', label='Actual')
-plt.bar(ht_tgt, bar_tgt, color='#6fceb0', width=0.4, edgecolor='white', label='Estimate')
-plt.xticks([x +0.2 for x in ht_actual], ['Rest', 'Work', 'Personal Development', 'Idle'])
-plt.title('Estimated vs. Actual Time Spent on Activities', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Hours')
-for i in range(len(ht_actual)):
-    plt.text(x = ht_actual[i]-0.05, y = bar_actual[i]+0.2, s = bar_actual[i].round(2))
-    plt.text(x = ht_tgt[i], y = bar_tgt[i] + 0.2, s = bar_tgt[i].round(2))
-plt.legend()
-plt.show()
-```
-
-
-![png](output_8_0.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot2.png)
 
 
 The data suggests that my estimates were rather inaccurate! On average, I slept approximately **9 hours**, worked **9.3 hours** (after adjusting for weekends), spent **3.4 hours** on personal development, and wasted only **2 hours** a day. This means that:  
@@ -207,51 +150,15 @@ The data suggests that my estimates were rather inaccurate! On average, I slept 
 
 # Exploring My Idle Time
 To reduce my idle time, I need to know specifically how I've been idling. As predicted, more than half of my idle time was spent on gaming (CSGO, to be specific). In case you're wondering, I chose to put gaming under the "Idle" category because my long-term aim is to replace gaming with programming/blogging as my primary source of leisure. However, Neil Fiore recommends that we **plan** for leisure and down time so that we can enjoy these without guilt. Perhaps I'll implement this in the next iteration of *Evolve*.
-
-
-```python
-# Extract overall idle time
-idle_full = evolve[evolve.Category == 'Idle']
-
-# Configure labels
-labs = idle_full.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (idle_full.groupby('Sub-Category').hours.sum() / idle_full.hours.sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(idle_full.groupby('Sub-Category').hours.sum(), labels = labs, colors = sns.color_palette("Set2", 6))
-plt.title('Breakdown of Time Spent Idling', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-```
-
-
-![png](output_11_0.png)
+  
+  
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot3.png)
 
 
 The bar plot below shows that Tuesdays, Thursdays, Fridays, and Saturdays are the days that I spend the most time idling, on average.
 
 
-```python
-# Weekday
-idle_daily = evolve_daily[evolve_daily.Category == 'Idle'].copy()
-idle_daily['Weekday'] = pd.to_datetime(idle_daily.Day).dt.weekday
-
-# Plot
-plt.figure(figsize = (10, 8))
-plt.title('Average Time Spent Idling', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.bar(np.arange(len(idle_daily.Weekday.unique())), idle_daily.groupby('Weekday').mean().values / 60, color = '#b1ceeb')
-plt.xticks(np.arange(len(idle_daily.Weekday.unique())), ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'])
-plt.ylim(0, 3.5)
-plt.ylabel('Hours')
-plt.xlabel('Weekday')
-plt.show()
-```
-
-
-![png](output_13_0.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot4.png)
 
 
 Upon closer examination of my idle time on these days, I discovered that I tended to watch more videos on Tuesdays, game more on Thursdays, use my phone more on Fridays, and watch a lot more TV (probably football) on Saturdays than usual. I will have to watch these habits closely if I want to control my time spent on unproductive uses. Alternatively, I could re-define what "unproductive" means. After all, leisure is meant to be guilt-free. What's important is tracking the time I spend **procrastinating**.
@@ -267,132 +174,37 @@ idle_daily_sub['hours'] = idle_daily_sub.Duration / 60
 # Check idle activities on Tuesdays
 idle_tue = idle_daily_sub[idle_daily_sub.Weekday == 1].copy()
 
-# Configure labels
-labs = idle_tue.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (idle_tue.groupby('Sub-Category').hours.mean() / idle_tue.groupby('Sub-Category').hours.mean().sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(idle_tue.groupby('Sub-Category').hours.mean(), labels = labs, colors = sns.color_palette("Set2", 4))
-plt.title('Breakdown of Time Spent Idling on Tuesdays', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-
-# Check idle activities on Thursdays
-idle_thu = idle_daily_sub[idle_daily_sub.Weekday == 3].copy()
-
-# Configure labels
-labs = idle_thu.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (idle_thu.groupby('Sub-Category').hours.mean() / idle_thu.groupby('Sub-Category').hours.mean().sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(idle_thu.groupby('Sub-Category').hours.mean(), labels = labs, colors = sns.color_palette("Set2", 4))
-plt.title('Breakdown of Time Spent Idling on Thursdays', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-
 # Check idle activities on Fridays
 idle_fri = idle_daily_sub[idle_daily_sub.Weekday == 4].copy()
 
-# Configure labels
-labs = idle_fri.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (idle_fri.groupby('Sub-Category').hours.mean() / idle_fri.groupby('Sub-Category').hours.mean().sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(idle_fri.groupby('Sub-Category').hours.sum(), labels = labs, colors = sns.color_palette("Set2", 4))
-plt.title('Breakdown of Time Spent Idling on Fridays', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-
 # Check idle activities on Saturdays
 idle_sat = idle_daily_sub[idle_daily_sub.Weekday == 5].copy()
-
-# Configure labels
-labs = idle_sat.groupby('Sub-Category').hours.mean().index + ' - ' + \
-    (idle_sat.groupby('Sub-Category').hours.mean() / idle_sat.groupby('Sub-Category').hours.mean().sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(idle_sat.groupby('Sub-Category').hours.sum(), labels = labs, colors = sns.color_palette("Set2", 4))
-plt.title('Breakdown of Time Spent Idling on Saturdays', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
 ```
 
 
-![png](output_15_0.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot5.png)
 
 
 
-![png](output_15_1.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot6.png)
 
 
 
-![png](output_15_2.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot7.png)
 
 
 
-![png](output_15_3.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot8.png)
 
 
 # Exploring My Personal Development Time
 Overall, my three key activities for personal development have been Python programming, reading, and blogging. The graph below shows the breakdown of time spent on each:
-
-
-```python
-# Extract overall idle time
-pd_full = evolve[evolve.Category == 'Personal Development']
-
-# Configure labels
-labs = pd_full.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (pd_full.groupby('Sub-Category').hours.sum() / pd_full.hours.sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(pd_full.groupby('Sub-Category').hours.sum(), labels = labs, colors = sns.color_palette("Set2", 7))
-plt.title('Breakdown of Time Spent on Personal Development', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-```
-
-
-![png](output_17_0.png)
-
-
+  
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot9.png)
+  
 I've spent approximately 6 hours on personal development on the weekends, and 1-3 hours on weekdays. There is a noticeable drop in time spent on personal development on Fridays, possibly because I use Fridays to unwind, and end up slacking off a little.
-
-
-```python
-# Weekday
-pd_daily = evolve_daily[evolve_daily.Category == 'Personal Development'].copy()
-pd_daily['Weekday'] = pd.to_datetime(pd_daily.Day).dt.weekday
-
-# Plot
-plt.figure(figsize = (10, 8))
-plt.title('Average Time Spent on Personal Development', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.bar(np.arange(len(pd_daily.Weekday.unique())), pd_daily.groupby('Weekday').mean().values / 60, color = '#b1ceeb')
-plt.xticks(np.arange(len(pd_daily.Weekday.unique())), ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'])
-plt.ylim(0, 7)
-plt.ylabel('Hours')
-plt.xlabel('Weekday')
-plt.show()
-```
-
-
-![png](output_19_0.png)
-
+  
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot10.png)
 
 Examining my weekend personal development time further, I noticed that my weekly rhythm involves cleaning up my weekly post on Saturdays, and researching for the following week's post on Sundays. I also spent a lot less time reading on weekends, which implies inconsistent reading. I could improve by catering more time for reading on the weekends, and push some programming work to weekday nights.
 
@@ -407,42 +219,16 @@ pd_daily_sub['hours'] = pd_daily_sub.Duration / 60
 # Check idle activities on Tuesdays
 pd_sat = pd_daily_sub[pd_daily_sub.Weekday == 5].copy()
 
-# Configure labels
-labs = pd_sat.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (pd_sat.groupby('Sub-Category').hours.mean() / pd_sat.groupby('Sub-Category').hours.mean().sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(pd_sat.groupby('Sub-Category').hours.mean(), labels = labs, colors = sns.color_palette("Set2", 4))
-plt.title('Breakdown of Time Spent on Personal Devt on Saturdays', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
-
 # Check idle activities on Thursdays
 pd_sun = pd_daily_sub[pd_daily_sub.Weekday == 6].copy()
-
-# Configure labels
-labs = pd_sun.groupby('Sub-Category').hours.sum().index + ' - ' + \
-    (pd_sun.groupby('Sub-Category').hours.mean() / pd_sun.groupby('Sub-Category').hours.mean().sum() * 100).round(2).astype(str) + '%'
-
-# Plot
-plt.figure(figsize = (10,10))
-plt.pie(pd_sun.groupby('Sub-Category').hours.mean(), labels = labs, colors = sns.color_palette("Set2", 6))
-plt.title('Breakdown of Time Spent on Personal Devt on Sundays', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-my_circle=plt.Circle( (0,0), 0.7, color='white')
-p=plt.gcf()
-p.gca().add_artist(my_circle)
-plt.show()
 ```
 
 
-![png](output_21_0.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot11.png)
 
 
 
-![png](output_21_1.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot12.png)
 
 
 # Exploring Health
@@ -475,49 +261,14 @@ lunch_times = pd.to_datetime(lunch_data['Time Start'])
 dinner_times = pd.to_datetime(dinner_data['Time Start'])
 # pd.to_timedelta(int((dinner_times.dt.hour*3600+dinner_times.dt.minute*60+dinner_times.dt.second).mean()),unit='s')
 ```
-
-
-```python
-# Plot mealtimes
-plt.figure(figsize = (10, 8))
-plt.plot(bf_data.Day, bf_data.time, label = 'Breakfast', color = '#ff9966')
-plt.plot(bf_data.Day, bf_data.time, 'rD', color = '#ff9966', markersize = 4)
-plt.plot(lunch_data.Day, lunch_data.time, label = 'Lunch', color = '#133056')
-plt.plot(lunch_data.Day, lunch_data.time, 'rD', color = '#133056', markersize = 4)
-plt.plot(dinner_data.Day, dinner_data.time, label = 'Dinner', color = '#b1ceeb')
-plt.plot(dinner_data.Day, dinner_data.time, 'rD', color = '#b1ceeb', markersize = 4)
-plt.hlines(y = '08:31:32', xmin = lunch_data.Day.min(), xmax = lunch_data.Day.max(), color = '#133056', linewidth = 1.5, linestyle = 'dashed')
-plt.hlines(y = '12:33:24', xmin = lunch_data.Day.min(), xmax = lunch_data.Day.max(), color = '#6fceb0', linewidth = 1.5, linestyle = 'dashed')
-plt.hlines(y = '19:03:48', xmin = dinner_data.Day.min(), xmax = dinner_data.Day.max(), color = '#f85b74', linewidth = 1.5, linestyle = 'dashed')
-plt.legend()
-plt.title('Chow Times', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('Time of Day')
-plt.xlabel('Date')
-plt.show()
-```
-
-
-![png](output_24_0.png)
+  
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot13.png)
 
 
 Next, we look at exercise. Prior to starting the *Evolve* regime, I didn't spend any time on exercising. As I tracked my time, I noticed the lack of any effort in investing in health (and also, my body decided that tight-fit clothing was in fashion). Hence, I resolved to spend some time every day exercising. It could be 10 minutes of push ups or a 20-minute run - it didn't matter how long, as long as I was active for a while. As you can see, I'm still working on that.
 
 
-```python
-# Extract eating time
-ex_data = evolve_daily[evolve_daily['Category'] == 'Health'].copy()
-
-plt.figure(figsize = (10, 8))
-plt.plot(pd.to_datetime(ex_data.Day), ex_data.Duration, color = '#133056')
-plt.xlabel('Date')
-plt.ylabel('Minutes')
-plt.xticks(rotation = '45')
-plt.title('Time Spent on Exercise', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.show()
-```
-
-
-![png](output_26_0.png)
+![](../graphics/2018-11-17-project-evolve-beating-procrastination/plot14.png)
 
 
 # A Final Note on the Data
@@ -525,3 +276,8 @@ The data contained all my activities from 9 Oct 18 to 11 Nov 18, which was about
 
 # Moving Forward
 I plan to stay on this regime for 1 year. Hopefully, I will have good things to review next December. I also plan to release the *Evolve* app for free to enable anyone who wants a go at tackling procrastination in their lives to take the first step toward *evolution*. Stay tuned for more updates.
+  
+---
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/3ee78584354010a8fed59860aa25082d65afaddc/notebooks/2018-11-17-project-evolve-beating-procrastination.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [FinanceAndMarkets.com](https://financeandmarkets.com/)
