@@ -263,9 +263,9 @@ Next, we look at exercise. Prior to starting the *Evolve* regime, I didn't spend
 The data contained all my activities from 9 Oct 18 to 11 Nov 18, which was about a month's worth of data. That means that the recommendations from the simple analysis in this post may not be well-grounded because there was insufficient data. However, it shows the potential of activity and finance tracking to help you optimise your life and gain awareness of how you're spending your time and money. Personally, I feel motivated from both achieving things I want (more exercise, personal development) and knowing where I can improve (exercise, idle time).
 
 # Moving Forward
-I plan to stay on this regime for 1 year. Hopefully, I will have good things to review next December. I also plan to release the *Evolve* app for free to enable anyone who wants a go at tackling procrastination in their lives to take the first step toward *evolution*. Stay tuned for more updates.
+I plan to stay on this regime for 1 year. Hopefully, I will have good things to write about in my personal review next December. I also plan to release the *Evolve* app for free to enable anyone who wants a go at tackling procrastination in their lives to take the first step toward *evolution*. Stay tuned for more updates.
   
 ---
 Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/3ee78584354010a8fed59860aa25082d65afaddc/notebooks/2018-11-17-project-evolve-beating-procrastination.ipynb){:target="_blank"} for the full Jupyter notebook.
   
-Credits for images: [FinanceAndMarkets.com](https://financeandmarkets.com/)
+Credits for images: [Family Radio](http://familyradio316.com/)
