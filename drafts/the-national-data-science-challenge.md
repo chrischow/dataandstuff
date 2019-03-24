@@ -57,7 +57,7 @@ We fit all of the above into a ML pipeline using Scikit-Learn's `Pipeline` class
 4. Many samples were incorrectly labelled. We found cases like iPhones labelled with the Android operating system. This would have thrown the models off, but we chose not to correct it for fear of violating the "no hand labelling" rule in the competition.  
   
 ### Further Improvements
-First, there was nothing much we could do about missing data in the test set. We chose not to include a "missing" class in training, because providing no prediction is alwasy bad when there is a correct answer. Any answer would stand a better chance than no answer.  
+First, there was nothing much we could do about missing data in the test set. We chose not to include a "missing" class in training, because providing no prediction is always bad when there is a correct answer. Any answer would stand a better chance of scoring points than no answer.  
   
 Second, we expanded the bank of vocabulary by using (1) **all** titles in the training set, even for samples that had missing values in the target product attribute, and (2) titles in the test set. This did not introduce leakage because the test set was not labelled. If we had more time, we would have scraped titles from their online site ourselves.  
   
