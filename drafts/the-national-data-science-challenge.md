@@ -85,14 +85,14 @@ We also attempted stacking and blending (ensemble techniques), but these failed 
   
 ### Key Lessons Learnt
   
-#### Doc2Vec
+#### Using Doc2Vec
 I have to admit that I employed Doc2Vec wrongly. I trained our Doc2Vec models on the training set titles instead of using a pre-trained Doc2Vec model. Models pre-trained on large corpuses (e.g. Google News) are available online, but I did not know how to implement them at the time. These models are able to recognise the difference between, say, Samsung and Apple, or iPhone X and Galaxy S9. If I had implemented Doc2Vec correctly, we could have possibly created better Doc2Vec features. I'm happy that I learned how not to mess up Doc2Vec for future NLP tasks.  
   
 #### Deep Learning
-Frustrated with our low ranking toward the end of the competition, I researched on modern text classification techniques. I discovered that the latest technique for text classification is to feed word embeddings (from models like Word2Vec, GloVe, or fastText) into a neural network (NN). With no prior knowledge in training NNs, I avoided the approach entirely. However, I am now convinced that to progress in data science, I must venture into deep learning. My ignorance in this area may have cost us a better ranking.  
+Frustrated with our low ranking toward the end of the competition, I researched on modern text classification techniques. I discovered that the latest technique for text classification involves feeding word embeddings (from models like Word2Vec, GloVe, or fastText) into a neural network (NN). With no prior knowledge in training NNs, I avoided the approach entirely. However, I am now convinced that to progress in data science, I must venture into deep learning. My ignorance in this area may have cost us a better ranking.  
   
 #### Try, Try, and Try Again
-My biggest challenge during this period was to manage my frustration. I came up with idea after idea, and tested them only to see them fail in improving our score. 
+My biggest challenge during this period was pushing through discouraging results. I came up with idea after idea, and tested them only to see them fail in improving our score. But I'm glad that I continually tried different 
   
 > "I have not failed 10,000 times. I have successfully found 10,000 ways that will not work." - Thomas Edison  
   
