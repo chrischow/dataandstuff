@@ -38,7 +38,7 @@ Jumping forward in time, here's the result: **we placed 4th/5th on the Kaggle le
 Given the outcome, you would expect a pretty complex solution, but ours was extremely simple. We used basic data cleaning techniques, a primitive method for feature extraction, and a primitive ML algorithm for classification. All we needed was good intuition in the models. Let's begin with data cleaning.  
   
 ### Data Cleaning
-For each model, we used only the product listing titles (hereafter referred to as titles), ignoring the images completely. This was because they were non-standardised and would have contributed to a lot of noise in the models. In addition, it would have required a lot of time to train neural networks (NNs) on the images. Hence, we focused only on text. We did just two things: (1) dropped missing values and (2) translated *some* Bahasa Indonesian words to English. We translated only words that were related to the product attributes we were predicting. For example, colours were often written in Bahasa Indonesian in the titles, while the labels for the Colour Family product attribute were in English. Simple stuff.  
+For each model, we used only the product listing titles (hereafter referred to as titles), ignoring the images completely. This was because they were non-standardised and would have contributed to a lot of noise in the models. In addition, it would have required a lot of time to train neural networks on the images. Hence, we focused only on text. We did just two things: (1) dropped missing values and (2) translated *some* Bahasa Indonesian words to English. We translated only words that were related to the product attributes we were predicting. For example, colours were often written in Bahasa Indonesian in the titles, while the labels for the Colour Family product attribute were in English. Simple stuff.  
   
 It is worth noting that I missed out on the translations until the very end of the competition. On the final day, we were in 9th place.  However, after performing translations (1) on the beauty and fashion datasets (which we completely missed out) and (2) on the test set titles, we parachuted into 4th place. The score jumped from 46.5% to 45.8%, which is quite a lot when you're near the top of the laderboard. 
   
@@ -46,7 +46,7 @@ It is worth noting that I missed out on the translations until the very end of t
 We converted titles (from both the training and test set) and product attribute labels (hereafter referred to as labels) into binary features a.k.a binary term frequency (BTF) using Scikit-Learn's `TfidfVectorizer` function. Each binary feature indicated whether a specific N-gram (word or phrase) was present in that title. Therefore, the label BTFs indicated **matches between the titles and the correct label**, while the title BTFs served as a **bank of vocabulary**. The former was used to capture more straightforward relationships between the titles and their true labels, while the latter was used to capture more complex relationships between the text in the titles and their true labels.  
   
 ### ML Algorithm
-We chose Logistic Regression (LR) as our classification algorithm. Specifically, we used a One vs. Rest (OVR) approach for developing models. That is, assuming the target product attribute had *k* classes, we split the problem into *k* binary sub-problems. Each sub-problem predicted whether each entry belonged to class *K* or not. Scikit-Learn's `LogisticRegression` class was able to handle this with a single parameter. We performed basic fine tuning of the `C` parameter for regularisation to ensure that the models did not overfit to the training data.  
+We chose Logistic Regression as our classification algorithm. Specifically, we used a One vs. Rest (OVR) approach for developing models. That is, assuming the target product attribute had *k* classes, we split the problem into *k* binary sub-problems. Each sub-problem predicted whether each entry belonged to class *K* or not. Scikit-Learn's `LogisticRegression` class was able to handle this with a single parameter. We performed basic fine tuning of the `C` parameter for regularisation to ensure that the models did not overfit to the training data.  
   
 ### Results
 We fit all of the above into a ML pipeline using Scikit-Learn's `Pipeline` class. This ensured that there was no leakage, and facilitated cross validation (CV). We used 5-fold CV to evaluate our pipeline, and obtained MAP@2 scores between 85% and 99%, depending on the target product attribute. On the test set, we obtained a score of only 46%. I suspect this was because:  
@@ -65,10 +65,10 @@ Third, we chose not to pursue zero shot learning (classes appearing in the test 
   
 Fourth, we chose not to correct this because errors were likely to be present in the test set as well. We did not know how the models would fare on the test set if we trained them on perfect data. Perhaps there is a better technique for handling this issue, but I have yet to find any solution at the time of writing.  
   
-## The Numerous Failures
-On hindsight, the solution was straightforward: it was a textbook text classification approach. However, the bulk of the work was in testing other methods for feature extraction and other ML algorithms and techniques. All in all, we tested the following datasets and models:  
+## Things That Did Not Work
+On hindsight, the solution was straightforward: it was a textbook text classification approach. However, the bulk of the work was in testing other methods for feature extraction and other ML algorithms and techniques. All in all, we tested the following feature extraction techniques and ML algorithms:  
   
-| Dataset                                                                | Algorithm                    |
+| Features Extracted                                                     | Algorithm                    |
 |------------------------------------------------------------------------|------------------------------|
 | TF-IDF of Titles                                                       | Logistic Regression          |
 | BTF of Titles                                                          | Random Forest (Scikit-Learn) |
@@ -78,8 +78,21 @@ On hindsight, the solution was straightforward: it was a textbook text classific
 | Doc2Vec of Titles (100 features)                                       | Support Vector Machines      |
 | Doc2Vec of Titles (200 features)                                       | Multinomial Naive Bayes      |
 | Doc2Vec of Titles (500 features)                                       | K-Nearest Neighbours         |
-| Cosine Similarity to all classes for Doc2Vec 50, 100, 200, and 500     | SGD                          |
+| Cosine Similarity to all classes for Doc2Vec 50, 100, 200, and 500     |                              |
 | K-Means Clustering for Cosine Similarity and Doc2Vec 50, 100, 200, 500 |                              |
+  
+We also attempted stacking and blending (ensemble techniques), but these failed to beat the good old Logistic Regression. It was the simplest, quickest, and best-performing model.  
+  
+### Key Lessons Learnt
+  
+#### Doc2Vec
+I have to admit that I employed Doc2Vec wrongly. I trained our Doc2Vec models on the training set titles instead of using a pre-trained Doc2Vec model. Models pre-trained on large corpuses (e.g. Google News) are available online, but I did not know how to implement them at the time. These models are able to recognise the difference between, say, Samsung and Apple, or iPhone X and Galaxy S9. If I had implemented Doc2Vec correctly, we could have possibly created better Doc2Vec features. I'm happy that I learned how not to mess up Doc2Vec for future NLP tasks.  
+  
+#### Deep Learning
+Frustrated with our low ranking toward the end of the competition, I researched on modern text classification techniques. I discovered that the latest technique for text classification is to feed word embeddings (from models like Word2Vec, GloVe, or fastText) into a neural network (NN). With no prior knowledge in training NNs, I avoided the approach entirely. However, I am now convinced that to progress in data science, I must venture into deep learning. My ignorance in this area may have cost us a better ranking.  
+  
+#### Try, Try, and Try Again
+My biggest challenge during this period was to manage my frustration. I came up with idea after idea, and tested them only to see them fail in improving our score. 
   
 > "I have not failed 10,000 times. I have successfully found 10,000 ways that will not work." - Thomas Edison  
   
