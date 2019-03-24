@@ -81,7 +81,7 @@ On hindsight, the solution was straightforward: it was a textbook text classific
 | Cosine Similarity to all classes for Doc2Vec 50, 100, 200, and 500     |                              |
 | K-Means Clustering for Cosine Similarity and Doc2Vec 50, 100, 200, 500 |                              |
   
-We also attempted stacking and blending (ensemble techniques), but these failed to beat the good old Logistic Regression. It was the simplest, quickest, and best-performing model.  
+We also attempted stacking and blending (ensemble techniques), but these failed to beat good old Logistic Regression. It was the simplest, quickest, and best-performing model.  
   
 ### Key Lessons Learnt
   
@@ -92,35 +92,16 @@ I have to admit that I employed Doc2Vec wrongly. I trained our Doc2Vec models on
 Frustrated with our low ranking toward the end of the competition, I researched on modern text classification techniques. I discovered that the latest technique for text classification involves feeding word embeddings (from models like Word2Vec, GloVe, or fastText) into a neural network (NN). With no prior knowledge in training NNs, I avoided the approach entirely. However, I am now convinced that to progress in data science, I must venture into deep learning. My ignorance in this area may have cost us a better ranking.  
   
 #### Try, Try, and Try Again
-My biggest challenge during this period was pushing through discouraging results. I came up with idea after idea, and tested them only to see them fail in improving our score. But I'm glad that I continually tried different 
+My biggest challenge during this period was pushing through discouraging results. I came up with idea after idea, and tested them only to see them fail in improving our score. But I'm glad that I was able to get excited about new ideas and test them out quickly. It was good that the poor ideas failed fast, so we could move on. Repeatedly trying different techniques and not giving up was a key success factor for me. This saying by Thomas Edison sums up this point nicely:  
   
 > "I have not failed 10,000 times. I have successfully found 10,000 ways that will not work." - Thomas Edison  
   
-
-
-## Other Notes on the Competition
+## Feedback on the Competition
+During the course of the competition, there were **two instances** of leakage - parts of the fashion dataset "exam questions" were accidentally released. Twice. This required Shopee to change the test set twice, thereby wasting the efforts of the participants who had developed models for the fashion products. The first leakage was detected just a few days into the competition. The entire set of answers to the fashion dataset "exam questions" were uploaded along with the training sets. The second leakage was only managed three days before the end of the competition. Participants who were banking on a high score in the fashion product attributes would have seen a big change in their ranking. In the end, the private leaderboard scores were incorrect, which affected the credentials that the true winners would have been given by Kaggle. The leaks could have been managed a lot better by Shopee.
   
-### Leakage
-During the course of the competition, there were **two instances** of leakage - parts of the fashion dataset "exam questions" were accidentally released. Twice. This required Shopee to change the test set twice, thereby wasting the efforts of the participants who had developed models for the fashion products. The first leakage was detected just a few days into the competition. The entire set of answers to the fashion dataset "exam questions" were uploaded along with the training sets. The second leakage was only detected three days before the end of the competition. Participants who were banking on a high score in the fashion product attributes would have seen a big change in their ranking. I think that this was extremely unprofessional on Shopee's part. It shows how serious they really are about managing their data and levelling up their data science capability.  
+## Good, But Could Be Better
+I felt energised from participating in NDSC 2019. For some time, I've heard people talk about data science in such *broad strokes*, when I think that it boils down to *keystrokes*. Broad strokes are for politics, keystrokes are for getting things done. And politics typically trumps model performance, leaving models and systems that are stuck with expectations that are way too high. That is only unhealthy for the people who develop them. It is not enough to be excited about data science or to identify it as *the* means to improving things. It takes foundational knowledge to (1) understand the full extent to which data science can be employed, and (2) to know when it can't be employed. That is exactly why the Chief Data Scientists in leading tech companies are all PhD holders in mathematics or statistics or computer science, or have an established track record in the practice. They know how best to exploit data science to achieve business ends. In essence, to develop a data science capability, an organisation must have people with a strong foundation in the field.  
   
-### 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+That said, data science isn't magic, nor is it a black box (though it sometimes can be). Building a strong foundation in data science is far from impossible. Some concepts that I've written about in this post may seem very technical or foreign to the uninitiated, but a Google search can give you a full explanation of all of them. It is easy to level-up your data science skills. But do the people who make executive decisions have the incentive to? Can organisations push politics to the backseat and give data science the wheel in order to become truly data-driven?  
+  
+I don't have an answer to these questions, nor can I supply answers or decisions for these issues. The best that I can do is develop myself as a data scientist and patiently await the day where competence and model performance trumps politics. Through the NDSC 2019, I learnt a lot about approaches for text classification, gained new perspective on the direction I should take to develop my abilities in data science, and received timely validation that my personal development was not in vain. I'm happy with the result, but I want to do better. Hopefully, I'll enter next year's NDSC in a stronger position and achieve a better ranking.  
