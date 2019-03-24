@@ -5,7 +5,7 @@ It's been a crazy month. 9 months ago, I committed to having a baby, and Baby Et
 ## The Task
   
 ### Problem Statement
-The NDSC was run by Shopee, who provided us with product listing titles and images on beauty, fashion, and mobile products. The task at hand was to predict attributes of these products (see the table below for the full list). Given that the target attributes were categorical and text data and images were the predictors, this was clearly a **classification problem that required Natural Language Processing (NLP) and image processing techniques**.  
+The NDSC was run by Shopee, who provided us with product listing titles and images on beauty, fashion, and mobile products. The task at hand was to predict attributes of these products (see the table below for the full list). Given that the target attributes were categorical, and text data and images were the predictors, this was clearly a **classification problem that required Natural Language Processing (NLP) and image processing techniques**.  
   
 | Beauty Product Attributes | Fashion Product Attributes | Mobile Product Attributes |
 |---------------------------|----------------------------|---------------------------|
