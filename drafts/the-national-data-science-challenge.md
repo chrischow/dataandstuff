@@ -49,21 +49,7 @@ We converted titles (from both the training and test set) and product attribute 
 We chose Logistic Regression as our classification algorithm. Specifically, we used a One vs. Rest (OVR) approach for developing models. That is, assuming the target product attribute had *k* classes, we split the problem into *k* binary sub-problems. Each sub-problem predicted whether each entry belonged to class *K* or not. Scikit-Learn's `LogisticRegression` class was able to handle this with a single parameter. We performed basic fine tuning of the `C` parameter for regularisation to ensure that the models did not overfit to the training data.  
   
 ### Results
-We fit all of the above into a ML pipeline using Scikit-Learn's `Pipeline` class. This ensured that there was no leakage, and facilitated cross validation (CV). We used 5-fold CV to evaluate our pipeline, and obtained MAP@2 scores between 85% and 99%, depending on the target product attribute. On the test set, we obtained a score of only 46%. I suspect this was because:  
-  
-1. There was a lot of missing data in the test set (likewise for the training set), resulting in many ungraded (`0.0`) scores.
-2. We did not use a sufficiently large bank of vocabulary. Consequently, new words in the titles would not have been picked up.
-3. The distribution of product attribute classes was different in the test set. For product attributes with a large number of classes e.g. phone model for the mobile dataset and brand for the beauty dataset, certain classes may not have appeared in the training set, but were present in the test set.
-4. Many samples were incorrectly labelled. We found cases like iPhones labelled with the Android operating system. This would have thrown the models off, but we chose not to correct it for fear of violating the "no hand labelling" rule in the competition.  
-  
-### Further Improvements
-First, there was nothing much we could do about missing data in the test set. We chose not to include a "missing" class in training, because providing no prediction is always bad when there is a correct answer. Any answer would stand a better chance of scoring points than no answer.  
-  
-Second, we expanded the bank of vocabulary by using (1) **all** titles in the training set, even for samples that had missing values in the target product attribute, and (2) titles in the test set. This did not introduce leakage because the test set was not labelled. If we had more time, we would have scraped titles from their online site ourselves.  
-  
-Third, we chose not to pursue zero shot learning (classes appearing in the test set and not in the training set) because we did not have the time and resources to do so. However, we explored certain techniques that could have addressed this issue, except that I employed the techniques wrongly. More on this in the next section.  
-  
-Fourth, we chose not to correct this because errors were likely to be present in the test set as well. We did not know how the models would fare on the test set if we trained them on perfect data. Perhaps there is a better technique for handling this issue, but I have yet to find any solution at the time of writing.  
+We fit all of the above into a ML pipeline using Scikit-Learn's `Pipeline` class. This ensured that there was no leakage, and facilitated cross validation (CV). We used 5-fold CV to evaluate our pipeline, and obtained MAP@2 scores between 85% and 99%, depending on the target product attribute. On the test set, we obtained a score of only 46%. I suspect that the main reason was a large amount of missing data in the test set, resulting in many ungraded (`0.0`) scores.  
   
 ## Things That Did Not Work
 On hindsight, the solution was straightforward: it was a textbook text classification approach. However, the bulk of the work was in testing other methods for feature extraction and other ML algorithms and techniques. All in all, we tested the following feature extraction techniques and ML algorithms:  
@@ -84,6 +70,16 @@ On hindsight, the solution was straightforward: it was a textbook text classific
 We also attempted stacking and blending (ensemble techniques), but these failed to beat good old Logistic Regression. It was the simplest, quickest, and best-performing model.  
   
 ### Key Lessons Learnt
+  
+#### Explore Your Data
+One thing I could have spent much more time on was exploratory data analysis. As mentioned, I failed to do translations until the very end of the competition. I didn't look deeper into the features and understand them better. The top team in the competition had carefully analysed the observation IDs and realised that these corresponded with time. They were then able to generate a new feature that grouped observations by time bins. Meanwhile, I spent just 5 minutes looking at the distribution of IDs, as opposed to the   
+  
+#### Feature Generation
+I could also have spent more time performing feature generation. Once again, the top team generated several new features that gave them a huge edge:  
+  
+* Using Naive Bayes log count ratios to create an NB-SVM model
+* Sample weighting by defining a metric that measured how complete each sample was
+* No. of unique words in each title
   
 #### Using Doc2Vec
 I have to admit that I employed Doc2Vec wrongly. I trained our Doc2Vec models on the training set titles instead of using a pre-trained Doc2Vec model. Models pre-trained on large corpuses (e.g. Google News) are available online, but I did not know how to implement them at the time. These models are able to recognise the difference between, say, Samsung and Apple, or iPhone X and Galaxy S9. If I had implemented Doc2Vec correctly, we could have possibly created better Doc2Vec features. I'm happy that I learned how not to mess up Doc2Vec for future NLP tasks.  
