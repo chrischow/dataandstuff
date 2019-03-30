@@ -3,8 +3,8 @@ type: post
 title: "4th Place Solution for the National Data Science Challenge 2019"  
 bigimg: /img/ndsc2019_official.jpg
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_official_sq.jpg
-share-img: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_official.jpg
-share-img2: /img/ndsc2019_official_sq.jpg
+share-img: /img/ndsc2019_official_sq.jpg
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_official_sq.jpg
 tags: [data science]
 ---  
   
