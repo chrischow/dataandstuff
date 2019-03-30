@@ -4,7 +4,7 @@ title: "4th Place Solution for the National Data Science Challenge 2019"
 bigimg: /img/ndsc2019_edited.jpg
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_official.jpg
 share-img: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_edited.jpg
-share-img2: /img/ndsc2019_edited.jpg
+share-img2: /img/ndsc2019_official.jpg
 tags: [data science]
 ---  
   
@@ -39,6 +39,8 @@ You can think of the competition as an exam. The training set is equivalent to a
   
 # The Outcome
 Jumping forward in time, here's the result: **we placed 4th on the Kaggle leaderboard and won the Merit Prize!** I was slightly disappointed about the end result because we didn't make a podium finish, but I was glad we were close. At the ceremony (and on the Kaggle discussion board), we got to learn of complex methods that many teams used. A select few of these teams managed to clinch the top 3 prizes and the Most Creative Solution prize, but many placed below us. I think that we made a real contribution to Shopee because we delivered good predictive accuracy, not far behind solutions that employed neural networks, yet our model was so simple and quick to train. I dare say that our model was the most deployable of the lot.  
+  
+![](https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_edited.jpg)  
   
 # The Solution
 As I mentioned, our solution was extremely simple. We used basic data cleaning techniques, a primitive method for feature extraction, and a primitive ML algorithm for classification. All we needed was good intuition in the models. Let's begin with data cleaning.  
