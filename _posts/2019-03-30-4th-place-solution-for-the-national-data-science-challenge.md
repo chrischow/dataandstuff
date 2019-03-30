@@ -2,8 +2,8 @@
 type: post  
 title: "4th Place Solution for the National Data Science Challenge 2019"  
 bigimg: /img/ndsc2019_edited.jpg
-image: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
-share-img: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_edited.jpg
+share-img: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_edited.jpg
 share-img2: /img/ndsc2019_edited.jpg
 tags: [data science]
 ---  
