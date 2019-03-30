@@ -42,7 +42,7 @@ Jumping forward in time, here's the result: **we placed 4th on the Kaggle leader
   
 ![](https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_edited.jpg)  
   
-![](https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc_lb.png)
+![](https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc_lb.PNG)
   
 # The Solution
 As I mentioned, our solution was extremely simple. We used basic data cleaning techniques, a primitive method for feature extraction, and a primitive ML algorithm for classification. All we needed was good intuition in the models. Let's begin with data cleaning.  
