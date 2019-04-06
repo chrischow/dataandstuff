@@ -28,14 +28,14 @@ Regardless of which option you chose, know that structure is important (and peop
   
 | CATEGORY         | TOPICS                                                                        |
 |------------------|-------------------------------------------------------------------------------|
-| Statistics       | Statistical Inference\nLinear Models\nProbability Models\nBayesian Statistics |
+| Statistics       | Statistical Inference<br>Linear Models<br>Probability Models<br>Bayesian Statistics |
 | Machine Learning | Applied Machine Learning                                                      |
-| Computing        | Algorithms\nComputer Systems\nProgramming                                     |
-| Databases        | Big Data\nRelational Databases\nData Structures                               |
+| Computing        | Algorithms<br>Computer Systems<br>Programming                                     |
+| Databases        | Big Data<br>Relational Databases<br>Data Structures                               |
 | Capstone Project | -                                                                             |
-| Data Exploration | EDA\nData Visualisation                                                       |
+| Data Exploration | EDA<br>Data Visualisation                                                       |
 | Deep Learning    | -                                                                             |
-| Others           | Ethics\nMathematics\nNLP                                                      |
+| Others           | Ethics<br>Mathematics<br>NLP                                                      |
   
 ## Python
   
