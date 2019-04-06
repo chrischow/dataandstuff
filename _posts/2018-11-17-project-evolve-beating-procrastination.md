@@ -4,7 +4,7 @@ title: "Project Evolve - How I'm Beating Procrastination"
 bigimg: /img/evolve.jpg
 image: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
 share-img: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
-share-img2: http://familyradio316.com/wp-content/uploads/2016/11/636130398535805339-1857967577_2016-07-12-1468339936-7748616-ProcrastinationNowvsLater-696x464.jpg
+share-img2: https://github.com/chrischow/dataandstuff/blob/gh-pages/img/evolve_sq.jpg?raw=true
 tags: [project evolve, procrastination, habits, quantified self]
 ---  
   
