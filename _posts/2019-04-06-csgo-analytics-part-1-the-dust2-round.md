@@ -2,7 +2,7 @@
 type: post  
 title: "CS:GO Analytics Part 1: The Dust2 Round"  
 bigimg: /img/csgo_full.jpg
-image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_official_sq.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.jpg
 share-img: /img/csgo_sq.jpg
 share-img2: /img/csgo_sq.jpg
 tags: [data science]
