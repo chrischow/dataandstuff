@@ -2,8 +2,28 @@
 layout: page
 title: Resources
 ---
-# Courses
-Most of what I know about data science was picked up from online courses and practice. Below is a list of Massive Open Online Courses (MOOCs) that I've completed and found extremely useful.  
+# What Exactly Do You Want?
+When I started out in data science back in 2015, I had no idea what I wanted. All I knew was that I had a dissertation to write for my degree in Economics, and that data science was the next big thing. I also knew that I liked programming and wanted to develop my skills in this area. I **did not** know nor expect to dive deep into data science. Many blog posts and one data science competition later (in 2019), I thought of pursuing an online Masters in Data Science to get certification of my skills. After much thought, I realised that these would have been what I would be paying for (in order of importance to me):  
+  
+#### 1. Knowledge
+All Masters programmes equip their students with knowledge and practical experience.  
+  
+#### 2. Proof of Skills and Effort
+The certificate is a declaration by a third party (a university) that I did attend certain courses and did well in them.  
+  
+#### 3. Quality Control
+All of the above, under a formal, structured programme.  
+  
+#### 4. Brand
+Apparently, a Masters degree at a reputable school means that the programme is respectable. Not entirely true, because data science is a young field, and Masters programmes are only younger.  
+  
+Having gone through the thought process, my recommendations are as such:  
+  
+1. If it is just **knowledge** you seek, go for Massive Open Online Courses (MOOCs).
+2. If it is **knowledge and proof of skills and effort** that you seek, go for *paid* MOOCs.
+3. If it is **all of the above**, go for a Masters programme.  
+  
+Regardless of which option you chose, know that structure is important (and people love structure). Therefore, you should structure your learning, taking reference from Masters Programmes.
   
 ## Python
   
