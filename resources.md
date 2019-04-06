@@ -34,15 +34,15 @@ Regardless of which option you chose, know that structure is important (and peop
 6. Deep Learning
 7. Capstone Project
   
-Using this framework, here are my recommendations cum achievements:  
+Using this framework, here are my recommendations/achievements:  
   
 | CATEGORY         | RESOURCES                                                                           |
 |------------------|-------------------------------------------------------------------------------------|
 | Statistics       | Statistical Inference<br>Linear Models<br>Probability Models<br>Bayesian Statistics |
 | Data Exploration | EDA<br>Data Visualisation                                                           |
-| Computing        | [Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:UCSanDiegoX+DSE200x+1T2018/course/)<br>[Programming for Everybody - Getting Started with Python (Coursera)](https://www.coursera.org/learn/python)<br>[Programming with Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+1T2018a/course/)|
-| Databases        | [Python Data Structures (Coursera)](https://www.coursera.org/learn/python-data)|
-| Machine Learning | [Principles of Machine Learning: Python Edition - Work in Progress (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT275x+2T2018/course/)<br>[The Analytics Edge (EdX)](https://courses.edx.org/courses/course-v1:MITx+15.071x_2a+2T2015/course/)|
+| Computing        | [Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:UCSanDiegoX+DSE200x+1T2018/course/)<br>[Programming for Everybody - Getting Started with Python (Coursera)](https://www.coursera.org/learn/python)<br>[Programming with Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+1T2018a/course/)<br>[Python Programmer Track (DataCamp)](https://www.datacamp.com/tracks/python-programmer)|
+| Databases        | **SQL:**<br>[SQLBolt](https://sqlbolt.com/)<br>[Learn SQL (Codecademy)](https://www.codecademy.com/learn/learn-sql)<br>[DataCamp](https://www.datacamp.com/courses/tech:sql)<br>**Python:**<br>[Python Data Structures (Coursera)](https://www.coursera.org/learn/python-data)|
+| Machine Learning | **Python:**<br>[Principles of Machine Learning: Python Edition - Work in Progress (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT275x+2T2018/course/)<br><br>**R:**<br>[The Analytics Edge (EdX)](https://courses.edx.org/courses/course-v1:MITx+15.071x_2a+2T2015/course/)|
 | Deep Learning    | -                                                                                   |
 | Capstone Project | -                                                                                   |
 | Others           | Ethics<br>Mathematics<br>NLP                                                        |
