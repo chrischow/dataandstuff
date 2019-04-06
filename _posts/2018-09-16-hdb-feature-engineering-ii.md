@@ -4,7 +4,7 @@ title: "HDB Resale Flat Dataset - Feature Engineering II: Geocoding"
 bigimg: /img/hdb_img.jpg
 image: https://cdn.techinasia.com/wp-content/uploads/2016/05/taxi-availability-heatmap.png
 share-img: /img/hdb_img_sq.jpg
-share-img2: https://github.com/chrischow/dataandstuff/blob/gh-pages/img/hdb_img_sq.jpg
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/hdb_img_sq.jpg
 tags: [real estate pricing, feature engineering]
 ---  
   
