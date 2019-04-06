@@ -23,7 +23,19 @@ Having gone through the thought process, my recommendations are as such:
 2. If it is **knowledge and proof of skills and effort** that you seek, go for *paid* MOOCs.
 3. If it is **all of the above**, go for a Masters programme.  
   
-Regardless of which option you chose, know that structure is important (and people love structure). Therefore, you should structure your learning, taking reference from Masters Programmes.
+# Structure
+Regardless of which option you chose, know that structure is important (and people love structure). Therefore, you should structure your learning, taking reference from Masters Programmes. From my research on the Masters programmes from Columbia University, UC Berkeley, Johns Hopkins, Carnegie Mellon, Cornell, and Harvard, I discovered that there were 8 key focus areas:  
+  
+| CATEGORY         | TOPICS                                                                        |
+|------------------|-------------------------------------------------------------------------------|
+| Statistics       | Statistical Inference\nLinear Models\nProbability Models\nBayesian Statistics |
+| Machine Learning | Applied Machine Learning                                                      |
+| Computing        | Algorithms\nComputer Systems\nProgramming                                     |
+| Databases        | Big Data\nRelational Databases\nData Structures                               |
+| Capstone Project | -                                                                             |
+| Data Exploration | EDA\nData Visualisation                                                       |
+| Deep Learning    | -                                                                             |
+| Others           | Ethics\nMathematics\nNLP                                                      |
   
 ## Python
   
