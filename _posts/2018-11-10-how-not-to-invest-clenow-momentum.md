@@ -4,7 +4,7 @@ title: "How (Not) to Invest III: Beating the Market with Clenow Momentum"
 bigimg: /img/hnti_logo_sq.jpg
 image: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
 share-img: /img/hnti_logo_sq.jpg
-share-img2: http://financeandmarkets.com/wp-content/uploads/2018/06/cryptotrading.original.jpg
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/hnti_logo_sq.jpg
 tags: [finance, investing, how not to invest, algorithmic trading]
 ---  
   
