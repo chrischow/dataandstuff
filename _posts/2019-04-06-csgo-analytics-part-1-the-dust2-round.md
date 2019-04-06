@@ -51,45 +51,7 @@ from sklearn.preprocessing import LabelEncoder
 # Settings
 warnings.filterwarnings('ignore')
 ```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.weight'] = 'medium'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
-
+  
 ```python
 # Define chunk size
 chunksize = 100000
@@ -137,42 +99,17 @@ Dust2 is a relatively fast map. In terms of round time, it was the third but las
 ```python
 # Compute statistics for all maps
 map_time = all_data.groupby('map')[['round_time']].median().sort_values('round_time', ascending=False)
-
-# Plot
-plt.figure(figsize=(12, 8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.bar(np.arange(1,9), map_time.round_time, 0.3, color='#ff9966', alpha=0.85)
-plt.ylim(0, 102)
-plt.yticks(weight='medium')
-plt.xticks(np.arange(1,9), map_time.index, weight='medium')
-plt.xlabel('Map', weight='medium')
-plt.ylabel('Time(s)', weight='medium')
-plt.title('Round Time', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.show()
 ```
 
 
-![png](output_6_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_6_0.png)
 
 
 The median round time was just **81 seconds**. This is what I love about Dust2 - it's fast paced, and you get more time as a live player than a spectator. In the histogram below, note also how some rounds appeared to have lasted longer than 115 seconds. This is strange considering what we know about the time for competitive matches (round time of 1 minute and 55 seconds). Having spotted this peculiarity, we should raise questions about the quality of the data.
 
 
-```python
-# Plot
-plt.figure(figsize=(12, 8))
-ax = plt.gca()
-ax.title.set_color('#3a3a3a')
-plt.hist(dust2.round_time, bins=200, color='#133056', alpha=0.85)
-plt.xlabel('Time(s)', weight='medium')
-plt.ylabel('No. of Rounds', weight='medium')
-plt.title('Distribution of Round Time (Median = %ss)' % (round(dust2.round_time.median())), fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.show()
-```
 
-
-![png](output_8_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_8_0.png)
 
 
 ## Timing of Kills
@@ -182,19 +119,10 @@ While the overall distribution of round time gives us a broad overview of how qu
 ```python
 # Get timing of first kill for each round
 kill_timing = kill_data[['seconds', 'att_side']]
-
-plt.figure(figsize=(10,8))
-plt.hist(kill_timing['seconds'][(kill_timing['seconds'] <= 120) & (kill_timing.att_side=='Terrorist')], bins=200, color='#f85b74', alpha=0.60)
-plt.hist(kill_timing['seconds'][(kill_timing['seconds'] <= 120) & (kill_timing.att_side=='CounterTerrorist')], bins=200, color='#6fceb0', alpha=0.60)
-plt.legend(['T', 'CT'])
-plt.title('Timing of Kills', fontdict={'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Time(s)', weight='medium')
-plt.ylabel('No. of Rounds', weight='medium')
-plt.show()
 ```
 
 
-![png](output_10_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_10_0.png)
 
 
 ### Pre-Round
@@ -213,19 +141,10 @@ It is much more difficult to label the peak at 30 seconds with an event. By that
 ```python
 # Get timing of first kill for each round
 kill_timing = kill_data[['seconds', 'is_bomb_planted']]
-
-plt.figure(figsize=(10,8))
-plt.hist(kill_timing['seconds'][(kill_timing['seconds'] <= 120) & (~kill_timing.is_bomb_planted)], bins=200, color='#f85b74', alpha=0.60)
-plt.hist(kill_timing['seconds'][(kill_timing['seconds'] <= 120) & (kill_timing.is_bomb_planted)], bins=200, color='#6fceb0', alpha=0.60)
-plt.legend(['T', 'CT'])
-plt.title('Timing of Kills', fontdict={'fontweight': 'bold', 'fontsize': 20})
-plt.xlabel('Time(s)', weight='medium')
-plt.ylabel('No. of Rounds', weight='medium')
-plt.show()
 ```
 
 
-![png](output_12_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_12_0.png)
 
 
 We note that no kills (after the bomb was planted) occurred before 35 seconds, while the median timing for kills after bomb plants was 68 seconds. Assuming that the CTs take some time to respond and set themselves up (for slaughter), and taking into account the distribution of kills before the bomb is planted, we can infer that:  
@@ -246,35 +165,24 @@ In addition, we observe several peculiarities:
 Clearly, this will have an impact on subsequent analyses. We should make some effort to clean the data.
 
 
-```python
-for rt in dust2.round_type.unique():
-    
-    plt.figure(figsize=(12,5))
-    plt.hist(dust2.t_eq_val[dust2.round_type == rt], bins=50, color='#f85b74', alpha=0.85)
-    plt.title(rt.replace('_', ' '), fontdict={'fontweight': 'bold', 'fontsize': 17})
-    plt.ylabel('No. of Rounds', weight='medium')
-    plt.xlabel('Money ($)', weight='medium')
-    plt.show()
-```
 
-
-![png](output_15_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_15_0.png)
 
 
 
-![png](output_15_1.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_15_1.png)
 
 
 
-![png](output_15_2.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_15_2.png)
 
 
 
-![png](output_15_3.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_15_3.png)
 
 
 
-![png](output_15_4.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_15_4.png)
 
 
 Hence, I created side-specific labels using simple heuristics:  
@@ -329,42 +237,27 @@ dust2['ct_round_type'][(dust2.ct_round_type == 'PISTOL_ROUND') & (dust2.ct_eq_va
 The distributions make more sense now:  
 
 
-```python
-# Plot
-for rt in ['PISTOL_ROUND', 'ECO', 'NORMAL', 'ANTI_ECO', 'FORCE_BUY', 'SEMI_ECO']:
-    
-    plt.figure(figsize=(12,5))
-    plt.hist(dust2.ct_eq_val[dust2.ct_round_type == rt], bins=50, color='#6fceb0', alpha=0.5)
-    plt.hist(dust2.t_eq_val[dust2.t_round_type == rt], bins=50, color='#f85b74', alpha=0.5)
-    plt.title(rt.replace('_', ' '), fontdict={'fontweight': 'bold', 'fontsize': 17})
-    plt.ylabel('No. of Rounds', weight='medium')
-    plt.xlabel('Money ($)', weight='medium')
-    plt.legend(['CT', 'T'])
-    plt.show()
-```
-
-
-![png](output_21_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_21_0.png)
 
 
 
-![png](output_21_1.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_21_1.png)
 
 
 
-![png](output_21_2.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_21_2.png)
 
 
 
-![png](output_21_3.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_21_3.png)
 
 
 
-![png](output_21_4.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_21_4.png)
 
 
 
-![png](output_21_5.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_21_5.png)
 
 
 We explain two observations here:  
@@ -389,43 +282,17 @@ Finally, we examine map bias: whether Ts or CTs have an edge on Dust2. We expect
 ```python
 # Compute statistics for all maps
 map_bias = all_data.groupby('map')[['t_score']].mean().sort_values('t_score', ascending=False)
-
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar(np.arange(1,9), map_bias.t_score.values*100, 0.3, color='#ff9966', alpha=0.85)
-plt.ylim(0, 64)
-plt.yticks(weight='medium')
-plt.xticks(np.arange(1,9), map_bias.index, weight='medium')
-plt.title('T-side Bias', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.xlabel('Map', weight='medium')
-plt.show()
 ```
 
 
-![png](output_24_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_24_0.png)
 
 
 Overall, as shown in the plot below, the Ts won approximately 53.8% of rounds, while CTs won only 46.2%. Given the large sample of 20,225 rounds, it is fair to say that there is a T-side bias. But, let's investigate further.
 
 
-```python
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], dust2[['t_score', 'ct_score']].mean()*100, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 64)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('T-side Bias', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=56, s='53.8%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=48, s='46.2%', weight='medium', fontsize=13)
-plt.show()
-```
 
-
-![png](output_26_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_26_0.png)
 
 
 ## Pistol Rounds
@@ -435,23 +302,10 @@ Pistol rounds are arguably the best for determining bias. This is because firepo
 ```python
 # Compute pistol round scores
 round_pistol = dust2[(dust2.t_round_type == 'PISTOL_ROUND') & (dust2.ct_round_type == 'PISTOL_ROUND')].copy()
-
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], round_pistol[['t_score', 'ct_score']].mean()*100, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 64)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('Win Percentage - Pistol Rounds', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=56, s='53.5%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=49, s='46.5%', weight='medium', fontsize=13)
-plt.show()
 ```
 
 
-![png](output_28_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_28_0.png)
 
 
 ## Normal Rounds
@@ -461,23 +315,10 @@ Normal rounds are the next best for investigating bias because the firepower of 
 ```python
 # Compute pistol round scores
 round_normal = dust2[(dust2.t_round_type == 'NORMAL') & (dust2.ct_round_type == 'NORMAL')].copy()
-
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], round_normal[['t_score', 'ct_score']].mean()*100, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 64)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('Win Percentage - Normal Rounds', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=55, s='52.1%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=50, s='47.9%', weight='medium', fontsize=13)
-plt.show()
 ```
 
 
-![png](output_30_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_30_0.png)
 
 
 ## Anti-Eco Rounds
@@ -488,23 +329,10 @@ Next, we examine the proportion of Anti-Eco rounds won. The Ts did 3% better on 
 # Compute pistol round scores
 round_ae = [dust2[dust2.t_round_type == 'ANTI_ECO'].t_score.mean()*100,
                 dust2[dust2.ct_round_type == 'ANTI_ECO'].ct_score.mean()*100]
-
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], round_ae, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 100)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('Win Percentage - Anti-Eco Rounds', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=86, s='82.6%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=82, s='79.0%', weight='medium', fontsize=13)
-plt.show()
 ```
 
 
-![png](output_32_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_32_0.png)
 
 
 ## Eco Rounds
@@ -515,23 +343,10 @@ The Ts also won 2.5% more of their Eco rounds than the CTs, possibly because the
 # Compute pistol round scores
 round_eco = [dust2[dust2.t_round_type == 'ECO'].t_score.mean()*100,
                 dust2[dust2.ct_round_type == 'ECO'].ct_score.mean()*100]
-
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], round_eco, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 25)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('Win Percentage - Eco Rounds', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=19, s='18.0%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=17, s='15.6%', weight='medium', fontsize=13)
-plt.show()
 ```
 
 
-![png](output_34_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_34_0.png)
 
 
 ## Semi-Eco and Force Buys
@@ -543,43 +358,17 @@ These are where the biggest differences are. Ts won approximately 8% more on the
 round_se = [dust2[dust2.t_round_type == 'SEMI_ECO'].t_score.mean()*100,
                 dust2[dust2.ct_round_type == 'SEMI_ECO'].ct_score.mean()*100]
 
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], round_se, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 40)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('Win Percentage - Semi-Eco Rounds', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=36, s='34.6%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=28, s='26.8%', weight='medium', fontsize=13)
-plt.show()
-
 # Compute pistol round scores
 round_fb = [dust2[dust2.t_round_type == 'FORCE_BUY'].t_score.mean()*100,
                 dust2[dust2.ct_round_type == 'FORCE_BUY'].ct_score.mean()*100]
-
-# Plot
-plt.figure(figsize=(10, 6))
-plt.bar([1, 2], round_fb, 0.5, color=['#133056', '#b1ceeb'], alpha=0.85)
-plt.ylim(0, 45)
-plt.xlim(0,3)
-plt.yticks(weight='medium')
-plt.xticks([1,2], ['T', 'CT'], weight='medium')
-plt.title('Win Percentage - Force Buys', fontdict = {'fontweight': 'bold', 'fontsize': 20})
-plt.ylabel('% of Rounds Won', weight='medium')
-plt.text(x=0.92, y=39, s='37.2%', weight='medium', fontsize=13)
-plt.text(x=1.92, y=30, s='28.8%', weight='medium', fontsize=13)
-plt.show()
 ```
 
 
-![png](output_36_0.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_36_0.png)
 
 
 
-![png](output_36_1.png)
+![png](../graphics/2019-04-06-csgo-analytics-part-1-the-dust2-round/output_36_1.png)
 
 
 # Conclusion [TLDR]
@@ -599,3 +388,8 @@ Here's what we learned:
 4. The statistics show that Dust2 favours the Ts. They do especially well on Semi-Eco rounds and Force Buys.  
   
 In the next post, we analyse the popular and advantageous angles covered by the Ts and CTs through visualisations.
+  
+---
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/3bb5473ee589962f95d4931d96356c5676dada90/notebooks/2018-11-10-how-not-to-invest-clenow-momentum.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Counter-Strike Blog](https://blog.counter-strike.net/)
