@@ -390,6 +390,6 @@ Here's what we learned:
 In the next post, we analyse the popular and advantageous angles covered by the Ts and CTs through visualisations.
   
 ---
-Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/3bb5473ee589962f95d4931d96356c5676dada90/notebooks/2018-11-10-how-not-to-invest-clenow-momentum.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](https://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/2666c19568865db2349fc780d12f4d54f6c41e9b/notebooks/2019-04-06-csgo-analytics-part-1-the-dust2-round.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Counter-Strike Blog](https://blog.counter-strike.net/)
