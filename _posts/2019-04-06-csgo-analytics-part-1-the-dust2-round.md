@@ -1,5 +1,12 @@
-
-# CS:GO Analytics Part 1: The Dust2 Round
+---
+type: post  
+title: "CS:GO Analytics Part 1: The Dust2 Round"  
+bigimg: /img/csgo_full.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/ndsc2019_official_sq.jpg
+share-img: /img/csgo_sq.jpg
+share-img2: /img/csgo_sq.jpg
+tags: [data science]
+---  
   
 # A CS:GO Series of a Different Kind
 Most people who know me well would know that I **LOVE** playing Counter Strike: Global Offensive (CS:GO). Specifically, I play only one map: Dust2. Having just completed my first data science competition, I learned the importance of exploratory data analysis (EDA). I assumed that EDA could be done away with. However, this resulted in a low competition score until the very end, when I finally took a closer look at the data. In addition, I'm feeling the buzz from having participated in the competition. Hence, I'm directing my energy toward analysing my favourite game and map. I will be writing a series of posts on CS:GO:  
