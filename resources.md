@@ -24,27 +24,29 @@ Having gone through the thought process, my recommendations are as such:
 3. If it is **all of the above**, go for a Masters programme.  
   
 # Structure
-Regardless of which option you chose, know that structure is important (and people love structure). Therefore, you should structure your learning, taking reference from Masters Programmes. From my research on the Masters programmes from Columbia University, UC Berkeley, Johns Hopkins, Carnegie Mellon, Cornell, and Harvard, I discovered that there were 8 key focus areas:  
+Regardless of which option you chose, know that structure is important (and people love structure). Therefore, you should structure your learning, taking reference from Masters Programmes. From my research on the programmes from Columbia University, UC Berkeley, Johns Hopkins, Carnegie Mellon, Cornell, and Harvard, I discovered that a Masters in Data Science typically comprises 7 key focus areas:  
   
-| CATEGORY         | TOPICS                                                                        |
-|------------------|-------------------------------------------------------------------------------|
+1. Statistics
+2. Data Exploration
+3. Computing
+4. Databases
+5. Machine Learning
+6. Deep Learning
+7. Capstone Project
+  
+Using this framework, here are my recommendations cum achievements:  
+  
+| CATEGORY         | RESOURCES                                                                           |
+|------------------|-------------------------------------------------------------------------------------|
 | Statistics       | Statistical Inference<br>Linear Models<br>Probability Models<br>Bayesian Statistics |
-| Machine Learning | Applied Machine Learning                                                      |
-| Computing        | Algorithms<br>Computer Systems<br>Programming                                     |
-| Databases        | Big Data<br>Relational Databases<br>Data Structures                               |
-| Capstone Project | -                                                                             |
-| Data Exploration | EDA<br>Data Visualisation                                                       |
-| Deep Learning    | -                                                                             |
-| Others           | Ethics<br>Mathematics<br>NLP                                                      |
+| Data Exploration | EDA<br>Data Visualisation                                                           |
+| Computing        | [Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:UCSanDiegoX+DSE200x+1T2018/course/)<br>[Programming for Everybody - Getting Started with Python (Coursera)](https://www.coursera.org/learn/python)<br>[Programming with Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+1T2018a/course/)|
+| Databases        | [Python Data Structures (Coursera)](https://www.coursera.org/learn/python-data)|
+| Machine Learning | [Principles of Machine Learning: Python Edition - Work in Progress (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT275x+2T2018/course/)<br>[The Analytics Edge (EdX)](https://courses.edx.org/courses/course-v1:MITx+15.071x_2a+2T2015/course/)|
+| Deep Learning    | -                                                                                   |
+| Capstone Project | -                                                                                   |
+| Others           | Ethics<br>Mathematics<br>NLP                                                        |
   
-## Python
-  
-1. Python for Data Science ([edX](https://courses.edx.org/courses/course-v1:UCSanDiegoX+DSE200x+1T2018/course/))
-2. Programming for Everybody - Getting Started with Python ([Coursera](https://www.coursera.org/learn/python))
-3. Python Data Structures ([Coursera](https://www.coursera.org/learn/python-data))
-4. Programming with Python for Data Science ([edX](https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+1T2018a/course/))
-5. Principles of Machine Learning: Python Edition - Work in Progress ([edX](https://courses.edx.org/courses/course-v1:Microsoft+DAT275x+2T2018/course/))
-
 ## R
   
 1. The Analytics Edge ([edX](https://courses.edx.org/courses/course-v1:MITx+15.071x_2a+2T2015/course/))
@@ -65,8 +67,7 @@ Regardless of which option you chose, know that structure is important (and peop
 16. Intro to Statistics in R: Multiple Regression ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-multiple-regression))
 17. Kaggle R Tutorial on Machine Learning ([DataCamp](https://www.datacamp.com/courses/kaggle-r-tutorial-on-machine-learning))
   
-# Books
-Some recommended titles:
+# Recommended Reading
   
 1. Data Science for Business: What You Need to Know About Data Mining and Data-Analytic Thinking
 2. Data Smart: Using Data Science to Transform Information into Insight
