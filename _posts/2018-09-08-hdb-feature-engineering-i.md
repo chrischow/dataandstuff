@@ -5,6 +5,7 @@ tags: [real estate pricing, feature engineering]
 bigimg: /img/hdb_img.jpg
 image: https://brandinsider.straitstimes.com/queenspeak/wp-content/uploads/sites/45/2016/10/ST_old_QUEENSTOWN-min.jpg
 share-img: /img/hdb_img_sq.jpg
+share-img2: https://github.com/chrischow/dataandstuff/blob/gh-pages/img/hdb_img_sq.jpg
 ---
   
 # Introduction
