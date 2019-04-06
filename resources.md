@@ -39,33 +39,13 @@ Using this framework, here are my recommendations/achievements:
 | CATEGORY         | RESOURCES                                                                           |
 |------------------|-------------------------------------------------------------------------------------|
 | Statistics       | Statistical Inference<br>Linear Models<br>Probability Models<br>Bayesian Statistics |
-| Data Exploration | EDA<br>Data Visualisation                                                           |
-| Computing        | [Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:UCSanDiegoX+DSE200x+1T2018/course/)<br>[Programming for Everybody - Getting Started with Python (Coursera)](https://www.coursera.org/learn/python)<br>[Programming with Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+1T2018a/course/)<br>[Python Programmer Track (DataCamp)](https://www.datacamp.com/tracks/python-programmer)|
-| Databases        | **SQL:**<br>[SQLBolt](https://sqlbolt.com/)<br>[Learn SQL (Codecademy)](https://www.codecademy.com/learn/learn-sql)<br>[DataCamp](https://www.datacamp.com/courses/tech:sql)<br>**Python:**<br>[Python Data Structures (Coursera)](https://www.coursera.org/learn/python-data)|
+| Data Exploration | **R:**<br>[Exploratory Data Analysis(Coursera)](https://www.coursera.org/learn/exploratory-data-analysis/home/welcome)|
+| Computing        | **Python:**<br>[Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:UCSanDiegoX+DSE200x+1T2018/course/)<br>[Programming for Everybody - Getting Started with Python (Coursera)](https://www.coursera.org/learn/python)<br>[Programming with Python for Data Science (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT210x+1T2018a/course/)<br>[Python Programmer Track (DataCamp)](https://www.datacamp.com/tracks/python-programmer)<br><br>**R:**<br>[R Programming (Coursera)](https://www.coursera.org/learn/r-programming/home/welcome)<br>|
+| Data & Databases | **SQL:**<br>[SQLBolt](https://sqlbolt.com/)<br>[Learn SQL (Codecademy)](https://www.codecademy.com/learn/learn-sql)<br>[DataCamp](https://www.datacamp.com/courses/tech:sql)<br><br>**Python:**<br>[Python Data Structures (Coursera)](https://www.coursera.org/learn/python-data)<br><br>**R:**<br>[Getting and Cleaning Data (Coursera)](https://www.coursera.org/learn/data-cleaning/home/welcome)|
 | Machine Learning | **Python:**<br>[Principles of Machine Learning: Python Edition - Work in Progress (EdX)](https://courses.edx.org/courses/course-v1:Microsoft+DAT275x+2T2018/course/)<br><br>**R:**<br>[The Analytics Edge (EdX)](https://courses.edx.org/courses/course-v1:MITx+15.071x_2a+2T2015/course/)|
 | Deep Learning    | -                                                                                   |
 | Capstone Project | -                                                                                   |
-| Others           | Ethics<br>Mathematics<br>NLP                                                        |
-  
-## R
-  
-1. The Analytics Edge ([edX](https://courses.edx.org/courses/course-v1:MITx+15.071x_2a+2T2015/course/))
-2. The Data Scientist’s Toolbox ([Coursera](https://www.coursera.org/learn/data-scientists-tools/home/welcome))
-3. R Programming ([Coursera](https://www.coursera.org/learn/r-programming/home/welcome))
-4. Getting and Cleaning Data ([Coursera](https://www.coursera.org/learn/data-cleaning/home/welcome))
-5. Exploratory Data Analysis ([Coursera](https://www.coursera.org/learn/exploratory-data-analysis/home/welcome))
-6. Reproducible Research ([Coursera](https://www.coursera.org/learn/reproducible-research/home/welcome))
-7. Introduction to R ([DataCamp](https://www.datacamp.com/courses/free-introduction-to-r))
-8. Intermediate R ([DataCamp](https://www.datacamp.com/courses/intermediate-r))
-9. Data Manipulation in R with dplyr ([DataCamp](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial))
-10. Data Visualisation in R with ggvis ([DataCamp](https://www.datacamp.com/courses/ggvis-data-visualization-r-tutorial))
-11. How to Work with Quandl in R ([DataCamp](https://www.datacamp.com/courses/quandl-r-tutorial))
-12. Intro to Statistics in R: Introduction ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-introduction))
-13. Intro to Statistics in R: Student’s T-test ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-students-t-test))
-14. Intro to Statistics in R: Analysis of Variance (ANOVA) ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-analysis-of-variance-anova))
-15. Intro to Statistics in R: Correlation and Linear Regression ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-correlation-and-linear-regression))
-16. Intro to Statistics in R: Multiple Regression ([DataCamp](https://www.datacamp.com/courses/intro-to-statistics-with-r-multiple-regression))
-17. Kaggle R Tutorial on Machine Learning ([DataCamp](https://www.datacamp.com/courses/kaggle-r-tutorial-on-machine-learning))
+| Others           | **R:**<br>[Reproducible Research (Coursera)](https://www.coursera.org/learn/reproducible-research/home/welcome)|
   
 # Recommended Reading
   
