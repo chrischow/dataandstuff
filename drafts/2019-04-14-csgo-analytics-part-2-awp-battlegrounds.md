@@ -263,10 +263,10 @@ Next, we move on to popular AWP angles along the Ts' route to A through Long.
 First, the angle from Long Doors to Long for the Ts (and the opposite for the CTs) is an important duel. When both the Ts and CTs have good spawns at the far ends of their spawn points (location they appear at the start of the round), they rush to take up this angle and arrive at almost the same time. That makes this angle extremely competitive.  
   
 #### Ts Sniping Long
-![](../img/[3] alongdoors_t.jpg)  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/3_alongdoors_t.jpg)  
   
 #### CTs Sniping Long Doors
-![]../img/[3] alongdoors_ct.jpg)  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/3_alongdoors_ct.jpg)  
 
 The scores were extremely close on this angle. Thankfully, we have the Mann-Whitney U to confirm that there was no statistically significant difference:  
 
@@ -330,7 +330,7 @@ Now, assuming the Ts successfully take Long, they still have one more hurdle: Cr
 ![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_t.jpg)  
   
 #### CTs Sniping Cross from CT Mid
-![]../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_ct.jpg)  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_ct.jpg)  
 
 It appears that the Ts had an **effectiveness** advantage over the CTs, assuming that the other angles in the cluster did not create an upward bias in AVG Damage. A **positional** advantage was present probably because the Ts can hide behind the car, which makes it difficult for the CTs to spot them. Meanwhile, the CTs are more easily spotted when they take up positions at CT Mid.
 
