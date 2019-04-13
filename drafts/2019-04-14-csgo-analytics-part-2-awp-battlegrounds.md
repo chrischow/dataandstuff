@@ -190,7 +190,7 @@ def plot_cluster(clust, df, title, color, trans=0.1):
 ```
 
 ## The Middle
-We begin the analysis with the middle of the map: Mid. Mid is an incredibly open area  
+We begin the analysis with the most important area: Mid. Mid is an incredibly open area in the center of the map. Controlling Mid enables a team to influence enemy movement. For example, by controlling Mid, Ts can stop CTs crossing from one bombsite to another by sniping through Mid Doors into CT Mid. By controlling Mid, CTs can pick off Ts on Catwalk before they mount an attack on A.  
   
 ### The Mid Duel
 This is probably the most popular angle for AWPers. CTs and Ts both snipe each other from their respective spawn areas through Mid. See the screenshots below for reference.
