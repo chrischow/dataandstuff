@@ -158,12 +158,8 @@ plt.show()
 
 ![png](output_6_0.png)
 
-<<<<<<< HEAD
 
 While these findings give us a broad sense of the AWP killzones, we don't have an idea where we should stand if we are AWPers ourselves. The next section will shed light on the optimal positions to take as an AWPer.
-=======
-While these findings give us broad guidance on the AWP killzones, we don't have an idea where we should stand if we are AWPers ourselves. The next section will shed light on the optimal positions to take as an AWPer.  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 # AWP Battlegrounds
 Now, we dive into the hotly-contested AWP angles on the map. Our objectives are to (1) identify popular AWP angles taken by the Ts and CTs, and (2) evaluate which side (T or CT) these angles favour.  
@@ -302,17 +298,10 @@ We begin the analysis with the middle of the map: Mid. Mid is an incredibly open
 This is probably the most popular angle for AWPers. CTs and Ts both snipe each other from their respective spawn areas through Mid. See the screenshots below for reference.
   
 #### Ts Sniping from T-Spawn
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/1_mid_t.jpg" width="800">  
   
 #### CTs Sniping from CT Mid
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/1_mid_ct.jpg" width="800">
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/1_mid_t.jpg)
-  
-#### CTs Sniping from CT Mid
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/1_mid_ct.jpg)
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 Comparing the statistics, we see that more shots were taken from T-spawn than from CT Mid. However, the average damage per shot was lower because most shots were cushioned by Mid Doors. Notice how many of the Ts' shots went **through the left door**, which were probably attempts to deal some damage to the CTs as they jumped across CT Mid on their way to B. Meanwhile, the CTs were able to do more damage per shot, arguably because the shots were direct hits **between** Mid Doors, which instantly killed the targets.  
   
@@ -354,18 +343,10 @@ plot_cluster([3], awpct, 'CTs Sniping from CT Mid', 'blue', 0.01)
 Next, we examine a popular angle in Mid: Top Mid/Catwalk vs. CT Mid. See the screenshots below for reference.
   
 #### Ts Sniping from Catwalk
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/2_midwalk_t.jpg" width="800">  
   
 #### CTs Sniping from CT Mid
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/2_midwalk_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/2_midwalk_t.jpg)
-  
-#### CTs Sniping from CT Mid
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/2_midwalk_ct.jpg)
-  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 Clearly, the CT angle is more **effective** and has a **positional** advantage. This conclusion is confirmed with a Mann-Whitney U test. The CT angle is advantageous because Ts have to be on the move when they are on Catwalk. Meanwhile, the CTs hold a static position as they wait for a T to step into their crosshair.
 
@@ -408,17 +389,10 @@ Next, we move on to popular AWP angles along the Ts' route to A through Long.
 First, the angle from Long Doors to Long for the Ts (and the opposite for the CTs) is an important duel. When both the Ts and CTs have good spawns at the far ends of their spawn points (location they appear at the start of the round), they rush to take up this angle and arrive at almost the same time. That makes this angle extremely competitive.  
   
 #### Ts Sniping Long
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/3_alongdoors_t.jpg" width="800">  
   
 #### CTs Sniping Long Doors
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/3_alongdoors_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/3_alongdoors_t.jpg)  
-  
-#### CTs Sniping Long Doors
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/3_alongdoors_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 The scores were extremely close on this angle. We can confirm that there was no statistically significant difference:  
 
@@ -460,17 +434,10 @@ plot_cluster([7], awpct, 'CTs Sniping Long Doors from Long', 'blue')
 Assuming the Ts break through Long Doors successfully, they can take up a position from Pit or just outside Pit. Meanwhile, the CTs typically take positions at Car, Cross, and A site.  
   
 #### Ts Sniping A Site from Pit
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/4_along_t.jpg" width="800">  
   
 #### CTs Sniping Long from A Site
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/4_along_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/4_along_t.jpg)  
-  
-#### CTs Sniping Long from A Site
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/4_along_ct.jpg)
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 This angle provided the CTs with both an **effectiveness** and a **positional** advantage. There are advantages for the CTs because the they can hold angles at or slightly off the following positions: (1) Car, (2) Goose, and (3) A Plat. With numerous positions, the probability of catching a T off guard is high.
 
@@ -510,17 +477,10 @@ plot_cluster([0, 14], awpct, 'CTs Sniping Long from A Site and Car', 'blue', 0.0
 Now, assuming the Ts successfully take Long, they still have one more hurdle: Cross. This is where they can be eliminated by CTs sniping from CT Mid or CT Spawn.   
   
 #### Ts Sniping CT Mid from Cross
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_t.jpg" width="800">  
   
 #### CTs Sniping Cross from CT Mid
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_t.jpg)  
-  
-#### CTs Sniping Cross from CT Mid
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/5_cross_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 It appears that the Ts had an **effectiveness** advantage over the CTs, assuming that the other angles in the cluster did not create an upward bias in AVG Damage. A **positional** advantage was present probably because the Ts can hide behind the car, which makes it difficult for the CTs to spot them. Meanwhile, the CTs are more easily spotted when they take up positions at CT Mid.
 
@@ -563,7 +523,6 @@ Next, we jump over to the angles along the route from Mid to A via Catwalk, Shor
 The other sensible way (besides Long) for Ts to attack A is through Catwalk and Short Stairs. At times, CTs might get aggressive and take up forward positions here, and fall back to A Site when they are in trouble.  
   
 #### Ts Sniping Catwalk and Short Stairs
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_catwalk_t.jpg" width="800">  
   
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_short_stairs_t.jpg" width="800">  
@@ -572,16 +531,6 @@ The other sensible way (besides Long) for Ts to attack A is through Catwalk and 
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_catwalk_ct.jpg" width="800">  
   
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_short_stairs_t.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_catwalk_t.jpg)  
-  
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_short_stairs_t.jpg)  
-  
-#### CTs Sniping Cross from CT Mid
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_catwalk_ct.jpg)  
-  
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/6_short_stairs_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 #### Some Data Cleaning
 The original clusters were extremely dirty. There were numerous shots from Mid Doors vs. CT Spawn that were muddled with the Catwalk / Short Stairs angles. Hence, we performed a second level of clustering to separate these two groups of angles.
@@ -639,19 +588,12 @@ plot_cluster([0], awpct_css, 'CT Angles on Catwalk and Short Stairs', 'blue')
 Clearing Catwalk and Short Stairs is the easy part. At the A site, the CTs have numerous angles to take aim from, which could easily catch the Ts off guard.
   
 #### Ts Sniping A Site
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/7_ashort_t.jpg" width="800">  
   
 #### CTs Sniping Short
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/7_ashort_ct.jpg" width="800">  
 
 As shown from the plots, there were 5 main angles that the CTs held (and that the Ts had to check): (1) Goose, (2) A Plat, (3) halfway up A Ramp, (4) bottom of A Ramp, and (5) Car. These provided the CTs with a huge **positional** advantage. Meanwhile, the CTs also had a small **effectiveness** advantage, possibly because of the fewer obstructions from the CT angles relative to the T angles.
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/7_ashort_t.jpg)  
-  
-#### CTs Sniping Short
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/7_ashort_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 
 ```python
@@ -692,17 +634,10 @@ Finally, we examine the angles along the way to B, starting with the route throu
 To enter B, Ts need to traverse the Tunnels Exit. Along the narrow tunnel into B, the Ts are sitting ducks for CTs sniping from Back Plat.  
   
 #### Ts Sniping Back Plat / Back Site
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_t.jpg" width="800">  
   
 #### CTs Sniping Tunnels Exit
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_t.jpg)  
-  
-#### CTs Sniping Tunnels Exit
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 As expected, we see that the CTs had **effectiveness** and **positional** advantages from this angle. The high effectiveness score from the CTs suggests a large proportion of clean, one-hit kills.
 
@@ -742,17 +677,10 @@ plot_cluster([2], awpct, 'CTs Sniping Tunnels from B Plat', 'blue')
 Assuming the Ts make it through Tunnels Exit, they have yet another death trap in the form of the numerous angles inside B. These characteristics make B a difficult site to take, and an easy site to defend.  
   
 #### Ts Sniping B Site
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/9_inside_b_t.jpg" width="800">  
   
 #### CTs Sniping Tunnels Exit
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/9_inside_b_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/9_inside_b_t.jpg)  
-  
-#### CTs Sniping Tunnels Exit
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/9_inside_b_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 This cluster of angles is extremely similar in characteristics to the Short vs. A cluster. The CTs had approximately 5 main angles among a large number of obstructions, as well as a clear view of Tunnels Exit. This made them more **effective** and provided them with a **positional** advantage.
 
@@ -792,17 +720,10 @@ plot_cluster([11], awpct, 'CTs Sniping Tunnels Exit from B Site', 'blue')
 Even if the Ts clear Mid Doors, they still have a major hurdle to clear: CT Mid. Although this area is relatively open, there are only 2-3 angles to watch out for.
   
 #### Ts Sniping Window / B Doors
-<<<<<<< HEAD
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/10_b_doors_t.jpg" width="800">  
   
 #### CTs Sniping CT Mid
 <img src="https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/10_b_doors_ct.jpg" width="800">  
-=======
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/10_b_doors_t.jpg)  
-  
-#### CTs Sniping CT Mid
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/10_b_doors_ct.jpg)  
->>>>>>> 296ca3839774ca75e0c683155e9055628247a331
 
 #### Data Cleaning
 Once again, some data cleaning was required to sanitise the clusters.
