@@ -5,7 +5,7 @@ bigimg: /img/csgo_full.png
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
 share-img: /img/csgo_sq.png
 share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
-tags: [data science]
+tags: [data science, csgo]
 ---  
   
 # A CS:GO Series of a Different Kind
