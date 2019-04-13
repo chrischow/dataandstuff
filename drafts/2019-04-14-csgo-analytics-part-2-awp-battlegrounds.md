@@ -91,7 +91,7 @@ First, we begin with locations that you should avoid if you don't want to get pi
 ![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_7_0.png)
 
 
-In summary, these are the areas you ought to be wary of. There is a high probability that there is an AWPer sniping on these areas.
+While these findings give us broad guidance on the AWP killzones, we don't have an idea where we should stand if we are AWPers ourselves. The next section will shed light on the optimal positions to take as an AWPer.  
 
 # AWP Battlegrounds
 Now, we dive into the hotly-contested AWP angles on the map. Our objectives are to (1) identify popular AWP angles taken by the Ts and CTs, and (2) evaluate which side (T or CT) these angles favour.  
