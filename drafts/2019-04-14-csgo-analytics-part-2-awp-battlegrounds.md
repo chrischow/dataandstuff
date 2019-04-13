@@ -449,7 +449,7 @@ To enter B, Ts need to traverse the Tunnels Exit. This is where they are sitting
 ![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_t.jpg)  
   
 #### CTs Sniping Tunnels Exit
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_ct.jpgk)  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/8_tunnels_ct.jpg)  
 
 As expected, we see that the CTs had **effectiveness** and **positional** advantages from this angle.
 
