@@ -24,7 +24,7 @@ We begin with an overview of **Hotspots**: locations where players get hit the m
 # Orientation of Dust2
 To understand the insights in this post, we'll need a quick orientation of the map. We will be using the location callouts from this excellent guide from [ClutchRound](http://clutchround.com/):  
   
-<img src="../img/csgo_orientation.png" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/csgo_orientation.png)
 
 
 ```python
@@ -88,33 +88,6 @@ First, we begin with locations that you should avoid if you don't want to get pi
 9. **Car:** This is a popular position for CTs to hold from. They can watch Short, Long, and CT Mid.
 
 
-```python
-# Read image
-map_dust2 = plt.imread('../de_dust2.png')
-
-# Plot
-fig, ax = plt.subplots(1,1,figsize=(10,10))
-ax.grid(b=True, which='major', color='grey', linestyle='--', alpha=0.4)
-ax.imshow(map_dust2, zorder=0, extent=[0.0, 1015, 0., 1010])
-ax.scatter(x=df_awp.vicx, y=df_awp.vicy, color='red', s=2, alpha=0.05)
-plt.title('AWP Damage Heatmap', fontdict={'fontweight': 'bold', 'fontsize': 20})
-plt.text(100, 590, text='Tunnels Exit', s=10, color='white')
-plt.text(280, 750, text='B Doors', s=10, color='white')
-plt.text(230, 830, text='Window', s=10, color='white')
-plt.text(420, 670, text='CT Mid', s=10, color='white')
-plt.text(410, 590, text='Mid Doors', s=10, color='white')
-plt.text(620, 700, text='Short Stairs', s=10, color='white')
-plt.text(420, 420, text='Top Mid &\n Catwalk', s=10, color='white')
-plt.text(690, 390, text='Long Doors', s=10, color='white')
-plt.text(850, 550, text='Long', s=10, color='white')
-plt.text(950, 700, text='Car', s=10, color='white')
-plt.text(480, 100, text='T Spawn', s=10, color='white')
-plt.xlim(0,1024)
-plt.ylim(0,1024)
-plt.show()
-```
-
-
 ![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_7_0.png)
 
 
@@ -144,24 +117,6 @@ for k in num_clusters:
     scores_ct.append(cls_ct.score(awpct[['attx', 'atty', 'vicx', 'vicy']]))
 ```
 
-
-```python
-# Plot
-fig, ax = plt.subplots(1,2, figsize=(15,6))
-ax[0].plot(num_clusters, scores_t, color='#f85b74')
-ax[0].set_title('Score for Ts', fontdict=fontdict)
-ax[0].set_xlabel('No. of Clusters', weight='medium')
-ax[0].set_ylabel('Score', weight='medium')
-
-ax[1].plot(num_clusters, scores_t, color='#133056')
-ax[1].set_title('Score for CTs', fontdict=fontdict)
-ax[1].set_xlabel('No. of Clusters', weight='medium')
-ax[1].set_ylabel('Score', weight='medium')
-
-plt.show()
-```
-
-
 ![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_12_0.png)
 
 
@@ -179,23 +134,6 @@ awpct['cluster'] = cls_ct.predict(awpct[['attx', 'atty', 'vicx', 'vicy']])
 ```
 
 Looking across the clusters, we see varying numbers of AWP shots taken. But, this does not give us any insights. We must analyse each cluster visually to assign an intuitive label to each cluster.
-
-
-```python
-# Plot
-fig, ax = plt.subplots(1,2, figsize=(15,6), sharey=True)
-
-ax[0].bar(awpt.cluster.value_counts().index.astype(str), awpt.cluster.value_counts(), alpha=0.8, color='#f85b74')
-ax[0].set_title('Clusters for Ts', fontdict={'fontweight': 'bold', 'fontsize':20})
-ax[0].set_xlabel('Cluster', weight='medium')
-ax[0].set_ylabel('No. of Shots', weight='medium')
-
-ax[1].bar(awpct.cluster.value_counts().index.astype(str), awpct.cluster.value_counts(), alpha=0.8, color='#133056')
-ax[1].set_title('Clusters for CTs', fontdict={'fontweight': 'bold', 'fontsize':20})
-ax[1].set_xlabel('Cluster', weight='medium')
-
-plt.show()
-```
 
 
 ![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_15_0.png)
@@ -257,27 +195,15 @@ We begin the analysis with the middle of the map: Mid.
 This is probably the most popular angle for AWPers. CTs and Ts both snipe each other from their respective spawn areas through Mid. See the screenshots below for reference.
   
 #### Ts Sniping from T-Spawn
-<img src="../img/[1] mid_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[1] mid_t.jpg)
   
 #### CTs Sniping from CT Mid
-<img src="../img/[1] mid_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[1] mid_ct.jpg)
 
 Comparing the statistics, we see that more shots were taken from T-spawn than from CT Mid. However, the average damage per shot was lower because most shots were cushioned by Mid Doors. Notice how many of the Ts' shots went **through the left door**, which were probably attempts to deal some damage to the CTs as they jumped across CT Mid on their way to B. Meanwhile, the CTs were able to do more damage per shot, arguably because the shots were direct hits **between** Mid Doors, which instantly killed the targets.  
   
 Overall, we can conclude that the CT angle sets up more **effective** shots, but the T angle has a **positional advantage** because it enables Ts to deliver damage without return fire.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster.isin([2,11])].hp_dmg,
-                        awpct[awpct.cluster.isin([3])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -302,26 +228,14 @@ plot_cluster([3], awpct, 'CTs Sniping from CT Mid', 'blue', 0.01)
 Next, we examine a popular angle in Mid: Top Mid/Catwalk vs. CT Mid. See the screenshots below for reference.
   
 #### Ts Sniping from Catwalk
-<img src="../img/[2] midwalk_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[2] midwalk_t.jpg)
   
 #### CTs Sniping from CT Mid
-<img src="../img/[2] midwalk_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[2] midwalk_ct.jpg)
   
 
 We see that the CTs took substantially more shots and did more damage per shot on average. Clearly, the CT angle is more **effective** and has a **positional advantage**. This conclusion is confirmed with a Mann-Whitney U test:
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 17].hp_dmg,
-                        awpct[awpct.cluster.isin([1,8])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -349,25 +263,13 @@ Next, we move on to popular AWP angles along the Ts' route to A through Long.
 First, the angle from Long Doors to Long for the Ts (and the opposite for the CTs) is an important duel. When both the Ts and CTs have good spawns at the far ends of their spawn points (location they appear at the start of the round), they rush to take up this angle and arrive at almost the same time. That makes this angle extremely competitive.  
   
 #### Ts Sniping Long
-<img src="../img/[3] alongdoors_t.jpg" width="800">  
+![](../img/[3] alongdoors_t.jpg)  
   
 #### CTs Sniping Long Doors
-<img src="../img/[3] alongdoors_ct.jpg" width="800">
+![]../img/[3] alongdoors_ct.jpg)  
 
 The scores were extremely close on this angle. Thankfully, we have the Mann-Whitney U to confirm that there was no statistically significant difference:  
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 7].hp_dmg,
-                        awpct[awpct.cluster == 7].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -394,25 +296,13 @@ plot_cluster([7], awpct, 'CTs Sniping Long Doors from Long', 'blue')
 Assuming the Ts break through Long Doors successfully, they can take up a position from Pit or just outside Pit. Meanwhile, the CTs typically take positions at Car, Cross, and A site.  
   
 #### Ts Sniping A Site from Pit
-<img src="../img/[4] along_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[4] along_t.jpg)  
   
 #### CTs Sniping Long from A Site
-<img src="../img/[4] along_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[4] along_ct.jpg)
 
 This angle provided the CTs with both an **effectiveness** and a **positional** advantage. They took more shots and inflicted more damage per shot on average. The Ts must be extremely vigilant because the CTs can catch the Ts off guard by holding angles at or slightly off the following positions: (1) Car, (2) Goose, and (3) A Plat. 
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 4].hp_dmg,
-                        awpct[awpct.cluster.isin([0, 14])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -437,25 +327,13 @@ plot_cluster([0, 14], awpct, 'CTs Sniping Long from A Site and Car', 'blue', 0.0
 Now, assuming the Ts successfully take Long, they still have one more hurdle: Cross. This is where they can be eliminated by CTs sniping from CT Mid or CT Spawn.   
   
 #### Ts Sniping CT Mid from Cross
-<img src="../img/[5] cross_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[5] cross_t.jpg)  
   
 #### CTs Sniping Cross from CT Mid
-<img src="../img/[5] cross_ct.jpg" width="800">  
+![]../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[5] cross_ct.jpg)  
 
 It appears that the Ts had an **effectiveness** advantage over the CTs, assuming that the other angles in the cluster did not create an upward bias in AVG Damage. A **positional** advantage was present probably because the Ts can hide behind the car, which makes it difficult for the CTs to spot them. Meanwhile, the CTs are more easily spotted when they take up positions at CT Mid.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 10].hp_dmg,
-                        awpct[awpct.cluster == 13].hp_dmg,
-                        alternative='greater')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg > CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg > CT Dmg
@@ -483,14 +361,14 @@ Next, we jump over to the angles along the route from Mid to A via Catwalk and S
 The other sensible way (besides Long) for Ts to attack A is through Catwalk and Short Stairs. At times, CTs might get aggressive and take up forward positions here, and fall back to A Site when they are in trouble.  
   
 #### Ts Sniping Catwalk and Short Stairs
-<img src="../img/[6] catwalk_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[6] catwalk_t.jpg)  
   
-<img src="../img/[6] short_stairs_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[6] short_stairs_t.jpg)  
   
 #### CTs Sniping Cross from CT Mid
-<img src="../img/[6] catwalk_ct.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[6] catwalk_ct.jpg)  
   
-<img src="../img/[6] short_stairs_ct.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[6] short_stairs_ct.jpg)  
 
 #### Some Data Cleaning
 The original clusters were extremely dirty. There were numerous shots from Mid Doors vs. CT Spawn that were muddled with the Catwalk / Short Stairs angles. Hence, we performed a second level of clustering to separate these two groups of angles.
@@ -509,18 +387,6 @@ awpct_css['cluster'] = cls_ct2.fit_predict(awpct_css[['attx', 'atty', 'vicx', 'v
 
 We can see from AVG Damage that neither the Ts or CTs had a big advantage here. This is confirmed by the Mann-Whitney U Test. However, the Ts have a **positional** advantage here. This is possibly because it is easier for a T to escape from Catwalk/Short Stairs to Mid than it is for CTs to backtrack into A. We should note, though, that the sample size is relatively small.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt_css[awpt_css.cluster.isin([0,1])].hp_dmg,
-                        awpct_css[awpct_css.cluster == 0].hp_dmg,
-                        alternative='greater')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg > CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg > CT Dmg
@@ -546,25 +412,13 @@ plot_cluster([0], awpct_css, 'CT Angles on Catwalk and Short Stairs', 'blue')
 Clearing Catwalk and Short Stairs is the easy part. At the A site, the CTs have numerous angles to take aim from, which could easily catch the Ts off guard.
   
 #### Ts Sniping A Site
-<img src="../img/[7] ashort_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[7] ashort_t.jpg)  
   
 #### CTs Sniping Short
-<img src="../img/[7] ashort_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[7] ashort_ct.jpg)  
 
 As shown from the plots, there were 5 main angles that the CTs held (and that the Ts had to check): (1) Goose, (2) A Plat, (3) halfway up A Ramp, (4) bottom of A Ramp, and (5) Car. These provided the CTs with a slight **effectiveness** advantage over the Ts. Meanwhile, the CTs clearly had a **positional** advantage.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 16].hp_dmg,
-                        awpct[awpct.cluster.isin([12,15])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -592,25 +446,13 @@ Finally, we examine the angles along the way to B, starting with the route throu
 To enter B, Ts need to traverse the Tunnels Exit. This is where they are sitting ducks for CTs sniping from Back Plat.  
   
 #### Ts Sniping Back Plat / Back Site
-<img src="../img/[8] tunnels_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[8] tunnels_t.jpg)  
   
 #### CTs Sniping Tunnels Exit
-<img src="../img/[8] tunnels_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[8] tunnels_ct.jpgk)  
 
 As expected, we see that the CTs had **effectiveness** and **positional** advantages from this angle.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 16].hp_dmg,
-                        awpct[awpct.cluster.isin([12,15])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -635,25 +477,13 @@ plot_cluster([2], awpct, 'CTs Sniping Tunnels from B Plat', 'blue')
 Assuming the Ts make it through the death trap that is Tunnels Exit, they have many more angles to clear inside B.  
   
 #### Ts Sniping B Site
-<img src="../img/[9] inside_b_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[9] inside_b_t.jpg)  
   
 #### CTs Sniping Tunnels Exit
-<img src="../img/[9] inside_b_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[9] inside_b_ct.jpg)  
 
 The plot for the CT angles shows approximately 5 main angles that CTs held from. Like the entry into A Site via Short, numerous potential angles gave the CTs an advantage for bomb site B. They had both an **effectiveness** and **positional** advantage.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt[awpt.cluster == 1].hp_dmg,
-                        awpct[awpct.cluster.isin([11])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -678,10 +508,10 @@ plot_cluster([11], awpct, 'CTs Sniping Tunnels Exit from B Site', 'blue')
 Even if the Ts clear Mid Doors, they still have a major hurdle to clear: CT Mid. Although this area is relatively open, there are only 2-3 angles to watch out for.
   
 #### Ts Sniping Window / B Doors
-<img src="../img/[10] b_doors_t.jpg" width="800">  
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[10] b_doors_t.jpg)  
   
 #### CTs Sniping CT Mid
-<img src="../img/[10] b_doors_ct.jpg" width="800">
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[10] b_doors_ct.jpg)  
 
 #### Data Cleaning
 Once again, some data cleaning was required to sanitise the clusters.
@@ -700,18 +530,6 @@ awpct_btm['cluster'] = cls_ct3.fit_predict(awpct_btm[['attx', 'atty', 'vicx', 'v
 
 From the two angles shown in the plot for the CTs, we see that the CTs dealt more damage per shot than the Ts on average, which suggests some advantage accorded to the CTs. However, a Mann-Whitney U test does not support the conclusion on shot effectiveness. Thus, we conclude that there was only a **positional advantage** for the CTs.
 
-
-```python
-# Perform test
-u, p_val = mannwhitneyu(awpt_btm[awpt_btm.cluster == 2].hp_dmg,
-                        awpct_btm[awpct_btm.cluster.isin([0, 3])].hp_dmg,
-                        alternative='less')
-
-# Print
-print('[Mann-Whitney U Test]')
-print('H0: Equal Dmg  |  HA: T Dmg < CT Dmg')
-print('p-value: % s' % '{0:.3f}'.format(p_val))
-```
 
     [Mann-Whitney U Test]
     H0: Equal Dmg  |  HA: T Dmg < CT Dmg
@@ -733,152 +551,8 @@ plot_cluster([0,3], awpct_btm, 'CTs Sniping CT Mid from B Doors and Window', 'bl
 
 
 
-```python
-# Consolidate angles
-all_angles = [
-    'T Spawn vs. CT Mid', 'Mid vs. CT Mid',
-    'Long Doors vs. Long', 'Long vs. A', 'Cross vs. CT Mid',
-    'Catwalk and Short Stairs', 'Short vs. A', 'Tunnels Exit vs. Back Plat',
-    'Tunnels Exit vs. B', 'CT Mid vs. B'
-]
-
-# Consolidate clusters
-t_clusters = [[2,11], 17, 7, 4, 10, [0,1], 16, 15, 1, 2]
-ct_clusters = [3, [1,8], 7, [0,14], 13, 0, [12,15], 2, 11, [0,3]]
-
-# Initialise list
-results = []
-
-# Compute stats
-for i in range(len(all_angles)):
-    
-    # Set up dictionary
-    temp_dict = dict()
-    
-    # Get clusters
-    t_clust = t_clusters[i]
-    ct_clust = ct_clusters[i]
-    
-    # Convert to list
-    if type(t_clust) != list:
-        t_clust = [t_clust]
-        
-    if type(ct_clust) != list:
-        ct_clust = [ct_clust]
-    
-    # Subset data
-    if i == 5:
-        t_dat = awpt_css[awpt_css.cluster.isin(t_clust)]
-        ct_dat = awpct_css[awpct_css.cluster.isin(ct_clust)]
-    
-    elif i == 9:
-        t_dat = awpt_btm[awpt_btm.cluster.isin(t_clust)]
-        ct_dat = awpct_btm[awpct_btm.cluster.isin(ct_clust)]
-    
-    else:
-        t_dat = awpt[awpt.cluster.isin(t_clust)]
-        ct_dat = awpct[awpct.cluster.isin(ct_clust)]
-    
-    # Add angle
-    temp_dict['angle'] = all_angles[i]
-    
-    # Add shot counts
-    temp_dict['t_shots'] = t_dat.shape[0]
-    temp_dict['ct_shots'] = ct_dat.shape[0]
-    
-    # Add avg damage
-    temp_dict['t_dmg'] = t_dat.hp_dmg.mean()
-    temp_dict['ct_dmg'] = ct_dat.hp_dmg.mean()
-    
-    # Add Mann Whitney U test with less and greater-than alternatives
-    _, temp_dict['p_lt'] = mannwhitneyu(t_dat.hp_dmg, ct_dat.hp_dmg, alternative='less')
-    _, temp_dict['p_gt'] = mannwhitneyu(t_dat.hp_dmg, ct_dat.hp_dmg, alternative='greater')
-    
-    # Append
-    results.append(temp_dict)
-    
-# Convert to dataframe
-res_df = pd.DataFrame(results)
-
-# Compute shot ratio
-res_df['max_shots'] = res_df[['ct_shots', 't_shots']].max(axis=1)
-res_df['min_shots'] = res_df[['ct_shots', 't_shots']].min(axis=1)
-res_df['shot_ratio'] = res_df.max_shots / res_df.min_shots - 1
-
-# Compute team with positional advantage
-mask = (res_df.ct_shots > res_df.t_shots)
-res_df['pos_adv'] = np.nan
-res_df['pos_adv'][mask] = 'CT'
-res_df['pos_adv'][~mask] = 'T'
-
-# Present Positional Advantage
-res_df['Positional Advantage'] = res_df['pos_adv'].astype(str) + ' (+' + round(res_df.shot_ratio*100, 0).astype(str) +\
-    '%)'
-
-# Compute damage difference
-res_df['max_dmg'] = res_df[['ct_dmg', 't_dmg']].max(axis=1)
-res_df['min_dmg'] = res_df[['ct_dmg', 't_dmg']].min(axis=1)
-res_df['dmg_diff'] = res_df.max_dmg - res_df.min_dmg
-
-# Compute statistically greater damage
-res_df['t_eff'] = res_df.p_gt < 0.05
-res_df['ct_eff'] = res_df.p_lt < 0.05
-
-# Present Effectiveness Advantage
-res_df['eff_adv'] = np.nan
-res_df['eff_adv'][res_df.t_eff] = 'T (+' + round(res_df.dmg_diff[res_df.t_eff], 2).astype(str) + ' DMG)'
-res_df['eff_adv'][res_df.ct_eff] = 'CT (+' + round(res_df.dmg_diff[res_df.ct_eff], 2).astype(str) + ' DMG)'
-res_df['eff_adv'][(~res_df.t_eff) & (~res_df.ct_eff)] = 'Neither'
-
-# Compute CT advantages
-res_df['ct_pos_adv'] = (res_df.ct_shots / res_df.t_shots - 1) * 100
-res_df['ct_eff_adv'] = res_df.ct_dmg - res_df.t_dmg
-res_df['ct_eff_adv'] = (res_df.ct_eff_adv * (res_df.ct_eff).astype(int) + res_df.ct_eff_adv * (res_df.t_eff).astype(int)).astype(float)
-```
-
 # Conclusion [TLDR]
 In this post, we analysed various AWP angles on Dust2. We used two metrics: (1) Effectiveness, the average damage of shots in each cluster, and (2) Positional Advantage, the relative shot count in two clusters. The graph below summarises the scores for each angle that we analysed. Overall, the CTs appear to have the upper hand for AWP angles. This is interesting, because we know from [my first post in this series](https://chrischow.github.io/dataandstuff/2019-04-06-csgo-analytics-part-1-the-dust2-round/) that Dust 2 is a **T-sided map**.
-
-
-```python
-# Pull data
-plot_data = res_df[::-1].copy()
-plot_data['dmg_diff'] = (plot_data.dmg_diff * (plot_data.ct_eff).astype(int) + plot_data.dmg_diff * (plot_data.t_eff).astype(int)).astype(float)
-
-# Plot
-fig, ax = plt.subplots(ncols=2, sharey=True, figsize=(15, 10))
-
-# Configure Effectiveness plot
-ax[0].barh(np.arange(0, len(plot_data.angle)), plot_data.dmg_diff, align='center',
-           color=['#133056' * (x > 0) + '#f85b74' * (x <= 0) for x in plot_data.ct_eff_adv], alpha=0.8)
-ax[0].set_title('Effectiveness', fontdict=fontdict)
-ax[0].set_xlabel('AVG Damage Difference', weight='medium')
-ax[0].spines['left'].set_visible(False)
-ax[0].spines['right'].set_visible(True)
-ax[0].invert_xaxis()
-ax[0].yaxis.tick_right()
-
-# Configure Positional Advantage Plot
-ax[1].barh(np.arange(0, len(plot_data.angle)), plot_data.shot_ratio*100, align='center',
-           color=['#133056' * (x > 0) + '#f85b74' * (x < 0) for x in plot_data.ct_pos_adv], alpha=0.8)
-ax[1].set_title('Positional Advantage', fontdict=fontdict)
-ax[1].set_xlabel('% Shot Count Increase', weight='medium')
-
-# Prepare y-axis labels
-fig.subplots_adjust(wspace=0.5)
-ax[0].set(yticks=np.arange(0, len(plot_data.angle)), yticklabels=[])
-for yloc, angle in zip(np.arange(0, len(plot_data.angle)), plot_data.angle):
-    ax[0].annotate(angle, (0.5, yloc), xycoords=('figure fraction', 'data'),
-                     ha='center', va='center', size=12)
-
-# Create legend
-custom_bars = [Line2D([0], [0], color='#133056', lw=4),
-                Line2D([0], [0], color='#f85b74', lw=4)]
-ax[1].legend(custom_bars, ['CT', 'T'], loc=0)
-
-# Show
-plt.show()
-```
 
 
 ![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_67_0.png)
