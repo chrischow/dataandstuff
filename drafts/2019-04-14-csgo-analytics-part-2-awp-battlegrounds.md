@@ -1,5 +1,14 @@
-
-# CS:GO Analytics Part 2: AWP Battlegrounds
+---
+type: post  
+title: "CS:GO Analytics Part 1: The Dust2 Round"  
+bigimg: /img/csgo_full.png
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
+share-img: /img/csgo_sq.png
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
+tags: [data science, csgo]
+---  
+  
+# AWP Battlegrounds
 In the first two posts in the series, we learned a little more about the money, the timing, and the bias of Dust2. In the next three posts, we analyse areas in Dust2 where most blood was shed by both the Ts and CTs for AWPs, rifles (AK47, M4A4, M4A1), and grenades. We begin with everyone's favourite weapon: the AWP.  
   
 ## Fun Fact
@@ -35,55 +44,11 @@ from sklearn.cluster import KMeans
 # Settings
 warnings.filterwarnings('ignore')
 ```
-
-
-```python
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.weight'] = 'medium'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-# Title parameters
-fontdict = {'fontweight': 'bold', 'fontsize':20}
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
-```
-
-
+  
 ```python
 # Load data
 dmg_data = pd.read_csv('../esea_dust2_dmg.csv')
-```
 
-
-```python
 # Configure Dust2 map parameters
 resX = 1024
 resY = 1024
@@ -108,7 +73,7 @@ df_awp = dmg_data[['attx', 'atty', 'vicx', 'vicy', 'att_side', 'hp_dmg']][(dmg_d
 awpt = df_awp[df_awp.att_side == 'Terrorist']
 awpct = df_awp[df_awp.att_side == 'CounterTerrorist']
 ```
-
+  
 # Hotspots
 First, we begin with locations that you should avoid if you don't want to get picked off by an AWPer. The most common areas for getting shot are:  
   
@@ -150,7 +115,7 @@ plt.show()
 ```
 
 
-![png](output_7_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_7_0.png)
 
 
 In summary, these are the areas you ought to be wary of. There is a high probability that there is an AWPer sniping on these areas.
@@ -197,7 +162,7 @@ plt.show()
 ```
 
 
-![png](output_12_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_12_0.png)
 
 
 
@@ -233,7 +198,7 @@ plt.show()
 ```
 
 
-![png](output_15_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_15_0.png)
 
 
 ## Evaluation Metrics
@@ -326,11 +291,11 @@ plot_cluster([3], awpct, 'CTs Sniping from CT Mid', 'blue', 0.01)
 ```
 
 
-![png](output_22_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_22_0.png)
 
 
 
-![png](output_22_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_22_1.png)
 
 
 ### Mid vs. CT Mid
@@ -370,11 +335,11 @@ plot_cluster([1, 8], awpct, 'CTs Sniping Catwalk and Mid from CT Mid', 'blue')
 ```
 
 
-![png](output_26_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_26_0.png)
 
 
 
-![png](output_26_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_26_1.png)
 
 
 ## Attacking A: The Long Way
@@ -418,11 +383,11 @@ plot_cluster([7], awpct, 'CTs Sniping Long Doors from Long', 'blue')
 ```
 
 
-![png](output_31_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_31_0.png)
 
 
 
-![png](output_31_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_31_1.png)
 
 
 ### The Long Duel: Long vs. A
@@ -461,11 +426,11 @@ plot_cluster([0, 14], awpct, 'CTs Sniping Long from A Site and Car', 'blue', 0.0
 ```
 
 
-![png](output_35_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_35_0.png)
 
 
 
-![png](output_35_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_35_1.png)
 
 
 ### Cross vs. CT Mid
@@ -504,11 +469,11 @@ plot_cluster([13], awpct, 'CTs Sniping Cross from CT Mid', 'blue')
 ```
 
 
-![png](output_39_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_39_0.png)
 
 
 
-![png](output_39_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_39_1.png)
 
 
 ## Attacking A: The Short Way
@@ -570,11 +535,11 @@ plot_cluster([0], awpct_css, 'CT Angles on Catwalk and Short Stairs', 'blue')
 ```
 
 
-![png](output_46_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_46_0.png)
 
 
 
-![png](output_46_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_46_1.png)
 
 
 ### Short vs. A
@@ -613,11 +578,11 @@ plot_cluster([12, 15], awpct, 'CTs Sniping Short from Numerous Angles', 'blue', 
 ```
 
 
-![png](output_50_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_50_0.png)
 
 
 
-![png](output_50_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_50_1.png)
 
 
 ## Attacking B Through Tunnels
@@ -659,11 +624,11 @@ plot_cluster([2], awpct, 'CTs Sniping Tunnels from B Plat', 'blue')
 ```
 
 
-![png](output_54_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_54_0.png)
 
 
 
-![png](output_54_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_54_1.png)
 
 
 ### The Death Trap II: Tunnels Exit vs. B
@@ -702,11 +667,11 @@ plot_cluster([11], awpct, 'CTs Sniping Tunnels Exit from B Site', 'blue')
 ```
 
 
-![png](output_58_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_58_0.png)
 
 
 
-![png](output_58_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_58_1.png)
 
 
 ## Attacking B Through Mid - CT Mid vs. B
@@ -760,11 +725,11 @@ plot_cluster([0,3], awpct_btm, 'CTs Sniping CT Mid from B Doors and Window', 'bl
 ```
 
 
-![png](output_64_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_64_0.png)
 
 
 
-![png](output_64_1.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_64_1.png)
 
 
 
@@ -916,7 +881,12 @@ plt.show()
 ```
 
 
-![png](output_67_0.png)
+![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_67_0.png)
 
 
 Hence, we must dig further by analysing the shot data for the two most commonly-used rifles in CS:GO - the AK47 and M4A1/M4A4.
+  
+---
+Click [here](https://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/2666c19568865db2349fc780d12f4d54f6c41e9b/notebooks/2019-04-06-csgo-analytics-part-1-the-dust2-round.ipynb){:target="_blank"} for the full Jupyter notebook.
+  
+Credits for images: [Counter-Strike Blog](https://blog.counter-strike.net/)
