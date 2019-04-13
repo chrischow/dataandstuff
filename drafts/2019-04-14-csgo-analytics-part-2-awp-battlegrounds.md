@@ -1,6 +1,6 @@
 ---
 type: post  
-title: "CS:GO Analytics Part 1: The Dust2 Round"  
+title: "CS:GO Analytics Part 2: AWP Battlegrounds"  
 bigimg: /img/csgo_full.png
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
 share-img: /img/csgo_sq.png
