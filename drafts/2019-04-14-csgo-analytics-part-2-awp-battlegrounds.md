@@ -195,10 +195,10 @@ We begin the analysis with the middle of the map: Mid.
 This is probably the most popular angle for AWPers. CTs and Ts both snipe each other from their respective spawn areas through Mid. See the screenshots below for reference.
   
 #### Ts Sniping from T-Spawn
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[1] mid_t.jpg =100x)
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/1_mid_t.jpg)
   
 #### CTs Sniping from CT Mid
-![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/[1] mid_ct.jpg = 100x)
+![](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/1_mid_ct.jpg)
 
 Comparing the statistics, we see that more shots were taken from T-spawn than from CT Mid. However, the average damage per shot was lower because most shots were cushioned by Mid Doors. Notice how many of the Ts' shots went **through the left door**, which were probably attempts to deal some damage to the CTs as they jumped across CT Mid on their way to B. Meanwhile, the CTs were able to do more damage per shot, arguably because the shots were direct hits **between** Mid Doors, which instantly killed the targets.  
   
