@@ -1,5 +1,4 @@
-
----  
+---
 type: post  
 title: "CS:GO Analytics Part 2: AWP Battlegrounds"  
 bigimg: /img/csgo_full.png
