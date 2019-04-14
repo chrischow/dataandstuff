@@ -92,7 +92,6 @@ An interesting feature of the Multiplier is that bonus interest is awarded based
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Eligible Transactions</th>
       <th>Salary + 1 Criterion</th>
       <th>Salary + 2 or more Criteria</th>
