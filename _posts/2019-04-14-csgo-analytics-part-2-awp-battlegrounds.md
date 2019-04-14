@@ -566,7 +566,7 @@ In this post, we analysed various AWP angles on Dust2. We used two metrics: (1) 
 Overall, the data suggests that CTs have the upper hand for AWP angles. This is interesting, because we know from [my first post in this series](https://chrischow.github.io/dataandstuff/2019-04-06-csgo-analytics-part-1-the-dust2-round/) that Dust 2 is a **T-sided map**. Hence, we must dig further by analysing the shot data for the two most commonly-used rifles in CS:GO - the AK47 and M4A1/M4A4.  
   
 ---
-Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/7c567f9043bc4d8f874909c29baacb3222b05fa8/notebooks/2019-04-14-csgo-analytics-part-2-awp-battlegrounds.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/5f93e88f2048a2d684c01cc21705e980075ff523/notebooks/2019-04-14-csgo-analytics-part-2-awp-battlegrounds.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images:  
 [Counter-Strike Blog](https://blog.counter-strike.net/)  
