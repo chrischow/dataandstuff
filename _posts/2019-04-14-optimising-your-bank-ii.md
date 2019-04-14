@@ -291,7 +291,7 @@ The only type of loan worth pursuing is the DBS Home Loan. There is no restricti
 Just 6 months ago, the SaveUp account was the optimal account to deposit your money, regardless of bank balance. Now, the SaveUp account does not feature as a primary or secondary choice under any circumstances. This shows how non-committal the banks can be. All banks "*may at their own discretion/reserve the right to vary the base interest rate and bonus interest rates"*. Yet, this does not mean that we should close our SaveUp accounts. Since the rates can change at any time, keep multiple accounts open for when these changes take place, and re-optimise accordingly.
   
 ---
-Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/65e677cd746cadaa1c349d6ab96e7280d695db7d/notebooks/2018-10-13-optimising-your-bank.ipynb){:target="_blank"} for the full Jupyter notebook.
+Click [here](https://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/89ac4acfe7797075458d59acbfc9ebff7742ce4a/notebooks/2019-04-14-optimising-your-bank-ii.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images: [Financial Times](https://www.ft.com/)
   
