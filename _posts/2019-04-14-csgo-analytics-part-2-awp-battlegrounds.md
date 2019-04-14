@@ -530,9 +530,9 @@ awpt_btm['cluster'] = cls_t3.fit_predict(awpt_btm[['attx', 'atty', 'vicx', 'vicy
 awpct_btm['cluster'] = cls_ct3.fit_predict(awpct_btm[['attx', 'atty', 'vicx', 'vicy']])
 ```
 
-From the two angles shown in the plot for the CTs, we see that the CTs dealt more damage per shot than the Ts on average, which suggests some advantage accorded to the CTs. However, a Mann-Whitney U test does not support the conclusion on shot effectiveness. We could infer that the Ts were vigilant in checking these two angles when stepping onto CT Mid, enabling them to land shots **specifically** at B Doors and Window. This could have contributed to a distribution of shot damage that was similar to that of the CTs from their respective positions.  
+From the two angles shown in the plot for the CTs, we see that the CTs dealt more damage per shot than the Ts on average, which suggests some advantage accorded to the CTs. However, a Mann-Whitney U test does not support the conclusion on shot effectiveness. We could infer that the Ts were vigilant in checking these two angles when stepping onto CT Mid, enabling them to land shots specifically at B Doors and Window. This could have contributed to a distribution of shot damage that was similar to that of the CTs from their respective positions.  
   
-Finally, we may conclude that there was only a **positional advantage** for the CTs, but the sample size was extremely small. We need more data to be confident in this conclusion.
+Finally, we may conclude that there was only a **positional** advantage for the CTs, but the sample size was extremely small. We need more data to be confident in this conclusion.
 
 
     [Mann-Whitney U Test]
@@ -563,7 +563,7 @@ In this post, we analysed various AWP angles on Dust2. We used two metrics: (1) 
 ![png](../graphics/2019-04-14-csgo-analytics-part-2-awp-battlegrounds/output_66_0.png)
 
 
-Overall, the CTs appear to have the upper hand for AWP angles. This is interesting, because we know from [my first post in this series](https://chrischow.github.io/dataandstuff/2019-04-06-csgo-analytics-part-1-the-dust2-round/) that Dust 2 is a **T-sided map**. Hence, we must dig further by analysing the shot data for the two most commonly-used rifles in CS:GO - the AK47 and M4A1/M4A4.  
+Overall, the data suggests that CTs have the upper hand for AWP angles. This is interesting, because we know from [my first post in this series](https://chrischow.github.io/dataandstuff/2019-04-06-csgo-analytics-part-1-the-dust2-round/) that Dust 2 is a **T-sided map**. Hence, we must dig further by analysing the shot data for the two most commonly-used rifles in CS:GO - the AK47 and M4A1/M4A4.  
   
 ---
 Click [here](https://nbviewer.jupyter.org/github/chrischow/dataandstuff/blob/2666c19568865db2349fc780d12f4d54f6c41e9b/notebooks/2019-04-06-csgo-analytics-part-1-the-dust2-round.ipynb){:target="_blank"} for the full Jupyter notebook.
