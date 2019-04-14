@@ -1,7 +1,7 @@
 ---
 type: post  
 title: "CS:GO Analytics Part 2: AWP Battlegrounds"  
-bigimg: /img/csgo_full.png
+bigimg: /img/csgo_awp.png
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
 share-img: /img/csgo_sq.png
 share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/csgo_sq.png
