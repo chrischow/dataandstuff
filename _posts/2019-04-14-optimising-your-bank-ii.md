@@ -1,6 +1,6 @@
 ---
 type: post  
-title: "Optimising Your Finances II: OCBC vs. DBS vs. UOB vs. MayBank"  
+title: "Optimising Your Bank II: OCBC vs. DBS vs. UOB vs. MayBank"  
 bigimg: /img/banks.jpg
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/banks.jpg
 share-img: /img/banks_sq.jpg
@@ -8,7 +8,7 @@ share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/im
 tags: [finance, bank accounts]
 ---  
   
-# I'ts Time for Re-optimisation  
+# It's Time for Re-optimisation  
 Back in Oct 18, I wrote about [optimising bank interest](https://chrischow.github.io/dataandstuff/2018-10-13-optimising-your-bank/). It was a shootout between OCBC's 360 account, UOB's One account, and MayBank's SaveUp account, in which the **SaveUp** was the first choice. The **One** account complemented the SaveUp nicely. However, OCBC and MayBank changed their policies with effect from 1 Apr 19, invalidating my previous analysis. Hence, it is timely for a new exercise in optimisation. In addition to the SaveUp, 360, and One accounts, I will be adding the DBS **Multiplier** account to the analysis.
 
 
