@@ -42,12 +42,12 @@ There has been no change to the One account's interest:
 ## MayBank SaveUp Account
 The SaveUp account now pays bonus interest only on the first **\$50,000** in your account instead of **\$60,000** previously, and has combined the GIRO payments and salary credit criteria into **a single criterion**. This makes it more difficult to meet the criteria for 3 products or services.
   
-| Action                 | Up to \$50,000 |   |
-|------------------------|----------------|---|
-| Base Interest          | 0.3125%        |   |
-| 1 Product or Service   | 0.30%          |   |
-| 2 Products or Services | 0.80%          |   |
-| 3 Products or Services | 2.75%          |   |  
+| Action                 | Up to \$50,000 |
+|------------------------|----------------|
+| Base Interest          | 0.3125%        |
+| 1 Product or Service   | 0.30%          |
+| 2 Products or Services | 0.80%          |
+| 3 Products or Services | 2.75%          |
   
 The products and services include:  
   
