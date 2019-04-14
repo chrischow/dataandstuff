@@ -569,6 +569,6 @@ Overall, the data suggests that CTs have the upper hand for AWP angles. This is 
 Click [here](http://nbviewer.ipython.org/github/chrischow/dataandstuff/blob/7c567f9043bc4d8f874909c29baacb3222b05fa8/notebooks/2019-04-14-csgo-analytics-part-2-awp-battlegrounds.ipynb){:target="_blank"} for the full Jupyter notebook.
   
 Credits for images:  
-[Counter-Strike Blog](https://blog.counter-strike.net/)
+[Counter-Strike Blog](https://blog.counter-strike.net/)  
 [Sora at Mod Workshop](https://modworkshop.net/mydownloads.php?action=view_down&did=19034)
 
