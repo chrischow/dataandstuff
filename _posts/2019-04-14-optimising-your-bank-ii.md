@@ -100,38 +100,32 @@ An interesting feature of the Multiplier is that bonus interest is awarded based
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Less than \$2,000</td>
+      <td>Less than $2,000</td>
       <td>0.50%</td>
       <td>0.50%</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>\$2,000 - \$2,500</td>
+      <td>$2,000 - $2,500</td>
       <td>1.55%</td>
       <td>1.80%</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>\$2,500 - \$5,000</td>
+      <td>$2,500 - $5,000</td>
       <td>1.85%</td>
       <td>2.00%</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>\$5,000 - \$15,000</td>
+      <td>$5,000 - $15,000</td>
       <td>1.90%</td>
       <td>2.20%</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>\$15,000 - \$30,000</td>
+      <td>$15,000 - $30,000</td>
       <td>2.00%</td>
       <td>2.30%</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>\$30,000 or more</td>
+      <td>$30,000 or more</td>
       <td>2.08%</td>
       <td>3.50%</td>
     </tr>
@@ -230,7 +224,7 @@ ocbc_old.drop(['thresh0', 'thresh1', 'thresh2', 'diff', 'diff2'], axis = 1, inpl
 ```
 
 
-![png](output_15_0.png)
+![](../graphics/2019-04-14-optimising-your-bank-ii/output_15_0.png)
 
 
 From the graph above, we see that the revised criteria for bonus interest on the 360 account result in higher interest at every level above \$35,000. The peak interest rate at \$70,000 is now **2.55%**.
@@ -239,7 +233,7 @@ From the graph above, we see that the revised criteria for bonus interest on the
 Next, we use the same technique as in the first post to compute the yield curve for the One account.
 
 
-![png](output_19_0.png)
+![](../graphics/2019-04-14-optimising-your-bank-ii/output_19_0.png)
 
 
 ## MayBank SaveUp Account
@@ -247,7 +241,7 @@ With the changes in the SaveUp account criteria, the overall interest rate is su
 
 
 
-![png](output_23_0.png)
+![](../graphics/2019-04-14-optimising-your-bank-ii/output_23_0.png)
 
 
 ## DBS Multiplier
@@ -257,7 +251,7 @@ However, after seeing how MayBank altered its policy and consequently, its stand
 
 
 
-![png](output_26_0.png)
+![](../graphics/2019-04-14-optimising-your-bank-ii/output_26_0.png)
 
 
 # Recommendations [TLDR]
@@ -266,7 +260,7 @@ However, after seeing how MayBank altered its policy and consequently, its stand
 
 
 
-![png](output_28_0.png)
+![](../graphics/2019-04-14-optimising-your-bank-ii/output_28_0.png)
 
 
 #### Bank Balance of \$22,000 and Below
