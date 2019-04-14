@@ -271,6 +271,7 @@ The first choice is the **One** account. Since this account does not require you
 1. **Monthly Transactions of \$5,000 to \$15,000:** Get the *Multiplier* account for the 1.90% interest rate. 
 2. **Monthly Transactions of \$2,500 to \$5,000:** Get the *360* account, because the interest rate becomes optimal as your bank balance approaches \$38,000.  
   
+  
 #### Bank  Balance of \$38,000 to \$74,000
 The **360** account is the first choice. The peak interest rate is 2.55% when your bank balance hits \$70,000. The **One** account is the secondary choice because it complements the 360 accounts nicely through the GIRO transaction criterion.  
   
