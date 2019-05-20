@@ -47,4 +47,7 @@ People in data-driven organisations must be aligned on a common set of values to
 # Conclusion [TLDR]
 To prepare for a data-driven future, organisations must *(1) be open to the new knowledge that data science will generate and the old knowledge it will invalidate*, *(2) be open to quantitative reasoning, which data science enables*, and *(3) be cognisant of the dangers of discrimination in machine learning.*  
   
-I don't think that understanding and applying these three ideas alone will be sufficient for preparing an organisation to embrace data science. I only hope that these will be kept in mind as organisations push toward their data-driven future.
+I don't think that understanding and applying these three ideas alone will be sufficient for preparing an organisation to embrace data science. I only hope that these will be kept in mind as organisations push toward their data-driven future.  
+  
+---
+Credits for images: [Syncron](https://www.syncron.com/)
