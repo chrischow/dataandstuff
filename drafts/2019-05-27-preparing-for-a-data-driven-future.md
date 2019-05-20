@@ -1,4 +1,12 @@
-# Preparing for a Data-Driven Future
+---
+type: post  
+title: "Preparing for a Data-Driven Future"  
+bigimg: /img/datadriven.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/datadriven.jpg
+share-img: /img/datadriven.png
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/datadriven_sq.png
+tags: [data science]
+---  
   
 # Are We Ready?
 *"In the next bound of our transformation, [your organisation name] will exploit big data, data analytics, and artificial intelligence (AI) to enhance [your organisation's value proposition]."* Yes, we've heard it all before. We will be able to do things faster, better, and more cost effectively. What's new? When will we get there? More importantly, *are we ready?*
