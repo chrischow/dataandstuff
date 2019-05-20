@@ -1,6 +1,6 @@
 # Preparing for a Data-Driven Organisation
   
-# Enough Foreplay
+# Are We Ready?
 *"In the next bound of our transformation, [your organisation name] will exploit big data, data analytics, and artificial intelligence (AI) to enhance [your organisation's value proposition]."* Yes, we've heard it all before. We will be able to do things faster, better, and more cost effectively. What's new? When will we get there? More importantly, *are we ready?*
   
 I think it is fair to say that everyone - the government, businesses, the layman - agree that data science is the future. Though I question the depth of understanding that people have of data science, I welcome their enthusiasm because I genuinely agree with their position on how important data science is and will be. With our leaders' heavy emphasis on building data science competencies in our economy, we have hopped on the bus toward a data-driven future. Whether people understand what data science truly is is besides the point. They will get there, because knowledge and skills can be acquired easily. What is difficult is adjusting to a data-driven culture. And that is the aim of this rare, no-code post: to ask the tough questions about our preparedness for a data-driven future.  
@@ -10,37 +10,34 @@ We will use a simple hypothetical case study to tease out the potential points o
   
 Suppose you want to build a model to evaluate candidates for a position in your organisation. You mine the data on existing employees, and you find several intuitive features (columns) that were predictive of success: *course of study*, *age*, and *years of working experience*. However, it turns out that *gender*, *race*, and *sexual orientation* were on par in terms of predictive value. What's next?  
   
-# Challenging Knowledge and Reasoning
+# 1. Challenging Knowledge
 You have a high-level executive who has been in your organisation for a really long time. He is turning 250 million years old this year - essentially a dinosaur. DinoBoss thinks that academic grades must surely be important, and has bulldozed his way through multiple layers of executives below him, through mathematics and statistics, and through sound data science practices to insist that academic grades be included in the model. Through his sound business understanding, DinoBoss survived the asteroid, and saw the more successful of us develop from primates into humans only because we all got distinctions in our Masters degrees from Harvard. Therefore, we should include whatever DinoBoss says is right into our model because when DinoBoss knows, **he knows**, right?  
   
-Leaders in a data-driven organisation will no longer have the luxury of relying on experience and traditional sources of knowledge, and making arguments through qualitative reasoning. With data, many things (though not all) can be quantified. And where there are true relationships between the data that you have and the phenomena you're trying to explain or predict, there is no escape from the quantitative reality that machine learning models can communicate.  
+Leaders in a data-driven organisation will no longer have the luxury of relying on experience and traditional sources of knowledge. With data, many things (though not all) can be quantified. And where there are true relationships between the data that you have and the phenomena you're trying to explain or predict, there is no escape from the quantitative reality that machine learning can model.  
   
-## New Knowledge vs. Old Knowledge and Experience
-A data-driven organisation will be able to generate new knowledge while validating (or disputing) old knowledge. Machine learning can help us to explain phenomena that we thought were unexplainable. It can quantify relationships in the data for us, thereby enabling us to level-up our understanding of our operations. This will be difficult for the dinosaurs among us to accept. They can no longer operate with the same assumptions that they hold today: that current knowledge and experience are sufficient. The dinosaur mindset must die, especially in the senior leadership, for a data-driven organisation to resolve this tension.  
+A data-driven organisation will be able to generate new knowledge and validate (or disputing) old knowledge. Machine learning can quantify relationships in the data for us, thereby enabling us to level-up our understanding of our operations. This will be difficult for the dinosaurs among us to accept. They can no longer operate with the same assumptions that they hold today: that current knowledge and experience are sufficient.  
   
-## Quantitative vs. Qualitative Reasoning
-A data-driven organisation will also face the tension between quantitative and qualitative reasoning. In data science, pretty much everything is quantified, even words. Recommendations are always backed by quantitative evidence, with qualitative analysis supporting the results. When an organisation acquires the capability to use quantitative analysis, it is inevitable that people question the value of qualitative reasoning. For example, between the following recommendations, which is more convincing?  
+There must be openness to the idea that what we know is **not** all there is. We must embrace the possibility that our understanding of our own operations has been wrong the whole time. Without first recognising that we are sub-optimal, we cannot make the necessary changes to achieve optimality. The dinosaur mindset must die, especially in the senior leadership, for a data-driven organisation to resolve this tension.    
+
   
-1. We should go for Plan A because our model tells us that this has approximately a 90% probability of success. In our model, we included Factors 1 to 30 based on both expert knowledge and machine learning techniques. We tested the model on unseen data and we are confident that 95% of the time, the accuracy will be 88-92%.
-2. We should go for Plan B because it will be able to achieve X, Y, and Z. For X, we assess that the plan will deliver 
-
-
-While I agree that it does somewhat represent intelligence and hard work, I think that there are many other ways to measure these qualities without confounding them. 
-
-Fundamentally, if the model tells you that it doesn't matter, **then it doesn't fucking matter**. Whatever grades stand for could easily be diffused across the entire range of features in your model.
+# 2. Challenging Reason
+You disagree with DinoBoss. You show him how robust the modelling process was, and you attempt to convince him that the numbers are correct: *grades just don't matter*. But DinoBoss explains: the better the grades of the candidate, the higher his intelligence and the better his work ethic is likely to be. Only smart and hardworking people get good grades, and only people with good grades can smell success. He points to his friends who mostly came from Reptile Institution and Homosapien College: they're all doing so well because they had good grades in university! He claims to know the statistics: the law of large numbers in GPA applies here.  
   
-# Challenging Ways of Work and Life
-Guess what: DinoBoss is back.
-
-Machine learning can tell us a lot that we don't know about everyday tasks: how we hire, how we fire, and generally, how we operate. 
-
-How prepared are we to accept that our current ways of operating are sub-optimal?
+Perhaps DinoBoss has a point, that intelligence and a good work ethic are important for success. He argues *qualitatively* that this is so. But there is no quantitative proof of that, at least not from your study. You might be able to argue using statistics, but you will not be able to argue using intuition, because you are effectively saying *intelligence and hard work (at least when measured by academic grades) don't matter*.  
   
-# Challenging Stereotypes
+Herein lies the tension between quantitative and qualitative reasoning. Explanations and predictions can be made using a qualitative lens, and people will generally trust them if they seem to be in alignment with accepted social values. This is simply because we tend to be more receptive to stories. On the other hand, explanations and predictions generated from cold, hard numbers are not emotive. Models can give explanations of reality that contradict what society thinks is common sense. They optimise based on predictive effectiveness, not accepted social norms.  
+
+A data-driven organisation will have to grapple with this issue. It will have people who subscribe more to *qualitative* reasoning, and people who subscribe more to *quantitative* reasoning. Therefore, it must find a balance of weights between qualitative reasoning and quantitative reasoning to (1) maximise effectiveness in decision making and (2) ensure people are comfortable with the decisions made. It might be tough for DinoBoss to accept that grades don't matter and explain to his DinoPeers why grades weren't considered, but it will also be bad for the organisation to continually hire and fire lousy candidates, thereby increasing employee turnover.  
+  
+# 3. Challenging Stereotypes
 You apprise DinoBoss of your interesting finding that gender, race, and sexual orientation are useful in predicting success in the organisation. You also express your concern that this might be discriminatory. But DinoBoss has seen it **all** - the birds, the bees, the reptiles, the fish. They are the same: they are born, they live, they die. Therefore, discrimination does not matter, and he wants you to squeeze every last ounce of value from the data that the organisation has. After all, the organisation must select the best candidates at all cost, right?  
   
 Absolutely not. Statements like that make me wish another asteroid was heading for earth. Discrimination should be prevented in any form and to any degree. The only way to ensure discrimination is not brought into a data-driven organisation is by being very cognisant of what we put into models and by **being very deliberate in choosing what we leave out**. The reason is that machine learning models don't know any better. There is no limit to how much they will discriminate, as long as the numbers are optimised. Therefore, the only way to prevent this from happening is to remove that opportunity altogether.  
   
 People in data-driven organisations must be aligned on a common set of values to decide what is discrimination and what isn't. Surely choosing people by gender, race, and sexual orientation will be considered discrimination. What about social class? What about wealth? What about their proxies, like home address and type of housing? What about IQ? 
   
-  
+# Conclusion [TLDR]
+To prepare for a data-driven future, organisations must *(1) be open to the new knowledge that data science will generate and the old knowledge it will invalidate*, *(2) be open to quantitative reasoning, which data science enables*, and *(3) 
+
+
+
