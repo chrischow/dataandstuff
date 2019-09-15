@@ -476,6 +476,7 @@ footer .theme-by {
 }
 .post-preview .post-entry {
   font-family: 'Raleway', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: normal
 }
 .post-entry-container {
   display: inline-block;
