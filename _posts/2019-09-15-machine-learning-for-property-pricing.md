@@ -14,7 +14,7 @@ Recently, I discussed the property market with a friend who was a real estate ag
 # Existing Valuers
 To know how good our model is, we need benchmarks. Here are the main valuers that property sellers go to:  
   
-### The Singapore Institute of Surveys and Values (SISV)
+### The Singapore Institute of Surveyors and Valuers (SISV)
 First, we have the [SISV](http://www.sisv.org.sg/), defined by the [Straits Times](https://www.straitstimes.com/business/property/srx-operator-sues-major-consultancies-over-its-valuation-service) as *\"a professional body representing mainly land surveyors, quantity surveyors, valuers, real estate agents and property managers\"*. Its valuers are "licensed under the Appraisers Act", and must have ["a relevant educational background and adequate practical experience"](http://www.sisv.org.sg/vgp-about.aspx). Therefore, unless you have a Bachelor's Degree in Real Estate, Property Management, or a similar field, you would not know how exactly your property is being valued, and you would not know how to evaluate the accuracy of the valuation you're given. In fact, there are no open records of how accurate SISV's valuations are. Unfortunately, property sellers have high willingness to pay for SISV's services because SISV is licensed by the government to perform valuations.  
   
 ### Singapore Real Estate Exchange (SRX)
