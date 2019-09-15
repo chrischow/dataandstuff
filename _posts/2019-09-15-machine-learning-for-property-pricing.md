@@ -11,20 +11,6 @@ tags: [data science, real estate]
 # Machine Learning for Property Pricing
 Recently, I discussed real estate with a friend who is in the business. I became fascinated with the real estate market: the marketing, the negotiations, the incentives, and the contracting process. Of greatest interest to me was property pricing. I learned that property sellers used various vendors for valuation, from licensed surveyors to free online tools. Generally, these vendors were not transparent about the techniques they employed, besides stating that these were proprietary. Just for fun, I decided to develop an ML model of my own to explore how ML is used to value properties.
 
-
-```python
-# Import required modules
-import matplotlib as mpl
-import matplotlib.collections as mc
-import matplotlib.pyplot as plt
-import numpy as np
-import os
-import pandas as pd
-import probscale as ps
-import scipy.stats as stats
-import seaborn as sns
-```
-
 # Existing Valuers
 To know how good our model is, we need benchmarks. Here are the main valuers that property sellers go to:  
   
@@ -83,14 +69,13 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
   <thead>
     <tr>
       <th></th>
-      <th>Metric</th>
       <th colspan="2" halign="left">Private Non-Landed</th>
       <th colspan="2" halign="left">HDB Resale</th>
       <th colspan="2" halign="left">Private Landed</th>
     </tr>
     <tr>
       <th></th>
-      <th></th>
+      <th>Metric</th>
       <th>X-Value</th>
       <th>C-Value</th>
       <th>X-Value</th>
@@ -101,7 +86,6 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>Median PPD</td>
       <td>2.7%</td>
       <td>2.74%</td>
@@ -111,7 +95,6 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
       <td>8.0%</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>Within 5%</td>
       <td>70.5%</td>
       <td>69.6%</td>
@@ -121,7 +104,6 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
       <td>34.6%</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>Within 10%</td>
       <td>89.1%</td>
       <td>87.7%</td>
@@ -131,7 +113,6 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
       <td>58.3%</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>Within 20%</td>
       <td>97.7%</td>
       <td>97.3%</td>
@@ -168,7 +149,6 @@ UrbanZoom provides [similar statistics](https://www.urbanzoom.com/explanation) f
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Metric</th>
       <th>Zoom Value</th>
       <th>C-Value</th>
@@ -176,25 +156,21 @@ UrbanZoom provides [similar statistics](https://www.urbanzoom.com/explanation) f
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>Median Error</td>
       <td>3.0%</td>
       <td>3.03%</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>Within 5%</td>
       <td>70%</td>
       <td>69.3%</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>Within 10%</td>
       <td>90%</td>
       <td>91.0%</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>Within 20%</td>
       <td>98%</td>
       <td>98.7%</td>
@@ -227,14 +203,6 @@ The models for private non-landed and private Llnded property were developed usi
     }
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-    </tr>
-  </thead>
   <tbody>
     <tr>
       <th>S/N</th>
@@ -456,7 +424,6 @@ From the results below, we see that K-NN was the better model. However, overall,
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Metric</th>
       <th>X-Value</th>
       <th>K-NN</th>
@@ -465,56 +432,48 @@ From the results below, we see that K-NN was the better model. However, overall,
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>Median PPD</td>
       <td>2.7%</td>
       <td>2.74%</td>
       <td>3.60%</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>Within 5%</td>
       <td>70.5%</td>
       <td>69.61%</td>
       <td>62.57%</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>Within 10%</td>
       <td>89.1%</td>
       <td>87.71%</td>
       <td>85.15%</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>Within 20%</td>
       <td>97.7%</td>
       <td>97.29%</td>
       <td>96.95%</td>
     </tr>
     <tr>
-      <th>4</th>
       <td>MAPE</td>
       <td>-</td>
       <td>4.78%</td>
       <td>5.53%</td>
     </tr>
     <tr>
-      <th>5</th>
       <td>MAE</td>
       <td>-</td>
       <td>$64</td>
       <td>$75</td>
     </tr>
     <tr>
-      <th>6</th>
       <td>R2</td>
       <td>-</td>
       <td>95.33%</td>
       <td>94.46%</td>
     </tr>
     <tr>
-      <th>7</th>
       <td>RMSE</td>
       <td>-</td>
       <td>$111</td>
@@ -578,7 +537,6 @@ This time, LightGBM was the better model. However, once again, C-Value did not m
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Metric</th>
       <th>X-Value</th>
       <th>K-NN</th>
@@ -587,28 +545,24 @@ This time, LightGBM was the better model. However, once again, C-Value did not m
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>Median PPD</td>
       <td>7.7%</td>
       <td>8.28%</td>
       <td>8.01%</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>Within 5%</td>
       <td>36.7%</td>
       <td>35.86%</td>
       <td>34.64%</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>Within 10%</td>
       <td>59.8%</td>
       <td>55.81%</td>
       <td>58.26%</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>Within 20%</td>
       <td>82.8%</td>
       <td>79.00%</td>
@@ -622,21 +576,18 @@ This time, LightGBM was the better model. However, once again, C-Value did not m
       <td>12.07%</td>
     </tr>
     <tr>
-      <th>5</th>
       <td>MAE</td>
       <td>-</td>
       <td>$157</td>
       <td>$141</td>
     </tr>
     <tr>
-      <th>6</th>
       <td>R2</td>
       <td>-</td>
       <td>68.87%</td>
       <td>$75.81%</td>
     </tr>
     <tr>
-      <th>7</th>
       <td>RMSE</td>
       <td>-</td>
       <td>$242</td>
@@ -674,7 +625,7 @@ The model for resale HDBs was developed using [resale flat price data from HDB](
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
+      <th>S/N</th>
       <th>0</th>
       <th>1</th>
       <th>2</th>
@@ -822,7 +773,6 @@ Once again, LightGBM was the better model. Yet, C-Value fared worse than X-Value
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Metric</th>
       <th>X-Value</th>
       <th>K-NN</th>
@@ -831,56 +781,48 @@ Once again, LightGBM was the better model. Yet, C-Value fared worse than X-Value
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>Median PPD</td>
       <td>3.1%</td>
       <td>3.93%</td>
       <td>3.20%</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>Within 5%</td>
       <td>70.5%</td>
       <td>60.04%</td>
       <td>69.14%</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>Within 10%</td>
       <td>93.0%</td>
       <td>87.73%</td>
       <td>93.27%</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>Within 20%</td>
       <td>99.2%</td>
       <td>99.19%</td>
       <td>99.72%</td>
     </tr>
     <tr>
-      <th>4</th>
       <td>MAPE</td>
       <td>-</td>
       <td>5.08%</td>
       <td>4.12%</td>
     </tr>
     <tr>
-      <th>5</th>
       <td>MAE</td>
       <td>-</td>
       <td>$21</td>
       <td>$17</td>
     </tr>
     <tr>
-      <th>6</th>
       <td>R2</td>
       <td>-</td>
       <td>92.87%</td>
       <td>95.29%</td>
     </tr>
     <tr>
-      <th>7</th>
       <td>RMSE</td>
       <td>-</td>
       <td>$29</td>
@@ -915,7 +857,6 @@ I combined the best models for private non-landed properties (K-NN) and resale H
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Metric</th>
       <th>Zoom Value</th>
       <th>C-Value</th>
@@ -923,25 +864,21 @@ I combined the best models for private non-landed properties (K-NN) and resale H
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>Median Error</td>
       <td>3%</td>
       <td>3.03%</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>Within 5%</td>
       <td>70%</td>
       <td>69.33%</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>Within 10%</td>
       <td>90%</td>
       <td>91.02%</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>Within 20%</td>
       <td>98%</td>
       <td>98.74%</td>
