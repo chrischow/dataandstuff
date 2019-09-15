@@ -47,6 +47,13 @@ layout: null
 
 @font-face {
     font-family: Raleway;
+    src: url("../fonts/Raleway/Raleway-ExtraBold.ttf") format('truetype');
+    font-weight: extrabold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Raleway;
     src: url("../fonts/Raleway/Raleway-Italic.ttf") format('truetype');
     font-weight: normal;
     font-style: italic;
@@ -128,7 +135,8 @@ p {
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Raleway', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* font-family: Poppins; */
-  font-weight: 700;
+  /* font-weight: 700; */
+  font-weight: extrabold;
 }
 a {
   color: {{ site.link-col }};
