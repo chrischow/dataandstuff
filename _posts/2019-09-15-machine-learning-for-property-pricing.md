@@ -2,7 +2,7 @@
 type: post  
 title: "Machine Learning for Property Pricing"  
 bigimg: /img/property_pricing.jpg
-image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/property_pricing.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/property_pricing_sq.jpg
 share-img: /img/property_pricing.jpg
 share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/property_pricing_sq.jpg
 tags: [data science, real estate]
