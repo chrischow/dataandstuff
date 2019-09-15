@@ -568,7 +568,6 @@ This time, LightGBM was the better model. However, once again, C-Value did not m
       <td>83.21%</td>
     </tr>
     <tr>
-      <th>4</th>
       <td>MAPE</td>
       <td>-</td>
       <td>13.57%</td>
