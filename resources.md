@@ -2,20 +2,13 @@
 layout: page
 title: Resources
 ---
-# What Exactly Do You Want?
+# Why Learn Data Science?
 When I started out in data science back in 2015, I had no idea what I wanted. All I knew was that I had a dissertation to write for my degree in Economics, and that data science was the next big thing. I also knew that I liked programming and wanted to develop my skills in this area. I **did not** know nor expect to dive deep into data science. Many blog posts and one data science competition later (in 2019), I thought of pursuing an online Masters in Data Science to get certification of my skills. After much thought, I realised that these would have been what I would be paying for (in order of importance to me):  
   
-#### 1. Knowledge
-All Masters programmes equip their students with knowledge and practical experience.  
-  
-#### 2. Proof of Skills and Effort
-The certificate is a declaration by a third party (a university) that I did attend certain courses and did well in them.  
-  
-#### 3. Quality Control
-All of the above, under a formal, structured programme.  
-  
-#### 4. Brand
-Apparently, a Masters degree at a reputable school means that the programme is respectable. Not entirely true, because data science is a young field, and Masters programmes are only younger.  
+1. **Knowledge.** All Masters programmes equip their students with knowledge and practical experience.  
+2. **Proof of Skills and Effort.** The certificate is a declaration by a third party (a university) that I did attend certain courses and did well in them.  
+3. **Quality Control.** All of the above, under a formal, structured programme.  
+4. **Brand.** Apparently, a Masters degree at a reputable school means that the programme is respectable. Not entirely true, because data science is a young field, and Masters programmes are younger.  
   
 Having gone through the thought process, my recommendations are as such:  
   
