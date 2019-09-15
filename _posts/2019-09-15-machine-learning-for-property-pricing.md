@@ -183,7 +183,7 @@ UrbanZoom provides [similar statistics](https://www.urbanzoom.com/explanation) f
 # Private Non-Landed and Private Landed Property
 
 ## The Data
-The models for private non-landed and private Llnded property were developed using [URA caveat data](https://www.ura.gov.sg/realEstateIIWeb/transaction/search.action) from Aug 2016 to Aug 2019. As you can see in the table below, there were 16 features, including a manual tagging of Non-Landed / Landed under the `category` feature, and excluding the serial number of each entry.
+The models for private non-landed and landed property were developed using [URA caveat data](https://www.ura.gov.sg/realEstateIIWeb/transaction/search.action) from Aug 2016 to Aug 2019. As you can see in the table below, there were 16 features, including a manual tagging of Non-Landed / Landed under the `category` feature, and excluding the serial number of each entry.
 
 
 
@@ -313,7 +313,7 @@ The models for private non-landed and private Llnded property were developed usi
 
 ### Data Cleaning
 The data was generally clean, with the exception of the `Tenure` feature. Here were the key issues and my steps to resolve them:  
-* **Missing entries for `Tenure`:** Filled in the information using a simple Google search on the property.
+* **Missing entries for `Tenure`:** Filled in the information using a simple Google search on the relevant properties.
 * **Tenure without start year:** I found out that these were properties that were still under construction. I filled in the completion year for these properties through Google.
 * **Freehold properties had no starting year for tenure:** I made the assumption that all Freehold properties were constructed in 1985. On hindsight, this could have affected C-Value's accuracy.
   
@@ -348,14 +348,14 @@ For both models, I used the same set of features:
 The features with an asterix were encoded using OHE.
 
 ### Algorithms
-First, I chose K-Nearest Neighbours Regression (K-NN) because the way this algorithm works is extremely similar to how we price properties. In property pricing, we ask "how much did that similar property sell for?". K-NN is effectively the quantitative implementation of this approach. "Similar" is defined in terms of the features (characteristics of the property) that we put into the model.  
+First, I chose K-Nearest Neighbours Regression (K-NN) because the way this algorithm works is extremely similar to how we price properties. In property pricing, we ask "how much did that similar property sell for?" K-NN is effectively the ML implementation of this approach. "Similar" is defined in terms of the features (characteristics of the property) that we put into the model.  
 
 Second, I chose Gradient Boosting Regression (LightGBM implementation) simply because it is generally a good algorithm. It is fast, effective, flexible, and can model non-linear relationships.
 
 I did not perform any hyperparameter optimisation for both algorithms in any of the models. This was because I wanted a quick and dirty gauge on how useful ML could be. Only after seeing the models' results did I see a point in further optimisation.
 
 ### Evaluation
-To evaluate the models, I used 20 repeats of 5-fold cross validation to generate distributions (*n = 100*) of each evaluation metric. The metrics were:  
+To evaluate the models, I used 20 repeats of 5-fold cross validation (CV) to generate distributions (*n = 100*) of each evaluation metric. The metrics were:  
   
 * Median Purchase Price Deviation (PPD)
 * (Absolute) Price Deviations within 5% of C-Value
@@ -402,7 +402,7 @@ lg = LGBMRegressor(n_estimators=500, max_depth=10, random_state=123, n_jobs=4, r
 lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
 ```
 
-From the results below, we see that K-NN was the better model. However, overall, C-Value did not match up to X-Value across all metrics. Therefore, C-Value is not as robust an ML estimate as X-Value is. However, the difference in median error (0.04%) at the median non-landed price of \$1.2M corresponded to a price difference of only \$480.
+From the results below, we see that K-NN was the better algorithm. However, overall, C-Value did not match up to X-Value across all metrics. Therefore, C-Value is not as robust an ML estimate as X-Value is. However, the difference in median error (0.04%) at the median non-landed price of \$1.2M corresponded to a price difference of only \$480.
 
 
 
@@ -515,7 +515,7 @@ lg = LGBMRegressor(n_estimators=500, max_depth=8, random_state=123, n_jobs=4, re
 lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
 ```
 
-This time, LightGBM was the better model. However, once again, C-Value did not match up to X-Value across all metrics, except in predicting prices within a 20% margin of error. The difference in median error (0.31%) at the median landed price of \$3M corresponded to a price difference of \$9.3k.
+This time, LightGBM was the better algorithm. However, once again, C-Value did not match up to X-Value across all metrics, except in predicting prices within a 20% margin of error. The difference in median error (0.31%) at the median landed price of \$3M corresponded to a price difference of \$9.3k.
 
 
 
@@ -751,7 +751,7 @@ lg = LGBMRegressor(n_estimators=5000, max_depth=25, random_state=123, n_jobs=4, 
 lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
 ```
 
-Once again, LightGBM was the better model. Yet, C-Value fared worse than X-Value in (1) the median error and in (2) predicting prices within a 5% margin of error. The difference in median error (0.1%) at the median resale HDB price of \$410k corresponded to a price difference of only \$410.
+Once again, LightGBM was the better algorithm. Yet, C-Value fared worse than X-Value in (1) the median error and in (2) predicting prices within a 5% margin of error. The difference in median error (0.1%) at the median resale HDB price of \$410k corresponded to a price difference of only \$410.
 
 
 <div>
@@ -894,12 +894,12 @@ Although the dollar price differences due to the median error differences were s
   
 1. **Too little data.** The models were trained on relatively recent data, as opposed to a large bank of data on housing prices. The good thing about this approach is that it avoids using old data that may have become irrelevant. The tradeoff is that *some* of the older data could be useful. For example, 5 years could have been an acceptable time frame for the dataset.
 2. **No temporal effects.** The models assumed that relationships in the data were stable during the time frames in the respective dataset. However, one month's prices could be related to the following month's prices. Including temporal features like lagged prices for a given type of property could improve prediction.
-3. **Simple algorithms.** K-NN was a good model because it accurately models business thinking on valuation, and LightGBM is a good model in general. However, other sophisticated approaches could have been tested. For example, stacked regression can be used to control outlying predictions and by extension, improve MAPE.
+3. **Simple algorithms.** K-NN was a good model because it accurately models business thinking on valuation, and LightGBM is a good model in general. However, other sophisticated approaches could have been tested. For example, stacked regression can be used to control outlying predictions and thereby improve MAPE.
 
 # Conclusion
 In this post, I showed that basic ML algorithms could produce acceptable valuations (C-Value) of Singapore properties. Although these could not match up to the predictive accuracy of X-Value and Zoom Value in terms of median error and the proportion of predictions within given margins of error, these were good enough for providing a rough estimate of value.
 
-More generally, I showed that there is value in using ML for quantifying relationships between characteristics of a property (and/or its similar properties) and its market price. This also means that ML could also be useful in quantifying relationships between property characteristics and a fair **listing** price. This would be an alternative to [SRX's X-Listing Price](https://www.srx.com.sg/ask-home-prof/13952/streetsine-launches-x-listing-price-to-improve-real-estate-pricing), the only all-in-one recommendation service provided to sellers that is available on the market. I'll save this for next time :)
+More generally, I showed that there is value in using ML for quantifying relationships between characteristics of a property (and/or its similar properties) and its market price. This also means that ML can be used to quantify and recommend a fair **listing** price. This would be an alternative to [SRX's X-Listing Price](https://www.srx.com.sg/ask-home-prof/13952/streetsine-launches-x-listing-price-to-improve-real-estate-pricing), the only all-in-one recommendation service provided to sellers that is available on the market. I'll save this for next time :)
 
 ---
 Credits for image: [Nanalyze](https://www.nanalyze.com/)
