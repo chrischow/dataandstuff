@@ -1,11 +1,11 @@
 ---
 type: post  
-title: "Preparing for a Data-Driven Future"  
-bigimg: /img/datadriven.jpg
-image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/datadriven.jpg
-share-img: /img/datadriven.png
-share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/datadriven_sq.png
-tags: [data science]
+title: "Machine Learning for Property Pricing"  
+bigimg: /img/property_pricing.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/property_pricing.jpg
+share-img: /img/property_pricing.jpg
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/property_pricing_sq.jpg
+tags: [data science, real estate]
 ---  
 
 # Machine Learning for Property Pricing
@@ -965,3 +965,6 @@ Although the dollar price differences due to the median error differences were s
 In this post, I showed that basic ML algorithms could produce acceptable valuations (C-Value) of Singapore properties. Although these could not match up to the predictive accuracy of X-Value and Zoom Value in terms of median error and the proportion of predictions within given margins of error, these were good enough for providing a rough estimate of value.
 
 More generally, I showed that there is value in using ML for quantifying relationships between characteristics of a property (and/or its similar properties) and its market price. This also means that ML could also be useful in quantifying relationships between property characteristics and a fair **listing** price. This would be an alternative to [SRX's X-Listing Price](https://www.srx.com.sg/ask-home-prof/13952/streetsine-launches-x-listing-price-to-improve-real-estate-pricing), the only all-in-one recommendation service provided to sellers that is available on the market. I'll save this for next time :)
+
+---
+Credits for image: [Nanalyze](https://www.nanalyze.com/)
