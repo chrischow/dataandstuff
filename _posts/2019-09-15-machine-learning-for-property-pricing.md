@@ -127,7 +127,7 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
 
 
 ## UrbanZoom's Zoom Value
-UrbanZoom provides [similar statistics](https://www.urbanzoom.com/explanation) for Zoom Value: (a) and the percentages of predictions that fell within (a) 5%, (b) 10%, and (c) 20% of actual price. These are simply thresholds for Mean Absolute Percentage Error (MAPE): `( Zoom Value - Transacted Price ) / Transacted Price`. Note that Zoom Value combines predictions for only Condominiums (Private Non-Landed) and resale HDBs. See a comparison of Zoom Value and C-Value in the table below.
+UrbanZoom provides [similar statistics](https://www.urbanzoom.com/explanation) for Zoom Value: (a) Mean Absolute Percentage Error (MAPE) and the percentages of predictions that fell within (a) 5%, (b) 10%, and (c) 20% of actual price. MAPE is computed as `( Zoom Value - Transacted Price ) / Transacted Price`. Note that Zoom Value combines predictions for only Condominiums (Private Non-Landed) and resale HDBs. See a comparison of Zoom Value and C-Value in the table below.
 
 
 
