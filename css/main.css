@@ -59,12 +59,57 @@ layout: null
     font-style: italic;
 }
 
+/* --- Montserrat --- */
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat/Montserrat-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* --- Lora --- */
+@font-face {
+    font-family: Lora;
+    src: url("../fonts/Lora/Lora-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Lora;
+    src: url("../fonts/Lora/Lora-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Lora;
+    src: url("../fonts/Lora/Lora-RegularItalic.ttf") format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Lora;
+    src: url("../fonts/Lora/Lora-BoldItalic.ttf") format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 @import url("pygment_highlights.css");
 
 /* --- General --- */
 
 body {
-  font-family: 'Raleway', 'Open Sans', sans-serif;
+  /*font-family: 'Raleway', 'Open Sans', sans-serif;*/
+  font-family: 'Lora', 'Open Sans', sans-serif;
   /*font-family: 'Raleway', 'Times', sans-serif;*/
   font-size: 16px;
   /* color: #404040; */
@@ -81,7 +126,7 @@ p {
   margin: 30px 0;
 }
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'Poppins', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* font-family: Poppins; */
   font-weight: 700;
 }
