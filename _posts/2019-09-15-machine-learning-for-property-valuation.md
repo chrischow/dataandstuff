@@ -8,7 +8,6 @@ share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/im
 tags: [data science, real estate]
 ---  
 
-# Machine Learning for Property Valuation
 Recently, I discussed the property market with a friend who was a real estate agent. I became fascinated with the real estate market: the marketing, the negotiations, the incentives, and the contracting process. Of greatest interest to me was property valuation. I learned that property sellers used various vendors for valuation, from licensed surveyors to free online tools. Generally, these vendors were not transparent about the techniques they employed, besides stating that these were proprietary. Just for fun, I decided to develop an ML model of my own to explore how ML can be used to value properties.
 
 # Existing Valuers
