@@ -28,7 +28,7 @@ Regardless of which option you chose, know that structure is important (and peop
 6. Deep Learning
 7. Capstone Project
   
-Using this framework, here are my recommendations/achievements:  
+Using this framework, here are my recommendations. These are courses I have completed and found useful. The less useful courses have been filtered away. 
   
 | CATEGORY         | RESOURCES                                                                           |
 |------------------|-------------------------------------------------------------------------------------|
