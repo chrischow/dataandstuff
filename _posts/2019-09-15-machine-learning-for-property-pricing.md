@@ -74,7 +74,6 @@ SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD),
       <th colspan="2" halign="left">Private Landed</th>
     </tr>
     <tr>
-      <th></th>
       <th>Metric</th>
       <th>X-Value</th>
       <th>C-Value</th>
