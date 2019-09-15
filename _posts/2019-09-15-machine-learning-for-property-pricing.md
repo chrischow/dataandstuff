@@ -1,3 +1,12 @@
+---
+type: post  
+title: "Preparing for a Data-Driven Future"  
+bigimg: /img/datadriven.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/datadriven.jpg
+share-img: /img/datadriven.png
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/datadriven_sq.png
+tags: [data science]
+---  
 
 # Machine Learning for Property Pricing
 Recently, I discussed real estate with a friend who is in the business. I became fascinated with the real estate market: the marketing, the negotiations, the incentives, and the contracting process. Of greatest interest to me was property pricing. I learned that property sellers used various vendors for valuation, from licensed surveyors to free online tools. Generally, these vendors were not transparent about the techniques they employed, besides stating that these were proprietary. Just for fun, I decided to develop an ML model of my own to explore how ML is used to value properties.
@@ -14,42 +23,6 @@ import pandas as pd
 import probscale as ps
 import scipy.stats as stats
 import seaborn as sns
-
-# Modify settings
-mpl.rcParams['axes.grid'] = True
-mpl.rcParams['axes.grid.axis'] = 'y'
-mpl.rcParams['grid.color'] = '#e8e8e8'
-mpl.rcParams['axes.spines.right'] = False
-mpl.rcParams['axes.spines.top'] = False
-mpl.rcParams['xtick.color'] = '#494949'
-mpl.rcParams['xtick.labelsize'] = 12
-mpl.rcParams['ytick.color'] = '#494949'
-mpl.rcParams['ytick.labelsize'] = 12
-mpl.rcParams['axes.edgecolor'] = '#494949'
-mpl.rcParams['axes.labelsize'] = 15
-mpl.rcParams['axes.labelpad'] = 15
-mpl.rcParams['axes.labelcolor'] = '#494949'
-mpl.rcParams['axes.axisbelow'] = True
-mpl.rcParams['figure.titlesize'] = 20
-mpl.rcParams['figure.titleweight'] = 'bold'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.weight'] = 'medium'
-mpl.rcParams['font.sans-serif'] = 'Raleway'
-mpl.rcParams['scatter.marker'] = 'h'
-
-title_dict = {'fontweight': 'bold', 'fontsize': 20}
-
-# Colours
-def get_cols():
-    
-    print('[Colours]:')
-    print('Orange:     #ff9966')
-    print('Navy Blue:  #133056')
-    print('Light Blue: #b1ceeb')
-    print('Green:      #6fceb0')
-    print('Red:        #f85b74')
-
-    return
 ```
 
 # Existing Valuers
@@ -88,40 +61,6 @@ In this post, I plan to take transparency one step further by providing a detail
 ## SRX's X-Value
 SRX uses 4 main metrics to evaluate X-Value: (a) Purchase Price Deviation (PPD), and percentage of price deviations within (b) 5%, (c) 10%, and (d) 20% of X-Value. Metric (a) is simply `Transacted Price - X-Value`, while the percentage price deviations are computed as `( Transacted Price - X-Value ) / X-Value`. To see the statistics for X-Value, see SRX's webpage [here](https://www.srx.com.sg/XValue-performance). As shown in the table below, C-Value came close to matching X-Value in generating accurate predictions.  
 
-
-```python
-# Columns
-cols = [
-    ('Metric', ''),
-    ('Private Non-Landed', 'X-Value'), ('Private Non-Landed', 'C-Value'),
-    ('HDB Resale', 'X-Value'), ('HDB Resale', 'C-Value'),
-    ('Private Landed', 'X-Value'), ('Private Landed', 'C-Value')
-]
-
-idx = pd.MultiIndex.from_tuples(cols)
-
-# Non-Landed
-results_nonlanded = pd.DataFrame()
-results_nonlanded['Metric'] = ['Median PPD', 'Within 5%', 'Within 10%', 'Within 20%']
-results_nonlanded['X-Value'] = ['2.7%', '70.5%', '89.1%', '97.7%']
-results_nonlanded['C-Value'] = ['2.74%', '69.6%', '87.7%', '97.3%']
-
-# HDB Resale
-results_hdb = pd.DataFrame()
-results_hdb['X-Value'] = ['3.1%', '70.5%', '93.0%', '99.2%']
-results_hdb['C-Value'] = ['3.2%', '69.2%', '93.2%', '99.7%']
-results_hdb
-
-# Landed
-results_landed = pd.DataFrame()
-results_landed['X-Value'] = ['7.7%', '36.7%', '59.8%', '82.8%']
-results_landed['C-Value'] = ['8.0%', '34.6%', '58.3%', '83.2%']
-
-# Combine
-results_srx = pd.concat([results_nonlanded, results_hdb, results_landed], axis=1)
-results_srx.columns = idx
-results_srx
-```
 
 
 
@@ -211,16 +150,6 @@ results_srx
 UrbanZoom provides [similar statistics](https://www.urbanzoom.com/explanation) for Zoom Value: (a) and the percentages of predictions that fell within (a) 5%, (b) 10%, and (c) 20% of actual price. These are simply thresholds for Mean Absolute Percentage Error (MAPE): `( Zoom Value - Transacted Price ) / Transacted Price`. Note that Zoom Value combines predictions for only Condominiums (Private Non-Landed) and resale HDBs. See a comparison of Zoom Value and C-Value in the table below.
 
 
-```python
-results_zoom = pd.DataFrame()
-results_zoom['Metric'] = ['Median Error', 'Within 5%', 'Within 10%', 'Within 20%']
-results_zoom['Zoom Value'] = ['3.0%', '70%', '90%', '98%']
-results_zoom['C-Value'] = ['3.03%', '69.3%', '91.0%', '98.7%']
-results_zoom
-```
-
-
-
 
 <div>
 <style scoped>
@@ -280,38 +209,6 @@ results_zoom
 
 ## The Data
 The models for private non-landed and private Llnded property were developed using [URA caveat data](https://www.ura.gov.sg/realEstateIIWeb/transaction/search.action) from Aug 2016 to Aug 2019. As you can see in the table below, there were 16 features, including a manual tagging of Non-Landed / Landed under the `category` feature, and excluding the serial number of each entry.
-
-
-```python
-# Get files
-file_list = os.listdir('Caveats/Data')
-
-# Initialise dataframe
-df = pd.DataFrame()
-
-for file in file_list:
-    
-    # Import data
-    temp_df = pd.read_csv('Caveats/Data/'+file, skiprows=1)
-    
-    # Get last row
-    last_row = int(temp_df['S/N'][temp_df['S/N'].str.contains('record\(s\)').fillna(False)].values[0].split(' ')[0])
-    
-    if 'district' in file:
-        temp_df['category'] = 'Landed'
-    elif 'strata' in file:
-        temp_df['category'] = 'Landed'
-    elif 'condo' in file:
-        temp_df['category'] = 'NonLanded'
-    elif 'exec' in file:
-        temp_df['category'] = 'NonLanded'
-    
-    # Append
-    df = pd.concat([df, temp_df.iloc[:last_row]])
-
-df.head(3).T
-```
-
 
 
 
@@ -509,66 +406,36 @@ I wrote a custom function to run the repeated CV with the following steps for ea
 4. Compute and save metrics
 5. Go to next iteration and start from Step 1
 
-
-```python
-# Hide
-# Read data
-df = pd.read_csv('Caveats/caveat_data_final.csv')
-
-# Copy data
-df = df.copy()
-
-# Shuffle data
-df = df.sample(frac=1, random_state=123).reset_index(drop=True)
-
-# Floor level
-df['floor'] = pd.to_numeric(df['Floor Level'].str.replace('.*to ', '').str.replace('-', '').str.replace('B5', ''))
-df['floor'] = df['floor'].fillna(1.0)
-```
-
 ### Model for Private Non-Landed Properties
 In the code below, I configured the cross validation object and the data, and ran the K-NN and LightGBM algorithms using my custom function. I reported the mean of the relevant metrics as the final result.
 
 
 ```python
-# # Configure CV object
-# cv = RepeatedKFold(n_splits=5, n_repeats=20, random_state=100)
+# Configure CV object
+cv = RepeatedKFold(n_splits=5, n_repeats=20, random_state=100)
 
-# # Configure data
-# all_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District', 'age', 'Area (Sqft)', 'floor', 'Street Name', 'Project Name', 'remaining_lease', 'freehold']
-# dum_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District']
+# Configure data
+all_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District', 'age', 'Area (Sqft)', 'floor', 'Street Name', 'Project Name', 'remaining_lease', 'freehold']
+dum_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District']
 
-# # Landed data
-# df_landed = df[df.category == 'NonLanded']
+# Landed data
+df_landed = df[df.category == 'NonLanded']
 
-# # Configure data
-# X_data = pd.get_dummies(df_landed[all_vars],
-#                         columns=dum_vars)
-# y_data = df_landed['Unit Price ($psf)']
+# Configure data
+X_data = pd.get_dummies(df_landed[all_vars],
+                        columns=dum_vars)
+y_data = df_landed['Unit Price ($psf)']
 
-# # Run K-NN model
-# kn = KNeighborsRegressor(n_neighbors=10, weights='distance', n_jobs=4)
-# kn_cv = custom_cv(kn, X_data, y_data, cv, norm=True, ppd=True)
+# Run K-NN model
+kn = KNeighborsRegressor(n_neighbors=10, weights='distance', n_jobs=4)
+kn_cv = custom_cv(kn, X_data, y_data, cv, norm=True, ppd=True)
 
-# # Run LightGBM model
-# lg = LGBMRegressor(n_estimators=500, max_depth=10, random_state=123, n_jobs=4, reg_alpha=0.1, reg_lambda=0.9)
-# lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
+# Run LightGBM model
+lg = LGBMRegressor(n_estimators=500, max_depth=10, random_state=123, n_jobs=4, reg_alpha=0.1, reg_lambda=0.9)
+lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
 ```
 
 From the results below, we see that K-NN was the better model. However, overall, C-Value did not match up to X-Value across all metrics. Therefore, C-Value is not as robust an ML estimate as X-Value is. However, the difference in median error (0.04%) at the median non-landed price of \$1.2M corresponded to a price difference of only \$480.
-
-
-```python
-# Hide
-results_pnl = pd.DataFrame()
-results_pnl['Metric'] = ['Median PPD', 'Within 5%', 'Within 10%', 'Within 20%',
-                       'MAPE', 'MAE', 'R2', 'RMSE']
-results_pnl['X-Value'] = ['2.7%', '70.5%', '89.1%', '97.7%', '-', '-', '-', '-']
-results_pnl['K-NN'] = ['2.74%', '69.61%', '87.71%', '97.29%', '4.78%', '$64', '95.33%', '$111']
-results_pnl['LightGBM'] = ['3.60%', '62.57%', '85.15%', '96.95%', '5.53%', '$75', '94.46%', '$121']
-results_pnl
-```
-
 
 
 
@@ -658,33 +525,7 @@ results_pnl
 </div>
 
 
-
-
-```python
-# Read results data
-res_nonlanded = pd.read_csv('Results - Private Non-Landed.csv')
-
-# Compute mean
-ppd_nonlanded = res_nonlanded.ppd.multiply(100).mean()
-ppd_nonlanded_sd = 1.96 * res_nonlanded.ppd.multiply(100).std() / 10
-
-# Plot
-res_nonlanded['ppd'].multiply(100).plot.hist(color='#6fceb0', bins=15, alpha=0.7, figsize=(10,6))
-plt.vlines(ppd_nonlanded, ymin=0, ymax=17, color='#133056', linestyle='dotted')
-plt.vlines(ppd_nonlanded - ppd_nonlanded_sd, ymin=0, ymax=17, color='#f85b74', linestyle='dotted')
-plt.vlines(ppd_nonlanded + ppd_nonlanded_sd, ymin=0, ymax=17, color='#f85b74', linestyle='dotted')
-plt.suptitle('Distribution of Percentage Price Deviation', fontdict=title_dict)
-plt.ylim(0, 20)
-plt.title('Private Non-Landed Property', fontdict={'fontsize': 15})
-plt.xlabel('Percentage Price Deviation (%)')
-plt.text(ppd_nonlanded, 17.5, 'Mean:\n%s' % '{:.2f}%'.format(ppd_nonlanded), fontdict={'fontsize': 12, 'color': '#133056', 'ha': 'center'})
-plt.text(ppd_nonlanded + ppd_nonlanded_sd + 0.003, 17, 'Upper:\n%s' % '{:.3f}%'.format(ppd_nonlanded + ppd_nonlanded_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'left'})
-plt.text(ppd_nonlanded - ppd_nonlanded_sd - 0.003, 17, 'Lower:\n%s' % '{:.3f}%'.format(ppd_nonlanded - ppd_nonlanded_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'right'})
-plt.show()
-```
-
-
-![png](output_19_0.png)
+![](../graphics/2019-09-15-machine-learning-for-property-pricing/output_19_0.png)
 
 
 ### Model for Private Landed Properties
@@ -692,44 +533,31 @@ The approach taken was the same as before.
 
 
 ```python
-# # Configure CV object
-# cv = RepeatedKFold(n_splits=5, n_repeats=10, random_state=100)
+# Configure CV object
+cv = RepeatedKFold(n_splits=5, n_repeats=10, random_state=100)
 
-# # Configure data
-# all_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District', 'age', 'Area (Sqft)', 'floor', 'Street Name', 'Project Name', 'remaining_lease', 'freehold']
-# dum_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District']
+# Configure data
+all_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District', 'age', 'Area (Sqft)', 'floor', 'Street Name', 'Project Name', 'remaining_lease', 'freehold']
+dum_vars = ['Type', 'Type of Sale', 'Type of Area', 'Market Segment', 'Postal District']
 
-# # Landed data
-# df_landed = df[df.category == 'Landed']
+# Landed data
+df_landed = df[df.category == 'Landed']
 
-# # Configure data
-# X_data = pd.get_dummies(df_landed[all_vars],
-#                         columns=dum_vars)
-# y_data = df_landed['Unit Price ($psf)']
+# Configure data
+X_data = pd.get_dummies(df_landed[all_vars],
+                        columns=dum_vars)
+y_data = df_landed['Unit Price ($psf)']
 
-# # Run K-NN model
-# kn = KNeighborsRegressor(n_neighbors=10, weights='distance', n_jobs=4)
-# kn_cv = custom_cv(kn, X_data, y_data, cv, norm=True, ppd=True)
+# Run K-NN model
+kn = KNeighborsRegressor(n_neighbors=10, weights='distance', n_jobs=4)
+kn_cv = custom_cv(kn, X_data, y_data, cv, norm=True, ppd=True)
 
-# # Run LightGBM model
-# lg = LGBMRegressor(n_estimators=500, max_depth=8, random_state=123, n_jobs=4, reg_alpha=0.1, reg_lambda=0.9)
-# lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
+# Run LightGBM model
+lg = LGBMRegressor(n_estimators=500, max_depth=8, random_state=123, n_jobs=4, reg_alpha=0.1, reg_lambda=0.9)
+lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
 ```
 
 This time, LightGBM was the better model. However, once again, C-Value did not match up to X-Value across all metrics, except in predicting prices within a 20% margin of error. The difference in median error (0.31%) at the median landed price of \$3M corresponded to a price difference of \$9.3k.
-
-
-```python
-# Hide
-results_pl = pd.DataFrame()
-results_pl['Metric'] = ['Median PPD', 'Within 5%', 'Within 10%', 'Within 20%',
-                       'MAPE', 'MAE', 'R2', 'RMSE']
-results_pl['X-Value'] = ['7.7%', '36.7%', '59.8%', '82.8%', '-', '-', '-', '-']
-results_pl['K-NN'] = ['8.28%', '35.86%', '55.81%', '79.00%', '13.57%', '$157', '68.87%', '$242']
-results_pl['LightGBM'] = ['8.01%', '34.64%', '58.26%', '83.21%', '12.07%', '$141', '$75.81%', '$213']
-results_pl
-```
-
 
 
 
@@ -820,48 +648,13 @@ results_pl
 
 
 
-
-```python
-# Read results data
-res_landed = pd.read_csv('Results - Private Landed.csv')
-
-# Compute mean
-ppd_landed = res_landed.ppd.multiply(100).mean()
-ppd_landed_sd = 1.96 * res_landed.ppd.multiply(100).std() / 10
-
-# Plot
-res_landed['ppd'].multiply(100).plot.hist(color='#6fceb0', bins=15, alpha=0.7, figsize=(10,6))
-plt.vlines(ppd_landed, ymin=0, ymax=17, color='#133056', linestyle='dotted')
-plt.vlines(ppd_landed - ppd_landed_sd, ymin=0, ymax=17, color='#f85b74', linestyle='dotted')
-plt.vlines(ppd_landed + ppd_landed_sd, ymin=0, ymax=17, color='#f85b74', linestyle='dotted')
-plt.suptitle('Distribution of Percentage Price Deviation', fontdict=title_dict)
-plt.ylim(0, 20)
-plt.title('Private Landed Property', fontdict={'fontsize': 15})
-plt.xlabel('Percentage Price Deviation (%)')
-plt.text(ppd_landed, 17.5, 'Mean:\n%s' % '{:.2f}%'.format(ppd_landed), fontdict={'fontsize': 12, 'color': '#133056', 'ha': 'center'})
-plt.text(ppd_landed + ppd_landed_sd + 0.03, 17, 'Upper:\n%s' % '{:.2f}%'.format(ppd_landed + ppd_landed_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'left'})
-plt.text(ppd_landed - ppd_landed_sd - 0.03, 17, 'Lower:\n%s' % '{:.2f}%'.format(ppd_landed - ppd_landed_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'right'})
-plt.show()
-```
-
-
-![png](output_24_0.png)
+![](../graphics/2019-09-15-machine-learning-for-property-pricing/output_24_0.png)
 
 
 # Resale HDBs
 
 ## The Data
 The model for resale HDBs was developed using [resale flat price data from HDB](https://data.gov.sg/dataset/resale-flat-prices), from Jan 2015 to Aug 2019. This dataset comprised 11 features, and we used all of them except the transaction month.
-
-
-```python
-# Import data
-resale = pd.read_csv('HDB/resale_jan15.csv')
-resale = pd.concat([resale, pd.read_csv('HDB/resale_jan17.csv')])
-resale.head(3).T
-```
-
-
 
 
 <div>
@@ -980,50 +773,36 @@ I used the same approach as before.
 
 
 ```python
-# # Configure CV object
-# cv = RepeatedKFold(n_splits=5, n_repeats=10, random_state=100)
+# Configure CV object
+cv = RepeatedKFold(n_splits=5, n_repeats=10, random_state=100)
 
-# # Read data
-# resale = pd.read_csv('HDB/resale_final.csv')
+# Read data
+resale = pd.read_csv('HDB/resale_final.csv')
 
-# # FE for blocks
-# resale['block_num'] = resale.block.str.replace('[A-Z]', '')
-# resale['block_letter'] = resale.block.str.replace('[0-9]', '')
-# resale = resale.drop('block', axis=1)
+# FE for blocks
+resale['block_num'] = resale.block.str.replace('[A-Z]', '')
+resale['block_letter'] = resale.block.str.replace('[0-9]', '')
+resale = resale.drop('block', axis=1)
 
-# # Configure features
-# hdb_vars = ['town', 'flat_type', 'block_num', 'block_letter', 'street_name', 'sqft', 'flat_model', 'remaining_lease', 'price', 'age', 'floor']
-# hdb_dum_vars = ['town', 'flat_type', 'flat_model', 'block_num', 'block_letter']
+# Configure features
+hdb_vars = ['town', 'flat_type', 'block_num', 'block_letter', 'street_name', 'sqft', 'flat_model', 'remaining_lease', 'price', 'age', 'floor']
+hdb_dum_vars = ['town', 'flat_type', 'flat_model', 'block_num', 'block_letter']
 
-# # Configure data
-# X_data = pd.get_dummies(resale[hdb_vars],
-#                         columns=hdb_dum_vars).drop('price', axis=1)
-# y_data = resale['price']
+# Configure data
+X_data = pd.get_dummies(resale[hdb_vars],
+                        columns=hdb_dum_vars).drop('price', axis=1)
+y_data = resale['price']
 
-# # Run K-NN model
-# kn = KNeighborsRegressor(n_neighbors=15, weights='distance', n_jobs=4)
-# kn_cv = custom_cv(kn, X_data, y_data, cv, norm=True, ppd=True)
+# Run K-NN model
+kn = KNeighborsRegressor(n_neighbors=15, weights='distance', n_jobs=4)
+kn_cv = custom_cv(kn, X_data, y_data, cv, norm=True, ppd=True)
 
-# # Run LightGBM model
-# lg = LGBMRegressor(n_estimators=5000, max_depth=25, random_state=123, n_jobs=4, reg_alpha=0.1, reg_lambda=0.9)
-# lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
+# Run LightGBM model
+lg = LGBMRegressor(n_estimators=5000, max_depth=25, random_state=123, n_jobs=4, reg_alpha=0.1, reg_lambda=0.9)
+lg_cv = custom_cv(lg, X_data, y_data, cv, norm=False, early=False, ppd=True)
 ```
 
 Once again, LightGBM was the better model. Yet, C-Value fared worse than X-Value in (1) the median error and in (2) predicting prices within a 5% margin of error. The difference in median error (0.1%) at the median resale HDB price of \$410k corresponded to a price difference of only \$410.
-
-
-```python
-# Hide
-results_hdb = pd.DataFrame()
-results_hdb['Metric'] = ['Median PPD', 'Within 5%', 'Within 10%', 'Within 20%',
-                       'MAPE', 'MAE', 'R2', 'RMSE']
-results_hdb['X-Value'] = ['3.1%', '70.5%', '93.0%', '99.2%', '-', '-', '-', '-']
-results_hdb['K-NN'] = ['3.93%', '60.04%', '87.73%', '99.19%', '5.08%', '$21', '92.87%', '$29']
-results_hdb['LightGBM'] = ['3.20%', '69.14%', '93.27%', '99.72%', '4.12%', '$17', '95.29%', '$23']
-results_hdb
-```
-
-
 
 
 <div>
@@ -1112,49 +891,11 @@ results_hdb
 </div>
 
 
-
-
-```python
-# Read results data
-res_hdb = pd.read_csv('Results - HDB.csv')
-
-# Compute mean
-ppd_hdb = res_hdb.ppd.multiply(100).mean()
-ppd_hdb_sd = 1.96 * res_hdb.ppd.multiply(100).std() / 10
-
-# Plot
-res_hdb['ppd'].multiply(100).plot.hist(color='#6fceb0', bins=15, alpha=0.7, figsize=(10,6))
-plt.vlines(ppd_hdb, ymin=0, ymax=17, color='#133056', linestyle='dotted')
-plt.vlines(ppd_hdb - ppd_hdb_sd, ymin=0, ymax=17, color='#f85b74', linestyle='dotted')
-plt.vlines(ppd_hdb + ppd_hdb_sd, ymin=0, ymax=17, color='#f85b74', linestyle='dotted')
-plt.suptitle('Distribution of Percentage Price Deviation', fontdict=title_dict)
-plt.ylim(0, 20)
-plt.title('Resale HDBs', fontdict={'fontsize': 15})
-plt.xlabel('Percentage Price Deviation (%)')
-plt.text(ppd_hdb, 17.5, 'Mean:\n%s' % '{:.2f}%'.format(ppd_hdb), fontdict={'fontsize': 12, 'color': '#133056', 'ha': 'center'})
-plt.text(ppd_hdb + ppd_hdb_sd + 0.003, 17, 'Upper:\n%s' % '{:.3f}%'.format(ppd_hdb + ppd_hdb_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'left'})
-plt.text(ppd_hdb - ppd_hdb_sd - 0.003, 17, 'Lower:\n%s' % '{:.3f}%'.format(ppd_hdb - ppd_hdb_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'right'})
-plt.show()
-```
-
-
-![png](output_36_0.png)
+![](../graphics/2019-09-15-machine-learning-for-property-pricing/output_36_0.png)
 
 
 # Zoom Value: Private Non-Landed and Resale HDBs
 I combined the best models for private non-landed properties (K-NN) and resale HDBs (LightGBM) to create the C-Value equivalent to Zoom Value. Overall, C-Value couldn't match Zoom Value in terms of the median error and the proportion of predictions within 5% accuracy. There was no comparable price difference resulting from the difference in median error, because UrbanZoom did not break down the accuracy statistics by the type of property.
-
-
-```python
-# Hide
-results_zv = pd.DataFrame()
-results_zv['Metric'] = ['Median Error', 'Within 5%', 'Within 10%', 'Within 20%']
-results_zv['Zoom Value'] = ['3%', '70%', '90%', '98%']
-results_zv['C-Value'] = ['3.03%', '69.33%', '91.02%', '98.74%']
-results_zv
-```
-
-
 
 
 <div>
@@ -1210,32 +951,7 @@ results_zv
 </div>
 
 
-
-
-```python
-# Combine data
-zv_all = pd.concat([pd.read_csv('ZV - HDB.csv'), pd.read_csv('ZV - Non-Landed.csv')])
-
-# Compute mean
-ppd_zv = zv_all.median().multiply(100).mean()
-ppd_zv_sd = 1.96 * zv_all.median().multiply(100).std() / 10
-
-zv_all.median().multiply(100).plot.hist(color='#6fceb0', bins=15, alpha=0.7, figsize=(10,6))
-plt.vlines(ppd_zv, ymin=0, ymax=18.5, color='#133056', linestyle='dotted')
-plt.vlines(ppd_zv - ppd_zv_sd, ymin=0, ymax=18.5, color='#f85b74', linestyle='dotted')
-plt.vlines(ppd_zv + ppd_zv_sd, ymin=0, ymax=18.5, color='#f85b74', linestyle='dotted')
-plt.suptitle('Distribution of Percentage Price Deviation', fontdict=title_dict)
-plt.ylim(0, 22)
-plt.title('Zoom Value', fontdict={'fontsize': 15})
-plt.xlabel('Percentage Price Deviation (%)')
-plt.text(ppd_zv, 19, 'Mean:\n%s' % '{:.2f}%'.format(ppd_zv), fontdict={'fontsize': 12, 'color': '#133056', 'ha': 'center'})
-plt.text(ppd_zv + ppd_zv_sd + 0.003, 18.5, 'Upper:\n%s' % '{:.3f}%'.format(ppd_zv + ppd_zv_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'left'})
-plt.text(ppd_zv - ppd_zv_sd - 0.003, 18.5, 'Lower:\n%s' % '{:.3f}%'.format(ppd_zv - ppd_zv_sd), fontdict={'fontsize': 12, 'color': '#f85b74', 'ha': 'right'})
-plt.show()
-```
-
-
-![png](output_39_0.png)
+![](../graphics/2019-09-15-machine-learning-for-property-pricing/output_39_0.png)
 
 
 # Improving the Model
