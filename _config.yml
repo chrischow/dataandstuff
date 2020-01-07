@@ -25,6 +25,7 @@ description: About data. And stuff.
 navbar-links:
   About Me: "aboutme"
   Projects:
+    - BookNuggets: "https://chrischow.github.io/booknuggets/"
     - Kaggle: "kaggle"
   Resources: "resources"
   Links:
