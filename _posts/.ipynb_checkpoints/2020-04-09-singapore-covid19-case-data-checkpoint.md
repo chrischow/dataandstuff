@@ -564,7 +564,7 @@ freq_ts = pd.DataFrame({'date': df.date.unique(), 'tx_pct': freqs, 'imported': i
 Initially, the no-transmission rate (dark blue line, `tx_pct`) was high because cases were primarily imported (red line). Subsequently, the no-transmission rate fell alongside the number of imported cases, indicating that local transmissions rose. The no-transmission rate dropped below 50% shortly after DORSCON was raised to Orange on 7 Feb 20. Thereafter, the no-transmission rate has risen steadily as the government introduced enhanced precautionary measures. 
 
 ## Relationship Between Status and Individual Features
-Next, we breakdown the distribution of each individual feature by the case status (Hospitalised/Discharged/Deceased). Note that there were only 6 deaths, so take the statistics and observations on this group may not generalise well.
+Next, we breakdown the distribution of each individual feature by the case status (Hospitalised/Discharged/Deceased). Note that there were only 6 deaths, so the statistics and observations on this group may not generalise well.
 
 ### Status vs. Age
 Thus far, most of the people who passed on due to COVID-19 were older on average (and the data was relatively tightly grouped around this mean). Meanwhile, there wasn't a big difference between the distribution of age for those currently hospitalised and those who were discharged.
@@ -761,7 +761,10 @@ In our logistic regression model, we include the following features:
 4. Number of sources
 5. Day of the year
 6. An interaction variable between age and source (local)
-7. An interaction variable between age and gender (male).
+7. An interaction variable between age and gender (male)
+8. Cases contacted (receipt of COVID-19)
+9. Cases contacted (transmission of COVID-19)
+10. Number of clusters contacted
 
 
 ```python
@@ -911,11 +914,11 @@ In the diagram above, each value (dots) of each feature (rows) is plotted. High 
 * Together, this means a positive correlation between age and getting discharged, which matches our findings above
 * ***In English:** the older you are, the higher the chance of getting discharged*
 
-Another example would be the number of prior discharged cases:
+Another example would be the day of the year:
 * High values (in red) lie on the left, implying a negative impact on the probability of getting discharged
 * Low values (in blue) lie on the right, implying a positive impact on the probability of getting discharged
-* Together, this means a negative relationship between the number of prior discharged cases and getting discharged, which matches our findings above
-* ***In English:** the earlier you contracted COVID-19, the lower the probability of getting discharged*
+* Together, this means a negative relationship between the date you were identified as a confirmed case and getting discharged, which matches our findings above
+* ***In English:** the earlier you were identified as a COVID-19 case (which means the longer you've been in hospital as of yesterday), the lower the probability of getting discharged*
 
 ## Inspection of Predictions
 Another important step in model evaluation is inspecting predictions to see if our predictions make sense. If this were an ML project, I would have done this first, in addition to computing standard classification metrics like precision, recall, and Area Under Curve (AUC). After all, ML cares more about whether you shoot accurately, regardless of technique, while statistics cares more about whether you held the gun and pulled the trigger using the proper technique.
@@ -1124,7 +1127,7 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
 </div>
 
 
-Above, I list the top 20 cases that we got wrong, ordered by the predicted probability of passing. A big problem: **two of the four decease cases appear here**. In fact, one of them had a predicted discharge probability of 82%!
+Above, I list the top 20 cases that we got wrong, ordered by the predicted probability of being discharged. A big problem: **two of the four deceased cases appeared here**. In fact, one of them had a predicted discharge probability of 82%!
 
 
 ```python
@@ -1218,15 +1221,15 @@ As a second check, I picked out the latest cases that were discharged (above). A
 Overall, the model was simply bad. There are several possible reasons why:
 
 #### There was insufficient personal data
-Besides gender, age, and nationality, no other personal data was provided (yay PDPA!). This is a major factor. A person's time to recovery (or even the possibly of recovery) depends on his/her current health, any existing medical conditions, and maybe genes. A epidemiologist could probably tell you more.
+Besides gender, age, and nationality, no other personal data was provided (yay PDPA!). This is a major factor. A person's time to recovery (or even the possibility of recovery) depends on his/her current health, any existing medical conditions, and maybe genes. A epidemiologist could probably list more important factors.
 
 #### There will always be insufficient data
 Even if we had a lot of data on personal characteristics, we still need a large sample size. However, data will not be generated fast enough. This is because (a) the time from infection to discharge/death is rather long and (b) our population is just too small.
 
 #### Regime change
-This refers to the changing relationship between the predictors (i.e. personal data) and the outcome (recovery/death). As our hospitals become better equipped and able to fight COVID-19, we could see, for example, a decrease in the number of days spent in hospital, or fewer deaths. As the government introduces more measures, the local transmission rate could decrease further. These changes could affect a model that predicts outcomes.
+This refers to the changing relationship between the predictors (i.e. personal data) and the outcome (recovery/death). As our hospitals become better equipped and able to fight COVID-19, we could see, for example, a decrease in the number of days spent in hospital, or fewer deaths. As the government introduces more measures, the local transmission rate could decrease further.
 
 # Conclusion
-In this post, we explored data on COVID-19 cases in Singapore from the [Gov.sg COVID-19 Dashboard](https://www.gov.sg/article/covid-19-cases-in-singapore) and the [Against COVID-19 Singapore Dashboard](https://www.againstcovid19.com/singapore/dashboard). While we made some general observations about age, gender, source, nationality, days in hospital, and outcome (hospitalised/deceased/discharged), we could not model the outcomes well. This was expected, and probably was so because we didn't (and won't) have enough data.
+In this post, we explored data on COVID-19 cases in Singapore from the [Gov.sg COVID-19 Dashboard](https://www.gov.sg/article/covid-19-cases-in-singapore) and the [Against COVID-19 Singapore Dashboard](https://www.againstcovid19.com/singapore/dashboard). While we made some general observations about age, gender, source, nationality, days in hospital, transmission, and outcome (hospitalised/deceased/discharged), we could not model the outcomes well. This was expected, and probably was because we didn't (and won't) have enough data.
 
 The most impactful finding for me was the 98% (320 of 326) rate. Our healthcare workers are working themselves to the bone, and the results are clear. To everyone on the frontline in our fight against COVID-19: Stay strong - the nation is behind you! To everyone else: Stay healthy and safe.
