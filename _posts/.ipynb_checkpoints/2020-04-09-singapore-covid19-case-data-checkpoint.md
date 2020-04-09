@@ -70,7 +70,7 @@ display(df.head())
 ```
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -225,7 +225,7 @@ display(df.head())
 ```
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -507,11 +507,11 @@ In this section, we visualise the key features in the dataset: (1) Age, (2) Gend
 * `PHI`, `Current_Lo`, and `Cluster`: These features contained information on the hospitals that cases were treated/held at. A large proportion of the data was missing (63-67%). Also, I didn't think it would be very fair to compare the discharge/death rates among the various hospitals because there is a lot of randomness in the kind of cases that get resolved.  
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_15_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_15_0.png)
 
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_15_1.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_15_1.png)
 
 
 Here are the key observations, summarised:
@@ -541,7 +541,7 @@ display(txrx)
 ```
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -705,7 +705,7 @@ freq_ts = pd.DataFrame({'date': df.date.unique(), 'tx_pct': freqs, 'imported': i
 ```
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_20_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_20_0.png)
 
 
 ## Relationship Between Status and Individual Features
@@ -715,7 +715,7 @@ Next, we breakdown the distribution of each individual feature by the case statu
 Thus far, most of the people who passed on due to COVID-19 were older on average (and the data was relatively tightly grouped around this mean). Meanwhile, there wasn't a big difference between the distribution of age for those currently hospitalised and those who were discharged.
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_23_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_23_0.png)
 
 
 ### Status vs. Days
@@ -723,7 +723,7 @@ Unlike Age, there was no clear pattern for the number of days spent in hospital.
 
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_25_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_25_0.png)
 
 
 ### Status vs. Gender
@@ -736,11 +736,11 @@ df['male'] = (df.Gender == 'm').astype(int)
 ```
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_27_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_27_0.png)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -797,11 +797,11 @@ df['local'] = (df.Imported_o == 'Local').astype(int)
 ```
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_29_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_29_0.png)
 
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -859,7 +859,7 @@ rx_hosp = df.rx.loc[df.Status=='Hospitalised'].value_counts() / df.rx.loc[df.Sta
 ```
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_31_1.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_31_1.png)
 
 
 ### Status vs. Nationality
@@ -881,7 +881,7 @@ stat_nat = stat_nat.drop('totals', axis=1)
 ```
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_33_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_33_0.png)
 
 
 # Factors for Discharge
@@ -1047,7 +1047,7 @@ shap.summary_plot(shap_log, X_dat, plot_size=(15, 10))
 ```
 
 
-![](graphics\2020-04-09-singapore-covid19-case-data\output_44_0.png)
+![](../graphics/2020-04-09-singapore-covid19-case-data/output_44_0.png)
 
 
 In the diagram above, each value (dots) of each feature (rows) is plotted. High values of each feature are in red, while the low values are in blue. As an example, let's look at Age.
@@ -1078,7 +1078,7 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
 ```
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1299,7 +1299,7 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
 ```
 
 
-<div>
+<div style="overflow-x:auto; width: 100%;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
