@@ -87,7 +87,6 @@ display(df.head())
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Age</th>
       <th>Case_ID</th>
       <th>Cluster</th>
@@ -107,7 +106,6 @@ display(df.head())
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>15</td>
       <td>1189</td>
       <td>0</td>
@@ -125,7 +123,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>54</td>
       <td>1188</td>
       <td>0</td>
@@ -143,7 +140,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>25</td>
       <td>1187</td>
       <td>0</td>
@@ -161,7 +157,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>32</td>
       <td>1186</td>
       <td>0</td>
@@ -179,7 +174,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>4</th>
       <td>18</td>
       <td>1185</td>
       <td>0</td>
@@ -242,7 +236,6 @@ display(df.head())
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Age</th>
       <th>Case_ID</th>
       <th>Cluster</th>
@@ -262,7 +255,6 @@ display(df.head())
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>15</td>
       <td>1189</td>
       <td>0</td>
@@ -280,7 +272,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>54</td>
       <td>1188</td>
       <td>0</td>
@@ -298,7 +289,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>25</td>
       <td>1187</td>
       <td>0</td>
@@ -316,7 +306,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>32</td>
       <td>1186</td>
       <td>0</td>
@@ -334,7 +323,6 @@ display(df.head())
       <td>3</td>
     </tr>
     <tr>
-      <th>4</th>
       <td>18</td>
       <td>1185</td>
       <td>0</td>
@@ -687,7 +675,7 @@ display(txrx)
 
 The data shows that the government's enhanced measures to combat COVID-19 appear to be working based on the no-transmission rate over time. This rate measures the percentage of people who did not transmit COVID-19 after contracting it.
 
-Initially, the no-transmission rate (dark blue line) was high because cases were primarily imported (red line). Subsequently, the no-transmission rate fell alongside the number of imported cases fell, indicating that local transmissions rose. The no-transmission rate dropped below 50% shortly after DORSCON was raised to Orange on 7 Feb 20. Thereafter, the no-transmission rate has risen steadily as the government introduced enhanced precautionary measures. 
+Initially, the no-transmission rate (dark blue line, `tx_pct`) was high because cases were primarily imported (red line). Subsequently, the no-transmission rate fell alongside the number of imported cases fell, indicating that local transmissions rose. The no-transmission rate dropped below 50% shortly after DORSCON was raised to Orange on 7 Feb 20. Thereafter, the no-transmission rate has risen steadily as the government introduced enhanced precautionary measures. 
 
 
 ```python
@@ -1095,7 +1083,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Case_ID</th>
       <th>Age</th>
       <th>Gender</th>
@@ -1106,7 +1093,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
   </thead>
   <tbody>
     <tr>
-      <th>919</th>
       <td>270</td>
       <td>62</td>
       <td>f</td>
@@ -1115,7 +1101,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.944303</td>
     </tr>
     <tr>
-      <th>1076</th>
       <td>113</td>
       <td>42</td>
       <td>m</td>
@@ -1124,7 +1109,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.884593</td>
     </tr>
     <tr>
-      <th>1147</th>
       <td>42</td>
       <td>39</td>
       <td>m</td>
@@ -1133,7 +1117,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.873572</td>
     </tr>
     <tr>
-      <th>1148</th>
       <td>41</td>
       <td>71</td>
       <td>m</td>
@@ -1142,7 +1125,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.866461</td>
     </tr>
     <tr>
-      <th>1154</th>
       <td>35</td>
       <td>64</td>
       <td>m</td>
@@ -1151,7 +1133,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.841244</td>
     </tr>
     <tr>
-      <th>1099</th>
       <td>90</td>
       <td>75</td>
       <td>f</td>
@@ -1160,7 +1141,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.823856</td>
     </tr>
     <tr>
-      <th>996</th>
       <td>193</td>
       <td>26</td>
       <td>m</td>
@@ -1169,7 +1149,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.790345</td>
     </tr>
     <tr>
-      <th>271</th>
       <td>918</td>
       <td>86</td>
       <td>f</td>
@@ -1178,7 +1157,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.763554</td>
     </tr>
     <tr>
-      <th>1047</th>
       <td>142</td>
       <td>26</td>
       <td>m</td>
@@ -1187,7 +1165,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.701128</td>
     </tr>
     <tr>
-      <th>862</th>
       <td>327</td>
       <td>38</td>
       <td>f</td>
@@ -1196,7 +1173,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.684862</td>
     </tr>
     <tr>
-      <th>995</th>
       <td>194</td>
       <td>24</td>
       <td>f</td>
@@ -1205,7 +1181,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.675249</td>
     </tr>
     <tr>
-      <th>68</th>
       <td>1121</td>
       <td>66</td>
       <td>m</td>
@@ -1214,7 +1189,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.662945</td>
     </tr>
     <tr>
-      <th>1060</th>
       <td>129</td>
       <td>68</td>
       <td>f</td>
@@ -1223,7 +1197,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.646263</td>
     </tr>
     <tr>
-      <th>1062</th>
       <td>127</td>
       <td>64</td>
       <td>f</td>
@@ -1232,7 +1205,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.635778</td>
     </tr>
     <tr>
-      <th>1061</th>
       <td>128</td>
       <td>70</td>
       <td>m</td>
@@ -1241,7 +1213,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.619108</td>
     </tr>
     <tr>
-      <th>1059</th>
       <td>130</td>
       <td>66</td>
       <td>m</td>
@@ -1250,7 +1221,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.594735</td>
     </tr>
     <tr>
-      <th>1069</th>
       <td>120</td>
       <td>62</td>
       <td>f</td>
@@ -1259,7 +1229,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.592831</td>
     </tr>
     <tr>
-      <th>1028</th>
       <td>161</td>
       <td>73</td>
       <td>m</td>
@@ -1268,7 +1237,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.564577</td>
     </tr>
     <tr>
-      <th>861</th>
       <td>328</td>
       <td>63</td>
       <td>f</td>
@@ -1277,7 +1245,6 @@ display(high_prob_df.sort_values('prob', ascending=False)[high_prob_df.Status!='
       <td>0.563402</td>
     </tr>
     <tr>
-      <th>1007</th>
       <td>182</td>
       <td>76</td>
       <td>f</td>
@@ -1316,7 +1283,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Case_ID</th>
       <th>Age</th>
       <th>Gender</th>
@@ -1327,7 +1293,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
   </thead>
   <tbody>
     <tr>
-      <th>22</th>
       <td>1167</td>
       <td>58</td>
       <td>f</td>
@@ -1336,7 +1301,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
       <td>0.121341</td>
     </tr>
     <tr>
-      <th>113</th>
       <td>1076</td>
       <td>54</td>
       <td>m</td>
@@ -1345,7 +1309,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
       <td>0.148745</td>
     </tr>
     <tr>
-      <th>151</th>
       <td>1038</td>
       <td>52</td>
       <td>f</td>
@@ -1354,7 +1317,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
       <td>0.110903</td>
     </tr>
     <tr>
-      <th>157</th>
       <td>1032</td>
       <td>28</td>
       <td>f</td>
@@ -1363,7 +1325,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
       <td>0.071548</td>
     </tr>
     <tr>
-      <th>169</th>
       <td>1020</td>
       <td>45</td>
       <td>m</td>
@@ -1372,7 +1333,6 @@ display(high_prob_df[high_prob_df.Case_ID.isin([1167, 1076, 1038, 1032, 1020, 10
       <td>0.138252</td>
     </tr>
     <tr>
-      <th>185</th>
       <td>1004</td>
       <td>32</td>
       <td>f</td>
