@@ -360,10 +360,7 @@ df['n_clusters'] = df.n_clusters.fillna(0)
 Now, we dive into exploratory data analysis (EDA), first for **individual features**, and then for the **relationship between status (discharged/deceased/hospitalised) and individual features**.
 
 ## Individual Features
-In this section, we visualise the key features in the dataset: (1) Age, (2) Gender, (3) Imported/Local, (4) No. of Sources, (5) Days in Hospital, and (6) Status. I omit the other features for the following reasons:
-
-* `Region_201` and `PlanningAr`: These features contained information on the location of cases in Singapore e.g. Toa Payoh/Bishan, East/West. A majority of the data was missing (~67%).
-* `PHI`, `Current_Lo`, and `Cluster`: These features contained information on the hospitals that cases were treated/held at. A large proportion of the data was missing (63-67%). Also, I didn't think it would be very fair to compare the discharge/death rates among the various hospitals because there is a lot of randomness in the kind of cases that get resolved.  
+In this section, we visualise the key features in the dataset. I omitted location (town/planning area) data because a majority of the data was missing (~67%). I also omitted data on the hospitals that cases were treated/held at because I didn't think it would be fair to compare the discharge/death rates among the various hospitals. There is too much randomness in the kind of cases that get resolved. 
 
 
 ![](../graphics/2020-04-09-singapore-covid19-case-data/output_15_0.png)
@@ -375,7 +372,7 @@ In this section, we visualise the key features in the dataset: (1) Age, (2) Gend
 
 Here are the key observations, summarised:
 
-* **Age:** The age group with the most cases is 20 to 30 years of age.
+* **Age:** The age group with the most cases is the 20-to-30 group.
 * **Gender:** There are more males (59%) than females (41%) infected with COVID-19.
 * **Imported/Local:** Currently, there are more imported (54%) than local (46%) cases.
 * **Sources:** Most cases came from a single destination before contracting COVID-19.
@@ -386,8 +383,8 @@ Here are the key observations, summarised:
     * About 73% of cases are still in hospital, while a good 27% of cases have been discharged.
     * If we consider only cases that have reached some conclusion (recovery/death), the recovery rate is **98%**. That's 320 of 326 cases. *GO HEALTHCARE WORKERS.*
 
-# Linkages
-The network data is rather interesting. Here are some observations:
+# Transmissions
+The transmission data is quite interesting. Here are some observations:
 
 * Approximately 58% (695 of 1189) of the cases had no link to known cases.
 * Of those who received the virus from at least one person (291), 70% (204) did not transmit the virus further, while 20% (56) transmitted to only one other person.
@@ -546,8 +543,6 @@ display(txrx)
 
 The data shows that the government's enhanced measures to combat COVID-19 appear to be working based on the no-transmission rate over time. This rate measures the percentage of people who did not transmit COVID-19 after contracting it.
 
-Initially, the no-transmission rate (dark blue line, `tx_pct`) was high because cases were primarily imported (red line). Subsequently, the no-transmission rate fell alongside the number of imported cases fell, indicating that local transmissions rose. The no-transmission rate dropped below 50% shortly after DORSCON was raised to Orange on 7 Feb 20. Thereafter, the no-transmission rate has risen steadily as the government introduced enhanced precautionary measures. 
-
 
 ```python
 # Get no-transmission frequencies over time
@@ -566,6 +561,7 @@ freq_ts = pd.DataFrame({'date': df.date.unique(), 'tx_pct': freqs, 'imported': i
 
 ![](../graphics/2020-04-09-singapore-covid19-case-data/output_20_0.png)
 
+Initially, the no-transmission rate (dark blue line, `tx_pct`) was high because cases were primarily imported (red line). Subsequently, the no-transmission rate fell alongside the number of imported cases, indicating that local transmissions rose. The no-transmission rate dropped below 50% shortly after DORSCON was raised to Orange on 7 Feb 20. Thereafter, the no-transmission rate has risen steadily as the government introduced enhanced precautionary measures. 
 
 ## Relationship Between Status and Individual Features
 Next, we breakdown the distribution of each individual feature by the case status (Hospitalised/Discharged/Deceased). Note that there were only 6 deaths, so take the statistics and observations on this group may not generalise well.
@@ -708,7 +704,7 @@ df['local'] = (df.Imported_o == 'Local').astype(int)
 
 
 ### Status vs. No. of Cases That Individuals Contracted COVID-19 From
-Here, we examine the proportions of those hospitalised and discharged who contracted COVID-19 from *X* cases. Strangely, the discharged cases had stronger linkages to past cases.
+Here, we examine the proportions of those hospitalised and discharged who contacted *X* cases. Strangely, the discharged cases had stronger linkages to past cases. But overall, there is probably no relation between the number of prior cases contacted and status.
 
 
 ```python
@@ -722,7 +718,7 @@ rx_hosp = df.rx.loc[df.Status=='Hospitalised'].value_counts() / df.rx.loc[df.Sta
 
 
 ### Status vs. Nationality
-The graph below plots the proportions of individuals from each nationality who were hospitalised/discharged/deceased. For quick reference, the teal bars represent discharged cases, red represents deceased cases, and light blue represents hospitalised cases.
+The graph below plots the proportions of individuals from each nationality who were hospitalised/discharged/deceased. For quick reference, the teal bars represent discharged cases, red represents deceased cases, and light blue represents hospitalised cases. With such small samples within each nationality, we can't draw any meaningful conclusions from this.
 
 
 ```python
@@ -744,7 +740,7 @@ stat_nat = stat_nat.drop('totals', axis=1)
 
 
 # Factors for Discharge
-Finally, we try our luck to model the factors contributing to discharge. Our target is a binary feature for discharged vs. not discharged today, 08 Apr 2020. I should probably state upfront that there are severe limitations from modelling cases that will be discharged in this manner. This is because (a) most cases have not concluded yet, and (b) we are effectively ignoring deaths by lumping it with hospitalised cases. Let's see what we get anyway, without any high hopes.
+Finally, we try our luck to model the factors contributing to discharge. Our target is a binary feature for discharged vs. not discharged yesterday, 08 Apr 2020. I should probably state upfront that there are severe limitations from modelling cases that will be discharged in this manner. This is because (a) most cases have not concluded yet, and (b) we are effectively ignoring deaths by lumping it with hospitalised cases. Let's see what we get anyway, without any high hopes.
 
 
 ```python
