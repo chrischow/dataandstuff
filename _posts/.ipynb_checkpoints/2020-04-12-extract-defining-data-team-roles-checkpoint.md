@@ -1,28 +1,29 @@
 ---
 type: post  
-title: "Cutting Through the Noise - Extracting and Defining Data Team Roles from Job Listings with Natural Language Processing"
+title: "Extracting and Defining Data Team Roles from Job Listings with Natural Language Processing"
 bigimg: /img/jobdesc.jpg
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/jobdesc_sq.jpg
 share-img: /img/jobdesc.jpg
 share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/jobdesc_sq.jpg
 tags: [exploratory data analysis, natural language processing]
 ---  
-This week, I took the opportunity to continue my personal development in data science, and finished up the Data Scientist and Machine Learning Scientist career tracks on [DataCamp](https://www.datacamp.com/tracks/career/). Having also completed the Data Analyst career track before this, I noticed some overlap in the courses for data analysts, data scientists, and machine learning scientists. I have to admit that even though I've been a data science hobbyist for a few years now, I am not entirely clear how these roles differ from one another. In fact, after some research on how tech companies define these roles, I discovered that there are no standardised definitions in the wider industry. This post generates a set of consensus definitions through exploratory data analysis (EDA) and basic modelling of job listings data.
+This week, I took the opportunity to continue my personal development in data science, finishing up both the Data Scientist and Machine Learning Scientist career tracks on [DataCamp](https://www.datacamp.com/tracks/career/). Having also completed the Data Analyst career track before this, I noticed some overlap in the courses for Data Analysts, Data Scientists, and Machine Learning Scientists. I have to admit that even though I've been a data science hobbyist for a few years now, I am not entirely clear how these roles differ from one another. In fact, after some research on how tech companies define these roles, I discovered that there are no standardised definitions in the wider industry. This post generates a set of consensus definitions through exploratory data analysis (EDA) and basic modelling of job listings data.
 
 # TL;DR
 * In this post, we examine US job listings from [Indeed.com](https://www.indeed.com/) in 2018 to derive a set of **consensus definitions** through exploratory data analysis (EDA) and a classification model.
 * EDA enabled us to identify **popular terms** that were used in job listings.
-* The classification model enabled us to identify programming languages/tools and skills that were **actually related** to the various roles.
+* The classification model enabled us to identify programming languages/tools and skills that **uniquely defined** the various roles.
 * The consensus definitions generated (below) should only be used as a **guide or a template to build on**, since our model did not consider how companies *specifically* employ their Data Analysts, Data Engineers, Data Scientists, and Machine Learning Scientists.
-
-
+  
+  
 | Role                       | More of...                                                                             | Less of...                                                  |
 |----------------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------|
 | Data Analyst               | Data reporting, descriptive data analysis, and basic data management                   | Machine learning and developing / managing production systems |
 | Data Engineer              | In-depth data and data infrastructure management, and distributed computing            | Data analysis and prediction                                |
 | Data Scientist             | Data wrangling and analysis, algorithm design, and prediction                          | The roles played by Data Analysts and Data Engineers        |
 | Machine Learning Scientist  | Deep learning, developing production systems (possibly using distributed computing), and business reporting | Data management and simpler forms of analysis                                   |
-
+  
+  
 # The Data
 We use [this dataset from Kaggle](https://www.kaggle.com/sl6149/data-scientist-job-market-in-the-us), which compiles information on 7,000 data scientists jobs in the US on [Indeed.com](https://www.indeed.com/) in 2018. The data comprises the following:
 * `position`: Position title
@@ -121,7 +122,7 @@ Next, we perform several data cleaning steps. This involved replacement of strin
     * Words with one alphanumeric character like R and C++ (programming languages) would be dropped. Thus, these were changed to "RLanguage" and "CPP" for the feature extraction process.
     * Removal of non-english characters
 
-This process was extremely manual, where the text transformations were performed in separate lines of code. Since there were over 100 lines, I will not display the code. The final result was a dataset filtered for the above 5 roles, with an additional column (`pos_label`) containing the standardised job titles.
+This process was extremely manual, with the text transformations performed in separate lines of code. Since there were over 100 lines, I will not display the code. The final result was a dataset filtered for the above 5 roles, with an additional column (`pos_label`) containing the standardised job titles.
 
 
 ```python
@@ -203,12 +204,12 @@ display(df_ds.head())
   </tbody>
 </table>
 </div>
-
-
+  
+  
 # Feature Extraction
 Next, we create binary features for every term and bigram (two consecutive terms) in the description column using scikit-learn's `CountVectorizer` function. The binary features tell us whether a given term was present in each job description.
 
-The output from this processing step was a data frame with 240,527 binary columns (one per unique word) and `pos_label`, and one column for our standardised job title.
+The output from this processing step was a data frame with 240,527 binary columns (one per unique word), and one column for our standardised job title (`pos_label`).
 
 
 ```python
@@ -236,7 +237,7 @@ jobs = ['Data Analyst', 'Data Engineer', 'Data Scientist', 'Machine Learning Sci
 ```
 
 # Exploratory Data Analysis (EDA)
-Next, we explore the trends for all five roles (Data Analyst, Data Engineer, Data Scientist, and Machine Learning Scientist) collectively and individually.
+Next, we explore the trends for all four roles (Data Analyst, Data Engineer, Data Scientist, and Machine Learning Scientist) collectively and individually.
 
 ## Programming Lanuages / Tools
 First, we define several popular tools associated with the chosen roles. These include:
@@ -244,10 +245,10 @@ First, we define several popular tools associated with the chosen roles. These i
 * **Computing tools** like Spark, AWS, and Hadoop
 * **Database tools** like SQL, MongoDB and Hive
 * **Machine learning (ML) libraries** like TensorFlow, Scikit-Learn, and Theano
-* **Data visualisation tools** like Tableau, Qlik, and Power BI.
-* I also threw in Excel and Powerpoint for good measure.
+* **Data visualisation tools** like Tableau, Qlik, and Power BI
+* I also threw in Excel and Powerpoint for good measure
 
-This list of tools is not exhaustive. I may expand it in future to update the results here.
+This list of tools is not exhaustive. I may expand it in future and update the results here.
 
 Next, we plot the proportions of job listings that specifically mentioned the identified tools. The top five are effectively the most popular tools for general purpose programming (Python/R), databases (SQL) and distributed computing (Spark and Hadoop).
 
@@ -274,16 +275,16 @@ plt.show()
 ```
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_13_0.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_13_0.png)
 
 
 These results could be skewed by the fact that data scientists made up a majority of the roles (75%). Hence, we plot the top 10 programming languages/tools for each role below, separately. We see substantial overlap across the various roles, possibly because the languages/tools are relevant for tasks performed by all roles. We also note the following differences:
 
 * **Excel** and **Powerpoint** were listed frequently in the job descriptions for Data Analysts
-* The hardcore **ML libraries** and **low-level programming languages** were only listed in the job descriptions for ML Scientists and Engineers
+* The hardcore **ML libraries** and **low-level programming languages** were only listed in the job descriptions for ML Scientists
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_15_0.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_15_0.png)
 
 
 ## Skills
@@ -325,27 +326,27 @@ plt.show()
 ```
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_18_0.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_18_0.png)
 
 
-Next, we plot the top 10 skills for each role. Looking purely at the top three skills, we find greater differentiation across the roles. The **Data Analyst** is required to do more of data analysis and visualisation; the **Data Engineer**, managing extract, transform, load (ETL) and distributed computing; the **Data Scientist**, prediction; and the **ML Scientist**, Artificial Intelligence (AI) and deep learning.
+Next, we plot the top 10 skills for each role. Looking purely at the top three skills, we find greater differentiation across the roles. The **Data Analyst** is required to do more of data analysis and visualisation; the **Data Engineer**, managing extract, transform, load (ETL) processes and distributed computing; the **Data Scientist**, prediction; and the **ML Scientist**, Artificial Intelligence (AI) and deep learning.
 
 
-![png](../graphics/2020-04-12-cutting-through-the-noise/output_20_0.png)
+![png](../graphics/2020-04-12-extract-defining-data-team-roles/output_20_0.png)
 
 
 # Predicting Job Titles
 ## Why Bother Modelling?
-From EDA, we could see some differences among the various roles. However, this only summarised the **language that hiring managers/recruiters used** in job listings. It is entirely possible that buzzwords like AI and ML were thrown into the mix for the sake of it, or used to describe the broader efforts in the company. This creates noise in the descriptions that prevent us from understanding what the roles *really* entail. To cut through that, we need to identify the **specific terms that define the various roles**. And to achieve this, we use ML modelling.
+From EDA, we could see some differences among the various roles. However, this only summarised the **language that hiring managers/recruiters used** in job listings. It is entirely possible that buzzwords like AI and ML were thrown into the mix for the sake of it, or used to describe the broader efforts in the company. This creates noise in the descriptions that prevent us from understanding what the roles *really* entail. To cut through that, we need to identify the **terms unique to each role**. And to achieve this, we use ML modelling.
 
 ## The Model
 We develop a simple logistic regression model to predict `pos_label` (the roles with standardised job titles) using the binary features (representing terms and bigrams in the description) we created earlier.
 
-Since this was a multi-class problem (five roles = five classes), we tested both the multinomial and One vs. Rest (OvR) strategies. The OvR strategy estimates one logistic regression model per class (say, class X) to predict whether each sample belong to class X or not. OvR produced better results, and was therefore chosen for the final model.
+Since this was a multi-class problem (four roles = four classes), we tested both the multinomial and One vs. Rest (OvR) strategies. The OvR strategy estimates one logistic regression model per class (say, class X) to predict whether each sample belongs to class X or not. OvR produced better results, and was therefore chosen for the final model.
 
 **Note:** I also tested a gradient boosting (`lightgbm`) and a Random Forest (`sklearn`) model, but the logistic regression model outperformed them.
 
-Finally, we extract the coefficients for each of the five logistic regression models and plot them in a diagram combining all the results we have thus far.
+Finally, we extract the coefficients for each of the four logistic regression models and plot them in a diagram combining all the results we have thus far.
 
 
 ```python
@@ -373,16 +374,16 @@ The bottom two plots for each role display the results from the model:
 * **What It Isn't:** The bottom 15 programming languages/tools ***or*** skills based on model coefficient
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_25_0.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_25_0.png)
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_25_2.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_25_2.png)
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_25_4.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_25_4.png)
 
 
-![](../graphics/2020-04-12-cutting-through-the-noise/output_25_6.png)
+![](../graphics/2020-04-12-extract-defining-data-team-roles/output_25_6.png)
 
     
 
@@ -394,16 +395,18 @@ To summarise the findings:
 | Data Engineer              | In-depth data and data infrastructure management, and distributed computing            | Data analysis and prediction                                |
 | Data Scientist             | Data wrangling and analysis, algorithm design, and prediction                          | The roles played by Data Analysts and Data Engineers        |
 | Machine Learning Scientist  | Deep learning, developing production systems (possibly using distributed computing), and business reporting | Data management and simpler forms of analysis                                   |
-
+  
+  
 ## Some Interesting Facts
 
 #### There is a technical hierarchy among the roles.
 * The Data Analyst role was related to more simpler forms of analysis.
 * Only the ML Scientist role was strongly related to hardcore deep learning tools and skills.
 * The Data Scientist role fell somewhere between the Data Analyst and ML Scientist role: not deep learning, but not simple analysis.
-* Only Data Engineer role was strongly related to in-depth database-related skills.
+* Only the Data Engineer role was strongly related to in-depth database-related skills.
 * The job listings for the more technical roles (Data Engineer, Data Scientist, and ML Scientist) seem to be averse to Excel, whereas Excel is one of the top-rated tools of a Data Analyst.
-
+  
+  
 #### There was more noise for less technical positions.
 The top 10 skills by popularity did not always appear in the top 15 tools/skills identified from the logistic regression model, especially for the relatively less technical roles (Data Analyst and Data Scientists). It is possible that more fluff was added to beef up the job descriptions for those roles.
 
@@ -413,4 +416,4 @@ This doesn't mean R is preferred. **In fact, the opposite is true** because Pyth
 The same explanation can be used for why ML is not listed as a core skill for Data Scientists.
 
 # Conclusion
-This study was a **broad, cold meta analysis** of the tools and skills that were most associated with the abovementioned roles, and is arguably useful for generating **consensus definitions**. However, we should note that no company-level descriptions of **specifically how they employ each role** was considered. Each organisation has its own priorities, direction, policy, procedures, and culture, all of which determine the actual functions that Data Analysts, Data Engineers, Data Scientists, and ML Scientists play in that specific organisation. Hence, the definitions of roles outlined in this post should only be used as a guide or a template to build on.
+This study was a **broad, cold meta analysis** of the tools and skills that were most associated with the abovementioned roles, and is arguably useful for generating **consensus definitions**. However, we should note that no company-level descriptions of *specifically how they employ each role* was considered. Each organisation has its own priorities, direction, policy, procedures, and culture, all of which determine the actual functions that Data Analysts, Data Engineers, Data Scientists, and ML Scientists play in that specific organisation. Hence, the definitions of roles outlined in this post should only be used as a guide or a template to build on.
