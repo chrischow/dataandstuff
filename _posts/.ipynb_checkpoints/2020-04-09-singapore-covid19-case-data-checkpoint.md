@@ -1,10 +1,10 @@
 ---
 type: post  
 title: "Singapore COVID-19 Case Data"  
-bigimg: /img/covid19.jpg
-image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/covid19_sq.jpg
-share-img: /img/covid19.jpg
-share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/covid19_sq.jpg
+bigimg: /img/jobdesc.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/jobdesc_sq.jpg
+share-img: /img/jobdesc.jpg
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/jobdesc_sq.jpg
 tags: [exploratory data analysis, COVID-19]
 ---  
 
