@@ -116,7 +116,7 @@ layout: null
 
 body {
   /*font-family: 'Raleway', 'Open Sans', sans-serif;*/
-  font-family: 'Lora', 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', 'Lora', 'Open Sans', sans-serif;
   /*font-family: 'Raleway', 'Times', sans-serif;*/
   font-size: 18px;
   /* color: #404040; */
@@ -172,7 +172,7 @@ hr.small {
 }
 
 .main-explain-area {
-  font-family: 'Lora', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Source Sans Pro', 'Lora', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 15px inherit;
 }
 
