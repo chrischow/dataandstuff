@@ -13,10 +13,10 @@ Please don't post about an exciting new venture with a Nigerian prince or some b
 ## Ask Nicely
 I kindly request for the following in your requests for code or collaborations:
 
-### Introduce Yourself
+#### Introduce Yourself
 I think it's only polite that you tell me who you are before asking for something. It'll also be great knowing who I'm giving my code to or potentially collaborating with.
 
-### Tell Us What You're Aiming For
+#### Tell Us What You're Aiming For
 Please let me know what you aim to use the code for. I'm all for collaboration, and would be happy to share my code. However, I believe that what is open source should remain open source.
 
 If you're producing something for commercial purposes, I'm afraid you'll have to look elsewhere for source code to make money from.
