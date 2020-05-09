@@ -27,7 +27,9 @@ navbar-links:
   Projects:
     - BookNuggets: "https://chrischow.github.io/booknuggets/"
     - Kaggle: "kaggle"
-  Resources: "resources"
+  Resources:
+    - Resources: "resources"
+    - Comment Policy: "comment_policy"
   Links:
     - Github: "https://github.com/chrischow"
     - Old Blog: "http://dataandstuff.wordpress.com"
