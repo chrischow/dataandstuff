@@ -1,4 +1,4 @@
-# Comment Policy
+# Comment Guidelines
 Welcome to Data&Stuff! While I hope that the discussions on my posts are as constructive as possible, I cannot possibly monitor and moderate all interactions here. Here are some guidelines to help make this a positive space for discussion:
 
 ## Be Polite

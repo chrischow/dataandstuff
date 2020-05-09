@@ -29,7 +29,7 @@ navbar-links:
     - Kaggle: "kaggle"
   Resources:
     - Resources: "resources"
-    - Comment Policy: "comment_policy"
+    - Comment Guidelines: "comment_policy"
   Links:
     - Github: "https://github.com/chrischow"
     - Old Blog: "http://dataandstuff.wordpress.com"
