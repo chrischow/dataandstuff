@@ -2,7 +2,9 @@
 type: page
 title: Comment Guidelines
 ---
-Welcome to Data&Stuff! While I hope that the discussions on my posts are as constructive as possible, I cannot possibly monitor and moderate all interactions here. Here are some guidelines to help make this a positive space for discussion:
+Welcome to Data&Stuff!
+
+While I hope that the discussions on my posts are as constructive as possible, I cannot possibly monitor and moderate all interactions here. Here are some guidelines to help make this a positive space for discussion:
 
 ## Be Polite
 Please show respect for everyone else, and don't be rude to anyone. As a guideline, if something you're going to say would get you punched in the face if said in person, don't post it here.
