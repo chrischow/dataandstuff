@@ -17,11 +17,12 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link rel="stylesheet" type="text/css" href="./main.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-            <a class="navbar-brand" href="./index.html">COVID Check</a>
+            <a class="navbar-brand" href="./index.html"><i class="fas fa-percent"></i>COVID</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -50,7 +51,7 @@
         <div class="container main-content-container" id="covid_check_container">
             <div class='row justify-content-center'>
                 <div class='col-11 col-sm-10 col-lg-9 main-content'>
-                    <h2>COVID Check</h2>
+                    <h2><i class="fas fa-percent heading-icon"></i>COVID</h2>
                     <p>Please provide your details to get an estimated chance of a positive COVID-19 test result:</p>
                     <form class='was-validated' id='covid_check_form' action=''>
                         <div class='row'>
@@ -338,18 +339,34 @@
                     data[field.name] = field.value;
                 });
 
-                console.log(data);
-
                 // Scale age and temperature
                 scaled_age = (data.x_age - 2) / 88;
                 scaled_temp = (data.x_temp - 35.65) / 3.7;
 
                 // Compute probability
-                base = -1.52876544 + 0.754552 * scaled_age + 0.009848 * data.x_occupation + 2.320498 * data.x_los - 0.807673 * data.x_sob + 0.483565 * data.x_lot + 0.603700 * data.x_fever - 0.758933 * data.x_runnynose - 0.897051 * data.x_sorethroat + 0.501331 * data.x_cough + 0.235127 * data.x_headache - 1.629448 * data.x_diarrhoea + 1.012998 * data.x_musclesores - 0.812958 * data.x_fatigue;
+                wt_int = -1.52876544;
+                wt_age = 0.754552 * scaled_age;
+                wt_temp = 2.730384 * scaled_temp;
+                wt_occ = 0.009848 * data.x_occupation;
+                wt_los = 2.320498 * data.x_los;
+                wt_sob = - 0.807673 * data.x_sob;
+                wt_lot = 0.483565 * data.x_lot;
+                wt_fev = 0.603700 * data.x_fever;
+                wt_nose = - 0.758933 * data.x_runnynose;
+                wt_sore = - 0.897051 * data.x_sorethroat;
+                wt_cgh = 0.501331 * data.x_cough;
+                wt_hda = 0.235127 * data.x_headache;
+                wt_dia = - 1.629448 * data.x_diarrhoea;
+                wt_mus = 1.012998 * data.x_musclesores;
+                wt_fat = - 0.812958 * data.x_fatigue;
+                
+                base = wt_int + wt_age + wt_temp + wt_occ + wt_los + wt_sob + wt_lot + wt_fev + wt_nose + wt_sore + wt_cgh + wt_hda + wt_dia + wt_mus + wt_fat;
+                console.log(base);
+
                 odds = Math.exp(base);
                 prob = odds / (1 + odds) * 100;
                 
-                console.log(base);
+                console.log(odds);
 
                 // Get result
                 var result = '';

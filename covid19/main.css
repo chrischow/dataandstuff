@@ -24,6 +24,10 @@ body::after{
     z-index: -1; 
 }
 
+.heading-icon {
+    color: #dc3545;
+}
+
 h1 {
     font-family: "Open Sans";
     font-size: 3.5em;
@@ -133,6 +137,7 @@ space {
 }
 
 .btn-group .btn-danger{
-    background-color: #e66e7a;
+    background-color: #f8f9fa;
+    color: #161616;
     border-color: #b21f2d;
 }

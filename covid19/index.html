@@ -17,11 +17,12 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link rel="stylesheet" type="text/css" href="./main.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-            <a class="navbar-brand" href="./index.html">COVID Check</a>
+            <a class="navbar-brand" href="./index.html"><i class="fas fa-percent"></i>COVID</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,9 +48,12 @@
         </nav>
         <div class="container">
             <div class="main-heading text-center">
-                <h1>COVID Check</h1>
+                <h1><i class="fas fa-percent heading-icon"></i>COVID</h1>
                 <hr>
-                <span class='subtitle'>A simple tool to predict COVID-19 test results.</span>
+                <p>
+                    <span class='subtitle'>Predicting COVID-19 test results with machine learning.</span>
+                </p>
+                <a href='./check.html' class='btn btn-danger btn-lg'>Get Started</a>
             </div>
         </div>
 
