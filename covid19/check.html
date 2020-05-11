@@ -47,8 +47,6 @@
         </nav>
         <div class="background"></div>
         <div class='container space'></div>
-
-        <div id="barba-wrapper"><div class="barba-container">
         <div class="container main-content-container" id="covid_check_container">
             <div class='row justify-content-center'>
                 <div class='col-11 col-sm-10 col-lg-9 main-content'>
@@ -322,10 +320,7 @@
                 </div>
             </div>
         </div>
-        </div></div> <!--Barba -->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js" integrity="sha256-H0TPKZAP4+uKmBpntUUMrKgH4VXBQNDZumun6fvan4w=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
         <script>
             $(document).ready(function(){
                 $('#results').hide();
@@ -343,15 +338,19 @@
                     data[field.name] = field.value;
                 });
 
+                console.log(data);
+
                 // Scale age and temperature
                 scaled_age = (data.x_age - 2) / 88;
                 scaled_temp = (data.x_temp - 35.65) / 3.7;
-                
+
                 // Compute probability
                 base = -1.52876544 + 0.754552 * scaled_age + 0.009848 * data.x_occupation + 2.320498 * data.x_los - 0.807673 * data.x_sob + 0.483565 * data.x_lot + 0.603700 * data.x_fever - 0.758933 * data.x_runnynose - 0.897051 * data.x_sorethroat + 0.501331 * data.x_cough + 0.235127 * data.x_headache - 1.629448 * data.x_diarrhoea + 1.012998 * data.x_musclesores - 0.812958 * data.x_fatigue;
                 odds = Math.exp(base);
                 prob = odds / (1 + odds) * 100;
                 
+                console.log(base);
+
                 // Get result
                 var result = '';
                 
@@ -361,10 +360,10 @@
                 $('#result_value').removeClass('risk-high');
                 
                 // Add class
-                if (prob < 35){
+                if (prob < 35.0){
                     result = 'Low (< 35%)';
                     $('#result_value').addClass('risk-low');
-                } else if (prob < 65) {
+                } else if (prob < 65.0) {
                     result = 'Medium (35-65%)';
                     $('#result_value').addClass('risk-medium');
                 } else {
@@ -375,6 +374,8 @@
                 $('#result_value').text(function(){
                     return result;
                 });
+
+                console.log(prob);
 
                 $('#covid_check_container').fadeOut(500, function(){
                     $('#results').fadeIn(500);
@@ -400,8 +401,6 @@
                 });
             });
 
-            // Initialise Barba
-            Barba.Pjax.start();
         </script>
     </body>
 </html>
