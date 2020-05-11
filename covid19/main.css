@@ -28,10 +28,23 @@ body::after{
     color: #dc3545;
 }
 
+a {
+    transition: 0.2s ease-in-out;
+}
+
+a.inline {
+    color: #dc3545;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #21BDAE;
+}
+
 h1 {
-    font-family: "Open Sans";
+    font-family: "Montserrat";
     font-size: 3.5em;
-    font-weight: 700;
+    font-weight: 800;
     color: black;
 }
 
@@ -39,12 +52,25 @@ h2 {
     font-weight: 700;
 }
 
+span.title {
+    font-weight: 800;
+    font-family: Montserrat;
+}
+
 span.subtitle {
     font-size: 1.5em;
 }
 
+span.results {
+    font-size: 1.5em;
+}
+
+#result_value{
+    font-size: 2.0rem;
+}
+
 label {
-    font-size: 1.1em;
+    font-size: 1.05em;
 }
 
 hr {
@@ -138,6 +164,6 @@ space {
 
 .btn-group .btn-danger{
     background-color: #f8f9fa;
-    color: #161616;
+    color: #bdbdbd;
     border-color: #b21f2d;
 }

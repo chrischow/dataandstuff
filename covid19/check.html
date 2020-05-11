@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
@@ -22,11 +23,11 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-            <a class="navbar-brand" href="./index.html"><i class="fas fa-percent"></i>COVID</a>
+            <a class="navbar-brand" href="./index.html"><i class="fas fa-percent brand"></i><span class="title">COVID</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class='navbar-nav'>
                     <li class='nav-item'>
@@ -50,10 +51,19 @@
         <div class='container space'></div>
         <div class="container main-content-container" id="covid_check_container">
             <div class='row justify-content-center'>
-                <div class='col-11 col-sm-10 col-lg-9 main-content'>
-                    <h2><i class="fas fa-percent heading-icon"></i>COVID</h2>
-                    <p>Please provide your details to get an estimated chance of a positive COVID-19 test result:</p>
+                <div class='col-11 col-xl-10 main-content'>
+                    <div class='form-header text-center'>
+                        <h1><i class="fas fa-percent heading-icon"></i>COVID</h1>
+                    </div>
+                    <br>
+                    <h5>
+                        Please provide your details below to get an estimated chance of a positive COVID-19 test result.
+                        Note that no data is saved from this form. For more info, please see the
+                        <strong><a class='inline' href='./about.html'>About</a></strong> section.
+                    </h5>
+                    <br>
                     <form class='was-validated' id='covid_check_form' action=''>
+                        <h3>Basic Details</h3>
                         <div class='row'>
                             <div class='col-12 col-sm-6'>
                                 <!-- Age -->
@@ -75,7 +85,7 @@
                             <div class='col-12'>
                                 <!-- High Risk Exposure Occupation -->
                                 <div class='form-group'>
-                                    <label for='x_occupation'>Are you in an occupation with high risk exposure (i.e. essential services with frequent interaction with people)?</label>
+                                    <label for='x_occupation'>Are you in an occupation that requires frequent interaction with people (e.g. essential services)?</label>
                                     <select class="form-control" name="x_occupation" required>
                                         <option value="" disabled selected>Please select an option:</option>
                                         <option value='0'>No</option>
@@ -84,7 +94,9 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
                         
+                        <h3>Symptoms</h3>
                         <div class="row">
                             <div class="col-12">
                                 <!-- SYMPTOMS -->
@@ -96,10 +108,10 @@
                             </div>
                         </div>
 
-                        <!-- ROW 1 -->
+                        <!-- SYMPTOMS SECTION -->
                         <div class='row'>
                             <!-- Loss of Smell -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Loss of Smell:</label>
                                     <br>
@@ -115,7 +127,7 @@
                             </div>
 
                             <!-- Shortness of breath -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Shortness of Breath:</label>
                                     <br>
@@ -129,13 +141,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
 
-                        <!-- ROW 2 -->
-                        <div class='row'>
                             <!-- Loss of Taste -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Loss of Taste:</label>
                                     <br>
@@ -151,7 +159,7 @@
                             </div>
 
                             <!-- Fever -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Fever:</label>
                                     <br>
@@ -165,13 +173,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        
-                        <!-- ROW 3 -->
-                        <div class='row'>
+
                             <!-- Runny Nose -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center align-content-bottom">
                                 <div class='form-group'>
                                     <label>Runny Nose:</label>
                                     <br>
@@ -187,7 +191,7 @@
                             </div>
 
                             <!-- Sore Throat -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center align-content-bottom">
                                 <div class='form-group'>
                                     <label>Sore Throat:</label>
                                     <br>
@@ -201,13 +205,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
 
-                        <!-- ROW 4 -->
-                        <div class='row'>
                             <!-- Cough -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Cough:</label>
                                     <br>
@@ -223,7 +223,7 @@
                             </div>
 
                             <!-- Headache -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Headache:</label>
                                     <br>
@@ -237,13 +237,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-
-                        <!-- ROW 5 -->
-                        <div class='row'>
+                            
                             <!-- Diarrhoea -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Diarrhoea:</label>
                                     <br>
@@ -259,7 +255,7 @@
                             </div>
 
                             <!-- Muscle Sores -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Muscle Sores:</label>
                                     <br>
@@ -273,13 +269,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-
-                        <!-- ROW 5 -->
-                        <div class='row'>
+                            
                             <!-- Fatigue -->
-                            <div class="col-6 text-center">
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
                                 <div class='form-group'>
                                     <label>Fatigue:</label>
                                     <br>
@@ -295,7 +287,141 @@
                             </div>
 
                             <!-- Unused -->
-                            <div class="col-6 text-center"></div>
+                            <div class="col-6 col-md-4 col-lg-3 text-center"></div>
+                        </div>
+                        <br>
+
+                        <!-- ROW 7 -->
+                        <h3>Chronic Diseases</h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- SYMPTOMS -->
+                                <p>
+                                    <strong>
+                                        Please indicate if you have any of the following:
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- CHRONIC DISEASES SECTION -->
+                        <div class='row align-items-end'>
+                            <!-- Diabetes -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Diabetes:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_diabetes" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_diabetes" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Heart Disease -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Heart Disease:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_heartdis" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_heartdis" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hypertension -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Hypertension:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_hypertension" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_hypertension" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cancer -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Cancer:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_cancer" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_cancer" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Asthma -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Asthma:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_asthma" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_asthma" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Autoimmune Disease -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Autoimmune Disease:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_autoimmune" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_autoimmune" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- COPD -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center">
+                                <div class='form-group'>
+                                    <label>Chronic Obstructive Lung Disease:</label>
+                                    <br>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-danger active">
+                                            <input type="radio" name="x_copd" value='0' checked> No
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="x_copd" value='1'> Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+
+                            <!-- Unused -->
+                            <div class="col-6 col-md-4 col-lg-3 text-center"></div>
                         </div>
                         <hr>
 
@@ -313,7 +439,7 @@
         <div class="container text-center main-content-container" id="results">
             <div class='row justify-content-center main-content-container'>
                 <div class='col-11 col-sm-10 col-lg-9 main-content'>
-                    <h2>Results</h2>
+                    <h2><span class='results'>Results</span></h2>
                     <p>Probability of a positive COVID-19 test result:</p>
                     <h3 id='result_value'></h3>
                     <br>
@@ -339,6 +465,8 @@
                     data[field.name] = field.value;
                 });
 
+                console.log(data);
+
                 // Scale age and temperature
                 scaled_age = (data.x_age - 2) / 88;
                 scaled_temp = (data.x_temp - 35.65) / 3.7;
@@ -361,12 +489,9 @@
                 wt_fat = - 0.812958 * data.x_fatigue;
                 
                 base = wt_int + wt_age + wt_temp + wt_occ + wt_los + wt_sob + wt_lot + wt_fev + wt_nose + wt_sore + wt_cgh + wt_hda + wt_dia + wt_mus + wt_fat;
-                console.log(base);
 
                 odds = Math.exp(base);
                 prob = odds / (1 + odds) * 100;
-                
-                console.log(odds);
 
                 // Get result
                 var result = '';
@@ -392,20 +517,20 @@
                     return result;
                 });
 
-                console.log(prob);
-
                 $('#covid_check_container').fadeOut(500, function(){
                     $('#results').fadeIn(500);
+
+                    // Reset form
+                    $('#covid_check_form').trigger('reset');
+                    $('label.btn.btn-danger.active').each(function(){
+                        $(this).removeClass('active');
+                    });
+                    $('div.btn-group.btn-group-toggle label:first-child').each(function(){
+                        $(this).addClass('active');
+                    })
                 });
                 
-                // Reset form
-                $('#covid_check_form').trigger('reset');
-                $('label.btn.btn-danger.active').each(function(){
-                    $(this).removeClass('active');
-                });
-                $('div.btn-group.btn-group-toggle label:first-child').each(function(){
-                    $(this).addClass('active');
-                })
+                
 
 
                 // Prevent refresh
