@@ -12,7 +12,7 @@ tags: [aircraft recognition, computer vision, deep learning]
 For the past few years, I’ve kept current on developments in the machine learning (ML) world through courses and interest groups. One thing I’ve noticed is that a lot of success stories were recycled from the business world. Although there are many potential military applications, especially for intelligence, these generally can’t be shared publicly due to security. Yet, there are open source datasets that can easily be repurposed for high-payoff military applications. I thought it might be useful to showcase how quickly one can develop a prototype for a problem statement of interest to the military using an open source dataset.
 
 ## Military Application: Intelligence, Surveillance, and Reconnaissance
-One area of artificial intelligence (AI) that is of immense value for Intelligence, Surveillance and Reconnaissance (ISR) is **computer vision** (CV). CV greatly enhances operators' efficiency in exploiting image and video data, thereby increasing their capacity to pursue other higher-value lines of work. However. the idea of applying CV for ISR is not new. Published in 1987, [this paper](https://pdfs.semanticscholar.org/b1b9/5e3a74e6b8952bcd286393a6bd23f09a5836.pdf) proposed that AI and signal processing could be used to better understand images.
+One area of artificial intelligence (AI) that is of immense value for Intelligence, Surveillance and Reconnaissance (ISR) is **computer vision** (CV). CV greatly enhances operators' efficiency in exploiting image and video data, thereby increasing their capacity to pursue other higher-value lines of work. The idea of applying CV for ISR is not new. Published in 1987, [this paper](https://pdfs.semanticscholar.org/b1b9/5e3a74e6b8952bcd286393a6bd23f09a5836.pdf) proposed that AI and signal processing could be used to better understand images.
 
 Today, many militaries are investing in CV for ISR. Some applications include recognition of military vehicles in social media[^1], recognition of camouflaged military targets[^2], battlefield object detection[^3], and person detection in military contexts[^4] to name a few. The US, China, and Russia are investing heavily in AI (with image recognition as one of the applications) to enhance their ISR capabilities.[^5] There's no reason why the RSAF shouldn't do the same. Thankfully, CV models can be developed at low cost and quickly (depending on which technology partner is chosen).
 
@@ -72,7 +72,7 @@ At first, I inspected random images within the dataset, corrected a few errors, 
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img10_p63.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-The lesson: be deliberate in ensuring that your data is clean before analysing it.
+**The lesson: be deliberate in ensuring that your data is clean before analysing it.**
 
 After assigning the correct labels, the dataset was left with 9,320 images distributed across 21 classes. Here's a sample of the various images:
 
@@ -89,26 +89,26 @@ Given that the model is sure to make mistakes, we must ensure that the man in th
 The operator is also on the lookout for certain aircraft types like high-end fighters (e.g. F-22). Therefore, the model must produce a warning flag when (a) it predicts an F-22 with a low level of confidence or (b) when it predicts aircraft that it typically confuses as F-22s (e.g. F-16).
 
 ## Appropriate Metrics
-In this post, we will focus focus on the model's ability to make good recommendations for the aircraft in the images. Hence, I'll be using **top-1 accuracy**, **top-2 accuracy**, and **top-3 accuracy**. These measure whether the true label was in the top *n* predicted classes.
+In this post, we will focus on the model's ability to make good recommendations for the aircraft in the images. Hence, I'll be using **top-1 accuracy**, **top-2 accuracy**, and **top-3 accuracy**. These measure whether the true label was in the top *n* predicted classes.
 
-For intuitive purposes, we assume than an ISR team processes 1,500 images a day, which is about 60 per hour or 1 per minute. We also assume the following modes of model deployment:
+For simplicity, we assume that an ISR team processes 1,500 images a day, which is about 60 per hour or 1 per minute. We also assume the following modes of model deployment:
 
 * **Supervised autonomous tagging (man-on-the-loop):** The system automatically tags images with the top predicted class, and the operator jumps in whenever the tag is wrong. Top-1 accuracy is relevant here.
-* **Semi-autonomous tagging (man-in-the-loop):* The system automatically tags images with the top predicted class **if the predicted probability is greater than 99%*. Otherwise, it presents the top 3 classes, and the operator must input the correct tag. We assume that if the top 3 classes contains the true tag, there is close to no effort for the operator. Therefore, a combination of top-1 accuracy and top-3 accuracy is relevant here.
+* **Semi-autonomous tagging (man-in-the-loop):** The system automatically tags images with the top predicted class **if the predicted probability is greater than 99%*. Otherwise, it presents the top 3 classes, and the operator must input the correct tag. We assume that if the top 3 classes contains the true tag, there is close to no effort for the operator. At all times, the operator must jump in if the tag is wrong. Therefore, a combination of top-1 accuracy and top-3 accuracy is relevant here.
 
 ### Sidenote on Evaluation
-I think that deciding to incorporate a model purely on the model metrics is an incomplete approach because it disregards the level of autonomy with which the model will operate. If the model is meant to be used in semi-autonomous (i.e. man-in-the-loop) or supervised autonomous (i.e. man-on-the-loop), then an operator ought to be part of the evaluation. This is because you're not just evaluating a model, you're evaluating a **man-machine team**.
+I think that deciding to incorporate a model purely on the model metrics is insufficient because it disregards the level of autonomy with which the model will operate. If the model is meant to be used in semi-autonomous (i.e. man-in-the-loop) or supervised autonomous (i.e. man-on-the-loop) mode, then an operator ought to be part of the evaluation. This is because you're not just evaluating a model, you're evaluating a **man-machine team**.
 
 # A Convolutional Neural Network (CNN) from Scratch
-In this section, I'll be sharing about (1) the first model I built, (2) the final model I built, and (3) some key learning pointers from the testing process. I assume the reader has some basic understanding of Convolutional Neural Networks (CNNs) and the types of parameters involved. This [article on Medium](https://medium.com/@himadrisankarchatterjee/a-basic-introduction-to-convolutional-neural-network-8e39019b27c4) provides a good overview.
+In this section, I'll be sharing about (1) the first model I built, (2) the final model I built, and (3) some key learning pointers from the testing process. I assume the reader has some basic understanding of Convolutional Neural Networks (CNNs) and the types of parameters involved. [This article on Medium](https://medium.com/@himadrisankarchatterjee/a-basic-introduction-to-convolutional-neural-network-8e39019b27c4) provides a good overview.
 
 ## The First Model
-I started with an extremely simple model: 4 convolutional blocks each with one convolutional layer and one max pooling layer with batch normalisation after, and a fully-connected (FC) layer with 32 nodes. My key considerations were:
+I started with an extremely simple model: (a) 4 convolutional blocks, each comprising one convolutional layer, one max pooling layer, and batch normalisation after the pooling layer, and (b) a fully-connected (FC) layer with 32 nodes. My key considerations were:
 
 1. **Start Small.** I don't have a top-end GPU, so I had to be prudent with the size and complexity of the model. I also wanted the most parsimonious model possible.
 2. **Opportunity to Experiment with Parameters.** To figure out best practices in testing models, there is no shortcut - you need experience in tweaking your model, interpreting the results, and making further adjustments.
 
-I used the following settings:
+I used the other settings below. Generally, nothing changed throughout except the learning rate, which was specially-adjusted for each tested model.
 
 * Input size: 70x70 (found after some experimentation)
 * For all convolutional layers:
@@ -174,14 +174,14 @@ _________________________________________________________________
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img12_first_model.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Choosing the Best Weights
-The best set of model weights was chosen based on **validation loss**. This is because accuracy isn't exactly the best metric to choose. Let's break it down. Take for example two scenarios:
+The best set of model weights was chosen based on **validation loss**. This is because accuracy isn't exactly the best metric to represent model ability. Consider the two scenarios:
 
-1. The model predicts an image has an F-15 with 90% probability (and 0.5% each for the remaining 20 classes)
-2. The model predicts an image has an F-15 with 20% probability (and 4% each for the remaining 20 classes)
+1. The model predicts an image contains an F-15 with 90% probability (and 0.5% each for the remaining 20 classes)
+2. The model predicts an image contains an F-15 with 20% probability (and 4% each for the remaining 20 classes)
 
-Which scenario would you rather have more of? Surely it's scenario 1. This is because accuracy says little about a model's **confidence** in predicting a given class. Accuracy is computed using thresholded values: if the output probability for a given aircraft type is the highest among all other class probabilities, you set the prediction for that aircraft type to 1, and 0 for all other aircraft types.
+Which scenario would you rather have more of? Surely it's scenario 1, because the model has **confidence** in predicting a given class. Accuracy says little about confidence because it is computed using thresholded values. In our case, if the predicted probability for a given aircraft type is higher than the rest, you set the prediction for that aircraft type to 1, and that for all other aircraft types to 0.
 
-On the other hand, categorical crossentropy penalises the model when it gives you a high probability that the aircraft in an image belongs to a certain class *when it actually doesn't*. That ensures that the model aims to be right with some degree of confidence. Hence, the best weights for all models I developed were chosen using validation loss.
+On the other hand, loss (categorical crossentropy in this context) penalises the model heavily when it gives you a high predicted probability for a given aircraft but turns out to be wrong. That ensures that the model aims to be right with some degree of confidence. Hence, the best weights for all models I developed were chosen using validation loss.
 
 ### Results of First Model
 
@@ -192,14 +192,14 @@ First, we see that accuracy (I'll refer to top-1 accuracy as "accuracy") was 68%
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img14_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-Based on our defined metrics for a man-machine team operating on supervised autonomous and semi-autonomous tagging:
+If the model operated in supervised autonomous and semi-autonomous mode:
 
-* **Supervised autonomous:** The system would attain 68% accuracy, and the operator would have to manually tag 32% or 20 of 60 images per hour.
+* **Supervised autonomous:** The system would attain 68% accuracy, and the operator would have to manually tag 32% or 20 out of 60 images per hour.
 * **Semi-autonomous:**
     * The man-machine team would attain an accuracy of 88%:
         * Automated tags that were correct: 27%
-        * Recommended tags that were correct: 61% (we assume this is not manual tagging)
-    * The operator would have to manually tag 12% or about 8 of 60 images per hour
+        * Recommended tags that were correct: 61% (we assume this does not count as manual tagging)
+    * The operator would have to manually tag 12% or about 8 out of 60 images per hour
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img19_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
@@ -207,6 +207,8 @@ Based on our defined metrics for a man-machine team operating on supervised auto
 Second, we look at the aircraft types that the model performed well on. The results seem fairly intuitive. The B-2, E-3, and T-6 all have very unique features. F-18s are in the top few probably because of the lack of variety in images. Light aircraft stand out fairly well because of their clumsy, squarish shape.
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img15_class_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
+
+However, the model did not perform well on aircraft like the F-22, C-5, Private Jets, and the C-130.
 
 #### Confusion Matrix
 Third, to understand the poor performance on some classes, we need to inspect the confusion matrix. True enough, we note some confusion here.
@@ -224,10 +226,13 @@ Here are some of the more notable mix-ups:
 * Private Jets were confused with Twin Turboprops, Light Aircraft, and Boeings
 * Twin Turboprops were confused with Boeings
 
-In this list, the most dangerous mix-up is in bold. Since fighters are faster and more lethal, an ISR operator probably wouldn't want to have F-16s labelled as a more benign aircraft type.
+In this list, the most dangerous mix-up is in bold. Logically, an ISR operator **would not** want the model to predict a less dangerous type of aircraft than there actually is. Operators would want to detect fighters quickly because they're quicker and more lethal. In contrast, they might not get into trouble if there was a delay in identifying a transport aircraft because these are slower and easier to detect. If the operator accepts the model's prediction of a B-52 when there actually is an F-16, there could be a delayed response to a legitimate threat.
 
 #### Class Probabilities
-Fourth, we need an assessment of how confident the model was when it made predictions. Ideally, the model should output high probabilities when it is correct, and low probabilities when it is wrong. We use two types of plots to make this assessment: (1) a bar plot of the mean predicted probability grouped by whether the prediction was correct or not, and (2) density plots for the distributions of predicted probabilities. The bar plot is an overview of differences in distribution, while the histograms show us the exact difference in distribution.
+Fourth, we need an assessment of how confident the model was when it made predictions. Ideally, the model should output high probabilities when it is correct, and low probabilities when it is wrong. We use two types of plots to make this assessment:
+
+1. A **bar plot** of the mean predicted probability for correct and incorrect predictions. This gives us an overview of confidence across the aircraft types.
+2. **Density plots** of predicted probabilities for correct and incorrect predictions. This shows us the exact difference in distributions.
 
 Generally, we see lower differentiation in the distributions of predicted probabilities for aircraft types that the model performed relatively poorly on: Boeing, C-130, C-135, C-5, F-15, F-22, Private Jet, and Twin Turboprop.
 
@@ -240,7 +245,7 @@ Overall, the model is certainly not performing well enough for deployment in sup
 
 As a sidenote, it's interesting to note that the model would probably perform better than someone who is completely untrained in aircraft recognition. Logically, an untrained person could use a simple heuristic to categorise aircraft:
 
-* Transport aircraft: Big aircraft with wide wingspan that look like they can carry lots of things
+* Transport aircraft: Big aircraft with a wide wingspan that look like they can carry lots of things
 * Light aircraft: Relatively small and harmless/clumsy-looking.
 * Fighter aircraft: Relatively small, sharp, and fierce-looking.
 * Other: Only the A-10 can't be fit into any of the above categories. It is a hybrid of light aircraft and transport aircraft.
@@ -320,7 +325,7 @@ First, we see that all metrics improved substantially:
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img28_comparison_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-Based on our defined metrics for a man-machine team operating on supervised autonomous and semi-autonomous tagging:
+If the model operated in supervised autonomous and semi-autonomous mode:
 
 * **Supervised autonomous:** The system would attain 86% accuracy, and the operator would have to manually tag 14% or about 9 of 60 images per hour.
 * **Semi-autonomous:**
@@ -359,7 +364,7 @@ Separately, note that in the bar plot (first chart), the mean value for correctl
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img26_class_prob_dist.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Evaluation
-Overall, the model has improved significantly from the first simple model. It has the potential to save the operator time and brain power in identifying aircraft from images. We'll discuss this a little more in the conclusion.
+Overall, the model has improved significantly from the first iteration. It has the potential to save the operator time and brain power in identifying aircraft from images. We'll discuss this a little more in the conclusion.
 
 ## The Fine-Tuning Process
 I saved the less exciting bits for the last. Here are some of the things I learned from building a CNN from scratch.
@@ -368,29 +373,28 @@ I saved the less exciting bits for the last. Here are some of the things I learn
 I observed two interesting parallels between the training of individual NNs and the overarching modelling process.
 
 #### A. Batch size
-At first, I lined up a few architectures that I wanted to test, and ran them overnight. However, I realised that some of the architectures attained pretty bad results, probably because I was just trying my luck. This was equivalent to batch training (no minibatch gradient updates): updating my understanding of the model after one batch of models returned results. After a while, I switched over to a one-model-at-a-time approach. Interpreting the results was fast and targeted. I made more improvements in this way. This was equivalent to training with minibatches, where a model updates its weights (understanding of what works) at shorter intervals.
+At first, I lined up a few architectures that I wanted to test, and ran them overnight. However, I realised that some of them attained pretty bad results, probably because I was just trying my luck. This was equivalent to batch training (no minibatch gradient updates): I updated my understanding of good parameter values for the model after a series of models were trained and produced some results. After a while, I switched over to a one-model-at-a-time approach. Interpreting the results was fast and targeted. I made more improvements in this way. This was equivalent to training with minibatches, where a model updates its weights (understanding of what works) at shorter intervals.
 
 #### B. Adaptive learning rates
-Initially, I made very minor adjustments to my model, like adding one convolutional layer in one of the blocks at a time. At that point, I was concerned about randomness in the results (there are [many sources](https://machinelearningmastery.com/randomness-in-machine-learning/)), and went to the extent of doing 5 repeats for each configuration. Progress was extremely slow.
-
-After some time, I switched to a more adaptive approach. When I made changes, I made **big** changes at first to find big improvements, and I did. Even with randomness, the results from the improved models would not have overlapped with the results from the older models, so I ran each configuration just once. As the model got closer to hitting its limits, I scaled back on the size of the changes. This was akin to an adaptive learning rate: faster at first to make the easy improvements and slower later on to find the elusive global minimum.
+Initially, I made very minor adjustments to my model, like adding one convolutional layer at a time. Progress was slow. After I switched to a more adaptive approach, I was able to make progress more quickly. I made **big** changes at first to find big improvements (and I did). As the model got closer to hitting its limits, I scaled back on the size of the changes. This was an adaptive learning rate: faster at first to make the easy improvements and slower later on to find the elusive global minimum.
 
 ### 2. Make small, iterative improvements
 I built my model using [Andrew Ng's panda approach](https://www.coursera.org/lecture/deep-neural-network/hyperparameters-tuning-in-practice-pandas-vs-caviar-DHNcc): I made small adjustments to gradually improve it. I tracked the learning curves for loss and accuracy, and analysed these to make adjustments. Sometimes, I monitored the training and validation loss as training was going on to see if there were potential issues with the parameters, and could stop training halfway to tweak them.
 
 ### 3. Choose your evaluation tools carefully
-Be clear on what you want to evaluate before building models. The graphs above only came to mind after I was halfway through the modelling process when validation accuracy for one of my models was stuck at a pretty low level. I realised that this accuracy level coincided with the relative frequency for the Boeing class, but could only confirm that the model was predicting everything as a Boeing when I re-wrote my scripts to include the confusion matrix and class accuracy table. 
+Be clear on what you want to evaluate before building models. Some of the diagnostic graphs above only came to mind after I was halfway through the modelling process, when validation accuracy for one of my models was stuck at a pretty low level. I realised that this accuracy level coincided with the relative frequency for the Boeing class, which meant that the model was predicting everything as a Boeing. However, I could only confirm this when I re-wrote my scripts to include the confusion matrix and class accuracy table. 
 
 # Conclusion [TL;DR]
-In this pretty lengthy post, I introduced the business problem of using computer vision for aircraft recognition, presented my initial and final models, and shared some learning pointers for fine-tuning a neural network. Returning to our original question of how well this model can augment ISR operators in aircraft recognition, we consider the amount of manual processing that an operator might need to perform. In the final model:
+In this pretty lengthy post, I introduced the business problem of using computer vision for aircraft recognition, presented my initial and final models, and shared some learning pointers for fine-tuning a neural network. Returning to our original question of how well this model can augment ISR operators in aircraft recognition, I used a rough estimate of the amount of manual processing that an operator might need to perform. If the final model were operated in supervised autonomous and semi-autonomous mode:
 
 * **Supervised autonomous tagging (man-on-the-loop):**
-    * The system automatically tags 86% of the images correctly
-    * The operator would have to manually tag the remaining 14% of images, which amounts to 9 of 60 images per hour
+    * The system automatically would tag 86% of the images correctly
+    * The operator would have to manually tag the remaining 14% of images, which amounts to 9 out of 60 images per hour
 * **Semi-autonomous tagging (man-in-the-loop):**
-    * Above a 99% probability threshold, the system automatically tags 65% of the images correctly
-    * For images below the threshold, the system recommends 30% of the images correctly
-    * The operator would have to manually tag the remaining 5% of images, which amounts to 3 of 60 images per hour
+    * Overall, the man-machine team would tag 95% of the images correctly
+        * 65% would be tagged correctly automatically (predicted probability >= 99%)
+        * 30% would be correctly recommended by the model
+    * The operator would have to manually tag the remaining 5% of images, which amounts to 3 out of 60 images per hour
 
 Although the models produced some decent results, we still can't make an assessment on whether the model should be incorporated. We need to ask questions about how things are done - questions that only the ops users can answer. For example:
 
@@ -398,7 +402,7 @@ Although the models produced some decent results, we still can't make an assessm
 * How quickly do you need the results?
 * Are there other higher value tasks that the operator should be freed up for? 
 
-If there are a few things that we've shown (also the things to take away), these are that:
+If there are a few things that we've shown (also the things to take away), these are:
 
 1. **Computer vision technology can save time and effort for the Air Force.** We don't see many open case studies - hopefully this series of posts will serve as one. But this is just one of the many applications of AI. Models for other tasks like identifying ground targets or ships could be built with a similar approach.
 2. **Computer vision technology is readily available.** It's cheap (effectively free), and it can be harnessed relatively quickly if you have people with the right technical expertise and domain knowledge.
@@ -413,4 +417,3 @@ Credits for image: Mikkel William / Getty
 [^3]: [Multi-Channel CNN-based Object Detection for Enhanced Situational Awareness](https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SET-241/MP-SET-241-9-5.pdf)
 [^4]: [Detection of People in Military and Security Context Imagery - Shannon et al (2014)](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/9248/92480N/Detection-of-people-in-military-and-security-context-imagery-withdrawal/10.1117/12.2069906.full?SSO=1)
 [^5]: [Military Applications of Artificial Intelligence - RAND Corporation (2020)](https://www.rand.org/pubs/research_reports/RR3139-1.html)
-
