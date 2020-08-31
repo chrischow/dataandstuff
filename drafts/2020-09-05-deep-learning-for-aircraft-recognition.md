@@ -2,9 +2,9 @@
 type: post  
 title: "Deep Learning for Aircraft Recognition Part I: Building a Convolutional Neural Network (CNN) from Scratch"  
 bigimg: /img/covid19.jpg
-image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/covid19_sq.jpg
-share-img: /img/covid19.jpg
-share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/covid19_sq.jpg
+image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/dl_for_ar_sq.png
+share-img: /img/dl_for_ar.jpg
+share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/dl_for_ar_sq.png
 tags: [aircraft recognition, computer vision, deep learning]
 ---
 
@@ -44,39 +44,39 @@ I cannot stress enough how important data quality is. **My biggest mistake was t
 At first, I inspected random images within the dataset, corrected a few errors, and proceeded with modelling. Halfway through, I happened to look at the images in more detail and found some atrocious labelling mistakes by the authors, who apparently employed experts to classify the aircraft. Here were some of the incorrect labels:
 
 ##### F-15s labelled as F-16s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img01_f15-f16.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img01_f15_f16.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### F-4s, F-15s, F-16s, and F-18s labelled as F-22s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img02_f4_f18_f22.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img02_f4_f18_f22.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### C-17s labelled as C-5s and vice versa
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img03_c17_c5.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img03_c17_c5.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### Boeing 737s and C-135s labelled as KC-10s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img04_737_c135_kc10.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img04_737_c135_kc10.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### All aircraft with fuselage-mounted engines labelled as C-21s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img05_c21.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img05_c21.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### E-2s labelled as E-3s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img06_e2_e3.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img06_e2_e3.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### Twin-engine propeller aircraft were labelled as U-2s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img07_twinprop.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img07_twinprop.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### P-3s were labelled as B-29s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img08_p3_b29.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img08_p3_b29.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### Aircraft labelled as A-26s and P-63s (WW2 aircraft) were...not A-26s and P-63s at all
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img09_a26.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img09_a26.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img10_p63.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img10_p63.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 The lesson: be deliberate in ensuring that your data is clean before analysing it.
 
 After assigning the correct labels, the dataset was left with 9,320 images distributed across 21 classes. Here's a sample of the various images:
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img11_all_classes.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img11_all_classes.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 # Evaluation Metrics and the Business Problem
 Before diving into the models, it's important to define the business problem and specify appropriate metrics. Since we're testing how well a CV model can augment operators, we need to think a little about how the model will realistically be deployed.
@@ -171,7 +171,7 @@ Non-trainable params: 448
 _________________________________________________________________
 ```
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img12_first_model.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img12_first_model.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Choosing the Best Weights
 The best set of model weights was chosen based on **validation loss**. This is because accuracy isn't exactly the best metric to choose. Let's break it down. Take for example two scenarios:
@@ -188,9 +188,9 @@ On the other hand, categorical crossentropy penalises the model when it gives yo
 #### Accuracy
 First, we see that accuracy (I'll refer to top-1 accuracy as "accuracy") was 68%, while top-2 and top-3 accuracy were at 82% and 89% respectively. 
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img13_learning_curve.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img13_learning_curve.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img14_accuracy.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img14_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 Based on our defined metrics for a man-machine team operating on supervised autonomous and semi-autonomous tagging:
 
@@ -201,17 +201,17 @@ Based on our defined metrics for a man-machine team operating on supervised auto
         * Recommended tags that were correct: 61% (we assume this is not manual tagging)
     * The operator would have to manually tag 12% or about 8 of 60 images per hour
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img19_man_machine.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img19_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 #### Accuracy by Class
 Second, we look at the aircraft types that the model performed well on. The results seem fairly intuitive. The B-2, E-3, and T-6 all have very unique features. F-18s are in the top few probably because of the lack of variety in images. Light aircraft stand out fairly well because of their clumsy, squarish shape.
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img15_class_accuracy.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img15_class_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 #### Confusion Matrix
 Third, to understand the poor performance on some classes, we need to inspect the confusion matrix. True enough, we note some confusion here.
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img16_cm.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img16_cm.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 Here are some of the more notable mix-ups:
 
@@ -231,9 +231,9 @@ Fourth, we need an assessment of how confident the model was when it made predic
 
 Generally, we see lower differentiation in the distributions of predicted probabilities for aircraft types that the model performed relatively poorly on: Boeing, C-130, C-135, C-5, F-15, F-22, Private Jet, and Twin Turboprop.
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img17_class_probs.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img17_class_probs.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img18_class_prob_dist.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img18_class_prob_dist.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Evaluation
 Overall, the model is certainly not performing well enough for deployment in supervised autonomous mode. However, it might be possible to save the ISR operator a little bit of time if operated in semi-autonomous mode.
@@ -309,16 +309,16 @@ Non-trainable params: 1,920
 _________________________________________________________________
 ```
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img20_final_model.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img20_final_model.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Results of the Final Model
 
 #### Accuracy
 First, we see that all metrics improved substantially:
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img21_learning_curve.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img21_learning_curve.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img28_comparison_accuracy.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img28_comparison_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 Based on our defined metrics for a man-machine team operating on supervised autonomous and semi-autonomous tagging:
 
@@ -329,12 +329,12 @@ Based on our defined metrics for a man-machine team operating on supervised auto
         * Recommended tags that were correct: 30%
     * The operator would have to manually tag 5% or 3 of 60 images per hour
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img27_man_machine.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img27_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 #### Accuracy by Class
 Second, we see that class accuracy has improved across the board, especially on aircraft types that did not perform as well before. More work could be done and more data could be added for the F-15, F-22, and C-5, which still have low accuracy.
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img29_comparison_class_accuracy.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img29_comparison_class_accuracy.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 #### Confusion Matrix
 Third, we inspect the confusion matrix to check for improvements in the "confusions". In general, the fighters are confused with one another, and likewise for transport aircraft. We no longer have the issue of confusing fighters with transport aircraft.
@@ -347,16 +347,16 @@ Third, we inspect the confusion matrix to check for improvements in the "confusi
 * F-22s are still confused with F-16s, and now F-18s too
 * Twin Turboprops are still confused with Boeings
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img24_cm.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img24_cm.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 #### Class Probabilities
 We see some improvements in the differentiation in distributions of predicted probabilities for aircraft types that the model performed relatively poorly on: Boeing, C-130, C-135, C-5, F-15, F-22, Private Jet, and Twin Turboprop. The F-22 remains the aircraft type that needs the most work.
 
 Separately, note that in the bar plot (first chart), the mean value for correctly and incorrectly predicted probabilities for A-10 was almost identical. This was because there was exactly one confident but incorrect prediction that a C-130 was an A-10.
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img25_class_probs.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img25_class_probs.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img26_class_prob_dist.png" width="500" style='margin-left: auto; margin-right: auto; display: block;'>
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img26_class_prob_dist.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Evaluation
 Overall, the model has improved significantly from the first simple model. It has the potential to save the operator time and brain power in identifying aircraft from images. We'll discuss this a little more in the conclusion.
