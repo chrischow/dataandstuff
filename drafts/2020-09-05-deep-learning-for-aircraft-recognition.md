@@ -1,7 +1,7 @@
 ---
 type: post  
 title: "Deep Learning for Aircraft Recognition Part I: Building a Convolutional Neural Network (CNN) from Scratch"  
-bigimg: /img/covid19.jpg
+bigimg: /img/dl_for_ar.jpg
 image: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/dl_for_ar_sq.png
 share-img: /img/dl_for_ar.jpg
 share-img2: https://raw.githubusercontent.com/chrischow/dataandstuff/gh-pages/img/dl_for_ar_sq.png
