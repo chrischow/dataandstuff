@@ -403,10 +403,10 @@ If there are a few things that we've shown (also the things to take away), these
 1. **Computer vision technology can save time and effort for the Air Force.** We don't see many open case studies - hopefully this series of posts will serve as one. But this is just one of the many applications of AI. Models for other tasks like identifying ground targets or ships could be built with a similar approach.
 2. **Computer vision technology is readily available.** It's cheap (effectively free), and it can be harnessed relatively quickly if you have people with the right technical expertise and domain knowledge.
 
-<br>
-<hr>
+---
+Credits for image: Mikkel William / Getty
 
-### Sources
+#### Sources
 
 [^1]: [Recognizing Military Vehicles in Social Media Images Using Deep Learning - Hiippala (2017)](https://www.mv.helsinki.fi/home/thiippal/publications/2017-ieee-isi.pdf)
 [^2]: [Automatic Detection of Military Targets Utilising Neural Networks and Scale Space Analysis - Khashman (2000)](https://apps.dtic.mil/dtic/tr/fulltext/u2/p010890.pdf)
@@ -414,5 +414,3 @@ If there are a few things that we've shown (also the things to take away), these
 [^4]: [Detection of People in Military and Security Context Imagery - Shannon et al (2014)](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/9248/92480N/Detection-of-people-in-military-and-security-context-imagery-withdrawal/10.1117/12.2069906.full?SSO=1)
 [^5]: [Military Applications of Artificial Intelligence - RAND Corporation (2020)](https://www.rand.org/pubs/research_reports/RR3139-1.html)
 
----
-Credits for image: Mikkel William / Getty
