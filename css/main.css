@@ -141,12 +141,39 @@ layout: null
 
 @import url("pygment_highlights.css");
 
+/* --- Work Sans --- */
+@font-face {
+  font-family: Work Sans;
+  src: url("../fonts/Work Sans/WorkSans-Regular.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Work Sans;
+  src: url("../fonts/Work Sans/WorkSans-Bold.ttf") format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Work Sans;
+  src: url("../fonts/Work Sans/WorkSans-Italic.ttf") format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Work Sans;
+  src: url("../fonts/Work Sans/WorkSans-BoldItalic.ttf") format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
 /* --- General --- */
 
 body {
-  /*font-family: 'Raleway', 'Open Sans', sans-serif;*/
-  font-family: 'Source Sans Pro', 'Lora', 'Open Sans', sans-serif;
-  /*font-family: 'Raleway', 'Times', sans-serif;*/
+  font-family: 'Work Sans', 'Source Sans Pro', 'Lora', 'Open Sans', sans-serif;
   font-size: 20px;
   /* color: #404040; */
   color: #10102C;
@@ -201,7 +228,7 @@ hr.small {
 }
 
 .main-explain-area {
-  font-family: 'Source Sans Pro', 'Lora', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Work Sans', 'Source Sans Pro', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 15px inherit;
 }
 

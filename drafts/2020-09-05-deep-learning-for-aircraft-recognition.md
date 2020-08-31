@@ -400,7 +400,7 @@ Although the models produced some decent results, we still can't make an assessm
 
 If there are a few things that we've shown (also the things to take away), these are that:
 
-1. **Computer vision technology is relevant for the military.** We don't see many case studies, so hopefully this series of posts will serve as one.
+1. **Computer vision technology is relevant for the military.** We don't see many open case studies - hopefully this series of posts will serve as one.
 2. **Computer vision technology is readily available.** It's cheap (effectively free), and it can be done relatively quickly if you have people with the right technical expertise and domain knowledge.
 
 <hr>
