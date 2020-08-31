@@ -403,6 +403,9 @@ If there are a few things that we've shown (also the things to take away), these
 1. **Computer vision technology is relevant for the military.** We don't see many case studies, so hopefully this series of posts will serve as one.
 2. **Computer vision technology is readily available.** It's cheap (effectively free), and it can be done relatively quickly if you have people with the right technical expertise and domain knowledge.
 
+<hr>
+
+### Sources
 
 [^1]: [Recognizing Military Vehicles in Social Media Images Using Deep Learning - Hiippala (2017)](https://www.mv.helsinki.fi/home/thiippal/publications/2017-ieee-isi.pdf)
 [^2]: [Automatic Detection of Military Targets Utilising Neural Networks and Scale Space Analysis - Khashman (2000)](https://apps.dtic.mil/dtic/tr/fulltext/u2/p010890.pdf)
