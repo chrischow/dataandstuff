@@ -136,7 +136,7 @@ See below the code to build the model, the model summary and a diagram of the ar
 model = Sequential()
 
 # Block 1
-model.add(Conv2D(filters=32, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=32, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01), input_shape=(70, 70, 3)))
 model.add(MaxPool2D(pool_size=(2,2)))
 model.add(BatchNormalization())
 
@@ -303,7 +303,7 @@ The final model was much more complex with 12 million parameters across 13 weigh
 model = Sequential()
 
 # Block 1
-model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01), input_shape=(70, 70, 3)))
 model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
 model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
 model.add(MaxPool2D(pool_size=(2,2)))
