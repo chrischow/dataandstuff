@@ -129,7 +129,47 @@ I used the other settings below. Generally, nothing changed throughout except th
     * Early stopping with a patience of 50 epochs (found after some experimentation)
 
 ### Model Architecture
-See below for the model summary and a diagram of the architecture:
+See below the code to build the model, the model summary and a diagram of the architecture:
+
+```py
+# Initialise model
+model = Sequential()
+
+# Block 1
+model.add(Conv2D(filters=32, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Block 2
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Block 3
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Block 4
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.0001)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Dense
+model.add(Flatten())
+model.add(Dense(32, activation='relu'))
+model.add(Dropout(0.5))
+
+# Softmax
+model.add(Dense(21, activation='softmax'))
+
+# Compile
+model.compile(
+    loss='categorical_crossentropy',
+    optimizer=Adam(learning_rate=lr),
+    metrics=['accuracy']
+)
+```
 
 ```
 _________________________________________________________________
@@ -256,7 +296,55 @@ Assuming he guesses the most prevalent class from each category (C-130 for trans
 I'm skipping ahead to the exciting bit: the final model. I'll explain some of the tweaks I made in the next section on the fine-tuning process.
 
 ### Model Architecture
-The final model was much more complex with 12 million parameters across 13 weight layers. See below for the model summary and a diagram of the architecture:
+The final model was much more complex with 12 million parameters across 13 weight layers. See below for the code to build the model, the model summary and a diagram of the architecture:
+
+```py
+# Initialise model
+model = Sequential()
+
+# Block 1
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=64, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Block 2
+model.add(Conv2D(filters=128, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=128, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=128, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Block 3
+model.add(Conv2D(filters=256, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=256, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=256, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Block 4
+model.add(Conv2D(filters=512, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=512, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(Conv2D(filters=512, kernel_size=(3,3), activation='relu', padding='same', kernel_regularizer=L2(l2=0.01)))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(BatchNormalization())
+
+# Dense
+model.add(Flatten())
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.5))
+
+# Softmax
+model.add(Dense(21, activation='softmax'))
+
+# Compile
+model.compile(
+    loss='categorical_crossentropy',
+    optimizer=Adam(learning_rate=0.00004),
+    metrics=['accuracy']
+)
+```
 
 ```
 _________________________________________________________________
@@ -364,7 +452,7 @@ Separately, note that in the bar plot (first chart), the mean value for correctl
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img26_class_prob_dist.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Evaluation
-Overall, the model has improved significantly from the first iteration. It has the potential to save the operator time and brain power in identifying aircraft from images. We'll discuss this a little more in the conclusion.
+Overall, the model has improved significantly from the first iteration. It has the potential to save the operator time and brain power in identifying aircraft from images. I certainly could have gone further to develop a bigger, more complex model. However, 95% looked like a good number for me, so I stopped there.
 
 ## The Fine-Tuning Process
 I saved the less exciting bits for the last. Here are some of the things I learned from building a CNN from scratch.
