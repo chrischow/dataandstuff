@@ -166,7 +166,7 @@ model.add(Dense(21, activation='softmax'))
 # Compile
 model.compile(
     loss='categorical_crossentropy',
-    optimizer=Adam(learning_rate=lr),
+    optimizer=Adam(learning_rate=0.0001),
     metrics=['accuracy']
 )
 ```
