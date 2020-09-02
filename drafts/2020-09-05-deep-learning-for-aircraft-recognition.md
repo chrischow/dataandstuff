@@ -502,6 +502,6 @@ Credits for image: Mikkel William / Getty
 
 [^1]: [Recognizing Military Vehicles in Social Media Images Using Deep Learning - Hiippala (2017)](https://www.mv.helsinki.fi/home/thiippal/publications/2017-ieee-isi.pdf)
 [^2]: [Automatic Detection of Military Targets Utilising Neural Networks and Scale Space Analysis - Khashman (2000)](https://apps.dtic.mil/dtic/tr/fulltext/u2/p010890.pdf)
-[^3]: [Multi-Channel CNN-based Object Detection for Enhanced Situational Awareness](https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SET-241/MP-SET-241-9-5.pdf)
+[^3]: [Multi-Channel CNN-based Object Detection for Enhanced Situational Awareness - Liu & Liu (2017)](https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SET-241/MP-SET-241-9-5.pdf)
 [^4]: [Detection of People in Military and Security Context Imagery - Shannon et al (2014)](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/9248/92480N/Detection-of-people-in-military-and-security-context-imagery-withdrawal/10.1117/12.2069906.full?SSO=1)
 [^5]: [Military Applications of Artificial Intelligence - RAND Corporation (2020)](https://www.rand.org/pubs/research_reports/RR3139-1.html)
