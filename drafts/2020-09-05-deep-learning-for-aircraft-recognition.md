@@ -78,6 +78,8 @@ After assigning the correct labels, the dataset was left with 9,320 images distr
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img11_all_classes.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
+I extracted 25% (2,326) of the images for testing, leaving the remainder for training. Within the training set, 80% (5,602) was used for training, and 20% (1,392) for validation.
+
 # Evaluation Metrics and the Business Problem
 Before diving into the models, it's important to define the business problem and specify appropriate metrics. Since we're testing how well a CV model can augment operators, we need to think a little about how the model will realistically be deployed.
 
