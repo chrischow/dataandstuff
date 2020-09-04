@@ -9,7 +9,7 @@ tags: [aircraft recognition, computer vision, deep learning]
 ---
 
 # Computer Vision for the Military
-For the past few years, I’ve kept current on developments in the machine learning (ML) world through courses and interest groups. One thing I’ve noticed is that a lot of success stories were recycled from the business world. Although there are many potential military applications, especially for intelligence, these generally can’t be shared publicly due to security. Yet, there are open source datasets that can easily be repurposed for high-payoff military applications. I thought it might be useful to showcase how quickly one can develop a prototype for a problem statement of interest to the military using an open source dataset.
+For the past few years, I’ve kept current on developments in machine learning (ML) through courses and interest groups. One thing I’ve noticed is that a lot of success stories were recycled from the business world. Although there are many potential military applications, especially for intelligence, these generally can’t be shared publicly due to security. Yet, there are open source datasets that can easily be repurposed for high-payoff military applications. I thought it might be useful to showcase how quickly one can develop a prototype for a problem statement of interest to the military using an open source dataset.
 
 ## Military Application: Intelligence, Surveillance, and Reconnaissance
 One area of artificial intelligence (AI) that is of immense value for Intelligence, Surveillance and Reconnaissance (ISR) is **computer vision** (CV). CV greatly enhances operators' efficiency in exploiting image and video data, thereby increasing their capacity to pursue other higher-value lines of work. The idea of applying CV for ISR is not new. Published in 1987, [this paper](https://pdfs.semanticscholar.org/b1b9/5e3a74e6b8952bcd286393a6bd23f09a5836.pdf) proposed that AI and signal processing could be used to better understand images.
@@ -17,14 +17,14 @@ One area of artificial intelligence (AI) that is of immense value for Intelligen
 Today, many militaries are investing in CV for ISR. Some applications include recognition of military vehicles in social media[^1], recognition of camouflaged military targets[^2], battlefield object detection[^3], and person detection in military contexts[^4] to name a few. The US, China, and Russia are investing heavily in AI (with image recognition as one of the applications) to enhance their ISR capabilities.[^5] There's no reason why the RSAF shouldn't do the same. Thankfully, CV models can be developed at low cost and quickly (depending on which technology partner is chosen).
 
 ## Personal Development
-As part of my personal development plan in data science, I've started work on learning to build neural networks. Since most Kaggle competitions typically involve computer vision, I decided that this would be the area that I would focus on to hone my skills in deep learning. It was nice to know that this was also related to the Air Force.
+As part of my personal development plan in data science, I've started work on learning to build neural networks. Since most Kaggle competitions typically involve computer vision, I decided that this would be the area that I would focus on to hone my skills in deep learning. It was nice to know that this could also be applicable to the Air Force.
 
 Hence, I will be writing about **aircraft recognition in remote sensing** in a series of posts. This series aims to test how well computer vision can augment human operators in aircraft recognition and hopefully, show that with some studying and practice, it's possible to create valuable technology for military applications cheaply and quickly.
 
 # The Series
 In **Part I: Building a Convolutional Neural Network (CNN) from Scratch** (this post), I detail part of my modelling process and key learning pointers.
 
-In **Part II: (Transfer) Learning from the Best**, I start over with pre-trained models like VGG16, ResNet50 and InceptionV3 as the base and fine-tune them.
+In **Part II: (Transfer) Learning from the Best**, I start over with pre-trained models like VGG16, ResNet50 and InceptionV3 as the base models, and fine-tune models built on them.
 
 In **Part III: The Verdict**, I summarise the results, make an assessment on whether this technology is useful for operators, and propose some recommendations for the way forward in developing this capability.
 
@@ -84,7 +84,7 @@ I extracted 25% (2,326) of the images for testing, leaving the remainder for tra
 Before diving into the models, it's important to define the business problem and specify appropriate metrics. Since we're testing how well a CV model can augment operators, we need to think a little about how the model will realistically be deployed.
 
 ## The Business Problem
-We assume that there already is a system in place to produce images of aircraft. An operator is then required to sieve through them to tag an aircraft type and location (taken for granted here). Therefore, the CV model delivers value by making recommendations for the aircraft type, saving time and cognitive capacity.
+We assume that there already is a system in place to produce images of aircraft. An operator is then required to sieve through them to tag an aircraft type and location (we ignore location here). Therefore, the CV model delivers value by making recommendations for the aircraft type, saving time and cognitive capacity.
 
 Given that the model is sure to make mistakes, we must ensure that the man in the loop is aware of when these might occur. This can be achieved by displaying the model's confidence in each prediction (e.g. high, medium or low based on operator-defined thresholds). That way, the operator can automatically accept the recommendation for (1) classes that the model typically performs well on and (2) predictions above a certain level of confidence, while stepping in to make a call on predictions below a certain level of confidence. 
 
@@ -96,10 +96,10 @@ In this post, we will focus on the model's ability to make good recommendations 
 For simplicity, we assume that an ISR team processes 1,500 images a day, which is about 60 per hour or 1 per minute. We also assume the following modes of model deployment:
 
 * **Supervised autonomous tagging (man-on-the-loop):** The system automatically tags images with the top predicted class, and the operator jumps in whenever the tag is wrong. Top-1 accuracy is relevant here.
-* **Semi-autonomous tagging (man-in-the-loop):** The system automatically tags images with the top predicted class **if the predicted probability is greater than 99%*. Otherwise, it presents the top 3 classes, and the operator must input the correct tag. We assume that if the top 3 classes contains the true tag, there is close to no effort for the operator. At all times, the operator must jump in if the tag is wrong. Therefore, a combination of top-1 accuracy and top-3 accuracy is relevant here.
+* **Semi-autonomous tagging (man-in-the-loop):** The system automatically tags images with the top predicted class *if the predicted probability is greater than 99%*. Otherwise, it presents the top 3 classes, and the operator must input the correct tag. We assume that if the top 3 classes contains the true tag, there is close to no effort for the operator. At all times, the operator must jump in if the tag is wrong, or the recommendations don't include the correct aircraft type. Therefore, a combination of top-1 accuracy and top-3 accuracy is relevant here.
 
 ### Sidenote on Evaluation
-I think that deciding to incorporate a model purely on the model metrics is insufficient because it disregards the level of autonomy with which the model will operate. If the model is meant to be used in semi-autonomous (i.e. man-in-the-loop) or supervised autonomous (i.e. man-on-the-loop) mode, then an operator ought to be part of the evaluation. This is because you're not just evaluating a model, you're evaluating a **man-machine team**.
+I think that deciding to incorporate a model purely on the model's metrics is insufficient because it disregards the level of autonomy with which the model will operate. If the model is meant to be used in semi-autonomous (i.e. man-in-the-loop) or supervised autonomous (i.e. man-on-the-loop) mode, then an operator ought to be part of the evaluation. This is because you're not just evaluating a model, you're evaluating a **man-machine team**.
 
 # A Convolutional Neural Network (CNN) from Scratch
 In this section, I'll be sharing about (1) the first model I built, (2) the final model I built, and (3) some key learning pointers from the testing process. I assume the reader has some basic understanding of Convolutional Neural Networks (CNNs) and the types of parameters involved. [This article on Medium](https://medium.com/@himadrisankarchatterjee/a-basic-introduction-to-convolutional-neural-network-8e39019b27c4) provides a good overview.
@@ -114,13 +114,13 @@ I used the other settings below. Generally, nothing changed throughout except th
 
 * Input size: 70x70 (found after some experimentation)
 * For all convolutional layers:
-    * "Same" padding
-    * ReLu activation
     * Kernel size of 3x3
+    * ReLu activation
+    * "Same" padding
 * For all convolutional blocks:
     * Max pooling with a pool size of 2x2
     * Batch normalisation after each max pooling layer
-* For fully-connected layer:
+* For fully-connected layer(s):
     * Dropout of 0.5 nodes
     * ReLu activation
 * Compiling the model:
@@ -131,7 +131,7 @@ I used the other settings below. Generally, nothing changed throughout except th
     * Early stopping with a patience of 50 epochs (found after some experimentation)
 
 ### Model Architecture
-See below the code to build the model, the model summary and a diagram of the architecture:
+See below for the code to build the model, along with a summary and a diagram of the model architecture:
 
 ```py
 # Initialise model
@@ -216,7 +216,7 @@ _________________________________________________________________
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img12_first_model.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Choosing the Best Weights
-The best set of model weights was chosen based on **validation loss**. This is because accuracy isn't exactly the best metric to represent model ability. Consider the two scenarios:
+The best set of model weights was chosen based on **validation loss**. This is because accuracy isn't exactly the best metric to represent model ability. Consider the following two scenarios:
 
 1. The model predicts an image contains an F-15 with 90% probability (and 0.5% each for the remaining 20 classes)
 2. The model predicts an image contains an F-15 with 20% probability (and 4% each for the remaining 20 classes)
@@ -236,12 +236,12 @@ First, we see that accuracy (I'll refer to top-1 accuracy as "accuracy") was 68%
 
 If the model operated in supervised autonomous and semi-autonomous mode:
 
-* **Supervised autonomous:** The system would attain 68% accuracy, and the operator would have to manually tag 32% or 20 out of 60 images per hour.
+* **Supervised autonomous:** The system would attain 68% accuracy, and the operator would have to manually tag 32% or 19 out of 60 images per hour.
 * **Semi-autonomous:**
-    * The man-machine team would attain an accuracy of 88%:
+    * The man-machine team would attain an accuracy of 89%:
         * Automated tags that were correct: 27%
-        * Recommended tags that were correct: 61% (we assume this does not count as manual tagging)
-    * The operator would have to manually tag 12% or about 8 out of 60 images per hour
+        * Recommended tags that were correct: 62% (we assume this does not count as manual tagging)
+    * The operator would have to manually tag 11% or about 6.6 out of 60 images per hour
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img19_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
@@ -417,12 +417,12 @@ First, we see that all metrics improved substantially:
 
 If the model operated in supervised autonomous and semi-autonomous mode:
 
-* **Supervised autonomous:** The system would attain 86% accuracy, and the operator would have to manually tag 14% or about 9 of 60 images per hour.
+* **Supervised autonomous:** The system would attain 86% accuracy, and the operator would have to manually tag 14% or about 8.4 of 60 images per hour.
 * **Semi-autonomous:**
-    * The man-machine team would attain an accuracy of 95%:
-        * Automated tags that were correct: 65%
+    * The man-machine team would attain an accuracy of 96%:
+        * Automated tags that were correct: 66%
         * Recommended tags that were correct: 30%
-    * The operator would have to manually tag 5% or 3 of 60 images per hour
+    * The operator would have to manually tag 4% or 2.4 of 60 images per hour
 
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img27_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
@@ -454,7 +454,7 @@ Separately, note that in the bar plot (first chart), the mean value for correctl
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img26_class_prob_dist.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ### Evaluation
-Overall, the model has improved significantly from the first iteration. It has the potential to save the operator time and brain power in identifying aircraft from images. I certainly could have gone further to develop a bigger, more complex model. However, 95% looked like a good number for me, so I stopped there.
+Overall, the model has improved significantly from the first iteration. It has the potential to save the operator time and brain power in identifying aircraft from images. I certainly could have gone further to develop a bigger, more complex model. However, 96% looked like a good number for me, so I stopped there.
 
 ## The Fine-Tuning Process
 I saved the less exciting bits for the last. Here are some of the things I learned from building a CNN from scratch.
@@ -463,10 +463,10 @@ I saved the less exciting bits for the last. Here are some of the things I learn
 I observed two interesting parallels between the training of individual NNs and the overarching modelling process.
 
 #### A. Batch size
-At first, I lined up a few architectures that I wanted to test, and ran them overnight. However, I realised that some of them attained pretty bad results, probably because I was just trying my luck. This was equivalent to batch training (no minibatch gradient updates): I updated my understanding of good parameter values for the model after a series of models were trained and produced some results. After a while, I switched over to a one-model-at-a-time approach. Interpreting the results was fast and targeted. I made more improvements in this way. This was equivalent to training with minibatches, where a model updates its weights (understanding of what works) at shorter intervals.
+At first, I lined up a few architectures that I wanted to test, and ran them overnight. However, I realised that some of them attained pretty bad results, probably because I was just trying my luck. This was equivalent to batch training (no minibatch gradient updates): I updated my understanding of good parameter values for the model after a series of models were trained and produced some results. After a while, I switched over to a one-model-at-a-time approach. Interpreting the results was fast and targeted. I made more improvements in this way. This was equivalent to training with minibatches, where a model updates its weights at shorter intervals.
 
 #### B. Adaptive learning rates
-Initially, I made very minor adjustments to my model, like adding one convolutional layer at a time. Progress was slow. After I switched to a more adaptive approach, I was able to make progress more quickly. I made **big** changes at first to find big improvements (and I did). As the model got closer to hitting its limits, I scaled back on the size of the changes. This was an adaptive learning rate: faster at first to make the easy improvements and slower later on to find the elusive global minimum.
+Initially, I made very minor adjustments to my model, like adding one convolutional layer at a time. Progress was slow. After I switched to a more adaptive approach, I was able to make progress more quickly. I made **big** changes at first to find big improvements (and I did). As the model got closer to hitting what I thought were its limits, I scaled back on the size of the changes. This was an adaptive learning rate: faster at first to make the easy improvements and slower later on to find the elusive global minimum.
 
 ### 2. Make small, iterative improvements
 I built my model using [Andrew Ng's panda approach](https://www.coursera.org/lecture/deep-neural-network/hyperparameters-tuning-in-practice-pandas-vs-caviar-DHNcc): I made small adjustments to gradually improve it. I tracked the learning curves for loss and accuracy, and analysed these to make adjustments. Sometimes, I monitored the training and validation loss as training was going on to see if there were potential issues with the parameters, and could stop training halfway to tweak them.
@@ -478,13 +478,13 @@ Be clear on what you want to evaluate before building models. Some of the diagno
 In this pretty lengthy post, I introduced the business problem of using computer vision for aircraft recognition, presented my initial and final models, and shared some learning pointers for fine-tuning a neural network. Returning to our original question of how well this model can augment ISR operators in aircraft recognition, I used a rough estimate of the amount of manual processing that an operator might need to perform. If the final model were operated in supervised autonomous and semi-autonomous mode:
 
 * **Supervised autonomous tagging (man-on-the-loop):**
-    * The system automatically would tag 86% of the images correctly
-    * The operator would have to manually tag the remaining 14% of images, which amounts to 9 out of 60 images per hour
+    * The system would automatically tag 86% of the images correctly
+    * The operator would have to manually tag the remaining 14% of images, which amounts to 8.4 out of 60 images per hour
 * **Semi-autonomous tagging (man-in-the-loop):**
-    * Overall, the man-machine team would tag 95% of the images correctly
+    * Overall, the man-machine team would tag 96% of the images correctly
         * 65% would be tagged correctly automatically (predicted probability >= 99%)
         * 30% would be correctly recommended by the model
-    * The operator would have to manually tag the remaining 5% of images, which amounts to 3 out of 60 images per hour
+    * The operator would have to manually tag the remaining 4% of images, which amounts to 2.4 out of 60 images per hour
 
 Although the models produced some decent results, we still can't make an assessment on whether the model should be incorporated. We need to ask questions about how things are done - questions that only the ops users can answer. For example:
 
@@ -492,9 +492,9 @@ Although the models produced some decent results, we still can't make an assessm
 * How quickly do you need the results?
 * Are there other higher value tasks that the operator should be freed up for? 
 
-If there are a few things that we've shown (also the things to take away), these are:
+The things to take away from this post are:
 
-1. **Computer vision technology can save time and effort for the Air Force.** We don't see many open case studies - hopefully this series of posts will serve as one. But this is just one of the many applications of AI. Models for other tasks like identifying ground targets or ships could be built with a similar approach.
+1. **Computer vision technology can save time and effort for the military.** We don't see many open case studies - hopefully this series of posts will serve as one. But this is just one of the many applications of AI. Models for other tasks like identifying ground targets or ships could be built with a similar approach.
 2. **Computer vision technology is readily available.** It's cheap (effectively free), and it can be harnessed relatively quickly if you have people with the right technical expertise and domain knowledge.
 
 ---
