@@ -490,7 +490,7 @@ Although the models produced some decent results, we still can't make an assessm
 * What level of confidence do you need for these targets?
 * How does the operator interact with the interface?
 
-While these considerations are essential, they are not difficult to incorporate. Data scientists must work closely with ISR operators to design a man-machine team that kicks ass.
+While these essential considerations lie outside the data science specialisation, they are not difficult to incorporate. Data scientists must work closely with ISR operators to design a man-machine team that kicks ass.
 
 The things to take away from this post are:
 
