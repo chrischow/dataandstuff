@@ -478,19 +478,23 @@ In this pretty lengthy post, I introduced the business problem of using computer
     * The operator would have to manually tag the remaining 14% of images, which amounts to 8.4 out of 60 images per hour
 * **Semi-autonomous tagging (man-in-the-loop):**
     * Overall, the man-machine team would tag 96% of the images correctly
-        * 65% would be tagged correctly automatically (predicted probability >= 99%)
+        * 66% would be tagged correctly automatically (predicted probability >= 99%)
         * 30% would be correctly recommended by the model
     * The operator would have to manually tag the remaining 4% of images, which amounts to 2.4 out of 60 images per hour
 
-Although the models produced some decent results, we still can't make an assessment on whether the model should be incorporated. We need to ask questions about how things are done - questions that only the ops users can answer. For example:
+Although the models produced some decent results, we still can't make an assessment on whether the model should be incorporated. We need to ask questions about how things are done - questions that only the operators can answer. For example:
 
 * What accuracy is required?
 * How quickly do you need the results?
-* Are there other higher value tasks that the operator should be freed up for? 
+* Which targets are of greater interest?
+* What level of confidence do you need for these targets?
+* How does the operator interact with the interface?
+
+While these considerations are essential, they are not difficult to incorporate. Data scientists must work closely with ISR operators to design a man-machine team that kicks ass.
 
 The things to take away from this post are:
 
-1. **Computer vision technology can save time and effort for the military.** We don't see many open case studies - hopefully this series of posts will serve as one. But this is just one of the many applications of AI. Models for other tasks like identifying ground targets or ships could be built with a similar approach.
+1. **Computer vision technology can save time and effort for the military.** We don't see many open case studies on military applications of AI - hopefully this series of posts will serve as one. But this is just one of many applications. Models for other tasks like identifying ground targets or ships could be built with a similar approach.
 2. **Computer vision technology is readily available.** It's cheap (effectively free), and it can be harnessed relatively quickly if you have people with the right technical expertise and domain knowledge.
 
 ---
