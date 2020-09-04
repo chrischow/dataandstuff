@@ -243,8 +243,6 @@ If the model operated in supervised autonomous and semi-autonomous mode:
         * Recommended tags that were correct: 62% (we assume this does not count as manual tagging)
     * The operator would have to manually tag 11% or about 6.6 out of 60 images per hour
 
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img19_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
-
 #### Accuracy by Class
 Second, we look at the aircraft types that the model performed well on. The results seem fairly intuitive. The B-2, E-3, and T-6 all have very unique features. F-18s are in the top few probably because of the lack of variety in images. Light aircraft stand out fairly well because of their clumsy, squarish shape.
 
@@ -423,8 +421,6 @@ If the model operated in supervised autonomous and semi-autonomous mode:
         * Automated tags that were correct: 66%
         * Recommended tags that were correct: 30%
     * The operator would have to manually tag 4% or 2.4 of 60 images per hour
-
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img27_man_machine.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 #### Accuracy by Class
 Second, we see that class accuracy has improved across the board, especially on aircraft types that did not perform as well before. More work could be done and more data could be added for the F-15, F-22, and C-5, which still have low accuracy.
