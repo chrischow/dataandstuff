@@ -19,7 +19,7 @@ Today, many militaries are investing in CV for ISR. Some applications include re
 ## Personal Development
 As part of my personal development plan in data science, I've started work on learning to build neural networks. Since most Kaggle competitions typically involve computer vision, I decided that this would be the area that I would focus on to hone my skills in deep learning. It was nice to know that this could also be applicable to the Air Force.
 
-Hence, I will be writing about **aircraft recognition in remote sensing** in a series of posts. This series aims to test how well computer vision can augment human operators in aircraft recognition and hopefully, show that with some studying and practice, it's possible to create valuable technology for military applications cheaply and quickly.
+Hence, I will be writing about **aircraft recognition in remote sensing images** in a series of posts. This series aims to test how well computer vision can augment human operators in aircraft recognition and hopefully, show that with some studying and practice, it's possible to create valuable technology for military applications cheaply and quickly.
 
 # The Series
 In **Part I: Building a Convolutional Neural Network (CNN) from Scratch** (this post), I detail part of my modelling process and key learning pointers.
@@ -28,9 +28,9 @@ In **Part II: (Transfer) Learning from the Best**, I start over with pre-trained
 
 In **Part III: The Verdict**, I summarise the results, make an assessment on whether this technology is useful for operators, and propose some recommendations for the way forward in developing this capability.
 
-1. Part I: Building a Convolutional Neural Network (CNN) from Scratch (this post)
-2. Part II: (Transfer) Learning from the Best (TBC)
-3. Part III: The Verdict (TBC)
+1. **Part I: Building a Convolutional Neural Network (CNN) from Scratch (this post)**
+2. Part II: (Transfer) Learning from the Best (Coming Soon!)
+3. Part III: The Verdict (Coming Soon!)
 
 # Data
 For this series, I'll be using the [Multi-type Aircraft Remote Sensing Images (MTARSI) dataset](https://www.sciencedirect.com/science/article/abs/pii/S1568494620300727), which was created by Wu et al (2020). It contains 9,385 images on 20 aircraft types. It was designed to be a benchmark for aircraft recognition using CV. While some of the images were obtained from Google images, a majority of them were synthetic: they were created by superimposing aircraft on different backgrounds and performing transformations on them.
