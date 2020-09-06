@@ -52,8 +52,8 @@ At first, I inspected random images within the dataset, corrected a few errors, 
 ##### C-17s labelled as C-5s and vice versa
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img03_c17_c5.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
-##### Boeing 737s and C-135s labelled as KC-10s
-<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img04_737_c135_kc10.png" style='margin-left: auto; margin-right: auto; display: block;'>
+##### Boeing 707s and C-135s labelled as KC-10s
+<img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img04_707_c135_kc10.png" style='margin-left: auto; margin-right: auto; display: block;'>
 
 ##### All aircraft with fuselage-mounted engines labelled as C-21s
 <img src="../graphics/2020-09-05-deep-learning-for-aircraft-recognition/img05_c21.png" style='margin-left: auto; margin-right: auto; display: block;'>
